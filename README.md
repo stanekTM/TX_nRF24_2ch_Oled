@@ -10,10 +10,16 @@ This firmware has been completely redesigned according to my requirements, but i
 This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo)
 
 ### Arduino pins:
+* A0 - joystick 1
+* A1 - joystick 2
+* A2 - potentiometer 3
+* A3 - potentiometer 4
+#
 * D2 - button Up/Prev
 * D3 - button Down/Next
 * D4 - button Menu/Select
 * D5 - button Exit
+# 
 * D6 - buzzer
 * A7 - input TX battery
 #
@@ -36,3 +42,5 @@ nRF24L01:
 * <EEPROM.h>  Arduino standard library
 * <U8g2lib.h> https://github.com/olikraus/u8g2
 * <RF24.h>    https://github.com/nRF24/RF24
+
+George StanekTM
