@@ -8,7 +8,7 @@ void TX_batt_check() {
   // Mapping battery voltage from average from 0 to 4.2V LiPo
   raw_TX_batt = map(read_adc(7), 0, 1023, 0, 420);
 
-  // Calculating correct voltage value voltage for battery bar
+  // Calculating correct value voltage for battery bar
   calc_bar_batt = (raw_TX_batt / 10)/* + correct_volt 2 */;
 
 //  Serial.println(calc_bar_batt); // print value ​​on a serial monitor
