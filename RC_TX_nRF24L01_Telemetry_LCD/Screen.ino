@@ -3,18 +3,10 @@
 //************************************************************************************************************************************************************************
 void boot_screen()
 {
-  // Set memory buffer for text strings
-  char char_buffer[21];
-
   u8g2.firstPage(); do {
 
-    // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
-    u8g2.setCursor(0, 7);
-    u8g2.print(char_buffer);
-
     // Print version string
-    u8g2.setCursor(6, 7);
+    u8g2.setCursor(4, 28);
     u8g2.print(ver_str);
 
   } while (u8g2.nextPage());
