@@ -15,7 +15,7 @@ This RC transmitter works with a simple RC receiver from my repository [RC_RX_nR
 * D4 - button Menu/Select
 * D5 - button Exit
 * D6 - buzzer
-* A7 - analog input TX battery
+* A7 - input TX battery
 #
 LCD I2C:
 * A4 - SDA
