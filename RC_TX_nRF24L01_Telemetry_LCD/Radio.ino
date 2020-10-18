@@ -28,9 +28,9 @@ struct packet
 {
   unsigned int steering = servoCenter;
   unsigned int throttle = servoCenter;
-  unsigned int ch3      = servoCenter;
-  unsigned int ch4      = servoCenter;
-  unsigned int ch5      = servoCenter;
+  unsigned int ch3      = servoMin;
+  unsigned int ch4      = servoMin;
+  unsigned int ch5      = servoMin;
 };
 packet rc_data; //create a variable with the above structure
 
