@@ -5,7 +5,7 @@ It contains the telemetry of the monitored voltage RX displayed on the LCD displ
 Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) 
 and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch)
 
-This firmware has been completely redesigned for its requirements, but is not yet fully completed.
+This firmware has been completely redesigned according to my requirements, but is not yet fully completed.
 
 This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo)
 
