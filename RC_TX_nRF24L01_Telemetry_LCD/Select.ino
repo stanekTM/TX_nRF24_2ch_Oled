@@ -8,8 +8,10 @@ void select()
   //----------------------------------------------------------------------------
   if (calibStatus == 1 && read_button() == 2) {
     
-    Calibration();    // Recall calibration procedure
+    // Recall calibration procedure
+    Calibration();
   }
+  
   // Set condition 0 to continue loop if calibration procedure is not selected
   else {
     calibStatus = 0;
@@ -24,36 +26,43 @@ void select()
     draw_main_screen();
 //    read_pots();                 // Macro again for stable ppm pulse
   }
+  
   else {
     if (screen == 1) {           // Print MENU screen
 //      menu_screen();
       draw_menu_screen();
     }
+    
     if (screen == 2) {
-
       if (menuActual == 1) {     // Execute SERVO DIRECTION task
 //        servo_dir_screen();
         draw_servo_dir_screen();
       }
+      
       if (menuActual == 2) {     // Execute EPA task
 //        epa_screen();
         draw_epa_screen();
       }
+      
       if (menuActual == 3) {     // Execute MODEL SELECTION task
 //        model_sel_screen();
         draw_model_sel_screen();
       }
+      
       if (menuActual == 4) {     // Execute SAVE MODEL DATA task
         save_model_screen();
       }
+      
       if (menuActual == 5) {     // Execute SUB TRIM task
 //        sub_trim_screen();
         draw_sub_trim_screen(); 
       }
+      
       if (menuActual == 6) {     // Execute MODEL NAME task
 //        model_name_screen();
         draw_model_name_screen();
       }
+      
       if (menuActual == 7) {     // Execute EXPO task
 //        expo_screen();
         draw_expo_screen();
@@ -75,6 +84,7 @@ void select()
       menuSubModel = modelActual;
       modelPage = (menuSubModel) / 10;
     }
+    
     else {
       //-------------------------------------------------------------------------
       // Added if Menu/Select button is pressed without menu cursor (do nothing)
@@ -98,6 +108,7 @@ void select()
         if (epaSelection != 0xFF) {
           epaSelection = 0xFF;
         }
+        
         else {
           epaSelection = menuSubActual - 1;
         }
@@ -125,6 +136,7 @@ void select()
         if (subTrimSelection != 0xFF) {
           subTrimSelection = 0xFF;
         }
+        
         else {
           subTrimSelection = menuSubActual - 1;
         }
@@ -136,6 +148,7 @@ void select()
         if (modelNameSelection != 0xFF) {
           modelNameSelection = 0xFF;
         }
+        
         else {
           modelNameSelection = menuSubActual - 1;
         }
@@ -147,6 +160,7 @@ void select()
         if (expoSelection != 0xFF) {
           expoSelection = 0xFF;
         }
+        
         else {
           expoSelection = menuSubActual - 1;
         }
@@ -170,8 +184,7 @@ void select()
         if (epaSelection == 0xFF) {
 
           // Only first 3 values
-          if (menuSubActual < 3) { 
-            
+          if (menuSubActual < 3) {
             menuSubActual++;
             
             if (screen == 0) {
@@ -220,7 +233,6 @@ void select()
 
           // Only first 2 channels
           if (menuSubActual < 2) {
-            
             menuSubActual++;
 
             if (screen == 0) {
@@ -252,8 +264,7 @@ void select()
         if (modelNameSelection == 0xFF) {
 
           // Only 5 characters
-          if (menuSubActual < 5) {
-            
+          if (menuSubActual < 5) { 
             menuSubActual++;
             
             if (screen == 0) {
@@ -280,7 +291,6 @@ void select()
 
           // Only first 2 channels
           if (menuSubActual < 2) {
-            
             menuSubActual++;
             
             if (screen == 0) {
@@ -303,9 +313,9 @@ void select()
       default:
 
         if (menuSubActual < MENU_COUNT) { // 1 to 5 items
-          
           menuSubActual++;
         }
+        
         menuPage = (menuSubActual - 1) / 5;
         
         break;
@@ -329,11 +339,11 @@ void select()
 
           // Only first 2 channels
           if (menuSubActual < 2) {
-            
             screen--;
             menuSubActual = 2;
             menuActual = 0;
           }
+          
           else {
             menuSubActual--;
           }
@@ -361,13 +371,12 @@ void select()
         // Added for Model Menu management
         //----------------------------------
         if (menuSubModel > 0) {
-          
           menuSubModel--;
           modelPage = (menuSubModel) / 10;
         }
+        
         else {
           if (screen > 0) {
-            
             screen--;
             menuSubModel = 1;
             menuSubActual = 3;
@@ -384,11 +393,11 @@ void select()
 
           // Only first 2 channels
           if (menuSubActual < 2) {
-            
             screen--;
             menuSubActual = 5;
             menuActual = 0;
           }
+          
           else {
             menuSubActual--;
           }
@@ -417,11 +426,11 @@ void select()
 
           // Only 2 characters
           if (menuSubActual < 2) {
-            
             screen--;
             menuSubActual = 6;
             menuActual = 0;
           }
+          
           else {
             menuSubActual--;
           }
@@ -443,12 +452,12 @@ void select()
         if (expoSelection == 0xFF) {
           
           // Only first 2 channels
-          if (menuSubActual < 2) {
-            
+          if (menuSubActual < 2) { 
             screen--;
             menuSubActual = 7;
             menuActual = 0;
           }
+          
           else {
             menuSubActual--;
           }
@@ -469,14 +478,12 @@ void select()
       default:
 
         if (menuSubActual > 1) {
-          
           menuSubActual--;
-
           menuSubActual = menuSubActual < 1 ? 1 : menuSubActual;
           menuPage = (menuSubActual - 1) / 5;
         }
+        
         else {
-          
           if (screen > 0) {
             screen--;
             menuSubActual = 1;
