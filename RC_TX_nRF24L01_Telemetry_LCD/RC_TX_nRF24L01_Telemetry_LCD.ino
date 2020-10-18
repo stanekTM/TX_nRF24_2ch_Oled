@@ -3,7 +3,7 @@
 //************************************************************************************************************************************************************************
 #include <SPI.h>      // Arduino standard library
 #include <EEPROM.h>   // Arduino standard library
-#include <U8g2lib.h>  // Using U8G2 library "https://github.com/olikraus/u8g2"
+#include <U8g2lib.h>  // https://github.com/olikraus/u8g2
 #include "Config.h"   // Load static and variable configuration settings
 #include <RF24.h>     // https://github.com/nRF24/RF24
 #include <nRF24L01.h>
@@ -39,9 +39,9 @@ void setup() {
   // NOTE: For input pin buttons is necessary to mount on every pin
   // 0,1uF/100nF(104)ceramic capacitors from pin to GND
   //-----------------------------------------------------------------
-  pinMode(buttonSelect, INPUT_PULLUP);
   pinMode(buttonUp, INPUT_PULLUP);
   pinMode(buttonDown, INPUT_PULLUP);
+  pinMode(buttonSelect, INPUT_PULLUP);
   pinMode(buttonExit, INPUT_PULLUP);
   pinMode(buzzer, OUTPUT);
 
