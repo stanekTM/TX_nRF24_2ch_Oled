@@ -1067,11 +1067,11 @@ void expo_screen() {
         if (expo[i] > 0) {
 
           for (int j = 52; j <= 91; j++) {
-            u8g2.drawPixel(j, map(calc_expo(servoCenter, map(j, 52, 91, servoMin, servoCenter), servoMin, expo[i]), servoMin, servoCenter, 64, 36));
+            u8g2.drawPixel(j, map(calc_expo(servoMid, map(j, 52, 91, servoMin, servoMid), servoMin, expo[i]), servoMin, servoMid, 64, 36));
           }
 
           for (int j = 91; j <= 128; j++) {
-            u8g2.drawPixel(j, map(calc_expo(servoCenter, map(j, 91, 128, servoCenter, servoMax), servoMax, expo[i]), servoCenter, servoMax, 35, 9));
+            u8g2.drawPixel(j, map(calc_expo(servoMid, map(j, 91, 128, servoMid, servoMax), servoMax, expo[i]), servoMid, servoMax, 35, 9));
           }
         }
       }
