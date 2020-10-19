@@ -22,12 +22,12 @@ void radio_setup()
 }
 
 //************************************************************************************************************************************************************************
-// this structure defines the sent data in bytes (structure size max. 32 bytes), values ​​(servoMin = 1000us, servoCenter = 1500us, servoMax = 2000us) *********************
+// this structure defines the sent data in bytes (structure size max. 32 bytes), values ​​(servoMin = 1000us, servoMid = 1500us, servoMax = 2000us) ************************
 //************************************************************************************************************************************************************************
 struct packet
 {
-  unsigned int steering = servoCenter;
-  unsigned int throttle = servoCenter;
+  unsigned int steering = servoMid;
+  unsigned int throttle = servoMid;
   unsigned int ch3      = servoMin;
   unsigned int ch4      = servoMin;
   unsigned int ch5      = servoMin;
