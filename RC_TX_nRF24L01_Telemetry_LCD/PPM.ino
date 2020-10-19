@@ -1,23 +1,23 @@
 //************************************************************************************************************************************************************************
-// Macro for read pots, sticks, values, applying calibration and rules
+// Macro for read pots, joysticks, values, applying calibration and rules
 //************************************************************************************************************************************************************************
 void read_pots() {
 
   for (int i = 0; i < CHANNELS; i++) {
     
-    int tempPPM = servoCenter;
+    int tempPPM = servoMid;
 
     raw_Pots[i] = read_adc(i);
 
 //    Serial.println(ppm[1]); //print value ​​on a serial monitor
     
 
-    // only for throttle and steering ch.
+    // only for throttle and steering ch
     if ( i < 2) {
 
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
-      // So, Longer side length is used for both side.
+      // So, Longer side length is used for both side
       int gap = calibration[i][1] - centerPos[i];
       int gapTemp = centerPos[i] - calibration[i][0];
 
@@ -27,10 +27,10 @@ void read_pots() {
       // Calculate Center offset
       int centerOffset = potCenter - centerPos[i];
 
-      // Applying initial value with center offset.
+      // Applying initial value with center offset
       pots[i] = raw_Pots[i] + centerOffset;
 
-      // range out correction.
+      // range out correction
       if (pots[i] < calibration[i][0] + centerOffset) pots[i] = calibration[i][0] + centerOffset;
       if (pots[i] > calibration[i][1] + centerOffset) pots[i] = calibration[i][1] + centerOffset;
       
@@ -45,7 +45,7 @@ void read_pots() {
           epaVal_bwd = 500 - (500 * epa[2] / 100);
 
 
-      unsigned short trimServoCenter = servoCenter + subTrim[i]; 
+      unsigned short trimServoMid = servoMid + subTrim[i]; 
       unsigned short trimServoMin = servoMin + epaVal + subTrim[i];
       unsigned short trimServoMax = servoMax - epaVal + subTrim[i];
 
@@ -53,19 +53,19 @@ void read_pots() {
       if (pots[i]  < (potCenter - deadBand)) {
         
         if (i == 1) trimServoMin = servoMin + epaVal_bwd + subTrim[i];
-        tempPPM = map(pots[i], potCenter - gap, potCenter - deadBand, trimServoMin, trimServoCenter);
+        tempPPM = map(pots[i], potCenter - gap, potCenter - deadBand, trimServoMin, trimServoMid);
 
         // EXPO
-        if (expo[i] > 0) tempPPM = calc_expo(trimServoCenter, tempPPM, trimServoMin, expo[i]);
+        if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMin, expo[i]);
         }
         else if (pots[i]  > (potCenter + deadBand)) {
-          tempPPM = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoCenter, trimServoMax); //gap - 1
+          tempPPM = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoMid, trimServoMax); //gap - 1
 
         // EXPO
-        if (expo[i] > 0) tempPPM = calc_expo(trimServoCenter, tempPPM, trimServoMax, expo[i]);
+        if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMax, expo[i]);
         }
         else {
-          tempPPM = trimServoCenter;
+          tempPPM = trimServoMid;
         }
 
 
