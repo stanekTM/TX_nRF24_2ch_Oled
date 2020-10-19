@@ -25,8 +25,7 @@ void setup() {
   u8g2.begin();
 //  u8g2.setFlipMode(1);   
 //  u8g2.setContrast(10);
-  // Set default font type used for all display sessions (mandatory)
-  u8g2.setFont(u8g2_font_6x10_tr);
+  u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
   
 
   boot_screen(); // print boot screen
@@ -52,10 +51,10 @@ void setup() {
   //-------------------------------------------
   // Default state values for ppm
   //-------------------------------------------
-  ppm[0] = servoCenter; // channel 1 (STR)
-  ppm[1] = servoCenter; // channel 2 (THR)
-  ppm[2] = servoMin;    // channel 3 (CH3)
-  ppm[3] = servoMin;    // channel 4 (CH4)
+  ppm[0] = servoMid; // channel 1 (STR)
+  ppm[1] = servoMid; // channel 2 (THR)
+  ppm[2] = servoMin; // channel 3 (CH3)
+  ppm[3] = servoMin; // channel 4 (CH4)
 */  
 
   //-------------------------------------------------------------------------------------
@@ -98,7 +97,7 @@ void loop() {
   TX_batt_check();         // Checking TX battery status
 
   read_button_exit();      // Macro for read button status definitions
-  read_pots();             // Macro for read pots, sticks, values, applying calibration and rules
+  read_pots();             // Macro for read pots, joysticks, values, applying calibration and rules
   select();                // Select screen, calibration, step control for channels/values
 }
  
