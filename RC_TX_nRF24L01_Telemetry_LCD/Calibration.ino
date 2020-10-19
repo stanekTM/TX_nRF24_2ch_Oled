@@ -3,7 +3,7 @@
 //************************************************************************************************************************************************************************
 void Calibration() {
 
-  // Setting default mid value reference for Min. Max. calibration
+  // Setting default mid value reference for Min and Max calibration
   for (int i = 0; i < CHANNELS; i++) {
 
     calibration[i][0] = 512;
@@ -62,7 +62,7 @@ void Calibration() {
     
     delay(5);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing ButtonUp
+    // Set calibStatus = 0 to exit calibration procedure by pressing button Up
     if (read_button() == 1) {
       calibStatus = 0;
       }
@@ -72,10 +72,10 @@ void Calibration() {
   calib_save_screen();
 
 
-  // Save Min, Max, Center values in Eeprom
+  // Save Min, Max and Center values in Eeprom
   int posEeprom = 0; //int 0
 
-  // Save Min Max calibration values from Eeprom
+  // Save Min and Max calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++) {
 
     // Save Min calibration values for channels
@@ -94,8 +94,7 @@ void Calibration() {
     posEeprom = 1016 + (i * 2);
     EEPROMUpdateInt(posEeprom, centerPos[i]);
   }
-  // End of print calibration storing message
-
+  
   delay(2000); // Screen message for 2sec
 }
 
