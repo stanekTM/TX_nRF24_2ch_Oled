@@ -12,19 +12,19 @@ void Calibration() {
   
   while (calibStatus == 1) {
 
-    // Reading Min and Max value for every channel
-    unsigned int temporaryReading; 
+    // Reading MIN and MAX value for every channel
+    unsigned int tempReading; 
 
     for (int i = 0; i < CHANNELS; i++) {
       
       // Get value from every ADC ports
-      temporaryReading = read_adc(i);
+      tempReading = read_adc(i);
 
-      // Get Min values
-      if (temporaryReading < calibration[i][0]) calibration[i][0] = temporaryReading; //<=
+      // Get MIN values
+      if (tempReading < calibration[i][0]) calibration[i][0] = tempReading; //<=
 
-      // Get Max values
-      if (temporaryReading > calibration[i][1]) calibration[i][1] = temporaryReading; //>= 
+      // Get MAX values
+      if (tempReading > calibration[i][1]) calibration[i][1] = tempReading; //>= 
     } 
       
     // Print calibration "MIN-MAX" real time channels
@@ -45,7 +45,7 @@ void Calibration() {
     delay(10);
   }
 
-  // Setting default mid value reference for center calibration
+  // Setting default mid value reference for CENTER calibration
   // only for Throttle and Steering
   for (int i = 0; i < 2; i++) {
     centerPos[i] = 512;
@@ -72,22 +72,22 @@ void Calibration() {
   calib_save_screen();
 
 
-  // Save Min, Max and Center values in Eeprom
+  // Save MIN, MAX and Center values in Eeprom
   int posEeprom = 0; //int 0
 
-  // Save Min and Max calibration values from Eeprom
+  // Save MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++) {
 
-    // Save Min calibration values for channels
+    // Save MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
     EEPROMUpdateInt(posEeprom, calibration[i][0]);
 
-    // Save Max calibration values for channels
+    // Save MAX calibration values for channels
     posEeprom += 2;
     EEPROMUpdateInt(posEeprom, calibration[i][1]);
   }
 
-  // Save center pos calibration values from Eeprom
+  // Save CENTER pos calibration values from Eeprom
   for (int i = 0; i < 2; i++) {
 
     // Save center pos calibration values for channels
