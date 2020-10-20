@@ -21,7 +21,7 @@ void setup() {
   //------------------------------------------------------------------
   // LCD config with U8G2 library display init (mandatory)
   //------------------------------------------------------------------
-  u8g2.setBusClock(800000); //max 800000
+//  u8g2.setBusClock(800000); //max 800000
   u8g2.begin();
 //  u8g2.setFlipMode(1);   
 //  u8g2.setContrast(10);
@@ -47,20 +47,9 @@ void setup() {
 //  delay(100); // Delay before reading button (about charge capacitor pulse on pin)
 
 
-/*
-  //-------------------------------------------
-  // Default state values for ppm
-  //-------------------------------------------
-  ppm[0] = servoMid; // channel 1 (STR)
-  ppm[1] = servoMid; // channel 2 (THR)
-  ppm[2] = servoMin; // channel 3 (CH3)
-  ppm[3] = servoMin; // channel 4 (CH4)
-*/  
-
   //-------------------------------------------------------------------------------------
   // Default state config parameters
   //-------------------------------------------------------------------------------------
-
   // SERVO DIRECTION bit mask: 0 Normal, 1 Reverse
   servoReverse = 0b00000000;
   
@@ -89,6 +78,19 @@ void setup() {
 // program loop **********************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
 void loop() {
+
+  //----------------------------------------------------------------------------
+  // Start Calibration screen if buttonSelect is pressed on power on 
+  //----------------------------------------------------------------------------
+  if (calibStatus == 1 && read_button() == 2) {
+    // Recall calibration procedure
+    Calibration();
+  }
+  // Set condition 0 to continue loop if calibration procedure is not selected
+  else {
+    calibStatus = 0;
+  }
+
 
   receive_time();
   send_and_receive_data();
