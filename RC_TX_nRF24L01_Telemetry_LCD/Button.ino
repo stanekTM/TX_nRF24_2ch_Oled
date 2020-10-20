@@ -5,19 +5,19 @@ unsigned long buttonTime = 0;
 
 unsigned char read_button() {
 
-  if (millis() >= buttonTime + 100) //1000 (1second)
+  if (millis() >= buttonTime + 150) //1000 (1second)
   {
-  // button Select
+  // buttonSelect
   if ((PIND & (1 << buttonSelect)) == 0) {
     buttonTime = millis();
     return 2;
   }
-  // button Up
+  // buttonUp
   if ((PIND & (1 << buttonUp)) == 0) {
     buttonTime = millis();
     return 1;
   }
-  // button Down
+  // buttonDown
   if ((PIND & (1 << buttonDown)) == 0) {
     buttonTime = millis();
     return 3;
@@ -31,12 +31,12 @@ unsigned char read_button() {
 //************************************************************************************************************************************************************************
 void read_button_exit() {
 
-  // excute only one time after button Exit is up
+  // excute only one time after buttonExit is up
   if (exitStatus == 1 && !bit_is_clear(PIND, buttonExit)) {
-    // button Exit pushed
+    // buttonExit pushed
     exitStatus = !exitStatus;
     
-    // button Exit can be cancle button. Go main screen
+    // buttonExit can be cancle button. Go main screen
     if (screen != 0) {
       
       screen = 0;
@@ -54,7 +54,7 @@ void read_button_exit() {
   }
 
   if (bit_is_clear(PIND, buttonExit)) {
-    // button Exit up
+    // buttonExit up
     exitStatus = 1;
   }
 }
