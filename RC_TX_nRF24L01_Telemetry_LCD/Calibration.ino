@@ -32,7 +32,7 @@ void Calibration() {
     
     delay(5);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing button UP
+    // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
     if (read_button() == 1) {
       calibStatus = 0;
       }
@@ -40,7 +40,7 @@ void Calibration() {
 
   calibStatus = 1;
 
-  //Up button not pressed check
+  // buttonUp not pressed check
   while (read_button() != 0) {
     delay(10);
   }
@@ -62,7 +62,7 @@ void Calibration() {
     
     delay(5);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing button Up
+    // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
     if (read_button() == 1) {
       calibStatus = 0;
       }
@@ -73,7 +73,7 @@ void Calibration() {
 
 
   // Save MIN, MAX and Center values in Eeprom
-  int posEeprom = 0; //int 0
+  unsigned int posEeprom;
 
   // Save MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++) {
