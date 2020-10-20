@@ -3,13 +3,14 @@
 //************************************************************************************************************************************************************************
 void read_adc_setup() {
 
-  ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0)); // Remove bit settings from Arduino library
+  ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0));   // Remove bit settings from Arduino library
 
 #if F_CPU == 16000000L
   ADCSRA |= (1 << ADPS2);                                  // Set ADC prescaler to 16 (1000 KHz)
 #else
-  ADCSRA |= (1 << ADPS1) | (1 << ADPS0);                   // Set ADC prescaler to 8 (1000 KHz)
+  ADCSRA |= (1 << ADPS1) | (1 << ADPS0);                     // Set ADC prescaler to 8 (1000 KHz)
 #endif
+
 
   ADMUX |= (1 << REFS0);
   ADMUX &= ~(1 << REFS1);                                  // Avcc(+5v) as voltage reference
@@ -20,7 +21,7 @@ void read_adc_setup() {
   ADCSRA |= (1 << ADSC);                                   // Do an initial conversion this one is the slowest to ensure that everything is up and running
 
   DIDR0 = 0x3F;                                            // Digital circuit on analog ports disabled
-  DIDR1 = 0x03;    
+  DIDR1 = 0x03;                                            // Disable digital input on AIN0/1 
 }
 
 //************************************************************************************************************************************************************************
