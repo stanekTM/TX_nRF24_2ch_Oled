@@ -193,25 +193,25 @@ unsigned char storedDataEeprom(unsigned char mod) {
     expo[i] = EEPROM.read(eepromPos++);
   } 
 
-  // Read Min, Max, Center values in Eeprom
+  // Read MIN, MAX, CENTER values in Eeprom
   unsigned int posEeprom; //unsigned int
 
-  // Read Min Max calibration values from Eeprom
+  // Read MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++) {
 
-    // Read Min calibration values for channels
+    // Read MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
     calibration[i][0] = EEPROMReadInt(posEeprom);
 
-    // Read Max calibration values for channels
+    // Read MAX calibration values for channels
     posEeprom += 2;
     calibration[i][1] = EEPROMReadInt(posEeprom);
   }
 
-  // Read center pos calibration values from Eeprom
+  // Read CENTER pos calibration values from Eeprom
   for (int i = 0; i < 2; i++) {
 
-    // Read center pos calibration values for channels
+    // Read CENTER pos calibration values for channels
     posEeprom = 1016 + (i * 2);
     centerPos[i] = EEPROMReadInt(posEeprom);
   }
