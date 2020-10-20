@@ -30,7 +30,7 @@ void Calibration() {
     // Print calibration "MIN-MAX" real time channels
     calib_MinMax_screen();
     
-    delay(5);
+    delay(10);
     
     // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
     if (read_button() == 1) {
@@ -52,15 +52,17 @@ void Calibration() {
   }
   
   while (calibStatus == 1) {
+    
     for (int i = 0; i < 2; i++) {
-      // Get value from every ADC ports
+
+       // Get value from every ADC ports
       centerPos[i] = read_adc(i);
     }
     
     // Print calibration "CENTER" real time channels
     calib_center_screen();
     
-    delay(5);
+    delay(10);
     
     // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
     if (read_button() == 1) {
