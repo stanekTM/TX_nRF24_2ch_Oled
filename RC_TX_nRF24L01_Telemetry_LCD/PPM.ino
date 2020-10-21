@@ -79,8 +79,8 @@ void read_pots() {
       if (tempPPM < servoMin) tempPPM = servoMin;
       if (tempPPM > servoMax) tempPPM = servoMax;
       }
+      
       else {
-        
       // ppm mapping pot CH3
       if (i == 2) {
         if (bitRead(servoReverse, 2) == 1) {
