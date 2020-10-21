@@ -55,10 +55,10 @@ unsigned char storedDataEeprom(unsigned char mod) {
     calibration[i][1] = EEPROMReadInt(posEeprom);
   }
 
-  // Read CENTER pos calibration values from Eeprom
+  // Read CENTER calibration values from Eeprom
   for (int i = 0; i < 2; i++) {
 
-    // Read CENTER pos calibration values for channels
+    // Read CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
     centerPos[i] = EEPROMReadInt(posEeprom);
   }
