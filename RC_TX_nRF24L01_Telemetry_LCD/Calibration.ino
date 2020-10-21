@@ -74,7 +74,7 @@ void Calibration() {
   calib_save_screen();
 
 
-  // Save MIN, MAX and Center values in Eeprom
+  // Save MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;
 
   // Save MIN and MAX calibration values from Eeprom
@@ -89,10 +89,10 @@ void Calibration() {
     EEPROMUpdateInt(posEeprom, calibration[i][1]);
   }
 
-  // Save CENTER pos calibration values from Eeprom
+  // Save CENTER calibration values from Eeprom
   for (int i = 0; i < 2; i++) {
 
-    // Save center pos calibration values for channels
+    // Save CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
     EEPROMUpdateInt(posEeprom, centerPos[i]);
   }
