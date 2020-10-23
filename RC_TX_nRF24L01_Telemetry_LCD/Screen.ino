@@ -73,7 +73,7 @@ void main_screen() {
     
     // Print value TX battery
     u8g2.setCursor(91, 7);
-    u8g2.print(raw_TX_batt / 100);
+    u8g2.print(raw_TX_batt);
 
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
