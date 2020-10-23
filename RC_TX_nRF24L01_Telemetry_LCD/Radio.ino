@@ -22,15 +22,15 @@ void radio_setup()
 }
 
 //************************************************************************************************************************************************************************
-// this structure defines the sent data in bytes (structure size max. 32 bytes), values ​​(servoMin = 1000us, servoMid = 1500us, servoMax = 2000us) ************************
+// this structure defines the sent data in bytes (structure size max. 32 bytes) ******************************************************************************************
 //************************************************************************************************************************************************************************
 struct packet
 {
-  unsigned int steering = servoMid;
-  unsigned int throttle = servoMid;
-  unsigned int ch3      = servoMin;
-  unsigned int ch4      = servoMin;
-  unsigned int ch5      = servoMin;
+  unsigned int steering;
+  unsigned int throttle;
+  unsigned int ch3;
+  unsigned int ch4;
+  unsigned int ch5;
 };
 packet rc_data; //create a variable with the above structure
 
@@ -64,7 +64,6 @@ void receive_time()
 // If the battery voltage RX 1S LiPo is < 3.3V = the TX display reports "RXbatt LOW!" at 1000ms interval and the RX LED flashes at 500ms interval ************************
 //************************************************************************************************************************************************************************
 unsigned long RXbattTime = 0;
-const float RX_monitored_voltage = 3.3;
 
 void RX_batt_check()
 {
