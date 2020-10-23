@@ -1,6 +1,8 @@
 //************************************************************************************************************************************************************************
 // Macro for buzzer beep battery alarm
 //************************************************************************************************************************************************************************
+byte pulseBuzzer; // Sound pulse for battery alarm
+
 void beep() {
 
   /*
@@ -12,7 +14,7 @@ void beep() {
     }
   */
 
-/*  if (pulseBuzzer < 2) {
+  if (pulseBuzzer < 2) {
     tone(buzzer, 900);
   }
   else if (pulseBuzzer > 2 && pulseBuzzer < 4) {
@@ -28,6 +30,6 @@ void beep() {
   if (pulseBuzzer > 80) {
     pulseBuzzer = 0;
   }
-  ++pulseBuzzer;*/
+  ++pulseBuzzer;
 }
  
