@@ -7,7 +7,6 @@ and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surfac
 for code inspiration.
 
 The firmware has been completely redesigned according to my requirements. 
-In-service tests will follow.
 
 This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo)
 
