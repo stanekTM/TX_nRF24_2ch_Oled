@@ -34,9 +34,9 @@ const byte addresses[][6] = {"tx001", "rx002"};
 //************************************************************************************************************************************************************************
 // Battery voltage settings TX/RX, minimum battery voltage for alarm *****************************************************************************************************
 //************************************************************************************************************************************************************************
-#define TX_battery_voltage   4.2 // Maximum battery voltage
-#define TX_monitored_voltage 3.3 // Minimum battery voltage for alarm
-#define RX_monitored_voltage 3.3 // Minimum battery voltage for alarm
+#define TX_battery_voltage   4.2  // Maximum battery voltage
+#define TX_monitored_voltage 3.12 // Minimum battery voltage for alarm
+#define RX_monitored_voltage 3.29 // Minimum battery voltage for alarm
 
 //************************************************************************************************************************************************************************
 // PPM settings **********************************************************************************************************************************************************
