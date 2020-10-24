@@ -6,7 +6,7 @@ Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https
 and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch)
 for code inspiration.
 
-The firmware has been completely redesigned according to my requirements, it works. 
+The firmware has been completely redesigned according to my requirements. 
 In-service tests will follow.
 
 This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo)
