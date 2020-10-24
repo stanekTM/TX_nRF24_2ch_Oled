@@ -91,35 +91,35 @@ void main_screen() {
     {
       // Print "RX-RF OFF!"
       strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[1])));
-      u8g2.setCursor(0, 25);
+      u8g2.setCursor(0, 23);
       u8g2.print(msg_buffer);
     }
     else if (RXbattstate)
     {
       // Print "RXbatt"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
-      u8g2.setCursor(0, 25);
+      u8g2.setCursor(0, 23);
       u8g2.print(chName_buffer);
       
       // Print "LOW!"
       strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[6])));
-      u8g2.setCursor(38, 25);
+      u8g2.setCursor(38, 23);
       u8g2.print(msg_buffer);
     }
     else
     {
       // Print "RXbatt"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
-      u8g2.setCursor(0, 25);
+      u8g2.setCursor(0, 23);
       u8g2.print(chName_buffer);
 
       // Print value RX battery
-      u8g2.setCursor(38, 25);
+      u8g2.setCursor(38, 23);
       u8g2.print(payload.RXbatt);
     
       // Print "V"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
-      u8g2.setCursor(56, 25);
+      u8g2.setCursor(56, 23);
       u8g2.print(char_buffer);
     }
 
@@ -131,7 +131,7 @@ void main_screen() {
     for (int i = 0; i < 2; i++) {
 
       //Drawing vertical middle/center separation line
-      u8g2.drawVLine(64, 38 + (i * 16), 9); //64, 42, 24
+      u8g2.drawVLine(64, 38 + (i * 16), 9);
 
       // Define value bar reference
       unsigned int valBar;
@@ -140,18 +140,18 @@ void main_screen() {
       valBar = map(ppm[i], servoMin, servoMax, 0, 100);
 
       // Draw boxes/frames for every channel
-      u8g2.drawFrame(0, 40 + (i * 16), 128, 8); //0, 44 + (i * 12), 101, 8
+      u8g2.drawFrame(0, 40 + (i * 16), 128, 8);
 
       // Drawing cursor in every channel bar
       if      (valBar < 50) {
-        u8g2.drawBox(14 + valBar, 41 + (i * 16), 50 - valBar, 6); //15 + valBar, 45 + (i * 12), 50 - valBar, 6
-      }                                                           //64 - 50 + 1 = 15
+        u8g2.drawBox(15 + valBar, 41 + (i * 16), 50 - valBar, 6); //64 - 50 + 1 = 15
+      }
       else if (valBar > 50) {
-        u8g2.drawBox(64, 41 + (i * 16), valBar - 50, 6);          //64, 45 + (i * 12), valBar - 50, 6
+        u8g2.drawBox(64, 41 + (i * 16), valBar - 50, 6);
       }
 
 
-      unsigned short subTrimVal = map(subTrim[i], 0, 500, 0, 50); //0, 500, 0, 50
+      unsigned short subTrimVal = map(subTrim[i], 0, 500, 0, 50);
 
       // Check Servo Reversing and applying Reverse value if necessary
       if (bitRead(servoReverse, i) == 1) {
@@ -159,14 +159,12 @@ void main_screen() {
       }
 
 
-      unsigned short minMaxValid = 0;
-      
       // EPA
+      unsigned short minMaxValid = 0;
       short epa_1 = epa[i];
       short epa_2 = epa[i];
       
       if (i == 1) {
-        
         if (bitRead(servoReverse, i) == 1) {
           epa_2 = epa[2];
           }
@@ -175,20 +173,18 @@ void main_screen() {
           }
         }
 
-        minMaxValid = 64 - (50 * epa_1 / 100) + subTrimVal; //64 - (50 * epa_1 / 100 //114 - 64 = 50
-        if (minMaxValid < 14) minMaxValid = 14;             //14) minMaxValid = 14   // 64 - 50 = 14
-        if (minMaxValid > 114) minMaxValid = 114;           //114) minMaxValid = 114 //100 + 14 = 114
-        u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);      //49 + (i * 12), 2
+        minMaxValid = 64 - (50 * epa_1 / 100) + subTrimVal; //114 - 64 = 50
+        if (minMaxValid < 14) minMaxValid = 14;             // 64 - 50 = 14
+        if (minMaxValid > 114) minMaxValid = 114;           //100 + 14 = 114
+        u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
 
-        
-
-        minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal; //64 + (50 * epa_2 / 100
-        if (minMaxValid < 14) minMaxValid = 14;             //14) minMaxValid = 14 
-        if (minMaxValid > 114) minMaxValid = 114;           //114) minMaxValid = 114
-        u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);      //49 + (i * 12), 2
+        minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal;
+        if (minMaxValid < 14) minMaxValid = 14;
+        if (minMaxValid > 114) minMaxValid = 114;
+        u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
         
         
-        // Print channel items name "STR, THR"
+        // Print channel items name "STR and THR"
         strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
         u8g2.setCursor(0, 39 + i * 16);
         u8g2.print(chName_buffer);
@@ -197,7 +193,7 @@ void main_screen() {
         if (subTrim[i] > 0){
           // Print "TRIM"
           strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
-          u8g2.setCursor(43, 39 + i * 16);
+          u8g2.setCursor(44, 39 + i * 16);
           u8g2.print(chName_buffer);
           
           // Print SUB TRIM value
@@ -207,7 +203,7 @@ void main_screen() {
         else if (subTrim[i] < 0){
           // Print "TRIM"
           strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
-          u8g2.setCursor(43, 39 + i * 16);
+          u8g2.setCursor(44, 39 + i * 16);
           u8g2.print(chName_buffer);
             
           // Print SUB TRIM value
@@ -226,16 +222,16 @@ void main_screen() {
 */
 
 
-        // Print Reverse/Normal channel status for every channel
+        // Drawing REV channel status for every channel
         if (bitRead(servoReverse, i) == 1) {
           // Print "REV"
           strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
-          u8g2.setCursor(17, 39 + i * 16);
+          u8g2.setCursor(23, 39 + i * 16);
           u8g2.print(chName_buffer);
         }
       
 
-      // EXPO
+        // Drawing EXPO
         if (expo[i] > 0) {
           // Print "EXPO"
           strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
@@ -246,35 +242,30 @@ void main_screen() {
           u8g2.setCursor(124, 39 + i * 16);
           u8g2.print(expo[i]);
         }
-      } //end
+      } // End drawing only first 2 channels
 
 
-      // Print "CH3"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[2])));
-      u8g2.setCursor(0, 16);
+    // Drawing CH3 and CH4    
+    for (int i = 2; i < 4; i++) {
+      // Print "CH3 and CH4"
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+      u8g2.setCursor(81, 3 + i * 8);
       u8g2.print(chName_buffer);
 
-      //If pot CH3 print value in %
-      unsigned int CH3value;
-      CH3value = map(ppm[2], servoMin, servoMax, 0, 100);
-
-      // Print CH3 value
-      u8g2.setCursor(20, 16);
-      u8g2.print(CH3value);
+      // Print CH3 and CH4 value in %
+      unsigned int value[i];
+      value[i] = map(ppm[i], servoMin, servoMax, 0, 100);
+      u8g2.setCursor(98, 3 + i * 8);
+      u8g2.print(value[i]);
       
-
-      // Print "CH4"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[3])));
-      u8g2.setCursor(40, 16);
-      u8g2.print(chName_buffer);
-
-      //If pot CH4 print value in %
-      unsigned int CH4value;
-      CH4value = map(ppm[3], servoMin, servoMax, 0, 100);
-
-      // Print CH4 value
-      u8g2.setCursor(60, 16);
-      u8g2.print(CH4value);
+      // Drawing REV channel status for every channel
+      if (bitRead(servoReverse, i) == 1) {
+        // Print "REV"
+        strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
+        u8g2.setCursor(114, 3 + i * 8);
+        u8g2.print(chName_buffer);
+      } 
+    } 
 
 //  } while (u8g2.nextPage());
   
