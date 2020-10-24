@@ -73,7 +73,7 @@ unsigned char servoReverse;                 // Reading bit status
 unsigned char epa[3];                       // EPA value array
 unsigned char expo[2];                      // EXPO value array                     
 short subTrim[2];                           // SUB TRIM channel array
-unsigned short int deadBand = 0;            // Deadband center stick value (25 suggested value) 30
+unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value) 30
 
 //************************************************************************************************************************************************************************
 // MODEL NAME ************************************************************************************************************************************************************
