@@ -5,15 +5,6 @@ byte pulseBuzzer; // Sound pulse for battery alarm
 
 void beep() {
 
-  /*
-    if ((bitRead(pulseBuzzer, 0) && bitRead(pulseBuzzer, 2) && bitRead(pulseBuzzer, 1))) {
-    PORTD |= _BV(buzzer);
-    }
-    else {
-    PORTD &= ~_BV(buzzer);
-    }
-  */
-
   if (pulseBuzzer < 2) {
     tone(buzzer, 900);
   }
@@ -31,5 +22,20 @@ void beep() {
     pulseBuzzer = 0;
   }
   ++pulseBuzzer;
+
+/*
+ // Another indication when an LED is used instead of a buzzer
+ if (pulseBuzzer < 5) {
+  digitalWrite(buzzer, HIGH);
+  }
+  else {
+    digitalWrite(buzzer, LOW);
+  }
+  
+ if (pulseBuzzer > 100) {
+  pulseBuzzer = 0;
+  }
+  pulseBuzzer++;
+*/  
 }
  
