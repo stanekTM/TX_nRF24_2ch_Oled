@@ -478,9 +478,5 @@ void select()
         break;
     }
   }
-
-  if (pressedKey != 0) {
-//    delay(KEY_DELAY);
-  }
 }
  
