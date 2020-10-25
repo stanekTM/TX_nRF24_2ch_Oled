@@ -246,7 +246,7 @@ void main_screen() {
 
 
     // Drawing CH3 and CH4    
-    for (int i = 2; i < 4; i++) {
+    for (int i = 2; i < CHANNELS; i++) {
       // Print "CH3 and CH4"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
       u8g2.setCursor(81, 3 + i * 8);
@@ -307,6 +307,7 @@ void menu_screen() {
 //  u8g2.firstPage(); do {
 
 //  read_pots(); // Macro again for stable ppm pulse
+
 /*
     // Print "MODEL"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
@@ -404,8 +405,8 @@ void servo_dir_screen() {
 
     // Print SERVO DIRECTION channels list
     for (int i = 0; i < CHANNELS; i++) {
-
-      if (i == menuSubActual - 1) {
+ 
+      if (menuSubActual - 1 == i) {
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
         u8g2.setCursor(5, 20 + i * 13);
@@ -419,15 +420,9 @@ void servo_dir_screen() {
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
         u8g2.setCursor(57, 20 + i * 13);
-        u8g2.print(char_buffer);      
+        u8g2.print(char_buffer);           
       }
-      
 
-      // Print channel items name "STR, THR, CH3, CH4"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
-      u8g2.setCursor(12, 20 + i * 13);
-      u8g2.print(chName_buffer);
-      
       
       if (bitRead(servoReverse, i) == 1) {
         // Print "REV"
@@ -441,15 +436,19 @@ void servo_dir_screen() {
         u8g2.setCursor(38, 20 + i * 13);
         u8g2.print(chName_buffer);
       }
-    }
 
 
-    // Drawing dynamic graphics items
-    for (int i = 0; i < CHANNELS; i++) {
+      // Print channel items name "STR, THR, CH3, CH4"
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+      u8g2.setCursor(12, 20 + i * 13);
+      u8g2.print(chName_buffer);
+
+
+      // Drawing dynamic graphics items
       u8g2.drawHLine(72, 20 + i * 13, 45);
       u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
       u8g2.drawBox(map(ppm[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);
-    }
+   } // end first 4ch
 
 
     // Print "SERVO DIRECTION"
@@ -625,7 +624,7 @@ void model_sel_screen() {
     u8g2.print(modelPage + 1);
 
     u8g2.setCursor(123, 7);
-    u8g2.print( (MODELS - 1) / 10 + 1);  // Total model Count / model count per page + 1
+    u8g2.print((MODELS - 1) / 10 + 1);  // Total model Count / model count per page + 1
 
     // Drawing horizontal line under header
     u8g2.drawHLine(0, 8, 128);
