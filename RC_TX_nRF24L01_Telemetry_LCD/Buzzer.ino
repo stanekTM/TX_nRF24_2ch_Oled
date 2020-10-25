@@ -21,7 +21,7 @@ void beep() {
   if (pulseBuzzer > 80) {
     pulseBuzzer = 0;
   }
-  ++pulseBuzzer;
+  pulseBuzzer++;
 
 /*
  // Another indication when an LED is used instead of a buzzer
