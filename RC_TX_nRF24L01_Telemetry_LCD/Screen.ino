@@ -51,6 +51,7 @@ void main_screen() {
 
 //  read_pots(); // Macro again for stable ppm pulse
 
+
     u8g2.setFont(u8g2_font_6x10_tr);
     
     // Print "MODEL"
@@ -356,7 +357,6 @@ void menu_screen() {
         u8g2.print(menu_buffer);
       }
       else {
-
         // Print main menu items
         u8g2.setCursor(20, 9 + (i * 10));
         u8g2.print(menu_buffer);
@@ -403,10 +403,19 @@ void servo_dir_screen() {
 //  read_pots(); // Macro again for stable ppm pulse
 
 
+    // Print "SERVO DIRECTION"
+    strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
+    u8g2.setCursor(0, 7);
+    u8g2.print(menu_buffer);
+
+    // Drawing horizontal line under header
+    u8g2.drawHLine(0, 8, 128);
+
+
     // Print SERVO DIRECTION channels list
     for (int i = 0; i < CHANNELS; i++) {
  
-      if (menuSubActual - 1 == i) {
+      if (i == menuSubActual - 1) {
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
         u8g2.setCursor(5, 20 + i * 13);
@@ -448,16 +457,8 @@ void servo_dir_screen() {
       u8g2.drawHLine(72, 20 + i * 13, 45);
       u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
       u8g2.drawBox(map(ppm[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);
-   } // end first 4ch
-
-
-    // Print "SERVO DIRECTION"
-    strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
-    u8g2.setCursor(0, 7);
-    u8g2.print(menu_buffer);
-
-    // Drawing horizontal line under header
-    u8g2.drawHLine(0, 8, 128);
+      
+   } // End drawing only first 4 channels
     
 //  } while (u8g2.nextPage());
 }
@@ -497,6 +498,7 @@ void epa_screen() {
 //  u8g2.firstPage(); do {
 
 //  read_pots(); // Macro again for stable ppm pulse
+
   
     // Print "EPA"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[1])));
@@ -521,25 +523,30 @@ void epa_screen() {
         strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
       }
         
-      u8g2.setCursor(2, 20 + i * 13);
+      u8g2.setCursor(8, 20 + i * 13);
       u8g2.print(chName_buffer);
   
     if (i == 1) {
       // Print "FWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[20])));
-      u8g2.setCursor(24, 20 + i * 13);
+      u8g2.setCursor(30, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     
     if (i == 2) {
       // Print "BWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[21])));
-      u8g2.setCursor(24, 20 + i * 13);
+      u8g2.setCursor(30, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
       
     if (menuSubActual - 1 == counterTemp) {
       if (epaSelection == counterTemp) {
+
+        // Print ">"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.print(char_buffer);
       
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
@@ -554,7 +561,7 @@ void epa_screen() {
       else {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(59, 20 + i * 13);
+        u8g2.setCursor(0, 20 + i * 13);
         u8g2.print(char_buffer);
       }
     }
@@ -821,6 +828,7 @@ void sub_trim_screen() {
 
 //  read_pots(); // Macro again for stable ppm pulse
 
+
     // Print "SUB TRIM"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
     u8g2.setCursor(0, 7);
@@ -859,7 +867,6 @@ void sub_trim_screen() {
           u8g2.print(char_buffer);
         }
         else {
-
           // Print ">"
           strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
           u8g2.setCursor(10, 20 + i * 13);
@@ -941,7 +948,7 @@ void model_name_screen() {
       u8g2.setCursor(13 + (i * 23), 45);
       u8g2.print(modelName[i]);
 
-      if (menuSubActual - 1 == i) {
+      if (i == menuSubActual - 1) {
         if (modelNameSelection == i) {
 
           // Print "["
@@ -955,7 +962,6 @@ void model_name_screen() {
           u8g2.print(char_buffer);
         }
         else {
-
           // Print ">"
           strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
           u8g2.setCursor(1 + (i * 23), 45);
@@ -1005,6 +1011,7 @@ void expo_screen() {
 
 //  read_pots(); // Macro again for stable ppm pulse
 
+
     // Print "EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
     u8g2.setCursor(0, 7);
@@ -1027,8 +1034,13 @@ void expo_screen() {
         u8g2.print(expo[i]);
         
 
-      if (menuSubActual - 1 == i) {
+      if (i == menuSubActual - 1) {
         if (expoSelection == i) {
+
+          // Print ">"
+          strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+          u8g2.setCursor(0, 20 + i * 13);
+          u8g2.print(char_buffer);
 
           // Print "["
           strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
@@ -1041,7 +1053,6 @@ void expo_screen() {
           u8g2.print(char_buffer);
         }
         else {
-
           // Print ">"
           strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
           u8g2.setCursor(0, 20 + i * 13);
