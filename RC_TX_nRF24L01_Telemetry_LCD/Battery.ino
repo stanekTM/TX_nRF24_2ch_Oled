@@ -43,7 +43,6 @@ void TX_batt_check() {
 
   // Buzzer alarm OFF
   else {
-    //PORTD &= ~_BV(buzzer);
     noTone(buzzer);    
   }
 }
