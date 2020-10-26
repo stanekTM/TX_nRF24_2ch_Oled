@@ -234,7 +234,7 @@ void resetEeprom() {
     for (int i = 0; i < 3; i++) {
 
       // Writing default EPA for channels
-      EEPROM.update(eepromPos++, 75);
+      EEPROM.update(eepromPos++, 100);
     }
     
     // Writing EXPO values for every channels in every model memory bank
