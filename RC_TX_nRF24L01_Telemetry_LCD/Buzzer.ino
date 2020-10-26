@@ -25,15 +25,15 @@ void beep() {
 
 /*
  // Another indication when an LED is used instead of a buzzer
- if (pulseBuzzer < 5) {
-  digitalWrite(buzzer, HIGH);
+  if (pulseBuzzer < 5) {
+    digitalWrite(buzzer, HIGH);
   }
   else {
     digitalWrite(buzzer, LOW);
   }
   
- if (pulseBuzzer > 100) {
-  pulseBuzzer = 0;
+  if (pulseBuzzer > 100) {
+    pulseBuzzer = 0;
   }
   pulseBuzzer++;
 */  
