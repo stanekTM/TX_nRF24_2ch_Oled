@@ -37,6 +37,7 @@ void draw_main_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void main_screen() {
 
   // Set memory buffer for text strings
@@ -241,7 +242,8 @@ void main_screen() {
       u8g2.setCursor(124, 39 + i * 16);
       u8g2.print(expo[i]);
     }
-  } // End drawing only first 2 channels
+  }
+  // End drawing only first 2 channels
   
   
   // Drawing CH3 and CH4    
@@ -264,7 +266,8 @@ void main_screen() {
       u8g2.setCursor(114, 3 + i * 8);
       u8g2.print(chName_buffer);
     } 
-  } 
+  }
+  // End drawing CH3 and CH4
 
 //  } while (u8g2.nextPage());
   
@@ -294,6 +297,7 @@ void draw_menu_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void menu_screen() {
 
   // Set memory buffer for text strings
@@ -385,6 +389,7 @@ void draw_servo_dir_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void servo_dir_screen() {
 
   // Set memory buffer for text strings
@@ -406,7 +411,7 @@ void servo_dir_screen() {
   u8g2.drawHLine(0, 8, 128);
 
 
-  // Print SERVO DIRECTION channels list
+  // Drawing only first 4 channels
   for (int i = 0; i < CHANNELS; i++) {
     
     if (i == menuSubActual - 1) {
@@ -453,7 +458,8 @@ void servo_dir_screen() {
     u8g2.drawHLine(72, 20 + i * 13, 45);
     u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
     u8g2.drawBox(map(ppm[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);   
-  } // End drawing only first 4 channels
+  }
+  // End drawing only first 4 channels
     
 //  } while (u8g2.nextPage());
 }
@@ -481,6 +487,7 @@ void draw_epa_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void epa_screen() {
   
   // Set memory buffer for text strings
@@ -592,6 +599,7 @@ void draw_model_sel_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void model_sel_screen() {
 
   // Set memory buffer for text strings
@@ -747,8 +755,8 @@ void save_model_screen() {
     EEPROM.update(eepromPos, expo[i]);
     eepromPos++;
   }
-  
-  // Start of Save Data message screen ---------------------------------------------------------------------
+
+  // Start of Save Data message screen -------------------------------------
   u8g2.firstPage(); do {
   
     // Set memory buffer for text strings
@@ -806,6 +814,7 @@ void draw_sub_trim_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void sub_trim_screen() {
 
   // Set memory buffer for text strings
@@ -902,6 +911,7 @@ void draw_model_name_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void model_name_screen() {
 
   // Set memory buffer for text strings
@@ -986,6 +996,7 @@ void draw_expo_screen() {
   }  
 }
 
+//------------------------------------------------------------------------
 void expo_screen() {
 
   // Set memory buffer for text strings
