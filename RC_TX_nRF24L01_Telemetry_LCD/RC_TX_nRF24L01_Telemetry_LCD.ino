@@ -56,7 +56,7 @@ void setup() {
 
   // EPA and SUB TRIM default values (only for first two channels)
   for (int i = 0; i < CHANNELS - 2; i++) {
-    epa[i] = 75;
+    epa[i] = 100;
     subTrim[i] = 0;
   }
   
