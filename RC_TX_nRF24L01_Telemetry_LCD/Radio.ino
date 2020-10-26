@@ -3,8 +3,8 @@
 //************************************************************************************************************************************************************************
 RF24 radio(CE, CSN); //setup CE and CSN pins
 
-void radio_setup()
-{
+void radio_setup() {
+  
   radio.begin(); 
   radio.setAutoAck(true);          //ensure autoACK is enabled
   radio.enableAckPayload();        //enable custom ack payloads on the acknowledge packets
@@ -24,8 +24,8 @@ void radio_setup()
 //************************************************************************************************************************************************************************
 // this structure defines the sent data in bytes (structure size max. 32 bytes) ******************************************************************************************
 //************************************************************************************************************************************************************************
-struct packet
-{
+struct packet {
+  
   unsigned int steering;
   unsigned int throttle;
   unsigned int ch3;
@@ -37,8 +37,8 @@ packet rc_data; //create a variable with the above structure
 //************************************************************************************************************************************************************************
 // this struct defines data, which are embedded inside the ACK payload ***************************************************************************************************
 //************************************************************************************************************************************************************************
-struct ackPayload
-{
+struct ackPayload {
+  
   float RXbatt;
 };
 ackPayload payload;
@@ -50,10 +50,10 @@ unsigned long lastRxTime = 0;
 int RFstate;
 int RXbattstate;
 
-void receive_time()
-{
-  if(millis() >= lastRxTime + 1000) //1000 (1second)
-  {
+void receive_time() {
+  
+  if(millis() >= lastRxTime + 1000) { //1000 (1second)
+    
     RFstate = 1;
     RXbattstate = 0;
   }
@@ -65,27 +65,23 @@ void receive_time()
 //************************************************************************************************************************************************************************
 unsigned long RXbattTime = 0;
 
-void RX_batt_check()
-{
-  if (payload.RXbatt <= RX_monitored_voltage)
-  {
-    if (millis() >= RXbattTime + 1000) //1000 (1second)
-    {
+void RX_batt_check() {
+  
+  if (payload.RXbatt <= RX_monitored_voltage) {
+    
+    if (millis() >= RXbattTime + 1000) { //1000 (1second)
       RXbattTime = millis();
       
-      if (RXbattstate)
-      {
+      if (RXbattstate) {
         RXbattstate = 0;
       }
-      else
-      {
+      else {
         RXbattstate = 1;
       }
     }
   }
   
-  if (payload.RXbatt >= RX_monitored_voltage)
-  {
+  if (payload.RXbatt >= RX_monitored_voltage) {
     RXbattstate = 0;
   }
 }
@@ -93,17 +89,16 @@ void RX_batt_check()
 //************************************************************************************************************************************************************************
 // send and receive data *************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-void send_and_receive_data()
-{
+void send_and_receive_data() {
+  
   rc_data.steering = ppm[0]; //A0
   rc_data.throttle = ppm[1]; //A1
   rc_data.ch3      = ppm[2]; //A2
   rc_data.ch4      = ppm[3]; //A3
   
-  if (radio.write(&rc_data, sizeof(packet)))
-  {
-    if (radio.isAckPayloadAvailable())
-    {
+  if (radio.write(&rc_data, sizeof(packet))) {
+    
+    if (radio.isAckPayloadAvailable()) {
       radio.read(&payload, sizeof(ackPayload));
       
       lastRxTime = millis(); //at this moment we have received the data 
