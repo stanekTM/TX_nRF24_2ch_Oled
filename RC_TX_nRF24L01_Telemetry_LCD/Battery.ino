@@ -40,9 +40,8 @@ void TX_batt_check() {
     // Recall pulse for buzzer
     beep();
   }
-
-  // Buzzer alarm OFF
   else {
+    // Buzzer alarm OFF
     noTone(buzzer);    
   }
 }
