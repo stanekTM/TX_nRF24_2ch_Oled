@@ -95,8 +95,8 @@ void main_screen() {
       u8g2.setCursor(0, 23);
       u8g2.print(msg_buffer);
     }
-    else if (RXbattstate)
-    {
+    else if (RXbattstate) {
+      
       // Print "RXbatt"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
       u8g2.setCursor(0, 23);
@@ -107,8 +107,8 @@ void main_screen() {
       u8g2.setCursor(38, 23);
       u8g2.print(msg_buffer);
     }
-    else
-    {
+    else {
+      
       // Print "RXbatt"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
       u8g2.setCursor(0, 23);
