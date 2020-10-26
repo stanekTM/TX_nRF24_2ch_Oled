@@ -2,7 +2,7 @@
 // Macro for read selected model data from Eeprom
 //************************************************************************************************************************************************************************
 unsigned char storedDataEeprom(unsigned char mod) {
-
+  
   // For Eeprom position reference
   unsigned int eepromBase;
 
@@ -10,7 +10,7 @@ unsigned char storedDataEeprom(unsigned char mod) {
   if (mod == 255) {
     mod = EEPROM.read(actualModelEepromAddr);
   }
-
+  
   // Define start position for Eeprom read (25 * [0,1,2,3,4])
   eepromBase = numBytesPerModel * mod;
 
@@ -20,7 +20,7 @@ unsigned char storedDataEeprom(unsigned char mod) {
   for (int i = 0; i < 5; i++) {
     modelName[i] = EEPROM.read(eepromPos++);
   }
-
+  
   // Read SERVO DIRECTION from first position
   servoReverse = EEPROM.read(eepromPos++);
 
@@ -45,7 +45,7 @@ unsigned char storedDataEeprom(unsigned char mod) {
 
   // Read MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++) {
-
+    
     // Read MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
     calibration[i][0] = EEPROMReadInt(posEeprom);
@@ -62,7 +62,6 @@ unsigned char storedDataEeprom(unsigned char mod) {
     posEeprom = 1016 + (i * 2);
     centerPos[i] = EEPROMReadInt(posEeprom);
   }
-
   return mod;
 }
 
@@ -162,17 +161,18 @@ void resetEeprom_screen() {
       
     } while (u8g2.nextPage());
     
+    
     while (isWait) {
       
       switch (read_button()) {
-        
-        case 1:
+
         // buttonUp
+        case 1:
         isWait = false;
         break;
-        
-        case 2:
+
         // buttonSelect
+        case 2:
         isWait = false;
         
         // Recall "Reset to default" macro
@@ -209,27 +209,26 @@ void resetEeprom() {
 
   // Start writing default values for every model memory bank
   for (int j = 0; j < MODELS; j++) {
-
+    
     // Define start position for Eeprom storing (32 * [0,1,2,3,4...])
     eepromPos = numBytesPerModel * j;
-
+    
     // MODEL NAME 5 byte
     for (int i = 0; i < 5; i++) {
       EEPROM.update(eepromPos++, 0x5f);
     }
-
+    
     // Writing SERVO DIRECTION default value in first address of start position
     EEPROM.update(eepromPos++, 0x00);
-
+    
     // Writing SUB TRIM offset values for two channels in every model memory bank
     for (int i = 0; i < 2; i++) {
-
+      
       // Writing SUB TRIM stick values for every channels
       EEPROMUpdateInt(eepromPos, 0);
       eepromPos += 2;
     }
     
-
     // Writing EPA values for every channels in every model memory bank
     // Writing values will start after first address of start position
     for (int i = 0; i < 3; i++) {
@@ -238,7 +237,6 @@ void resetEeprom() {
       EEPROM.update(eepromPos++, 75);
     }
     
-
     // Writing EXPO values for every channels in every model memory bank
     // Writing values will start after first address of start position
     for (int i = 0; i < 2; i++) {
