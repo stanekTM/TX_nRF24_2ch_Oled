@@ -516,20 +516,20 @@ void epa_screen() {
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
     }
     
-    u8g2.setCursor(8, 20 + i * 13);
+    u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(chName_buffer);
     
     if (i == 1) {
       // Print "FWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[20])));
-      u8g2.setCursor(30, 20 + i * 13);
+      u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     
     if (i == 2) {
       // Print "BWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[21])));
-      u8g2.setCursor(30, 20 + i * 13);
+      u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     
@@ -538,7 +538,7 @@ void epa_screen() {
       if (epaSelection == counterTemp) {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       
         // Print "["
@@ -554,7 +554,7 @@ void epa_screen() {
       else {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
     }
@@ -709,14 +709,14 @@ void save_model_screen() {
   // For Eeprom position reference
   unsigned int eepromBase;
 
+  // For write/Update SERVO DIRECTION and EPA position
+  unsigned int eepromPos = eepromBase;
+
   // For write/Update SUB TRIM stored values
   //unsigned int posEeprom;
 
   // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
   eepromBase = numBytesPerModel * modelActual;
-
-  // For write/Update SERVO DIRECTION and EPA position
-  unsigned int eepromPos = eepromBase;
 
   // Save Actual Model data
   EEPROM.update(actualModelEepromAddr, modelActual);
@@ -731,8 +731,7 @@ void save_model_screen() {
 
   // Save SUB TRIM center stick values for two channels in every model memory bank
   for (int i = 0; i < 2; i++) {
-
-    // Save center stick values for every channels
+    // Save CENTER stick values
     EEPROMUpdateInt(eepromPos, subTrim[i]);
     eepromPos += 2;
   }
@@ -751,7 +750,7 @@ void save_model_screen() {
   
   // Start of Save Data message screen ---------------------------------------------------------------------
   u8g2.firstPage(); do {
-    
+  
     // Set memory buffer for text strings
     char msg_buffer[9];
     char chName_buffer[22];
@@ -835,7 +834,7 @@ void sub_trim_screen() {
     
     // Print channel items name "STR, THR"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(22, 20 + i * 13);
+    u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(chName_buffer);
     
     if (menuSubActual - 1 == temp_Counter) {
@@ -843,7 +842,7 @@ void sub_trim_screen() {
       if (subTrimSelection == temp_Counter) {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(10, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "["
@@ -859,7 +858,7 @@ void sub_trim_screen() {
       else {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(10, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
     }
@@ -1012,11 +1011,11 @@ void expo_screen() {
     
     // Print channel items name "STR, THR"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(7, 20 + i * 13);
+    u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(chName_buffer);
 
     // Print EXPO value
-    u8g2.setCursor(35, 20 + i * 13);
+    u8g2.setCursor(37, 20 + i * 13);
     u8g2.print(expo[i]);
     
     
@@ -1025,23 +1024,23 @@ void expo_screen() {
       if (expoSelection == i) {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
-        u8g2.setCursor(28, 20 + i * 13);
+        u8g2.setCursor(30, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
-        u8g2.setCursor(42, 20 + i * 13);
+        u8g2.setCursor(44, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
-        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       
