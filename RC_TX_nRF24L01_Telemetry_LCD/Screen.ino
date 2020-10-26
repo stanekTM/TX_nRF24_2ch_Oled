@@ -717,9 +717,6 @@ void save_model_screen() {
   // For Eeprom position reference
   unsigned int eepromBase;
 
-  // For write/Update SERVO DIRECTION and EPA position
-  unsigned int eepromPos = eepromBase;
-
   // For write/Update SUB TRIM stored values
   //unsigned int posEeprom;
 
@@ -728,6 +725,9 @@ void save_model_screen() {
 
   // Save Actual Model data
   EEPROM.update(actualModelEepromAddr, modelActual);
+
+  // For write/Update SERVO DIRECTION and EPA position
+  unsigned int eepromPos = eepromBase;
 
   // Save MODEL NAME
   for (int i = 0; i < 5; i++) {
