@@ -143,10 +143,10 @@ void main_screen() {
     
     // Drawing cursor in every channel bar
     if (valBar < 50) {
-      u8g2.drawBox(15 + valBar, 41 + (i * 16), 50 - valBar, 6); //64 - 50 + 1 = 15
+      u8g2.drawBox(15 + valBar, 41 + (i * 16), 50 - valBar, 6); //65 - 50 = 15
     }
     else if (valBar > 50) {
-      u8g2.drawBox(64, 41 + (i * 16), valBar - 50, 6);
+      u8g2.drawBox(65, 41 + (i * 16), valBar - 50, 6);          //64 + 1 = 65
     }
     
     
