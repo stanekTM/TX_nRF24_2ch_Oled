@@ -11,14 +11,15 @@ void select()
     draw_main_screen();
 //    read_pots();                 // Macro again for stable ppm pulse
   }
-  
   else {
+    
     if (screen == 1) {           // Print MENU screen
 //      menu_screen();
       draw_menu_screen();
     }
     
     if (screen == 2) {
+      
       if (menuActual == 1) {     // Execute SERVO DIRECTION task
 //        servo_dir_screen();
         draw_servo_dir_screen();
@@ -62,6 +63,7 @@ void select()
 
   // If pressed buttonSelect/Enter
   if (pressedKey == 2) {
+    
     if (screen < 2) {
       screen++;
       menuActual = menuSubActual;
@@ -70,9 +72,9 @@ void select()
       modelPage = (menuSubModel) / 10;
     }
     else {
-      //-------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------------
       // Added if Menu/Select button is pressed without menu cursor (do nothing)
-      //-------------------------------------------------------------------------
+      //---------------------------------------------------------------------------------------
       if (menuActual == 0) {
         screen--;
         menuActual--;
@@ -87,7 +89,7 @@ void select()
       }
       
       if (menuActual == 2) {
-
+        
         // Selection value for EPA
         if (epaSelection != 0xFF) {
           epaSelection = 0xFF;
@@ -183,9 +185,8 @@ void select()
           }
         }
       }
-      // EPA step control for changing selected channel value(DOWN)
       else {
-          
+        // EPA step control for changing selected channel value(DOWN)  
         if ((epaSelection % 1) == 0) { //% 2
             
           // Define Min for EPA value
@@ -214,63 +215,61 @@ void select()
       }
       break;
 
-      //---------------------------------------------------------------------------------
-      // "SUB TRIM" screen step control for selecting channels/values (buttonDown)
-      //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+// SUB TRIM
+//---------------------------------------------------------------------------------
       case 5:
-
-        // Initial value for SUB TRIM selection value
-        if (subTrimSelection == 0xFF) {
-
-          // Only first 2 channels
-          if (menuSubActual < 2) {
-            menuSubActual++;
-
-            if (screen == 0) {
-              screen++;
-            }
-          }
-        }
-
-        // SUB TRIM step control for changing selected channel value DOWN
-        else {
-          if ((subTrimSelection % 1)  == 0) {
-
-            // Define Min SUB TRIM value
-            if (subTrim[subTrimSelection / 1] > potCenter * -1) {
-
-              // Define step value
-              subTrim[subTrimSelection / 1] -= 1;
-            }
-          }
-        }
-        break;
-//***************************************************************************************
-      //---------------------------------------------------------------------------------
-      // "MODEL NAME" screen step control for selecting values (buttonDown)
-      //---------------------------------------------------------------------------------
-      case 6:
-
-        // Initial value for MODEL NAME selection value
-        if (modelNameSelection == 0xFF) {
-
-          // Only 5 characters
-          if (menuSubActual < 5) { 
-            menuSubActual++;
-            
-            if (screen == 0) {
-              screen++;
-            }
-          }
-        }
+      
+      // Initial value for SUB TRIM selection value
+      if (subTrimSelection == 0xFF) {
         
-        // changing selected position character ASCII value(DOWN)
-        else {
-          if (modelName[modelNameSelection] > 0x20) {
-          modelName[modelNameSelection]--;
+        // Only first 2 channels
+        if (menuSubActual < 2) {
+          menuSubActual++;
+          
+          if (screen == 0) {
+            screen++;
           }
         }
-        break;
+      }
+      else { 
+        // SUB TRIM step control for changing selected channel value DOWN
+        if ((subTrimSelection % 1)  == 0) {
+          
+          // Define Min SUB TRIM value
+          if (subTrim[subTrimSelection / 1] > potCenter * -1) {
+            
+            // Define step value
+            subTrim[subTrimSelection / 1] -= 1;
+          }
+        }
+      }
+      break;
+
+//---------------------------------------------------------------------------------
+// MODEL NAME
+//---------------------------------------------------------------------------------
+      case 6:
+      
+      // Initial value for MODEL NAME selection value
+      if (modelNameSelection == 0xFF) {
+        
+        // Only 5 characters
+        if (menuSubActual < 5) {
+          menuSubActual++;
+          
+          if (screen == 0) {
+            screen++;
+          }
+        }
+      }
+      else {
+        // changing selected position character ASCII value(DOWN)
+        if (modelName[modelNameSelection] > 0x20) {
+          modelName[modelNameSelection]--;
+        }
+      }
+      break;
 //***************************************************************************************
       //---------------------------------------------------------------------------------
       // "EXPO" screen step control for selecting channels/values (buttonDown)
