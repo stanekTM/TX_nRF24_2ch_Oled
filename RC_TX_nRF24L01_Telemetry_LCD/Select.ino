@@ -69,7 +69,6 @@ void select()
       menuSubModel = modelActual;
       modelPage = (menuSubModel) / 10;
     }
-    
     else {
       //-------------------------------------------------------------------------
       // Added if Menu/Select button is pressed without menu cursor (do nothing)
@@ -93,7 +92,6 @@ void select()
         if (epaSelection != 0xFF) {
           epaSelection = 0xFF;
         }
-        
         else {
           epaSelection = menuSubActual - 1;
         }
@@ -121,7 +119,6 @@ void select()
         if (subTrimSelection != 0xFF) {
           subTrimSelection = 0xFF;
         }
-        
         else {
           subTrimSelection = menuSubActual - 1;
         }
@@ -133,7 +130,6 @@ void select()
         if (modelNameSelection != 0xFF) {
           modelNameSelection = 0xFF;
         }
-        
         else {
           modelNameSelection = menuSubActual - 1;
         }
@@ -145,7 +141,6 @@ void select()
         if (expoSelection != 0xFF) {
           expoSelection = 0xFF;
         }
-        
         else {
           expoSelection = menuSubActual - 1;
         }
@@ -154,60 +149,71 @@ void select()
   }
   
 //************************************************************************************************************************************************************************
-// MIN step control for selecting channels/values (pressedKey == 3) ******************************************************************************************************
+// MIN step control for selecting channels/values (buttonDown) ***********************************************************************************************************
 //************************************************************************************************************************************************************************
   if (pressedKey == 3) {
-
+    
     switch (menuActual) {
 
-  //---------------------------------------------------------------------------------
-  // "EPA" screen step control for selecting channels/values (buttonDown)
-  //---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+// SERVO DIRECTION
+//---------------------------------------------------------------------------------
+      case 1:
+      
+      // Only first 4 values
+      if (menuSubActual < 4) {
+        menuSubActual++;
+      }
+      break;
+
+//---------------------------------------------------------------------------------
+// EPA
+//---------------------------------------------------------------------------------
       case 2:
   
-        // Initial value for EPA selection value
-        if (epaSelection == 0xFF) {
-
-          // Only first 3 values
-          if (menuSubActual < 3) {
-            menuSubActual++;
-            
-            if (screen == 0) {
-              screen++;
-            }
-          }
-        }
+       // Initial value for EPA selection value
+      if (epaSelection == 0xFF) {
         
-        // EPA step control for changing selected channel value(DOWN)
-        else {
-          if ((epaSelection % 1) == 0) { //% 2
-
-            // Define Min for EPA value
-            if (epa[epaSelection / 1] > 0) { //2
-
-              // Define step value
-              epa[epaSelection / 1]--; //2
-            }
+        // Only first 3 values
+        if (menuSubActual < 3) {
+          menuSubActual++;
+          
+          if (screen == 0) {
+            screen++;
           }
         }
-        break;
-//***************************************************************************************
-      //---------------------------------------------------------------------------------
-      // "MODEL SELECTION" screen
-      //---------------------------------------------------------------------------------
-      case 3:
-        //-----------------------------------------------
-        // Added for Model Menu management
-        //-----------------------------------------------
-        // 0 to 4 items
-        if (menuSubModel < MODELS - 1) {
-          menuSubModel++;
-          modelPage = (menuSubModel) / 10;
+      }
+      // EPA step control for changing selected channel value(DOWN)
+      else {
           
-          if (screen == 0) screen++;
+        if ((epaSelection % 1) == 0) { //% 2
+            
+          // Define Min for EPA value
+          if (epa[epaSelection / 1] > 0) { //2
+              
+            // Define step value
+            epa[epaSelection / 1]--; //2
+          }
         }
-        break;
-//***************************************************************************************
+      }
+      break;
+
+//---------------------------------------------------------------------------------
+// MODEL SELECTION
+//---------------------------------------------------------------------------------
+      case 3:
+
+      // 0 to 4 items
+      if (menuSubModel < MODELS - 1) {
+        menuSubModel++;
+        modelPage = (menuSubModel) / 10;
+        
+        if (screen == 0) {
+          screen++;
+        }
+      }
+      break;
+
       //---------------------------------------------------------------------------------
       // "SUB TRIM" screen step control for selecting channels/values (buttonDown)
       //---------------------------------------------------------------------------------
