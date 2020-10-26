@@ -84,9 +84,11 @@ void read_pots() {
         
         if (bitRead(servoReverse, 2) == 1) {
           tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servoMax, servoMin);
+          tempPPM = constrain(tempPPM, servoMax, servoMin);
         }
         else {
           tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servoMin, servoMax);
+          tempPPM = constrain(tempPPM, servoMin, servoMax);
         }
       }
       
@@ -95,9 +97,11 @@ void read_pots() {
         
         if (bitRead(servoReverse, 3) == 1) {
           tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servoMax, servoMin);
+          tempPPM = constrain(tempPPM, servoMax, servoMin);
         }
         else {
           tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servoMin, servoMax);
+          tempPPM = constrain(tempPPM, servoMin, servoMax);
         }
       }
     }
