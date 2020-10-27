@@ -150,14 +150,15 @@ void main_screen() {
     }
     
     
-    unsigned short subTrimVal = map(subTrim[i], 0, 500, 0, 50);
+    unsigned short subTrimVal;
+    
+    subTrimVal = map(subTrim[i], 0, 500, 0, 50);
 
     // Check Servo Reversing and applying Reverse value if necessary
     if (bitRead(servoReverse, i) == 1) {
       subTrimVal = -subTrimVal;
     }
-    
-    
+     
     // EPA
     unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
