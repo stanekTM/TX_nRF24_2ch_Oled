@@ -57,7 +57,7 @@ void read_pots() {
         if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMin, expo[i]);
       }
       else if (pots[i]  > (potCenter + deadBand)) {
-        tempPPM = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoMid, trimServoMax); //gap - 1
+        tempPPM = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
         if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMax, expo[i]);
