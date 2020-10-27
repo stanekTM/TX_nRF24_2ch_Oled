@@ -50,9 +50,9 @@ const byte addresses[][6] = {"tx001", "rx002"};
 //************************************************************************************************************************************************************************
 #define CHANNELS  4          // Number of channels 4
 #define MODELS    10         // Total memory models 30
-#define potCenter 512        // Pot Center reference value
 #define numBytesPerModel 25  // Maximum bytes for data storage per model 32/25
-#define epaMax           200 // Maximum EPA value
+#define potCenter        512 // Pot Center reference value
+#define epaMax           100 // Maximum EPA value
 
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
