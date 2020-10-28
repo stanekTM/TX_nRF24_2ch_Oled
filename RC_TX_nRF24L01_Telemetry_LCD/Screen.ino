@@ -143,7 +143,7 @@ void main_screen() {
     
     // Drawing cursor in every channel bar
     if (valBar < 50) {
-      u8g2.drawBox(15 + valBar, 41 + (i * 16), 50 - valBar, 6); //65 - 50 = 15
+      u8g2.drawBox(14 + valBar, 41 + (i * 16), 50 - valBar, 6); //64 - 50 = 14
     }
     else if (valBar > 50) {
       u8g2.drawBox(65, 41 + (i * 16), valBar - 50, 6);          //64 + 1 = 65
@@ -173,15 +173,15 @@ void main_screen() {
         epa_1 = epa[2];
       }
     }
-    
-    minMaxValid = 64 - (50 * epa_1 / 100) + subTrimVal; //114 - 64 = 50
-    if (minMaxValid < 14) minMaxValid = 14;             // 64 - 50 = 14
-    if (minMaxValid > 114) minMaxValid = 114;           //100 + 14 = 114
+                                                        //  64 - 1 = 63
+    minMaxValid = 63 - (50 * epa_1 / 100) + subTrimVal; //113 - 63 = 50
+    if (minMaxValid < 13) minMaxValid = 13;             // 63 - 50 = 13
+    if (minMaxValid > 113) minMaxValid = 113;           //100 + 13 = 113
     u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
 
-    minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal;
-    if (minMaxValid < 14) minMaxValid = 14;
-    if (minMaxValid > 114) minMaxValid = 114;
+    minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal; //114 - 64 = 50
+    if (minMaxValid < 14) minMaxValid = 14;             // 64 - 50 = 14
+    if (minMaxValid > 114) minMaxValid = 114;           //100 + 14 = 114
     u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
     
     
