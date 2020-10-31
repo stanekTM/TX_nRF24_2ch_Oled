@@ -135,11 +135,11 @@ void main_screen() {
     // Define value bar reference
     unsigned int valBar;
 
-    // Value bars subdivision (ppm value / 55)
+    // Value bars subdivision (ppm value / 50)
     valBar = map(ppm[i], servoMin, servoMax, 0, 100);
 
     // Draw boxes/frames for every channel
-    u8g2.drawFrame(0, 40 + (i * 16), 128, 8);
+    u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
     
     // Drawing cursor in every channel bar
     if (valBar < 50) {
