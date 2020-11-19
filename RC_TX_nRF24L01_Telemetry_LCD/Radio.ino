@@ -23,8 +23,8 @@ void radio_setup() {
   
   radio.stopListening();           //set the module as transmitter. Stop listening for incoming messages, and switch to transmit mode
   
-  radio.openWritingPipe(rx_address);    //open a pipe for writing via byte array. Call "stopListening" first
-  radio.openReadingPipe(1, tx_address); //open all the required reading pipes 
+  radio.openWritingPipe(rx_p1_address);    //open a pipe for writing via byte array. Call "stopListening" first
+  radio.openReadingPipe(1, tx_rx_address); //open all the required reading pipes 
 }
 
 //************************************************************************************************************************************************************************
@@ -32,8 +32,8 @@ void radio_setup() {
 //************************************************************************************************************************************************************************
 struct packet {
   
-  unsigned int steering;
-  unsigned int throttle;
+  unsigned int ch1;
+  unsigned int ch2;
   unsigned int ch3;
   unsigned int ch4;
   unsigned int ch5;
@@ -97,10 +97,10 @@ void RX_batt_check() {
 //************************************************************************************************************************************************************************
 void send_and_receive_data() {
   
-  rc_data.steering = ppm[0]; //A0
-  rc_data.throttle = ppm[1]; //A1
-  rc_data.ch3      = ppm[2]; //A2
-  rc_data.ch4      = ppm[3]; //A3
+  rc_data.ch1 = ppm[0]; //A0
+  rc_data.ch2 = ppm[1]; //A1
+  rc_data.ch3 = ppm[2]; //A2
+  rc_data.ch4 = ppm[3]; //A3
   
   if (radio.write(&rc_data, sizeof(packet))) {
     
