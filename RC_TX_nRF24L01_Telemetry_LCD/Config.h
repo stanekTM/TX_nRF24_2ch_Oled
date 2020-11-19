@@ -15,8 +15,8 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 #define radio_channel 76
 
 //setting RF channels addresses
-const byte tx_address[] = "tx001";
-const byte rx_address[] = "rx002";
+const byte tx_rx_address[] = "tx001";
+const byte rx_p1_address[] = "rx002";
 
 //pins for nRF24L01
 #define CE       9
