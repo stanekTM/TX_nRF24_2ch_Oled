@@ -42,7 +42,7 @@ void TX_batt_check() {
   }
   else {
     // Buzzer alarm OFF
-    noTone(buzzer);    
+    noTone(pin_buzzer);    
   }
 }
  
