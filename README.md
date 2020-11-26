@@ -1,5 +1,5 @@
 # RC_TX_nRF24L01_Telemetry_LCD
-It is a surface 4-channel RC transmitter for direct control of the nRF24L01 transceiver on the Arduino with the ATmega328P for cars and boats. 
+Surface 4-channel RC transmitter nRF24L01 with ATmega328P 5V/16Mhz, Arduino Nano or Pro Mini for cars, boats and robots. 
 It contains the telemetry of the monitored voltage RX displayed on the LCD display. 
   
 Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) 
