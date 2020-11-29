@@ -3,8 +3,8 @@
 //************************************************************************************************************************************************************************
 RF24 radio(pin_CE, pin_CSN); //setup CE and CSN pins
 
-void radio_setup() {
-  
+void radio_setup()
+{
   radio.begin();  
   radio.setAutoAck(true);          //ensure autoACK is enabled (default true)
   radio.enableAckPayload();        //enable Ack dynamic payloads. This only works on pipes 0&1 by default
@@ -30,8 +30,8 @@ void radio_setup() {
 //************************************************************************************************************************************************************************
 // this structure defines the sent data in bytes (structure size max. 32 bytes) ******************************************************************************************
 //************************************************************************************************************************************************************************
-struct packet {
-  
+struct packet
+{
   unsigned int ch1;
   unsigned int ch2;
   unsigned int ch3;
@@ -43,8 +43,8 @@ packet rc_data; //create a variable with the above structure
 //************************************************************************************************************************************************************************
 // this struct defines data, which are embedded inside the ACK payload ***************************************************************************************************
 //************************************************************************************************************************************************************************
-struct ackPayload {
-  
+struct ackPayload
+{
   float RXbatt;
 };
 ackPayload payload;
@@ -56,10 +56,10 @@ unsigned long lastRxTime = 0;
 int RFstate;
 int RXbattstate;
 
-void receive_time() {
-  
-  if(millis() >= lastRxTime + 1000) { //1000 (1second)
-    
+void receive_time()
+{
+  if(millis() >= lastRxTime + 400) //400 = 3.3VCC, 1000 = 5VCC
+  {
     RFstate = 1;
     RXbattstate = 0;
   }
@@ -67,27 +67,31 @@ void receive_time() {
 
 //************************************************************************************************************************************************************************
 // RX battery status check ***********************************************************************************************************************************************
-// If the battery voltage RX 1S LiPo is < 3.3V = the TX display reports "RXbatt LOW!" at 1000ms interval and the RX LED flashes at 500ms interval ************************
+// If the battery voltage RX is < RX_monitored_voltage = the TX display reports "RXbatt LOW!" frequency 1Hz and the RX LED flashes 2Hz ***********************************
 //************************************************************************************************************************************************************************
 unsigned long RXbattTime = 0;
 
-void RX_batt_check() {
-  
-  if (payload.RXbatt <= RX_monitored_voltage) {
-    
-    if (millis() >= RXbattTime + 1000) { //1000 (1second)
+void RX_batt_check()
+{
+  if (payload.RXbatt <= RX_monitored_voltage)
+  {
+    if (millis() >= RXbattTime + 400) //400 = 3.3VCC, 1000 = 5VCC
+    {
       RXbattTime = millis();
       
-      if (RXbattstate) {
+      if (RXbattstate)
+      {
         RXbattstate = 0;
       }
-      else {
+      else
+      {
         RXbattstate = 1;
       }
     }
   }
   
-  if (payload.RXbatt >= RX_monitored_voltage) {
+  if (payload.RXbatt >= RX_monitored_voltage)
+  {
     RXbattstate = 0;
   }
 }
@@ -95,16 +99,17 @@ void RX_batt_check() {
 //************************************************************************************************************************************************************************
 // send and receive data *************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-void send_and_receive_data() {
-  
+void send_and_receive_data()
+{
   rc_data.ch1 = ppm[0]; //A0
   rc_data.ch2 = ppm[1]; //A1
   rc_data.ch3 = ppm[2]; //A2
   rc_data.ch4 = ppm[3]; //A3
   
-  if (radio.write(&rc_data, sizeof(packet))) {
-    
-    if (radio.isAckPayloadAvailable()) {
+  if (radio.write(&rc_data, sizeof(packet)))
+  {
+    if (radio.isAckPayloadAvailable())
+    {
       radio.read(&payload, sizeof(ackPayload));
       
       lastRxTime = millis(); //at this moment we have received the data 
