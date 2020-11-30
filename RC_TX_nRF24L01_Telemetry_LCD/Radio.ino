@@ -67,7 +67,7 @@ void receive_time()
 
 //************************************************************************************************************************************************************************
 // RX battery status check ***********************************************************************************************************************************************
-// If the battery voltage RX is < RX_monitored_voltage = the TX display reports "RXbatt LOW!" frequency 1Hz and the RX LED flashes 2Hz ***********************************
+// If the battery voltage RX is < RX_monitored_voltage = the TX display reports "RXbatt LOW!" at 1s interval and the RX LED flashes at 0.5s interval *********************
 //************************************************************************************************************************************************************************
 unsigned long RXbattTime = 0;
 
