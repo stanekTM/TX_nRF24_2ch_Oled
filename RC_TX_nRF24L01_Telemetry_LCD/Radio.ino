@@ -58,7 +58,7 @@ int RXbattstate;
 
 void receive_time()
 {
-  if(millis() >= lastRxTime + 400) //400 = 3.3VCC, 1000 = 5VCC
+  if(millis() >= lastRxTime + 1000) //1s
   {
     RFstate = 1;
     RXbattstate = 0;
@@ -75,7 +75,7 @@ void RX_batt_check()
 {
   if (payload.RXbatt <= RX_monitored_voltage)
   {
-    if (millis() >= RXbattTime + 400) //400 = 3.3VCC, 1000 = 5VCC
+    if (millis() >= RXbattTime + 1000) //1s
     {
       RXbattTime = millis();
       
