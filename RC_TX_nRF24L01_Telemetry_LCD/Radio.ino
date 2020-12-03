@@ -24,8 +24,8 @@ void radio_setup()
   
   radio.stopListening();           //set the module as transmitter. Stop listening for incoming messages, and switch to transmit mode
   
-  radio.openWritingPipe(address);           //open the pipe, but first call "stopListening"
-  radio.openReadingPipe(1, invert_address); //open the reading pipe 1 and invert bits for so that telemetry packets have a different address 
+  radio.openWritingPipe(address);           //open the writing pipe0 (RX_ADDR_P0 + TX_ADDR), but first call "stopListening"
+  radio.openReadingPipe(1, invert_address); //open the reading pipe1 (RX_ADDR_P1) 
 }
 
 //************************************************************************************************************************************************************************
