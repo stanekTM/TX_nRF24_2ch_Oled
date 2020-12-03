@@ -25,12 +25,11 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //************************************************************************************************************************************************************************
 // Config radio comunication *********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
+//setting RF channels address (5 bytes number or character)
+const byte address[] = "jirka";
+
 //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 #define radio_channel 76
-
-//setting RF channels addresses
-const byte tx_rx_address[] = "tx001";
-const byte rx_p1_address[] = "rx002";
 
 //pins for nRF24L01
 #define pin_CE   9
