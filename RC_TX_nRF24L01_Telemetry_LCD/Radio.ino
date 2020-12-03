@@ -2,6 +2,7 @@
 // Setup radio comunication **********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
 RF24 radio(pin_CE, pin_CSN); //setup CE and CSN pins
+uint8_t invert_address = ~address[5]; //Invert bits for reading so that telemetry packets have a different address
 
 void radio_setup()
 {
@@ -23,8 +24,8 @@ void radio_setup()
   
   radio.stopListening();           //set the module as transmitter. Stop listening for incoming messages, and switch to transmit mode
   
-  radio.openWritingPipe(rx_p1_address);    //open a pipe for writing via byte array. Call "stopListening" first
-  radio.openReadingPipe(1, tx_rx_address); //open all the required reading pipes 
+  radio.openWritingPipe(address);           //open the pipe, but first call "stopListening"
+  radio.openReadingPipe(1, invert_address); //open the reading pipe 1 and invert bits for so that telemetry packets have a different address 
 }
 
 //************************************************************************************************************************************************************************
