@@ -44,4 +44,4 @@ nRF24L01:
 * <U8g2lib.h> https://github.com/olikraus/u8g2
 * <RF24.h>    https://github.com/nRF24/RF24
 #
-George StanekTM
+Jiri StanekTM
