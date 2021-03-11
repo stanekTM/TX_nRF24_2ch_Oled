@@ -42,6 +42,6 @@ nRF24L01:
 * <SPI.h>     Arduino standard library
 * <EEPROM.h>  Arduino standard library
 * <U8g2lib.h> https://github.com/olikraus/u8g2
-* <RF24.h>    https://github.com/nRF24/RF24
+* <RF24.h>    https://github.com/nRF24/RF24 v1.3.9
 #
 Jiri StanekTM
