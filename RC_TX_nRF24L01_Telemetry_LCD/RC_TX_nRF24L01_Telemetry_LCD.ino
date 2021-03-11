@@ -11,7 +11,7 @@
 #include <EEPROM.h>   // Arduino standard library
 #include <U8g2lib.h>  // https://github.com/olikraus/u8g2
 #include "Config.h"   // Load static and variable configuration settings
-#include <RF24.h>     // https://github.com/nRF24/RF24
+#include <RF24.h>     // https://github.com/nRF24/RF24 v1.3.9
 #include <nRF24L01.h>
 
 //************************************************************************************************************************************************************************
