@@ -35,9 +35,6 @@ nRF24L01:
 * D12 - MISO
 * D13 - SCK
 
-### Code:
-[RC_TX_nRF24L01_Telemetry_LCD](https://github.com/stanekTM/RC_TX_nRF24L01_Telemetry_LCD/tree/main/RC_TX_nRF24L01_Telemetry_LCD)
-
 ### Used libraries:
 * <SPI.h>     Arduino standard library
 * <EEPROM.h>  Arduino standard library
