@@ -37,7 +37,7 @@ struct packet
   unsigned int ch2;
   unsigned int ch3;
   unsigned int ch4;
-  unsigned int ch5;
+  unsigned int ch5; //unused channel, only adding byte array RX 5ch
 };
 packet rc_data; //create a variable with the above structure
 
