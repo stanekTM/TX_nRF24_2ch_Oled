@@ -8,7 +8,7 @@ for code inspiration.
 
 The firmware has been completely redesigned according to my requirements. 
 
-This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo)
+This RC transmitter works with RC receiver from my repository [RC_RX_nRF24L01_Telemetry_Motor_Driver_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Driver_Servo)
 
 ### Arduino pins:
 * A0 - joystick 1
