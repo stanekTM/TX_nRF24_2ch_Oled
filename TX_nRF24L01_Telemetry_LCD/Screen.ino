@@ -114,7 +114,7 @@ void main_screen() {
 
     // Print value RX battery
     u8g2.setCursor(38, 23);
-    u8g2.print(payload.RXbatt);
+    u8g2.print(telemetry_packet.RX_batt_A1);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));

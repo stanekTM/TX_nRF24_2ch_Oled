@@ -31,7 +31,7 @@ void radio_setup()
 //************************************************************************************************************************************************************************
 // this structure defines the sent data in bytes (structure size max. 32 bytes) ******************************************************************************************
 //************************************************************************************************************************************************************************
-struct packet
+struct rc_packet_size
 {
   unsigned int ch1;
   unsigned int ch2;
@@ -39,16 +39,18 @@ struct packet
   unsigned int ch4;
   unsigned int ch5; //unused channel, only adding byte array RX 5ch
 };
-packet rc_data; //create a variable with the above structure
+rc_packet_size rc_packet; //create a variable with the above structure
 
 //************************************************************************************************************************************************************************
 // this struct defines data, which are embedded inside the ACK payload ***************************************************************************************************
 //************************************************************************************************************************************************************************
-struct ackPayload
+struct telemetry_packet_size
 {
-  float RXbatt;
+  uint8_t rssi;     // not used yet
+  float RX_batt_A1;
+  float RX_batt_A2; // not used yet
 };
-ackPayload payload;
+telemetry_packet_size telemetry_packet;
 
 //************************************************************************************************************************************************************************
 // Gain time after losing RF data or turning off the RX, display "RX-RF OFF!" and disable the RX battery status **********************************************************
@@ -74,7 +76,7 @@ unsigned long RXbattTime = 0;
 
 void RX_batt_check()
 {
-  if (payload.RXbatt <= RX_monitored_voltage)
+  if (telemetry_packet.RX_batt_A1 <= RX_monitored_voltage)
   {
     if (millis() >= RXbattTime + 1000) //1s
     {
@@ -91,10 +93,11 @@ void RX_batt_check()
     }
   }
   
-  if (payload.RXbatt >= RX_monitored_voltage)
+  if (telemetry_packet.RX_batt_A1 >= RX_monitored_voltage)
   {
     RXbattstate = 0;
   }
+//  Serial.println(telemetry_packet.RX_batt_A1); //print value ​​on a serial monitor
 }
 
 //************************************************************************************************************************************************************************
@@ -102,16 +105,16 @@ void RX_batt_check()
 //************************************************************************************************************************************************************************
 void send_and_receive_data()
 {
-  rc_data.ch1 = ppm[0]; //A0
-  rc_data.ch2 = ppm[1]; //A1
-  rc_data.ch3 = ppm[2]; //A2
-  rc_data.ch4 = ppm[3]; //A3
+  rc_packet.ch1 = ppm[0]; //A0
+  rc_packet.ch2 = ppm[1]; //A1
+  rc_packet.ch3 = ppm[2]; //A2
+  rc_packet.ch4 = ppm[3]; //A3
   
-  if (radio.write(&rc_data, sizeof(packet)))
+  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
     if (radio.isAckPayloadAvailable())
     {
-      radio.read(&payload, sizeof(ackPayload));
+      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
       lastRxTime = millis(); //at this moment we have received the data 
       RFstate = 0;                                
