@@ -17,12 +17,12 @@ int calc_expo(unsigned short  trimServoMid, unsigned short  value, unsigned shor
     return value;
   }
   else {
-    unsigned short trimVal = trimServoMid - servoMid;
-    value = (servoMax + trimVal) - value + (servoMin + trimVal);
-    inMax = (servoMax + trimVal) - inMax + (servoMin + trimVal);
+    unsigned short trimVal = trimServoMid - servo_mid;
+    value = (servo_max + trimVal) - value + (servo_min + trimVal);
+    inMax = (servo_max + trimVal) - inMax + (servo_min + trimVal);
     
     value = (value - trimServoMid) * exp((((double)value - trimServoMid) - (inMax - trimServoMid)) / dV ) + trimServoMid;
-    return (servoMax + trimVal) - value + (servoMin + trimVal);
+    return (servo_max + trimVal) - value + (servo_min + trimVal);
   }
 }
  
