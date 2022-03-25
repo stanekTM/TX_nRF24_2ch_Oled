@@ -1,10 +1,10 @@
 //************************************************************************************************************************************************************************
 // Macro for read pots, joysticks, values, applying calibration and rules
 //************************************************************************************************************************************************************************
-void read_pots() {
-  
-  for (int i = 0; i < CHANNELS; i++) {
-    
+void read_pots()
+{
+  for (int i = 0; i < CHANNELS; i++)
+  {
     int tempPPM = servo_mid;
 
     raw_Pots[i] = read_adc(i);
@@ -12,8 +12,8 @@ void read_pots() {
 //    Serial.println(ppm[1]); //print value ​​on a serial monitor
 
     // only for throttle and steering ch
-    if ( i < 2) {
-      
+    if ( i < 2)
+    {
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
       // So, Longer side length is used for both side
@@ -47,8 +47,8 @@ void read_pots() {
       unsigned short trimServoMax = servo_max - epaVal + subTrim[i];
 
       // Convert Analog Value to PPM Value
-      if (pots[i]  < (potCenter - deadBand)) {
-        
+      if (pots[i]  < (potCenter - deadBand))
+      {
         if (i == 1) trimServoMin = servo_min + epaVal_bwd + subTrim[i];
         
         tempPPM = map(pots[i], potCenter - gap, potCenter - deadBand, trimServoMin, trimServoMid);
@@ -56,19 +56,22 @@ void read_pots() {
         // EXPO
         if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMin, expo[i]);
       }
-      else if (pots[i]  > (potCenter + deadBand)) {
+      else if (pots[i]  > (potCenter + deadBand))
+      {
         tempPPM = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
         if (expo[i] > 0) tempPPM = calc_expo(trimServoMid, tempPPM, trimServoMax, expo[i]);
       }
-      else {
+      else
+      {
         tempPPM = trimServoMid;
       }
       
       
       // Check Servo Reversing and applying Reverse value if necessary
-      if (bitRead(servoReverse, i) == 1) {
+      if (bitRead(servoReverse, i) == 1)
+      {
         tempPPM = servo_max - tempPPM + servo_min;
       }
       
@@ -77,26 +80,30 @@ void read_pots() {
       if (tempPPM < servo_min) tempPPM = servo_min;
       if (tempPPM > servo_max) tempPPM = servo_max;
     }
-    else {
-      
+    else
+    {
       // ppm mapping pot CH3
-      if (i == 2) {
-        
-        if (bitRead(servoReverse, 2) == 1) {
+      if (i == 2)
+      {
+        if (bitRead(servoReverse, 2) == 1)
+        {
           tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servo_max, servo_min);
         }
-        else {
+        else
+        {
           tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servo_min, servo_max);
         }
       }
       
       // ppm mapping pot CH4
-      if (i == 3) {
-        
-        if (bitRead(servoReverse, 3) == 1) {
+      if (i == 3)
+      {
+        if (bitRead(servoReverse, 3) == 1)
+        {
           tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servo_max, servo_min);
         }
-        else {
+        else
+        {
           tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servo_min, servo_max);
         }
       }

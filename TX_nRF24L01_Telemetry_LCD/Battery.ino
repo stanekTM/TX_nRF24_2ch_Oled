@@ -8,8 +8,8 @@ int calc_max_batt;
 int calc_min_batt;
 unsigned char perc_batt;         // Battery bar level indicator (20 pixel) only Min to Max values
 
-void TX_batt_check() {
-
+void TX_batt_check()
+{
   // battery voltage from average from 0 to 4.2V LiPo
   raw_TX_batt = read_adc(7) * (TX_battery_voltage / 1023);
 
@@ -25,12 +25,12 @@ void TX_batt_check() {
   perc_batt = constrain(perc_batt, 1, 10);
 
 //  Serial.println(perc_batt); // print value ​​on a serial monitor
-  
+
 
   // Low battery beep alarm
   //if (perc_batt <= 1 || battStatus == 0) {
-  if (perc_batt <= 1 ) {
-
+  if (perc_batt <= 1 )
+  {
     // Set byte 0 to mantain battery alarm even voltage floating +/- on minBat value
     battStatus = 0;
 
@@ -40,9 +40,10 @@ void TX_batt_check() {
     // Recall pulse for buzzer
     beep();
   }
-  else {
+  else
+  {
     // Buzzer alarm OFF
-    noTone(pin_buzzer);    
+    noTone(pin_buzzer);
   }
 }
  

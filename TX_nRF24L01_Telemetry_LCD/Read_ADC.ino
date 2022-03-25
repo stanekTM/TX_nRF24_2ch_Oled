@@ -1,8 +1,8 @@
 //************************************************************************************************************************************************************************
 // Input ADC sampling rate for reading analog input pots (1000 KHz is maximum for stable reading)
 //************************************************************************************************************************************************************************
-void read_adc_setup() {
-
+void read_adc_setup()
+{
   ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0));   // Remove bit settings from Arduino library
 
 #if F_CPU == 16000000L
@@ -21,14 +21,14 @@ void read_adc_setup() {
   ADCSRA |= (1 << ADSC);                                   // Do an initial conversion this one is the slowest to ensure that everything is up and running
 
   DIDR0 = 0x3F;                                            // Digital circuit on analog ports disabled
-  DIDR1 = 0x03;                                            // Disable digital input on AIN0/1 
+  DIDR1 = 0x03;                                            // Disable digital input on AIN0/1
 }
 
 //************************************************************************************************************************************************************************
 // Macro for directly read ADC value on all analog ports
 //************************************************************************************************************************************************************************
-unsigned short int read_adc(unsigned char channel) {
-  
+unsigned short int read_adc(unsigned char channel)
+{
   ADMUX &= 0xF0;                        //Clear the older channel that was read
   ADMUX |= channel;                     //Defines the new ADC channel to be read
   ADCSRA |= (1 << ADSC);                //Starts a new conversion

@@ -6,16 +6,11 @@ uint8_t invert_address = ~address[5]; //Invert bits for reading so that telemetr
 
 void radio_setup()
 {
-  radio.begin();  
+  radio.begin();
   radio.setAutoAck(true);          //ensure autoACK is enabled (default true)
   radio.enableAckPayload();        //enable Ack dynamic payloads. This only works on pipes 0&1 by default
   radio.enableDynamicPayloads();   //enable dynamic payloads on all pipes
   
-//  radio.enableDynamicAck();
-//  radio.setPayloadSize(10);        //set static payload size. Default max. 32 bytes
-//  radio.setCRCLength(RF24_CRC_16); //RF24_CRC_8, RF24_CRC_16
-//  radio.setAddressWidth(5);        //the address width in bytes 3, 4 or 5 (24, 32 or 40 bit)
-
   radio.setRetries(5, 5);          //set the number and delay of retries on failed submit (max. 15 x 250us delay (blocking !), max. 15 retries)
   
   radio.setChannel(radio_channel); //which RF channel to communicate on (0-125, 2.4Ghz + 76 = 2.476Ghz)
@@ -25,7 +20,7 @@ void radio_setup()
   radio.stopListening();           //set the module as transmitter. Stop listening for incoming messages, and switch to transmit mode
   
   radio.openWritingPipe(address);           //open the writing pipe0 (RX_ADDR_P0 + TX_ADDR), but first call "stopListening"
-  radio.openReadingPipe(1, invert_address); //open the reading pipe1 (RX_ADDR_P1) 
+  radio.openReadingPipe(1, invert_address); //open the reading pipe1 (RX_ADDR_P1)
 }
 
 //************************************************************************************************************************************************************************
@@ -116,9 +111,9 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      lastRxTime = millis(); //at this moment we have received the data 
-      RFstate = 0;                                
-    }                              
-  } 
+      lastRxTime = millis(); //at this moment we have received the data
+      RFstate = 0;
+    }
+  }
 }
  

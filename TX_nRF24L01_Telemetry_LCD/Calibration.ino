@@ -1,21 +1,22 @@
 //************************************************************************************************************************************************************************
 // Calibration and screen ************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-void Calibration() {
-
+void Calibration()
+{
   // Setting default mid value reference for Min and Max calibration
-  for (int i = 0; i < CHANNELS; i++) {
+  for (int i = 0; i < CHANNELS; i++)
+  {
     calibration[i][0] = 512;
     calibration[i][1] = 512;
   }
   
-  while (calibStatus == 1) {
-    
+  while (calibStatus == 1)
+  {
     // Reading MIN and MAX value for every channel
-    unsigned int tempReading; 
+    unsigned int tempReading;
     
-    for (int i = 0; i < CHANNELS; i++) {
-      
+    for (int i = 0; i < CHANNELS; i++)
+    {
       // Get value from every ADC ports
       tempReading = read_adc(i);
       
@@ -32,7 +33,8 @@ void Calibration() {
     delay(10);
     
     // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
-    if (read_button() == 1) {
+    if (read_button() == 1)
+    {
       calibStatus = 0;
     }
   }
@@ -40,20 +42,22 @@ void Calibration() {
   calibStatus = 1;
   
   // buttonUp not pressed check
-  while (read_button() != 0) {
+  while (read_button() != 0)
+  {
     delay(10);
   }
   
   // Setting default mid value reference for CENTER calibration
   // only for Throttle and Steering
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 2; i++)
+  {
     centerPos[i] = 512;
   }
   
-  while (calibStatus == 1) {
-    
-    for (int i = 0; i < 2; i++) {
-      
+  while (calibStatus == 1)
+  {
+    for (int i = 0; i < 2; i++)
+    {
       // Get value from every ADC ports
       centerPos[i] = read_adc(i);
     }
@@ -64,21 +68,22 @@ void Calibration() {
     delay(10);
     
     // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
-    if (read_button() == 1) {
+    if (read_button() == 1)
+    {
       calibStatus = 0;
     }
   }
   
   // Print calibration message "SAVE DATA"
   calib_save_screen();
-
-
+  
+  
   // Save MIN, MAX and CENTER values in Eeprom
   unsigned int posEeprom;
-
+  
   // Save MIN and MAX calibration values from Eeprom
-  for (int i = 0; i < CHANNELS; i++) {
-    
+  for (int i = 0; i < CHANNELS; i++)
+  {
     // Save MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
     EEPROMUpdateInt(posEeprom, calibration[i][0]);
@@ -87,10 +92,10 @@ void Calibration() {
     posEeprom += 2;
     EEPROMUpdateInt(posEeprom, calibration[i][1]);
   }
-
+  
   // Save CENTER calibration values from Eeprom
-  for (int i = 0; i < 2; i++) {
-
+  for (int i = 0; i < 2; i++)
+  {
     // Save CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
     EEPROMUpdateInt(posEeprom, centerPos[i]);
@@ -102,8 +107,8 @@ void Calibration() {
 //************************************************************************************************************************************************************************
 // Print calibration "MIN-MAX" real time channels
 //************************************************************************************************************************************************************************
-void calib_MinMax_screen() {
-  
+void calib_MinMax_screen()
+{
   // Set memory buffer for text strings
   char msg_buffer[9];
   char chName_buffer[22];
@@ -179,13 +184,13 @@ void calib_MinMax_screen() {
 //************************************************************************************************************************************************************************
 // Print calibration "CENTER" real time channels
 //************************************************************************************************************************************************************************
-void calib_center_screen() {
-  
+void calib_center_screen()
+{
   // Set memory buffer for text strings
   char msg_buffer[9];
   char chName_buffer[22];
   char char_buffer[21];
-
+  
   u8g2.firstPage(); do {
     
     // Print "CENTER"
@@ -247,8 +252,8 @@ void calib_center_screen() {
 //************************************************************************************************************************************************************************
 // Print calibration message "SAVE DATA"
 //************************************************************************************************************************************************************************
-void calib_save_screen() {
-  
+void calib_save_screen()
+{
   // Set memory buffer for text strings
   char msg_buffer[9];
 

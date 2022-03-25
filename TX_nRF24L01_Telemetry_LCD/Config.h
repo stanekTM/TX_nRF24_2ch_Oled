@@ -1,4 +1,3 @@
-
 //************************************************************************************************************************************************************************
 //pins for pots, joysticks ***********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
@@ -19,8 +18,8 @@ U8G2_SSD1306_128X64_NONAME_1_HW_I2C
 u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
 
 //pins hardware I2C
-//----- SDA      A4 
-//----- SCL      A5 
+//----- SDA      A4
+//----- SCL      A5
 
 //************************************************************************************************************************************************************************
 // Config radio comunication *********************************************************************************************************************************************
@@ -89,7 +88,7 @@ unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 unsigned char servoReverse;                 // Reading bit status
 unsigned char epa[3];                       // EPA value array
-unsigned char expo[2];                      // EXPO value array                     
+unsigned char expo[2];                      // EXPO value array
 short subTrim[2];                           // SUB TRIM channel array
 unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value) 30
 
@@ -100,7 +99,7 @@ char modelName[5];                       // MODEL NAME 5 char
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selection
 
 //************************************************************************************************************************************************************************
-// Checking conditions control status for switch and calibration *************************************************************************************************
+// Checking conditions control status for switch and calibration *********************************************************************************************************
 //************************************************************************************************************************************************************************
 boolean calibStatus = 1; // Checking status to enter in calibration procedure
 boolean battStatus = 1;
@@ -153,7 +152,7 @@ const char* const menu_name[] PROGMEM = {
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings (short) for Channel/Pots names, status, model for all screens *******************************************************************************
+// Array text strings (short) for Channel/Pots names, status, model for all screens **************************************************************************************
 //************************************************************************************************************************************************************************
 const char chName_0[] PROGMEM = "STR";
 const char chName_1[] PROGMEM = "THR";
@@ -161,7 +160,7 @@ const char chName_2[] PROGMEM = "CH3";
 const char chName_3[] PROGMEM = "CH4";
 const char chName_4[] PROGMEM = "UP";
 const char chName_5[] PROGMEM = "free text";
-const char chName_6[] PROGMEM = "free text"; 
+const char chName_6[] PROGMEM = "free text";
 const char chName_7[] PROGMEM = "free text";
 const char chName_8[] PROGMEM = "free text";
 const char chName_9[] PROGMEM = "SEL";

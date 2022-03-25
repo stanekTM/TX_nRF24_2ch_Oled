@@ -18,28 +18,30 @@ void boot_screen() {
 // Drawing MAIN screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_main_screen() {
-  
+void draw_main_screen()
+{
   static uint8_t is_next_page = 0;
   
   //call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
-  } 
-
+  }
+  
   //draw our screen
   main_screen();
   
   //call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called 
   }  
 }
 
 //------------------------------------------------------------------------
-void main_screen() {
-
+void main_screen()
+{
   // Set memory buffer for text strings
   char chName_buffer[22];
   char char_buffer[21];
@@ -83,19 +85,19 @@ void main_screen() {
 
   // Battery symbol contruction
   u8g2.drawFrame(116, 0, 11, 7);      // Battery box
-  u8g2.drawBox(116, 1, perc_batt, 5); // level bar          
+  u8g2.drawBox(116, 1, perc_batt, 5); // level bar
   u8g2.drawVLine(127, 2, 3);          // Battery nipple plus pole
   
   
-  if (RFstate) {
-    
+  if (RFstate)
+  {
     // Print "RX-RF OFF!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[1])));
     u8g2.setCursor(0, 23);
     u8g2.print(msg_buffer);
   }
-  else if (RXbattstate) {
-    
+  else if (RXbattstate)
+  {
     // Print "RXbatt"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
     u8g2.setCursor(0, 23);
@@ -106,7 +108,8 @@ void main_screen() {
     u8g2.setCursor(38, 23);
     u8g2.print(msg_buffer);
   }
-  else {
+  else
+  {
     // Print "RXbatt"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
     u8g2.setCursor(0, 23);
@@ -122,13 +125,12 @@ void main_screen() {
     u8g2.print(char_buffer);
   }
   
-  
   // Drawing only first 2 channels
     
   u8g2.setFont(u8g2_font_5x7_tr);
   
-  for (int i = 0; i < 2; i++) {
-    
+  for (int i = 0; i < 2; i++)
+  {
     //Drawing vertical middle/center separation line
     u8g2.drawVLine(64, 38 + (i * 16), 9);
 
@@ -142,10 +144,12 @@ void main_screen() {
     u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
     
     // Drawing cursor in every channel bar
-    if (valBar < 50) {
+    if (valBar < 50)
+    {
       u8g2.drawBox(14 + valBar, 41 + (i * 16), 50 - valBar, 6); //64 - 50 = 14
     }
-    else if (valBar > 50) {
+    else if (valBar > 50)
+    {
       u8g2.drawBox(65, 41 + (i * 16), valBar - 50, 6);          //64 + 1 = 65
     }
     
@@ -155,7 +159,8 @@ void main_screen() {
     subTrimVal = map(subTrim[i], 0, 500, 0, 50);
 
     // Check Servo Reversing and applying Reverse value if necessary
-    if (bitRead(servoReverse, i) == 1) {
+    if (bitRead(servoReverse, i) == 1)
+    {
       subTrimVal = -subTrimVal;
     }
      
@@ -164,12 +169,14 @@ void main_screen() {
     short epa_1 = epa[i];
     short epa_2 = epa[i];
     
-    if (i == 1) {
-      
-      if (bitRead(servoReverse, i) == 1) {
+    if (i == 1)
+    {
+      if (bitRead(servoReverse, i) == 1)
+      {
         epa_2 = epa[2];
       }
-      else {
+      else
+      {
         epa_1 = epa[2];
       }
     }
@@ -191,7 +198,8 @@ void main_screen() {
     u8g2.print(chName_buffer);
     
     
-    if (subTrim[i] > 0) {
+    if (subTrim[i] > 0)
+    {
       // Print "TRIM"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
       u8g2.setCursor(44, 39 + i * 16);
@@ -201,7 +209,8 @@ void main_screen() {
       u8g2.setCursor(66, 39 + i * 16);
       u8g2.print(subTrim[i]);
     }
-    else if (subTrim[i] < 0) {
+    else if (subTrim[i] < 0)
+    {
       // Print "TRIM"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
       u8g2.setCursor(44, 39 + i * 16);
@@ -224,7 +233,8 @@ void main_screen() {
 
 
     // Drawing REV channel status for every channel
-    if (bitRead(servoReverse, i) == 1) {
+    if (bitRead(servoReverse, i) == 1)
+    {
       // Print "REV"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
       u8g2.setCursor(23, 39 + i * 16);
@@ -233,7 +243,8 @@ void main_screen() {
     
     
     // Drawing EXPO
-    if (expo[i] > 0) {
+    if (expo[i] > 0)
+    {
       // Print "EXPO"
       strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
       u8g2.setCursor(102, 39 + i * 16);
@@ -248,7 +259,8 @@ void main_screen() {
   
   
   // Drawing CH3 and CH4    
-  for (int i = 2; i < CHANNELS; i++) {
+  for (int i = 2; i < CHANNELS; i++)
+  {
     // Print "CH3 and CH4"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(81, 3 + i * 8);
@@ -261,7 +273,8 @@ void main_screen() {
     u8g2.print(value[i]);
       
     // Drawing REV channel status for every channel
-    if (bitRead(servoReverse, i) == 1) {
+    if (bitRead(servoReverse, i) == 1)
+    {
       // Print "REV"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
       u8g2.setCursor(114, 3 + i * 8);
@@ -279,12 +292,13 @@ void main_screen() {
 // Drawing MENU screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_menu_screen() {
-  
+void draw_menu_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   }
@@ -293,13 +307,15 @@ void draw_menu_screen() {
   menu_screen();
   
   //call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
   }  
 }
 
 //------------------------------------------------------------------------
-void menu_screen() {
+void menu_screen()
+{
 
   // Set memory buffer for text strings
   char chName_buffer[22];
@@ -338,16 +354,16 @@ void menu_screen() {
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
   
-  for (int i = 1; i < 6; i++) {
-    
+  for (int i = 1; i < 6; i++)
+  {
     if (i + (5 * menuPage) > MENU_COUNT)
     break;
     
     // Print main menu items "SERVO DIRECTION, EPA, MODEL SELECTION, SAVE MODEL DATA, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
     
-    if (i + (5 * menuPage) == menuSubActual) {
-      
+    if (i + (5 * menuPage) == menuSubActual)
+    {
       // Print "*"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[13])));
       u8g2.setCursor(5, 9 + (i * 10));
@@ -357,13 +373,14 @@ void menu_screen() {
       u8g2.setCursor(14, 9 + (i * 10));
       u8g2.print(menu_buffer);
     }
-    else {
+    else
+    {
       // Print main menu items
       u8g2.setCursor(20, 9 + (i * 10));
       u8g2.print(menu_buffer);
     }
   }
-    
+  
 //  } while (u8g2.nextPage());
 }
 
@@ -371,28 +388,30 @@ void menu_screen() {
 // Drawing SERVO DIRECTION screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_servo_dir_screen() {
-  
+void draw_servo_dir_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
-  } 
+  }
 
   // draw our screen
   servo_dir_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
-  }  
+  }
 }
 
 //------------------------------------------------------------------------
-void servo_dir_screen() {
-
+void servo_dir_screen()
+{
   // Set memory buffer for text strings
   char menu_buffer[8];
   char chName_buffer[22];
@@ -413,10 +432,10 @@ void servo_dir_screen() {
 
 
   // Drawing only first 4 channels
-  for (int i = 0; i < CHANNELS; i++) {
-    
-    if (i == menuSubActual - 1) {
-      
+  for (int i = 0; i < CHANNELS; i++)
+  {
+    if (i == menuSubActual - 1)
+    {
       // Print "["
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
       u8g2.setCursor(5, 20 + i * 13);
@@ -430,18 +449,19 @@ void servo_dir_screen() {
       // Print "]"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
       u8g2.setCursor(57, 20 + i * 13);
-      u8g2.print(char_buffer);           
+      u8g2.print(char_buffer);
     }
     
     
-    if (bitRead(servoReverse, i) == 1) {
-      
+    if (bitRead(servoReverse, i) == 1)
+    {
       // Print "REV"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
       u8g2.setCursor(38, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
-    else {
+    else
+    {
       // Print "NOR"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[13])));
       u8g2.setCursor(38, 20 + i * 13);
@@ -469,12 +489,13 @@ void servo_dir_screen() {
 // Drawing EPA screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_epa_screen() {
-  
+void draw_epa_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   } 
@@ -483,14 +504,15 @@ void draw_epa_screen() {
   epa_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
-  }  
+  }
 }
 
 //------------------------------------------------------------------------
-void epa_screen() {
-  
+void epa_screen()
+{
   // Set memory buffer for text strings
   char menu_buffer[8];
   char chName_buffer[22];
@@ -513,37 +535,42 @@ void epa_screen() {
   unsigned char counterTemp = 0;
 
   // Print EPA channels list
-  for (int i = 0; i < 3; i++) {
-    
+  for (int i = 0; i < 3; i++)
+  {
     // Print channel items name "STR, THR"
-    if (i > 1) {
+    if (i > 1)
+    {
       // Print "THR"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
     }
-    else {
+    else
+    {
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
     }
     
     u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(chName_buffer);
     
-    if (i == 1) {
+    if (i == 1)
+    {
       // Print "FWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[20])));
       u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     
-    if (i == 2) {
+    if (i == 2)
+    {
       // Print "BWD"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[21])));
       u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     
-    if (menuSubActual - 1 == counterTemp) {
-      
-      if (epaSelection == counterTemp) {
+    if (menuSubActual - 1 == counterTemp)
+    {
+      if (epaSelection == counterTemp)
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -559,7 +586,8 @@ void epa_screen() {
         u8g2.setCursor(85, 20 + i * 13);
         u8g2.print(char_buffer);
       }
-      else {
+      else
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -581,12 +609,13 @@ void epa_screen() {
 // Drawing MODEL SELECTION screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_model_sel_screen() {
- 
+void draw_model_sel_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   } 
@@ -595,14 +624,15 @@ void draw_model_sel_screen() {
   model_sel_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
   }  
 }
 
 //------------------------------------------------------------------------
-void model_sel_screen() {
-
+void model_sel_screen()
+{
   // Set memory buffer for text strings
   char char_buffer[21];
   char chName_buffer[22];
@@ -638,8 +668,8 @@ void model_sel_screen() {
 
     
   // Print MODEL SELECTION list
-  for (int i = 0; i < 5; i++) {
-    
+  for (int i = 0; i < 5; i++)
+  {
     //--------------------------------------------------------------------
     // Left Section Start
     //--------------------------------------------------------------------
@@ -654,13 +684,15 @@ void model_sel_screen() {
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
     eepromPos = numBytesPerModel * tempModelNoIdx;
     
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < 5; j++)
+    {
       u8g2.setCursor(23 + (j * 6), 19 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
-    if (tempModelNoIdx == menuSubModel) {
+    if (tempModelNoIdx == menuSubModel)
+    {
       // Print "["
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
       u8g2.setCursor(0, 19 + i * 10);
@@ -687,13 +719,15 @@ void model_sel_screen() {
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
     eepromPos = numBytesPerModel * tempModelNoIdx;
     
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < 5; j++)
+    {
       u8g2.setCursor(90 + (j * 6), 19 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
-    if (tempModelNoIdx == menuSubModel) {
+    if (tempModelNoIdx == menuSubModel)
+    {
       // Print "["
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
       u8g2.setCursor(67, 19 + i * 10);
@@ -713,8 +747,8 @@ void model_sel_screen() {
 //************************************************************************************************************************************************************************
 // Drawing SAVE MODEL DATA screen display
 //************************************************************************************************************************************************************************
-void save_model_screen() {
-
+void save_model_screen()
+{
   // For Eeprom position reference
   unsigned int eepromBase;
 
@@ -731,7 +765,8 @@ void save_model_screen() {
   unsigned int eepromPos = eepromBase;
 
   // Save MODEL NAME
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 5; i++)
+  {
     EEPROM.update(eepromPos++, modelName[i]);
   }
 
@@ -739,20 +774,23 @@ void save_model_screen() {
   EEPROM.update(eepromPos++, servoReverse);
 
   // Save SUB TRIM center stick values for two channels in every model memory bank
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 2; i++)
+  {
     // Save CENTER stick values
     EEPROMUpdateInt(eepromPos, subTrim[i]);
     eepromPos += 2;
   }
 
   // Save EPA data
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 3; i++)
+  {
     EEPROM.update(eepromPos, epa[i]);
     eepromPos++;
   }
 
   // Save EXPO data
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 2; i++)
+  {
     EEPROM.update(eepromPos, expo[i]);
     eepromPos++;
   }
@@ -778,7 +816,8 @@ void save_model_screen() {
     u8g2.print(modelActual + 1);
 
     // Print MODEL NAME 5 byte
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 5; i++)
+    {
       u8g2.setCursor(47 + i * 7, 55);
       u8g2.print(modelName[i]);
     }
@@ -796,12 +835,13 @@ void save_model_screen() {
 // Drawing SUB TRIM screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_sub_trim_screen() {
-  
+void draw_sub_trim_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   } 
@@ -810,14 +850,15 @@ void draw_sub_trim_screen() {
   sub_trim_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
   }  
 }
 
 //------------------------------------------------------------------------
-void sub_trim_screen() {
-
+void sub_trim_screen()
+{
   // Set memory buffer for text strings
   char menu_buffer[8];
   char chName_buffer[22];
@@ -840,16 +881,17 @@ void sub_trim_screen() {
   unsigned char temp_Counter = 0;
 
   // Print SUB TRIM channels list
-  for (int i = 0; i < 2; i++) {
-    
+  for (int i = 0; i < 2; i++)
+  {
     // Print channel items name "STR, THR"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(chName_buffer);
     
-    if (menuSubActual - 1 == temp_Counter) {
-      
-      if (subTrimSelection == temp_Counter) {
+    if (menuSubActual - 1 == temp_Counter)
+    {
+      if (subTrimSelection == temp_Counter)
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -865,7 +907,8 @@ void sub_trim_screen() {
         u8g2.setCursor(85, 20 + i * 13);
         u8g2.print(char_buffer);
       }
-      else {
+      else
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -893,12 +936,13 @@ void sub_trim_screen() {
 // Drawing MODEL NAME screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_model_name_screen() {
- 
+void draw_model_name_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   } 
@@ -907,14 +951,15 @@ void draw_model_name_screen() {
   model_name_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
   }  
 }
 
 //------------------------------------------------------------------------
-void model_name_screen() {
-
+void model_name_screen()
+{
   // Set memory buffer for text strings
   char menu_buffer[8];
   char chName_buffer[6];
@@ -943,13 +988,15 @@ void model_name_screen() {
   u8g2.setFont(u8g2_font_VCR_OSD_tr);
   
   // Print MODEL NAME 5 byte
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 5; i++)
+  {
     u8g2.setCursor(13 + (i * 23), 45);
     u8g2.print(modelName[i]);
     
-    if (i == menuSubActual - 1) {
-      
-      if (modelNameSelection == i) {
+    if (i == menuSubActual - 1)
+    {
+      if (modelNameSelection == i)
+      {
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
         u8g2.setCursor(1 + (i * 23), 45);
@@ -960,7 +1007,8 @@ void model_name_screen() {
         u8g2.setCursor(25 + (i * 23), 45);
         u8g2.print(char_buffer);
       }
-      else {
+      else
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(1 + (i * 23), 45);
@@ -978,12 +1026,13 @@ void model_name_screen() {
 // Drawing EXPO screen display
 //************************************************************************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_expo_screen() {
-  
+void draw_expo_screen()
+{
   static uint8_t is_next_page = 0;
   
   // call to first page, if required
-  if (is_next_page == 0) {
+  if (is_next_page == 0)
+  {
     u8g2.firstPage();
     is_next_page = 1;
   } 
@@ -992,14 +1041,15 @@ void draw_expo_screen() {
   expo_screen();
   
   // call to next page
-  if (u8g2.nextPage() == 0) {
+  if (u8g2.nextPage() == 0)
+  {
     is_next_page = 0; // ensure, that first page is called
   }  
 }
 
 //------------------------------------------------------------------------
-void expo_screen() {
-
+void expo_screen()
+{
   // Set memory buffer for text strings
   char menu_buffer[8];
   char chName_buffer[22];
@@ -1019,8 +1069,8 @@ void expo_screen() {
   u8g2.drawHLine(0, 8, 128);
   
   // Print EXPO channels list
-  for (int i = 0; i < 2; i++) {
-    
+  for (int i = 0; i < 2; i++)
+  {
     // Print channel items name "STR, THR"
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
@@ -1031,9 +1081,10 @@ void expo_screen() {
     u8g2.print(expo[i]);
     
     
-    if (i == menuSubActual - 1) {
-      
-      if (expoSelection == i) {
+    if (i == menuSubActual - 1)
+    {
+      if (expoSelection == i)
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -1049,7 +1100,8 @@ void expo_screen() {
         u8g2.setCursor(44, 20 + i * 13);
         u8g2.print(char_buffer);
       }
-      else {
+      else
+      {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
         u8g2.setCursor(2, 20 + i * 13);
@@ -1064,13 +1116,15 @@ void expo_screen() {
       u8g2.drawFrame(53, 10, 75, 54);
       u8g2.drawLine(52, 64, 128, 10);
       
-      if (expo[i] > 0) {
-        
-        for (int j = 52; j <= 91; j++) {
+      if (expo[i] > 0)
+      {
+        for (int j = 52; j <= 91; j++)
+        {
           u8g2.drawPixel(j, map(calc_expo(servo_mid, map(j, 52, 91, servo_min, servo_mid), servo_min, expo[i]), servo_min, servo_mid, 64, 36));
         }
         
-        for (int j = 91; j <= 128; j++) {
+        for (int j = 91; j <= 128; j++)
+        {
           u8g2.drawPixel(j, map(calc_expo(servo_mid, map(j, 91, 128, servo_mid, servo_max), servo_max, expo[i]), servo_mid, servo_max, 35, 9));
         }
       }

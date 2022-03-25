@@ -3,8 +3,8 @@
 // Y=X*EXPO((X-EndPoint)/dV))
 // proper dV value : 300 ~ 700
 //************************************************************************************************************************************************************************
-int calc_expo(unsigned short  trimServoMid, unsigned short  value, unsigned short inMax, unsigned short dV) {
-  
+int calc_expo(unsigned short  trimServoMid, unsigned short  value, unsigned short inMax, unsigned short dV)
+{
   if (value == trimServoMid) return value;
   if (dV <= 0) return value;
   
@@ -12,11 +12,13 @@ int calc_expo(unsigned short  trimServoMid, unsigned short  value, unsigned shor
 
   dV = map(dV, 1, 9, 300, 700);
   
-  if (value > trimServoMid) {
+  if (value > trimServoMid)
+  {
     value = (value - trimServoMid) * exp((((double)value - trimServoMid) - (inMax - trimServoMid)) / dV ) + trimServoMid;
     return value;
   }
-  else {
+  else
+  {
     unsigned short trimVal = trimServoMid - servo_mid;
     value = (servo_max + trimVal) - value + (servo_min + trimVal);
     inMax = (servo_max + trimVal) - inMax + (servo_min + trimVal);

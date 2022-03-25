@@ -1,4 +1,3 @@
-
 //***************************************************************************************************************************************************
 // Add communication nRF24L01P. Fixed RF channel, fixed address.                                                                                    *
 // Support for Arduino-based receivers and RF24 libraries from this repository https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Driver_Servo *
@@ -16,10 +15,10 @@
 //************************************************************************************************************************************************************************
 // initial main settings *************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-void setup() {
-
+void setup()
+{
 //  Serial.begin(9600); //print value ​​on a serial monitor
-
+  
   radio_setup();
   
   
@@ -32,7 +31,7 @@ void setup() {
 //  u8g2.setContrast(10);
   u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
   
-
+  
   boot_screen(); // print boot screen
 
   read_adc_setup();
@@ -60,13 +59,15 @@ void setup() {
   
 
   // EPA and SUB TRIM default values (only for first two channels)
-  for (int i = 0; i < CHANNELS - 2; i++) {
+  for (int i = 0; i < CHANNELS - 2; i++)
+  {
     epa[i] = 100;
     subTrim[i] = 0;
   }
   
   // Default MODEL NAME 5 byte
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 5; i++)
+  {
     modelName[i] = 0x5f;
   }
 
@@ -82,21 +83,23 @@ void setup() {
 //************************************************************************************************************************************************************************
 // program loop **********************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-void loop() {
-
+void loop()
+{
   //----------------------------------------------------------------------------
-  // Start Calibration screen if buttonSelect is pressed on power on 
+  // Start Calibration screen if buttonSelect is pressed on power on
   //----------------------------------------------------------------------------
-  if (calibStatus == 1 && read_button() == 2) {
+  if (calibStatus == 1 && read_button() == 2)
+  {
     // Recall calibration procedure
     Calibration();
   }
   // Set condition 0 to continue loop if calibration procedure is not selected
-  else {
+  else
+  {
     calibStatus = 0;
   }
-
-
+  
+  
   receive_time();
   send_and_receive_data();
   

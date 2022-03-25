@@ -10,7 +10,8 @@
 
 #include <EEPROM.h>
 
-void setup() {
+void setup()
+{
   // initialize the LED pin as an output.
   pinMode(13, OUTPUT);
   
@@ -26,7 +27,8 @@ void setup() {
     This will make your code portable to all AVR processors.
   ***/
 
-  for (int i = 0 ; i < EEPROM.length() ; i++) {
+  for (int i = 0 ; i < EEPROM.length(); i++)
+  {
     EEPROM.write(i, 0);
   }
 
@@ -34,6 +36,8 @@ void setup() {
   digitalWrite(13, HIGH);
 }
 
-void loop() {
+void loop()
+{
   /** Empty loop. **/
 }
+ 
