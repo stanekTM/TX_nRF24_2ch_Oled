@@ -6,7 +6,7 @@ void read_pots()
 {
   for (int i = 0; i < CHANNELS; i++)
   {
-    int tempPPM = servo_mid;
+    int tempPPM = mid_control_val;
 
     raw_Pots[i] = read_adc(i);
 
@@ -43,14 +43,14 @@ void read_pots()
       
       if (i == 1) epaVal_bwd = 500 - (500 * epa[2] / 100);
       
-      unsigned short trimServoMid = servo_mid + subTrim[i]; 
-      unsigned short trimServoMin = servo_min + epaVal + subTrim[i];
-      unsigned short trimServoMax = servo_max - epaVal + subTrim[i];
+      unsigned short trimServoMid = mid_control_val + subTrim[i]; 
+      unsigned short trimServoMin = min_control_val + epaVal + subTrim[i];
+      unsigned short trimServoMax = max_control_val - epaVal + subTrim[i];
 
       // Convert Analog Value to PPM Value
       if (pots[i]  < (potCenter - deadBand))
       {
-        if (i == 1) trimServoMin = servo_min + epaVal_bwd + subTrim[i];
+        if (i == 1) trimServoMin = min_control_val + epaVal_bwd + subTrim[i];
         
         tempPPM = map(pots[i], potCenter - gap, potCenter - deadBand, trimServoMin, trimServoMid);
         
@@ -73,13 +73,13 @@ void read_pots()
       // Check Servo Reversing and applying Reverse value if necessary
       if (bitRead(servoReverse, i) == 1)
       {
-        tempPPM = servo_max - tempPPM + servo_min;
+        tempPPM = max_control_val - tempPPM + min_control_val;
       }
       
       
       //Min Max Validation
-      if (tempPPM < servo_min) tempPPM = servo_min;
-      if (tempPPM > servo_max) tempPPM = servo_max;
+      if (tempPPM < min_control_val) tempPPM = min_control_val;
+      if (tempPPM > max_control_val) tempPPM = max_control_val;
     }
     else
     {
@@ -88,11 +88,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servo_max, servo_min);
+          tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], max_control_val, min_control_val);
         }
         else
         {
-          tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], servo_min, servo_max);
+          tempPPM = map(read_adc(2), calibration[i][0], calibration[i][1], min_control_val, max_control_val);
         }
       }
       
@@ -101,11 +101,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servo_max, servo_min);
+          tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], max_control_val, min_control_val);
         }
         else
         {
-          tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], servo_min, servo_max);
+          tempPPM = map(read_adc(3), calibration[i][0], calibration[i][1], min_control_val, max_control_val);
         }
       }
     }

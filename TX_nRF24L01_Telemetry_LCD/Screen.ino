@@ -139,7 +139,7 @@ void main_screen()
     unsigned int valBar;
 
     // Value bars subdivision (ppm value / 50)
-    valBar = map(ppm[i], servo_min, servo_max, 0, 100);
+    valBar = map(ppm[i], min_control_val, max_control_val, 0, 100);
 
     // Draw boxes/frames for every channel
     u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
@@ -269,7 +269,7 @@ void main_screen()
 
     // Print CH3 and CH4 value in %
     unsigned int value[i];
-    value[i] = map(ppm[i], servo_min, servo_max, 0, 100);
+    value[i] = map(ppm[i], min_control_val, max_control_val, 0, 100);
     u8g2.setCursor(98, 3 + i * 8);
     u8g2.print(value[i]);
       
@@ -1121,12 +1121,12 @@ void expo_screen()
       {
         for (int j = 52; j <= 91; j++)
         {
-          u8g2.drawPixel(j, map(calc_expo(servo_mid, map(j, 52, 91, servo_min, servo_mid), servo_min, expo[i]), servo_min, servo_mid, 64, 36));
+          u8g2.drawPixel(j, map(calc_expo(mid_control_val, map(j, 52, 91, min_control_val, mid_control_val), min_control_val, expo[i]), min_control_val, mid_control_val, 64, 36));
         }
         
         for (int j = 91; j <= 128; j++)
         {
-          u8g2.drawPixel(j, map(calc_expo(servo_mid, map(j, 91, 128, servo_mid, servo_max), servo_max, expo[i]), servo_mid, servo_max, 35, 9));
+          u8g2.drawPixel(j, map(calc_expo(mid_control_val, map(j, 91, 128, mid_control_val, max_control_val), max_control_val, expo[i]), mid_control_val, max_control_val, 35, 9));
         }
       }
     }
