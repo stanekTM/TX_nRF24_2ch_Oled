@@ -51,7 +51,7 @@ void main_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
 
   u8g2.setFont(u8g2_font_6x10_tr);
@@ -77,7 +77,7 @@ void main_screen()
     
   // Print value TX battery
   u8g2.setCursor(91, 7);
-  u8g2.print(raw_TX_batt);
+  u8g2.print(val_TX_battery);
 
   // Print "V"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
@@ -138,8 +138,8 @@ void main_screen()
     // Define value bar reference
     unsigned int valBar;
 
-    // Value bars subdivision (ppm value / 50)
-    valBar = map(ppm[i], min_control_val, max_control_val, 0, 100);
+    // Value bars subdivision (pots value / 50)
+    valBar = map(pots_value[i], min_control_val, max_control_val, 0, 100);
 
     // Draw boxes/frames for every channel
     u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
@@ -269,7 +269,7 @@ void main_screen()
 
     // Print CH3 and CH4 value in %
     unsigned int value[i];
-    value[i] = map(ppm[i], min_control_val, max_control_val, 0, 100);
+    value[i] = map(pots_value[i], min_control_val, max_control_val, 0, 100);
     u8g2.setCursor(98, 3 + i * 8);
     u8g2.print(value[i]);
       
@@ -325,7 +325,7 @@ void menu_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
 /*
   // Print "MODEL"
@@ -420,7 +420,7 @@ void servo_dir_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
 
   // Print "SERVO DIRECTION"
@@ -479,7 +479,7 @@ void servo_dir_screen()
     // Drawing dynamic graphics items
     u8g2.drawHLine(72, 20 + i * 13, 45);
     u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
-    u8g2.drawBox(map(ppm[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);   
+    u8g2.drawBox(map(pots_value[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);   
   }
   // End drawing only first 4 channels
     
@@ -521,7 +521,7 @@ void epa_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
   
   // Print "EPA"
@@ -867,7 +867,7 @@ void sub_trim_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
 
   // Print "SUB TRIM"
@@ -1058,7 +1058,7 @@ void expo_screen()
 
 //  u8g2.firstPage(); do {
 
-//  read_pots(); // Macro again for stable ppm pulse
+//  read_pots(); // Macro again for stable pots value
 
 
   // Print "EXPO"

@@ -14,18 +14,18 @@ void Calibration()
   while (calibStatus == 1)
   {
     // Reading MIN and MAX value for every channel
-    unsigned int tempReading;
+    unsigned int raw_pots;
     
     for (int i = 0; i < CHANNELS; i++)
     {
       // Get value from every ADC ports
-      tempReading = read_adc(i);
+      raw_pots = read_adc(i);
       
       // Get MIN values
-      if (tempReading < calibration[i][0]) calibration[i][0] = tempReading; //<=
+      if (raw_pots < calibration[i][0]) calibration[i][0] = raw_pots; //<=
 
       // Get MAX values
-      if (tempReading > calibration[i][1]) calibration[i][1] = tempReading; //>= 
+      if (raw_pots > calibration[i][1]) calibration[i][1] = raw_pots; //>= 
     }
     
     // Print calibration "MIN-MAX" real time channels

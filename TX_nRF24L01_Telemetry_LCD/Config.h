@@ -75,10 +75,10 @@ const byte address[] = "jirka";
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-unsigned short int ppm[CHANNELS];            // ppm output array
+unsigned short int pots_value[CHANNELS];     // pots value output array
 unsigned short int pots[CHANNELS];           // Input ADC data array
 unsigned short int calibration[CHANNELS][2]; // Min/Max value array for read channels and store calibration
-unsigned short int raw_Pots[CHANNELS];       // Read raw input pots array
+unsigned short int raw_pots[CHANNELS];       // Read raw input pots array
 unsigned short int centerPos[2];             // Center Position. Only for Throttle and Steering
 
 //************************************************************************************************************************************************************************

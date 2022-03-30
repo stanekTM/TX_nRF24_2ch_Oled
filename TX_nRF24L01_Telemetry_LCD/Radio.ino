@@ -101,10 +101,10 @@ void RX_batt_check()
 //************************************************************************************************************************************************************************
 void send_and_receive_data()
 {
-  rc_packet.ch1 = ppm[0]; //A0
-  rc_packet.ch2 = ppm[1]; //A1
-  rc_packet.ch3 = ppm[2]; //A2
-  rc_packet.ch4 = ppm[3]; //A3
+  rc_packet.ch1 = pots_value[0]; //A0
+  rc_packet.ch2 = pots_value[1]; //A1
+  rc_packet.ch3 = pots_value[2]; //A2
+  rc_packet.ch4 = pots_value[3]; //A3
   
   if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {

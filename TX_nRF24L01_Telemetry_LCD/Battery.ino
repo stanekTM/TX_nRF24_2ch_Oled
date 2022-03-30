@@ -3,7 +3,7 @@
 // Macro to calculate average ADC value, checking battery voltage alarm and value for battery bar.
 // For "TX_monitored_voltage" do not under default value in config file because arduino will be more unstable.
 //************************************************************************************************************************************************************************
-float raw_TX_batt;               // raw input battery pin value
+float val_TX_battery;            // input battery pin value
 int calc_bar_batt;               // Calculating correct voltage value voltage for battery bar
 int calc_max_batt;
 int calc_min_batt;
@@ -12,10 +12,10 @@ unsigned char perc_batt;         // Battery bar level indicator (20 pixel) only 
 void TX_batt_check()
 {
   // battery voltage from average from 0 to 4.2V LiPo
-  raw_TX_batt = read_adc(7) * (TX_battery_voltage / 1023);
+  val_TX_battery = read_adc(7) * (TX_battery_voltage / 1023);
 
   // Calculating correct value voltage for battery bar
-  calc_bar_batt = (raw_TX_batt * 10)/* + correct_volt 2 */;
+  calc_bar_batt = (val_TX_battery * 10)/* + correct_volt 2 */;
   calc_max_batt = TX_battery_voltage * 10;
   calc_min_batt = TX_monitored_voltage * 10;
 
