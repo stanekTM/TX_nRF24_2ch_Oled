@@ -1,10 +1,10 @@
 
-//***************************************************************************************************************************************************
-// Add communication nRF24L01P. Fixed RF channel, fixed address.                                                                                    *
-// Support for Arduino-based receivers and RF24 libraries from this repository https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Driver_Servo *
-// Thanks to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control                                           *
-// and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.                                                            *
-//***************************************************************************************************************************************************
+//************************************************************************************************************************************************************************
+// Add communication nRF24L01P. Fixed RF channel, fixed address.
+// Support for Arduino-based receivers and RF24 libraries from this repository https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo
+// Thanks to the original authors "Gabapentin" https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control       
+// and "doohans" https://github.com/doohans/arduino_surface_TX_4ch for code inspiration.
+//************************************************************************************************************************************************************************
 
 
 #include <RF24.h>     // https://github.com/nRF24/RF24 v1.3.9
