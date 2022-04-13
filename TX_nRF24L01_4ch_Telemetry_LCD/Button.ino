@@ -9,21 +9,21 @@ unsigned char read_button()
   if (millis() >= buttonTime + 150) //1000 (1second)
   {
     // buttonSelect
-    if ((PIND & (1 << pin_buttonSelect)) == 0)
+    if ((PIND & (1 << PIN_BUTTON_SELECT)) == 0)
     {
       buttonTime = millis();
       return 2;
     }
     
     // buttonUp
-    if ((PIND & (1 << pin_buttonUp)) == 0)
+    if ((PIND & (1 << PIN_BUTTON_UP)) == 0)
     {
       buttonTime = millis();
       return 1;
     }
     
     // buttonDown
-    if ((PIND & (1 << pin_buttonDown)) == 0)
+    if ((PIND & (1 << PIN_BUTTON_DOWN)) == 0)
     {
       buttonTime = millis();
       return 3;
@@ -38,7 +38,7 @@ unsigned char read_button()
 void read_button_exit()
 {
   // excute only one time after buttonExit is up
-  if (exitStatus == 1 && !bit_is_clear(PIND, pin_buttonExit))
+  if (exitStatus == 1 && !bit_is_clear(PIND, PIN_BUTTON_EXIT))
   {
     // buttonExit pushed
     exitStatus = !exitStatus;
@@ -60,7 +60,7 @@ void read_button_exit()
     }
   }
   
-  if (bit_is_clear(PIND, pin_buttonExit))
+  if (bit_is_clear(PIND, PIN_BUTTON_EXIT))
   {
     // buttonExit up
     exitStatus = 1;

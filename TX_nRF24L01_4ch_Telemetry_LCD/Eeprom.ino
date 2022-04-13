@@ -10,11 +10,11 @@ unsigned char storedDataEeprom(unsigned char mod)
   // Read which model to upload data
   if (mod == 255)
   {
-    mod = EEPROM.read(actualModelEepromAddr);
+    mod = EEPROM.read(ACTUAL_MODEL_EEPROM_ADDR);
   }
   
   // Define start position for Eeprom read (25 * [0,1,2,3,4])
-  eepromBase = numBytesPerModel * mod;
+  eepromBase = NUM_BYTES_PER_MODEL * mod;
 
   unsigned int eepromPos = eepromBase;
   
@@ -210,13 +210,13 @@ void resetEeprom()
   unsigned int posEeprom;
 
   // Writing default model[0]
-  EEPROM.update(actualModelEepromAddr, 0);
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
 
   // Start writing default values for every model memory bank
   for (int j = 0; j < MODELS; j++)
   {
     // Define start position for Eeprom storing (32 * [0,1,2,3,4...])
-    eepromPos = numBytesPerModel * j;
+    eepromPos = NUM_BYTES_PER_MODEL * j;
     
     // MODEL NAME 5 byte
     for (int i = 0; i < 5; i++)

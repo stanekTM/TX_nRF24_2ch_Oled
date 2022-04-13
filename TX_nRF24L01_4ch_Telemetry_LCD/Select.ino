@@ -122,7 +122,7 @@ void select()
         modelActual = menuSubModel;
 
         // Save data in eeprom
-        EEPROM.update(actualModelEepromAddr, modelActual);
+        EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
         storedDataEeprom(modelActual);
 
         screen = 0;
@@ -254,7 +254,7 @@ void select()
         if ((subTrimSelection % 1)  == 0)
         {
           // Define Min SUB TRIM value
-          if (subTrim[subTrimSelection / 1] > potCenter * -1)
+          if (subTrim[subTrimSelection / 1] > POT_CENTER * -1)
           {
             // Define step value
             subTrim[subTrimSelection / 1] -= 1;
@@ -370,7 +370,7 @@ void select()
         if ((epaSelection % 1) == 0)
         {
           // Define Max for EPA value
-          if (epa[epaSelection / 1] < epaMax)
+          if (epa[epaSelection / 1] < EPA_MAX)
           {
             // Define step value
             epa[epaSelection / 1]++;
@@ -426,7 +426,7 @@ void select()
         if ((subTrimSelection % 1) == 0 )
         {
           // Define max value for SUB TRIM
-          if ((subTrim[subTrimSelection / 1]) < potCenter)
+          if ((subTrim[subTrimSelection / 1]) < POT_CENTER)
           {
             // Define step value
             subTrim[subTrimSelection / 1] += 1;

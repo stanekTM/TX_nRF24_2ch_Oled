@@ -6,7 +6,7 @@ void read_pots()
 {
   for (int i = 0; i < CHANNELS; i++)
   {
-    int pots_control_val = mid_control_val;
+    int pots_control_val = MID_CONTROL_VAL;
 
     raw_pots[i] = read_adc(i);
 
@@ -25,7 +25,7 @@ void read_pots()
       if (gap < gapTemp) gap = gapTemp;
 
       // Calculate Center offset
-      int centerOffset = potCenter - centerPos[i];
+      int centerOffset = POT_CENTER - centerPos[i];
 
       // Applying initial value with center offset
       pots[i] = raw_pots[i] + centerOffset;
@@ -43,23 +43,23 @@ void read_pots()
       
       if (i == 1) epaVal_bwd = 500 - (500 * epa[2] / 100);
       
-      unsigned short trimServoMid = mid_control_val + subTrim[i]; 
-      unsigned short trimServoMin = min_control_val + epaVal + subTrim[i];
-      unsigned short trimServoMax = max_control_val - epaVal + subTrim[i];
+      unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[i]; 
+      unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[i];
+      unsigned short trimServoMax = MAX_CONTROL_VAL - epaVal + subTrim[i];
 
       // Convert Analog Value to pots value
-      if (pots[i]  < (potCenter - deadBand))
+      if (pots[i]  < (POT_CENTER - deadBand))
       {
-        if (i == 1) trimServoMin = min_control_val + epaVal_bwd + subTrim[i];
+        if (i == 1) trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[i];
         
-        pots_control_val = map(pots[i], potCenter - gap, potCenter - deadBand, trimServoMin, trimServoMid);
+        pots_control_val = map(pots[i], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
         
         // EXPO
         if (expo[i] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[i]);
       }
-      else if (pots[i]  > (potCenter + deadBand))
+      else if (pots[i]  > (POT_CENTER + deadBand))
       {
-        pots_control_val = map(pots[i], potCenter + deadBand, potCenter + gap - 1, trimServoMid, trimServoMax);
+        pots_control_val = map(pots[i], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
         if (expo[i] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[i]);
@@ -73,13 +73,13 @@ void read_pots()
       // Check Servo Reversing and applying Reverse value if necessary
       if (bitRead(servoReverse, i) == 1)
       {
-        pots_control_val = max_control_val - pots_control_val + min_control_val;
+        pots_control_val = MAX_CONTROL_VAL - pots_control_val + MIN_CONTROL_VAL;
       }
       
       
       //Min Max Validation
-      if (pots_control_val < min_control_val) pots_control_val = min_control_val;
-      if (pots_control_val > max_control_val) pots_control_val = max_control_val;
+      if (pots_control_val < MIN_CONTROL_VAL) pots_control_val = MIN_CONTROL_VAL;
+      if (pots_control_val > MAX_CONTROL_VAL) pots_control_val = MAX_CONTROL_VAL;
     }
     else
     {
@@ -88,11 +88,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], max_control_val, min_control_val);
+          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], min_control_val, max_control_val);
+          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
       
@@ -101,11 +101,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], max_control_val, min_control_val);
+          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], min_control_val, max_control_val);
+          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
     }

@@ -139,7 +139,7 @@ void main_screen()
     unsigned int valBar;
 
     // Value bars subdivision (pots value / 50)
-    valBar = map(pots_value[i], min_control_val, max_control_val, 0, 100);
+    valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
 
     // Draw boxes/frames for every channel
     u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
@@ -269,7 +269,7 @@ void main_screen()
 
     // Print CH3 and CH4 value in %
     unsigned int value[i];
-    value[i] = map(pots_value[i], min_control_val, max_control_val, 0, 100);
+    value[i] = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
     u8g2.setCursor(98, 3 + i * 8);
     u8g2.print(value[i]);
       
@@ -683,7 +683,7 @@ void model_sel_screen()
     u8g2.print(tempModelNoIdx + 1);
 
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
-    eepromPos = numBytesPerModel * tempModelNoIdx;
+    eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     for (int j = 0; j < 5; j++)
     {
@@ -718,7 +718,7 @@ void model_sel_screen()
     u8g2.print(tempModelNoIdx + 1);
 
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
-    eepromPos = numBytesPerModel * tempModelNoIdx;
+    eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
     for (int j = 0; j < 5; j++)
     {
@@ -757,10 +757,10 @@ void save_model_screen()
   //unsigned int posEeprom;
 
   // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
-  eepromBase = numBytesPerModel * modelActual;
+  eepromBase = NUM_BYTES_PER_MODEL * modelActual;
 
   // Save Actual Model data
-  EEPROM.update(actualModelEepromAddr, modelActual);
+  EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
 
   // For write/Update SERVO DIRECTION and EPA position
   unsigned int eepromPos = eepromBase;
@@ -1121,12 +1121,12 @@ void expo_screen()
       {
         for (int j = 52; j <= 91; j++)
         {
-          u8g2.drawPixel(j, map(calc_expo(mid_control_val, map(j, 52, 91, min_control_val, mid_control_val), min_control_val, expo[i]), min_control_val, mid_control_val, 64, 36));
+          u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL, map(j, 52, 91, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 64, 36));
         }
         
         for (int j = 91; j <= 128; j++)
         {
-          u8g2.drawPixel(j, map(calc_expo(mid_control_val, map(j, 91, 128, mid_control_val, max_control_val), max_control_val, expo[i]), mid_control_val, max_control_val, 35, 9));
+          u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL, map(j, 91, 128, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 35, 9));
         }
       }
     }

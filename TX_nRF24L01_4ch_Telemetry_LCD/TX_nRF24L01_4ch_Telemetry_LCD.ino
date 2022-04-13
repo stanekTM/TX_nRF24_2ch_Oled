@@ -43,11 +43,11 @@ void setup()
   // NOTE: For input pin buttons is necessary to mount on every pin
   // 0,1uF/100nF(104)ceramic capacitors from pin to GND
   //-----------------------------------------------------------------
-  pinMode(pin_buttonUp, INPUT_PULLUP);
-  pinMode(pin_buttonDown, INPUT_PULLUP);
-  pinMode(pin_buttonSelect, INPUT_PULLUP);
-  pinMode(pin_buttonExit, INPUT_PULLUP);
-  pinMode(pin_buzzer, OUTPUT);
+  pinMode(PIN_BUTTON_UP, INPUT_PULLUP);
+  pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
+  pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
+  pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
+  pinMode(PIN_BUZZER, OUTPUT);
 
 //  delay(100); // Delay before reading button (about charge capacitor pulse on pin)
 

@@ -8,19 +8,19 @@ void beep()
 {
   if (pulseBuzzer < 2)
   {
-    tone(pin_buzzer, 900);
+    tone(PIN_BUZZER, 900);
   }
   else if (pulseBuzzer > 2 && pulseBuzzer < 4)
   {
-    noTone(pin_buzzer);
+    noTone(PIN_BUZZER);
   }
   else if (pulseBuzzer > 4 && pulseBuzzer < 7)
   {
-    tone(pin_buzzer, 900);
+    tone(PIN_BUZZER, 900);
   }
   else if (pulseBuzzer > 7 && pulseBuzzer < 9)
   {
-    noTone(pin_buzzer);
+    noTone(PIN_BUZZER);
   }
   
   if (pulseBuzzer > 80)
@@ -34,11 +34,11 @@ void beep()
  // Another indication when an LED is used instead of a buzzer
   if (pulseBuzzer < 5)
   {
-    digitalWrite(pin_buzzer, HIGH);
+    digitalWrite(PIN_BUZZER, HIGH);
   }
   else
   {
-    digitalWrite(pin_buzzer, LOW);
+    digitalWrite(PIN_BUZZER, LOW);
   }
   
   if (pulseBuzzer > 100)

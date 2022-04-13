@@ -1,26 +1,34 @@
 
 //************************************************************************************************************************************************************************
-//pins for pots, joysticks ***********************************************************************************************************************************************
+// pins connecting *******************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-//joystick 1           A0
-//joystick 2           A1
-//potentiometer 3      A2
-//potentiometer 4      A3
 
-//************************************************************************************************************************************************************************
-//pin TX battery *********************************************************************************************************************************************************
-//************************************************************************************************************************************************************************
-//voltage divider pin  A7
+//joystick 1               A0
+//joystick 2               A1
+//potentiometer 3          A2
+//potentiometer 4          A3
 
-//************************************************************************************************************************************************************************
-// Config LCD display ****************************************************************************************************************************************************
-//************************************************************************************************************************************************************************
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C
-u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
+//pin TX battery           A7
 
-//pins hardware I2C
-//----- SDA      A4
-//----- SCL      A5
+//pins button
+#define PIN_BUTTON_UP      2 //for Up/Prev functions
+#define PIN_BUTTON_DOWN    3 //for Down/Next functions
+#define PIN_BUTTON_SELECT  4 //for Menu/Select functions
+#define PIN_BUTTON_EXIT    5 //for Exit
+
+//pin buzzer (buzzer with standalone sound generator)
+#define PIN_BUZZER         6
+
+//pins for nRF24L01
+#define PIN_CE             9
+#define PIN_CSN            10
+//          MOSI           11 hardware SPI
+//          MISO           12 hardware SPI
+//          SCK            13 hardware SPI
+
+//pins LCD display
+//          SDA            A4 hardware I2C
+//          SCL            A5 hardware I2C
 
 //************************************************************************************************************************************************************************
 // Config radio comunication *********************************************************************************************************************************************
@@ -29,48 +37,36 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 const byte address[] = "jirka";
 
 //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
-#define radio_channel 76
-
-//pins for nRF24L01
-#define pin_CE   9
-#define pin_CSN  10
-
-//hardware SPI
-//----- MOSI     11 
-//----- MISO     12 
-//----- SCK      13 
+#define RADIO_CHANNEL  76
 
 //************************************************************************************************************************************************************************
-// Config pin assignment *************************************************************************************************************************************************
+// Config LCD display ****************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-#define pin_buttonUp     2     // Button for Up/Prev functions
-#define pin_buttonDown   3     // Button for Down/Next functions
-#define pin_buttonSelect 4     // Button for Menu/Select functions
-#define pin_buttonExit   5     // Button for Exit
-#define pin_buzzer       6     // Buzzer pin (buzzer with standalone sound generator)
+U8G2_SSD1306_128X64_NONAME_1_HW_I2C
+u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
 
 //************************************************************************************************************************************************************************
 // Battery voltage settings TX/RX, minimum battery voltage for alarm *****************************************************************************************************
 //************************************************************************************************************************************************************************
-#define TX_battery_voltage   4.2  // Maximum battery voltage
-#define TX_monitored_voltage 3.12 // Minimum battery voltage for alarm
-#define RX_monitored_voltage 3.29 // Minimum battery voltage for alarm
+#define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
+#define TX_MONITORED_VOLTAGE  3.12 // Minimum battery voltage for alarm
+#define RX_MONITORED_VOLTAGE  3.29 // Minimum battery voltage for alarm
 
 //************************************************************************************************************************************************************************
 // setting the control range value ***************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-#define min_control_val 1000
-#define mid_control_val 1500
-#define max_control_val 2000
+#define MIN_CONTROL_VAL  1000
+#define MID_CONTROL_VAL  1500
+#define MAX_CONTROL_VAL  2000
 
 //************************************************************************************************************************************************************************
 // Config global TX param ************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-#define CHANNELS  4          // Number of channels 4
-#define MODELS    10         // Total memory models 30
-#define numBytesPerModel 25  // Maximum bytes for data storage per model 32/25
-#define potCenter        512 // Pot Center reference value
-#define epaMax           100 // Maximum EPA value
+#define CHANNELS             4   // Number of channels 4
+#define MODELS               10  // Total memory models 30
+#define NUM_BYTES_PER_MODEL  25  // Maximum bytes for data storage per model 32/25
+#define POT_CENTER           512 // Pot Center reference value
+#define EPA_MAX              100 // Maximum EPA value
 
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
@@ -103,25 +99,25 @@ unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selecti
 // Checking conditions control status for switch and calibration *********************************************************************************************************
 //************************************************************************************************************************************************************************
 boolean calibStatus = 1; // Checking status to enter in calibration procedure
-boolean battStatus = 1;
-boolean exitStatus = 1;
+boolean battStatus  = 1;
+boolean exitStatus  = 1;
 
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-#define actualModelEepromAddr 1023
+#define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //************************************************************************************************************************************************************************
 // Menu management variables *********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-#define MENU_COUNT 7             // Total Menu Count
-unsigned char menuActual = 0;
+#define MENU_COUNT  7 // Total Menu Count
+unsigned char menuActual    = 0;
 unsigned char menuSubActual = 1;
-unsigned char modelActual = 0;   // Added for Model Menu management
-unsigned char menuSubModel = 0;  // Added for Model Menu management
-unsigned char screen = 0;
-unsigned char menuPage = 0;      // for Menu Page
-unsigned char modelPage = 0;     // for Model Page
+unsigned char modelActual   = 0; // Added for Model Menu management
+unsigned char menuSubModel  = 0; // Added for Model Menu management
+unsigned char screen        = 0;
+unsigned char menuPage      = 0; // for Menu Page
+unsigned char modelPage     = 0; // for Model Page
 
 //************************************************************************************************************************************************************************
 // Version ***************************************************************************************************************************************************************

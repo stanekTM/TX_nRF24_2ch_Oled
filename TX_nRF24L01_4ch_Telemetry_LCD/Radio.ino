@@ -2,7 +2,7 @@
 //************************************************************************************************************************************************************************
 // Setup radio comunication **********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
-RF24 radio(pin_CE, pin_CSN); //setup CE and CSN pins
+RF24 radio(PIN_CE, PIN_CSN); //setup CE and CSN pins
 uint8_t invert_address = ~address[5]; //Invert bits for reading so that telemetry packets have a different address
 
 void radio_setup()
@@ -14,7 +14,7 @@ void radio_setup()
   
   radio.setRetries(5, 5);          //set the number and delay of retries on failed submit (max. 15 x 250us delay (blocking !), max. 15 retries)
   
-  radio.setChannel(radio_channel); //which RF channel to communicate on (0-125, 2.4Ghz + 76 = 2.476Ghz)
+  radio.setChannel(RADIO_CHANNEL); //which RF channel to communicate on (0-125, 2.4Ghz + 76 = 2.476Ghz)
   radio.setDataRate(RF24_250KBPS); //RF24_250KBPS (fails for units without +), RF24_1MBPS, RF24_2MBPS
   radio.setPALevel(RF24_PA_MIN);   //RF24_PA_MIN (-18dBm), RF24_PA_LOW (-12dBm), RF24_PA_HIGH (-6dbm), RF24_PA_MAX (0dBm) 
   
@@ -66,13 +66,13 @@ void receive_time()
 
 //************************************************************************************************************************************************************************
 // RX battery status check ***********************************************************************************************************************************************
-// If the battery voltage RX is < RX_monitored_voltage = the TX display reports "RXbatt LOW!" at 1s interval and the RX LED flashes at 0.5s interval *********************
+// If the battery voltage RX is < RX_MONITORED_VOLTAGE = the TX display reports "RXbatt LOW!" at 1s interval and the RX LED flashes at 0.5s interval *********************
 //************************************************************************************************************************************************************************
 unsigned long RXbattTime = 0;
 
 void RX_batt_check()
 {
-  if (telemetry_packet.RX_batt_A1 <= RX_monitored_voltage)
+  if (telemetry_packet.RX_batt_A1 <= RX_MONITORED_VOLTAGE)
   {
     if (millis() >= RXbattTime + 1000) //1s
     {
@@ -89,7 +89,7 @@ void RX_batt_check()
     }
   }
   
-  if (telemetry_packet.RX_batt_A1 >= RX_monitored_voltage)
+  if (telemetry_packet.RX_batt_A1 >= RX_MONITORED_VOLTAGE)
   {
     RXbattstate = 0;
   }
