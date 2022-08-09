@@ -3,7 +3,7 @@
 // Setup radio comunication **********************************************************************************************************************************************
 //************************************************************************************************************************************************************************
 RF24 radio(PIN_CE, PIN_CSN); //setup CE and CSN pins
-uint8_t invert_address = ~address[5]; //Invert bits for reading so that telemetry packets have a different address
+uint8_t invert_address = ~address[5]; //invert bits for reading so that telemetry packets have a different address
 
 void radio_setup()
 {
@@ -42,9 +42,9 @@ rc_packet_size rc_packet; //create a variable with the above structure
 //************************************************************************************************************************************************************************
 struct telemetry_packet_size
 {
-  uint8_t rssi;     // not used yet
+  uint8_t rssi;     //not used yet
   float RX_batt_A1;
-  float RX_batt_A2; // not used yet
+  float RX_batt_A2; //not used yet
 };
 telemetry_packet_size telemetry_packet;
 
@@ -93,6 +93,7 @@ void RX_batt_check()
   {
     RXbattstate = 0;
   }
+  
 //  Serial.println(telemetry_packet.RX_batt_A1); //print value ​​on a serial monitor
 }
 

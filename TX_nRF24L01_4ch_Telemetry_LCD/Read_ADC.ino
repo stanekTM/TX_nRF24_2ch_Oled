@@ -4,12 +4,12 @@
 //************************************************************************************************************************************************************************
 void read_adc_setup()
 {
-  ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0));   // Remove bit settings from Arduino library
+  ADCSRA &= ~((1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0)); // Remove bit settings from Arduino library
 
 #if F_CPU == 16000000L
   ADCSRA |= (1 << ADPS2);                                  // Set ADC prescaler to 16 (1000 KHz)
 #else
-  ADCSRA |= (1 << ADPS1) | (1 << ADPS0);                     // Set ADC prescaler to 8 (1000 KHz)
+  ADCSRA |= (1 << ADPS1) | (1 << ADPS0);                   // Set ADC prescaler to 8 (1000 KHz)
 #endif
 
 
@@ -30,10 +30,10 @@ void read_adc_setup()
 //************************************************************************************************************************************************************************
 unsigned short int read_adc(unsigned char channel)
 {
-  ADMUX &= 0xF0;                        //Clear the older channel that was read
-  ADMUX |= channel;                     //Defines the new ADC channel to be read
-  ADCSRA |= (1 << ADSC);                //Starts a new conversion
-  while (ADCSRA & (1 << ADSC));         //Wait until the conversion is done
-  return ADCW;                          //Returns the ADC value of the chosen channel
+  ADMUX &= 0xF0;                // Clear the older channel that was read
+  ADMUX |= channel;             // Defines the new ADC channel to be read
+  ADCSRA |= (1 << ADSC);        // Starts a new conversion
+  while (ADCSRA & (1 << ADSC)); // Wait until the conversion is done
+  return ADCW;                  // Returns the ADC value of the chosen channel
 }
  
