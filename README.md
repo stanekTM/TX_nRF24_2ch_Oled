@@ -44,5 +44,3 @@ D13 - SCK
 * <U8g2lib.h> https://github.com/olikraus/u8g2 v2.27.6
 * <EEPROM.h>  Arduino standard library
 * <SPI.h>     Arduino standard library
-#
-Jiri StanekTM
