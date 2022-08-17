@@ -11,7 +11,6 @@ void radio_setup()
   radio.setAutoAck(true);          //ensure autoACK is enabled (default true)
   radio.enableAckPayload();        //enable Ack dynamic payloads. This only works on pipes 0&1 by default
   radio.enableDynamicPayloads();   //enable dynamic payloads on all pipes
-  
   radio.setRetries(5, 5);          //set the number and delay of retries on failed submit (max. 15 x 250us delay (blocking !), max. 15 retries)
   
   radio.setChannel(RADIO_CHANNEL); //which RF channel to communicate on (0-125, 2.4Ghz + 76 = 2.476Ghz)
@@ -93,7 +92,6 @@ void RX_batt_check()
   {
     RXbattstate = 0;
   }
-  
 //  Serial.println(telemetry_packet.RX_batt_A1); //print value ​​on a serial monitor
 }
 
