@@ -7,7 +7,7 @@
 //************************************************************************************************************************************************************************
 
 
-#include <RF24.h>     // https://github.com/nRF24/RF24 v1.3.9
+#include <RF24.h>     // https://github.com/nRF24/RF24
 #include <SPI.h>      // Arduino standard library
 #include <EEPROM.h>   // Arduino standard library
 #include <U8g2lib.h>  // https://github.com/olikraus/u8g2 v2.27.6
