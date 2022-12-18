@@ -6,7 +6,7 @@ unsigned long buttonTime = 0;
 
 unsigned char read_button()
 {
-  if (millis() - buttonTime > 150) //1000 (1second)
+  if (millis() - buttonTime > 150) //150ms
   {
     // buttonSelect
     if ((PIND & (1 << PIN_BUTTON_SELECT)) == 0)
@@ -28,8 +28,8 @@ unsigned char read_button()
       buttonTime = millis();
       return 3;
     }
-    return 0;
   }
+  return 0;
 }
 
 //************************************************************************************************************************************************************************

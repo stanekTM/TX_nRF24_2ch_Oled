@@ -319,7 +319,7 @@ void menu_screen()
 {
 
   // Set memory buffer for text strings
-  char chName_buffer[22];
+  //char chName_buffer[22];
   char menu_buffer[8];
   char char_buffer[21];
 

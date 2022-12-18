@@ -92,7 +92,8 @@ void RX_batt_check()
   {
     RXbattstate = 0;
   }
-//  Serial.println(telemetry_packet.RX_batt_A1); //print value ​​on a serial monitor
+  
+  //Serial.println(telemetry_packet.RX_batt_A1); //print value on a serial monitor
 }
 
 //************************************************************************************************************************************************************************

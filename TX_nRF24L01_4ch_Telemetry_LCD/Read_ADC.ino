@@ -13,7 +13,7 @@ void read_adc_setup()
 #endif
 
 
-  ADMUX |= (1 << REFS0);
+  ADMUX |=  (1 << REFS0);
   ADMUX &= ~(1 << REFS1);                                  // Avcc(+5v) as voltage reference
 
   ADCSRB &= ~((1 << ADTS2) | (1 << ADTS1) | (1 << ADTS0)); // ADC in free-running mode

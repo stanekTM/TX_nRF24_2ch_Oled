@@ -93,6 +93,7 @@ int EEPROMReadInt(int p_address)
   byte Byte2 = EEPROM.read(p_address + 1);
 
   long firstTwoBytes = ((Byte1 << 0) & 0xFF) + ((Byte2 << 8) & 0xFF00);
+  
   return (firstTwoBytes);
 }
 
@@ -205,10 +206,7 @@ void resetEeprom()
 {
   // For write SERVO DIRECTION and EPA position
   unsigned int eepromPos;
-
-  // For read/write SUB TRIM values position
-  unsigned int posEeprom;
-
+  
   // Writing default model[0]
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
 

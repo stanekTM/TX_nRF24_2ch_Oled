@@ -18,7 +18,7 @@
 //************************************************************************************************************************************************************************
 void setup()
 {
-//  Serial.begin(9600); //print value on a serial monitor
+  //Serial.begin(9600); //print value on a serial monitor
   
   radio_setup();
   
@@ -26,10 +26,10 @@ void setup()
   //------------------------------------------------------------------
   // LCD config with U8G2 library display init (mandatory)
   //------------------------------------------------------------------
-//  u8g2.setBusClock(800000); //max 800000
+  //u8g2.setBusClock(800000); //max 800000
   u8g2.begin();
-//  u8g2.setFlipMode(1);   
-//  u8g2.setContrast(10);
+  //u8g2.setFlipMode(1);   
+  //u8g2.setContrast(10);
   u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
   
   
@@ -49,7 +49,7 @@ void setup()
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
   pinMode(PIN_BUZZER, OUTPUT);
 
-//  delay(100); // Delay before reading button (about charge capacitor pulse on pin)
+  //delay(100); // Delay before reading button (about charge capacitor pulse on pin)
 
 
   //-------------------------------------------------------------------------------------

@@ -9,11 +9,11 @@ void read_pots()
     int pots_control_val = MID_CONTROL_VAL;
 
     raw_pots[i] = read_adc(i);
-
-//    Serial.println(pots_value[1]); //print value ​​on a serial monitor
+    
+    //Serial.println(pots_value[1]); //print value on a serial monitor
 
     // only for throttle and steering ch
-    if ( i < 2)
+    if (i < 2)
     {
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
@@ -109,6 +109,7 @@ void read_pots()
         }
       }
     }
+    
     pots_value[i] = pots_control_val;
   }
 }
