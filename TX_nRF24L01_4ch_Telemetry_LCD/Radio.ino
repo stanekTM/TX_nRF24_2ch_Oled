@@ -56,7 +56,7 @@ int RXbattstate;
 
 void receive_time()
 {
-  if(millis() >= lastRxTime + 1000) //1s
+  if(millis() - lastRxTime > 1000) //1s
   {
     RFstate = 1;
     RXbattstate = 0;
@@ -73,7 +73,7 @@ void RX_batt_check()
 {
   if (telemetry_packet.RX_batt_A1 <= RX_MONITORED_VOLTAGE)
   {
-    if (millis() >= RXbattTime + 1000) //1s
+    if (millis() - RXbattTime > 1000) //1s
     {
       RXbattTime = millis();
       
