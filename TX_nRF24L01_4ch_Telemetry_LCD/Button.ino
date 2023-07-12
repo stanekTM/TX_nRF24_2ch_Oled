@@ -2,30 +2,30 @@
 //************************************************************************************************************************************************************************
 // Read input buttons status and send value to loop
 //************************************************************************************************************************************************************************
-unsigned long buttonTime = 0;
+unsigned long button_time = 0;
 
 unsigned char read_button()
 {
-  if (millis() - buttonTime > 150) //150ms
+  if (millis() - button_time > 150) //150ms
   {
     // buttonSelect
     if ((PIND & (1 << PIN_BUTTON_SELECT)) == 0)
     {
-      buttonTime = millis();
+      button_time = millis();
       return 2;
     }
     
     // buttonUp
     if ((PIND & (1 << PIN_BUTTON_UP)) == 0)
     {
-      buttonTime = millis();
+      button_time = millis();
       return 1;
     }
     
     // buttonDown
     if ((PIND & (1 << PIN_BUTTON_DOWN)) == 0)
     {
-      buttonTime = millis();
+      button_time = millis();
       return 3;
     }
   }
