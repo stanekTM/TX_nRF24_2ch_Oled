@@ -39,8 +39,8 @@ rc_packet_size rc_packet;
 struct telemetry_packet_size
 {
   uint8_t rssi;     //not used yet
-  float RX_batt_A1;
-  float RX_batt_A2; //not used yet
+  float batt_A1;
+  float batt_A2; //not used yet
 };
 telemetry_packet_size telemetry_packet;
 
@@ -68,7 +68,7 @@ unsigned long RXbattTime = 0;
 
 void RX_batt_check()
 {
-  if (telemetry_packet.RX_batt_A1 <= RX_MONITORED_VOLTAGE)
+  if (telemetry_packet.batt_A1 <= RX_MONITORED_VOLTAGE)
   {
     if (millis() - RXbattTime > 1000) //1s
     {
@@ -85,12 +85,12 @@ void RX_batt_check()
     }
   }
   
-  if (telemetry_packet.RX_batt_A1 >= RX_MONITORED_VOLTAGE)
+  if (telemetry_packet.batt_A1 >= RX_MONITORED_VOLTAGE)
   {
     RXbattstate = 0;
   }
   
-  //Serial.println(telemetry_packet.RX_batt_A1); //print value on a serial monitor
+  //Serial.println(telemetry_packet.batt_A1);
 }
 
 //************************************************************************************************************************************************************************

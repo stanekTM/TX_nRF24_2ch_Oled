@@ -44,10 +44,10 @@ void draw_main_screen()
 void main_screen()
 {
   // Set memory buffer for text strings
-  char chName_buffer[22];
-  char char_buffer[21];
+  char chName_buffer[14];
+  char char_buffer[10];
   char msg_buffer[9];
-  char menu_buffer[8];
+  char menu_buffer[7];
 
 //  u8g2.firstPage(); do {
 
@@ -57,7 +57,7 @@ void main_screen()
   u8g2.setFont(u8g2_font_6x10_tr);
   
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
+  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
   u8g2.print(chName_buffer);
 
@@ -67,7 +67,7 @@ void main_screen()
     
 
   // Print ">"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(43, 7);
   u8g2.print(char_buffer);
 
@@ -80,7 +80,7 @@ void main_screen()
   u8g2.print(val_TX_battery);
 
   // Print "V"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
   u8g2.setCursor(109, 7);
   u8g2.print(char_buffer);
 
@@ -100,7 +100,7 @@ void main_screen()
   else if (RXbattstate)
   {
     // Print "RXbatt"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
+    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
     u8g2.print(chName_buffer);
       
@@ -112,16 +112,16 @@ void main_screen()
   else
   {
     // Print "RXbatt"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
+    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
     u8g2.print(chName_buffer);
 
     // Print value RX battery
     u8g2.setCursor(38, 23);
-    u8g2.print(telemetry_packet.RX_batt_A1);
+    u8g2.print(telemetry_packet.batt_A1);
     
     // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[18])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
     u8g2.setCursor(56, 23);
     u8g2.print(char_buffer);
   }
@@ -202,7 +202,7 @@ void main_screen()
     if (subTrim[i] > 0)
     {
       // Print "TRIM"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[7])));
       u8g2.setCursor(44, 39 + i * 16);
       u8g2.print(chName_buffer);
           
@@ -213,7 +213,7 @@ void main_screen()
     else if (subTrim[i] < 0)
     {
       // Print "TRIM"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[7])));
       u8g2.setCursor(44, 39 + i * 16);
       u8g2.print(chName_buffer);
             
@@ -237,7 +237,7 @@ void main_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(23, 39 + i * 16);
       u8g2.print(chName_buffer);
     }
@@ -277,7 +277,7 @@ void main_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(114, 3 + i * 8);
       u8g2.print(chName_buffer);
     } 
@@ -319,9 +319,9 @@ void menu_screen()
 {
 
   // Set memory buffer for text strings
-  //char chName_buffer[22];
-  char menu_buffer[8];
-  char char_buffer[21];
+  //char chName_buffer[14];
+  char menu_buffer[7];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -329,7 +329,7 @@ void menu_screen()
 
 /*
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
+  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
   u8g2.print(chName_buffer);
 
@@ -342,7 +342,7 @@ void menu_screen()
 */
 
   // Print "/"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[16])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
   u8g2.setCursor(117, 7);
   u8g2.print(char_buffer);
 
@@ -366,7 +366,7 @@ void menu_screen()
     if (i + (5 * menuPage) == menuSubActual)
     {
       // Print "*"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[13])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(5, 9 + (i * 10));
       u8g2.print(char_buffer);
 
@@ -414,9 +414,9 @@ void draw_servo_dir_screen()
 void servo_dir_screen()
 {
   // Set memory buffer for text strings
-  char menu_buffer[8];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char menu_buffer[7];
+  char chName_buffer[14];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -438,17 +438,17 @@ void servo_dir_screen()
     if (i == menuSubActual - 1)
     {
       // Print "["
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(5, 20 + i * 13);
       u8g2.print(char_buffer);
 
       // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(31, 20 + i * 13);
       u8g2.print(char_buffer);
 
       // Print "]"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(57, 20 + i * 13);
       u8g2.print(char_buffer);
     }
@@ -457,14 +457,14 @@ void servo_dir_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[14])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(38, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
     else
     {
       // Print "NOR"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[13])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[8])));
       u8g2.setCursor(38, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
@@ -515,9 +515,9 @@ void draw_epa_screen()
 void epa_screen()
 {
   // Set memory buffer for text strings
-  char menu_buffer[8];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char menu_buffer[7];
+  char chName_buffer[14];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -555,7 +555,7 @@ void epa_screen()
     if (i == 1)
     {
       // Print "FWD"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[20])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[12])));
       u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
@@ -563,7 +563,7 @@ void epa_screen()
     if (i == 2)
     {
       // Print "BWD"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[21])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[13])));
       u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(chName_buffer);
     }
@@ -573,24 +573,24 @@ void epa_screen()
       if (epaSelection == counterTemp)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       
         // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(59, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(85, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
@@ -635,8 +635,8 @@ void draw_model_sel_screen()
 void model_sel_screen()
 {
   // Set memory buffer for text strings
-  char char_buffer[21];
-  char chName_buffer[22];
+  char char_buffer[10];
+  char chName_buffer[14];
 
   // For Eeprom position reference
   unsigned int eepromPos;
@@ -645,7 +645,7 @@ void model_sel_screen()
 //  u8g2.firstPage(); do {
 
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
+  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
   u8g2.print(chName_buffer);
 
@@ -654,7 +654,7 @@ void model_sel_screen()
   u8g2.print(modelActual + 1);
 
   // Print "/"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[16])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
   u8g2.setCursor(117, 7);
   u8g2.print(char_buffer);
 
@@ -695,12 +695,12 @@ void model_sel_screen()
     if (tempModelNoIdx == menuSubModel)
     {
       // Print "["
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(0, 19 + i * 10);
       u8g2.print(char_buffer);
         
       // Print "]"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(55, 19 + i * 10);
       u8g2.print(char_buffer);
     }
@@ -730,12 +730,12 @@ void model_sel_screen()
     if (tempModelNoIdx == menuSubModel)
     {
       // Print "["
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(67, 19 + i * 10);
       u8g2.print(char_buffer);
 
       // Print "]"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(122, 19 + i * 10);
       u8g2.print(char_buffer);
     }
@@ -801,7 +801,7 @@ void save_model_screen()
   
     // Set memory buffer for text strings
     char msg_buffer[9];
-    char chName_buffer[22];
+    char chName_buffer[14];
 
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
@@ -809,7 +809,7 @@ void save_model_screen()
     u8g2.print(msg_buffer);
 
     // Print "MODEL"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
+    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
     u8g2.setCursor(43, 35);
     u8g2.print(chName_buffer);
 
@@ -861,9 +861,9 @@ void draw_sub_trim_screen()
 void sub_trim_screen()
 {
   // Set memory buffer for text strings
-  char menu_buffer[8];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char menu_buffer[7];
+  char chName_buffer[14];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -894,24 +894,24 @@ void sub_trim_screen()
       if (subTrimSelection == temp_Counter)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(50, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(85, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
@@ -923,7 +923,7 @@ void sub_trim_screen()
 
 
     // Print "PPM"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[17])));
+    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
     u8g2.setCursor(98, 20 + i * 13);
     u8g2.print(chName_buffer);
 
@@ -962,9 +962,9 @@ void draw_model_name_screen()
 void model_name_screen()
 {
   // Set memory buffer for text strings
-  char menu_buffer[8];
-  char chName_buffer[6];
-  char char_buffer[2];
+  char menu_buffer[7];
+  char chName_buffer[14];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -974,7 +974,7 @@ void model_name_screen()
   u8g2.print(menu_buffer);
   
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[18])));
+  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(85, 7);
   u8g2.print(chName_buffer);
 
@@ -999,19 +999,19 @@ void model_name_screen()
       if (modelNameSelection == i)
       {
         // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(1 + (i * 23), 45);
         u8g2.print(char_buffer);
 
         // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(25 + (i * 23), 45);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(1 + (i * 23), 45);
         u8g2.print(char_buffer);
       }
@@ -1052,9 +1052,9 @@ void draw_expo_screen()
 void expo_screen()
 {
   // Set memory buffer for text strings
-  char menu_buffer[8];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char menu_buffer[7];
+  char chName_buffer[14];
+  char char_buffer[10];
 
 //  u8g2.firstPage(); do {
 
@@ -1087,24 +1087,24 @@ void expo_screen()
       if (expoSelection == i)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(30, 20 + i * 13);
         u8g2.print(char_buffer);
 
         // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(44, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[14])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }

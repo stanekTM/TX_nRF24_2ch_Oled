@@ -120,9 +120,9 @@ void resetEeprom_screen()
     bool isWait = true;
 
     // Set memory buffer for text strings
-    char chName_buffer[22];
+    char chName_buffer[14];
     char msg_buffer[9];
-    char char_buffer[21];
+    char char_buffer[10];
     
     u8g2.firstPage(); do {
       
@@ -132,32 +132,32 @@ void resetEeprom_screen()
       u8g2.print(msg_buffer);
 
       // Print "?"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[15])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
       u8g2.setCursor(92, 20);
       u8g2.print(char_buffer);
 
       // Print "Y"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[0])));
       u8g2.setCursor(25, 40);
       u8g2.print(char_buffer);
 
       // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(32, 40);
       u8g2.print(char_buffer);
 
       // Print "SEL"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[5])));
       u8g2.setCursor(39, 40);
       u8g2.print(chName_buffer);
 
       // Print "N"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
       u8g2.setCursor(75, 40);
       u8g2.print(char_buffer);
 
       // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(82, 40);
       u8g2.print(char_buffer);
 

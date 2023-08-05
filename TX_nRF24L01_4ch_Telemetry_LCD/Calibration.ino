@@ -112,8 +112,8 @@ void calib_MinMax_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[9];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char chName_buffer[14];
+  char char_buffer[10];
 
   u8g2.firstPage(); do {
     
@@ -170,7 +170,7 @@ void calib_MinMax_screen()
     u8g2.print(msg_buffer);
 
     // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
     u8g2.setCursor(60, 64);
     u8g2.print(char_buffer);
 
@@ -189,8 +189,8 @@ void calib_center_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[9];
-  char chName_buffer[22];
-  char char_buffer[21];
+  char chName_buffer[14];
+  char char_buffer[10];
   
   u8g2.firstPage(); do {
     
@@ -238,7 +238,7 @@ void calib_center_screen()
     u8g2.print(msg_buffer);
 
     // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
     u8g2.setCursor(60, 64);
     u8g2.print(char_buffer);
 

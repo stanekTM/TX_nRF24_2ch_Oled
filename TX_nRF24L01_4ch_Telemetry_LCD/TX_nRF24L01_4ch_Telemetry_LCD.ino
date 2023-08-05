@@ -20,24 +20,6 @@ void setup()
 {
   //Serial.begin(9600); //print value on a serial monitor
   
-  radio_setup();
-  
-  
-  //------------------------------------------------------------------
-  // LCD config with U8G2 library display init (mandatory)
-  //------------------------------------------------------------------
-  //u8g2.setBusClock(800000); //max 800000
-  u8g2.begin();
-  //u8g2.setFlipMode(1);   
-  //u8g2.setContrast(10);
-  u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
-  
-  
-  boot_screen(); // print boot screen
-
-  read_adc_setup();
-
-
   //-----------------------------------------------------------------
   // Debouncing mechanical buttons
   // NOTE: For input pin buttons is necessary to mount on every pin
@@ -48,17 +30,27 @@ void setup()
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
   pinMode(PIN_BUZZER, OUTPUT);
-
   //delay(100); // Delay before reading button (about charge capacitor pulse on pin)
-
-
+  
+  //------------------------------------------------------------------
+  // LCD config with U8G2 library display init (mandatory)
+  //------------------------------------------------------------------
+  //u8g2.setBusClock(800000); //max 800000
+  u8g2.begin();
+  //u8g2.setFlipMode(1);   
+  //u8g2.setContrast(10);
+  u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
+  
+  boot_screen(); // print boot screen
+  read_adc_setup();
+  radio_setup();
+  
   //-------------------------------------------------------------------------------------
   // Default state config parameters
   //-------------------------------------------------------------------------------------
   // SERVO DIRECTION bit mask: 0 Normal, 1 Reverse
   servoReverse = 0b00000000;
   
-
   // EPA and SUB TRIM default values (only for first two channels)
   for (int i = 0; i < CHANNELS - 2; i++)
   {
@@ -71,12 +63,10 @@ void setup()
   {
     modelName[i] = 0x5f;
   }
-
-
+  
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
   resetEeprom_screen(); // print "ERASE DATA" screen
-
-
+  
   // Load data from Eeprom
   modelActual = storedDataEeprom(255);
 }
@@ -99,7 +89,6 @@ void loop()
   {
     calibStatus = 0;
   }
-  
   
   receive_time();
   send_and_receive_data();

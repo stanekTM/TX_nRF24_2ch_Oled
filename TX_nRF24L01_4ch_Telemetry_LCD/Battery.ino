@@ -19,13 +19,13 @@ void TX_batt_check()
   calc_max_batt = TX_BATTERY_VOLTAGE * 10;
   calc_min_batt = TX_MONITORED_VOLTAGE * 10;
   
-  //Serial.println(calc_min_batt); // print value on a serial monitor
+  //Serial.println(calc_min_batt);
 
   // Mapping voltage for drawing battery bar
   perc_batt = map(calc_bar_batt, calc_min_batt, calc_max_batt, 1, 10);
   perc_batt = constrain(perc_batt, 1, 10);
   
-  //Serial.println(perc_batt); // print value on a serial monitor
+  //Serial.println(perc_batt);
 
 
   // Low battery beep alarm

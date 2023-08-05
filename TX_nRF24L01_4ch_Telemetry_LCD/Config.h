@@ -8,7 +8,7 @@
 //potentiometer 3          A2
 //potentiometer 4          A3
 
-//pin TX battery           A7
+//pin battery              A7
 
 //pins button
 #define PIN_BUTTON_UP      2 //for Up/Prev functions
@@ -126,7 +126,7 @@ const char ver_str[] = "version 0.1 nRF24L01";
 
 //************************************************************************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory
-// Array text strings for drawing menu
+// Array text strings for drawing menu "menu_buffer[7]"
 //************************************************************************************************************************************************************************
 const char menu_0[] PROGMEM = "SERVO DIRECTION";
 const char menu_1[] PROGMEM = "EPA";
@@ -135,7 +135,6 @@ const char menu_3[] PROGMEM = "SAVE MODEL DATA";
 const char menu_4[] PROGMEM = "SUB TRIM";
 const char menu_5[] PROGMEM = "MODEL NAME";
 const char menu_6[] PROGMEM = "EXPO";
-const char menu_7[] PROGMEM = "free text";
 
 const char* const menu_name[] PROGMEM = {
   menu_0,
@@ -144,35 +143,26 @@ const char* const menu_name[] PROGMEM = {
   menu_3,
   menu_4,
   menu_5,
-  menu_6,
-  menu_7
+  menu_6
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings (short) for Channel/Pots names, status, model for all screens **************************************************************************************
+// Array text strings (short) for Channel/Pots names, status, model for all screens "chName_buffer[14]" ******************************************************************
 //************************************************************************************************************************************************************************
 const char chName_0[] PROGMEM = "STR";
 const char chName_1[] PROGMEM = "THR";
 const char chName_2[] PROGMEM = "CH3";
 const char chName_3[] PROGMEM = "CH4";
 const char chName_4[] PROGMEM = "UP";
-const char chName_5[] PROGMEM = "free text";
-const char chName_6[] PROGMEM = "free text";
-const char chName_7[] PROGMEM = "free text";
-const char chName_8[] PROGMEM = "free text";
-const char chName_9[] PROGMEM = "SEL";
-const char chName_10[] PROGMEM = "RXbatt";
-const char chName_11[] PROGMEM = "TRIM";
-const char chName_12[] PROGMEM = "free text";
-const char chName_13[] PROGMEM = "NOR";
-const char chName_14[] PROGMEM = "REV";
-const char chName_15[] PROGMEM = "free text";
-const char chName_16[] PROGMEM = "free text";
-const char chName_17[] PROGMEM = "PPM";
-const char chName_18[] PROGMEM = "MODEL";
-const char chName_19[] PROGMEM = "free text";
-const char chName_20[] PROGMEM = "FWD";
-const char chName_21[] PROGMEM = "BWD";
+const char chName_5[] PROGMEM = "SEL";
+const char chName_6[] PROGMEM = "RXbatt";
+const char chName_7[] PROGMEM = "TRIM";
+const char chName_8[] PROGMEM = "NOR";
+const char chName_9[] PROGMEM = "REV";
+const char chName_10[] PROGMEM = "PPM";
+const char chName_11[] PROGMEM = "MODEL";
+const char chName_12[] PROGMEM = "FWD";
+const char chName_13[] PROGMEM = "BWD";
 
 const char* const channel_name[] PROGMEM = {
   chName_0,
@@ -188,41 +178,22 @@ const char* const channel_name[] PROGMEM = {
   chName_10,
   chName_11,
   chName_12,
-  chName_13,
-  chName_14,
-  chName_15,
-  chName_16,
-  chName_17,
-  chName_18,
-  chName_19,
-  chName_20,
-  chName_21
+  chName_13
 };
 
 //************************************************************************************************************************************************************************
-// Array for single characters *******************************************************************************************************************************************
+// Array for single characters "char_buffer[10]" *************************************************************************************************************************
 //************************************************************************************************************************************************************************
-const char character_0[] PROGMEM = "free text";
-const char character_1[] PROGMEM = "free text";
-const char character_2[] PROGMEM = "Y";
-const char character_3[] PROGMEM = "free text";
-const char character_4[] PROGMEM = "N";
-const char character_5[] PROGMEM = "free text";
-const char character_6[] PROGMEM = "free text";
-const char character_7[] PROGMEM = "free text";
-const char character_8[] PROGMEM = "[";
-const char character_9[] PROGMEM = "]";
-const char character_10[] PROGMEM = "=";
-const char character_11[] PROGMEM = "free text";
-const char character_12[] PROGMEM = "free text";
-const char character_13[] PROGMEM = "*";
-const char character_14[] PROGMEM = ">";
-const char character_15[] PROGMEM = "?";
-const char character_16[] PROGMEM = "/";
-const char character_17[] PROGMEM = "free text";
-const char character_18[] PROGMEM = "V";
-const char character_19[] PROGMEM = "free text";
-const char character_20[] PROGMEM = "free text";
+const char character_0[] PROGMEM = "Y";
+const char character_1[] PROGMEM = "N";
+const char character_2[] PROGMEM = "[";
+const char character_3[] PROGMEM = "]";
+const char character_4[] PROGMEM = "=";
+const char character_5[] PROGMEM = "*";
+const char character_6[] PROGMEM = ">";
+const char character_7[] PROGMEM = "?";
+const char character_8[] PROGMEM = "/";
+const char character_9[] PROGMEM = "V";
 
 const char* const one_char[] PROGMEM = {
   character_0,
@@ -234,22 +205,11 @@ const char* const one_char[] PROGMEM = {
   character_6,
   character_7,
   character_8,
-  character_9,
-  character_10,
-  character_11,
-  character_12,
-  character_13,
-  character_14,
-  character_15,
-  character_16,
-  character_17,
-  character_18,
-  character_19,
-  character_20
+  character_9
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings for screen messages ********************************************************************************************************************************
+// Array text strings for screen messages "msg_buffer[9]" ****************************************************************************************************************
 //************************************************************************************************************************************************************************
 const char Message_0[] PROGMEM = "SAVE DATA";
 const char Message_1[] PROGMEM = "RX-RF OFF!";
