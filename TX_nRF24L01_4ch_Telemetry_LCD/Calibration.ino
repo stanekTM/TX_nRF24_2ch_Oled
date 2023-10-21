@@ -22,10 +22,16 @@ void Calibration()
       raw_pots = read_adc(i);
       
       // Get MIN values
-      if (raw_pots < calibration[i][0]) calibration[i][0] = raw_pots; //<=
+      if (raw_pots <= calibration[i][0])
+      {
+        calibration[i][0] = raw_pots;
+      }
 
       // Get MAX values
-      if (raw_pots > calibration[i][1]) calibration[i][1] = raw_pots; //>= 
+      if (raw_pots >= calibration[i][1])
+      {
+        calibration[i][1] = raw_pots;
+      }
     }
     
     // Print calibration "MIN-MAX" real time channels
@@ -116,6 +122,8 @@ void calib_MinMax_screen()
   char char_buffer[10];
 
   u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
     
     // Print "MIN-MAX"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[7])));
@@ -193,6 +201,8 @@ void calib_center_screen()
   char char_buffer[10];
   
   u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
     
     // Print "CENTER"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[8])));

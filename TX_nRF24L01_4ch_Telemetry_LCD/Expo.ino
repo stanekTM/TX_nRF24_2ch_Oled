@@ -6,8 +6,15 @@
 //************************************************************************************************************************************************************************
 int calc_expo(unsigned short trimServoMid, unsigned short value, unsigned short inMax, unsigned short dV)
 {
-  if (value == trimServoMid) return value;
-  if (dV <= 0) return value;
+  if (value == trimServoMid)
+  {
+    return value;
+  }
+  
+  if (dV <= 0)
+  {
+    return value;
+  }
   
   dV = 9 - dV; //1 ~ 9 -> 9 ~ 1 conversion
 

@@ -22,7 +22,10 @@ void read_pots()
       int gapTemp = centerPos[i] - calibration[i][0];
 
       // Select longer side
-      if (gap < gapTemp) gap = gapTemp;
+      if (gap < gapTemp)
+      {
+        gap = gapTemp;
+      }
 
       // Calculate Center offset
       int centerOffset = POT_CENTER - centerPos[i];
@@ -31,9 +34,15 @@ void read_pots()
       pots[i] = raw_pots[i] + centerOffset;
 
       // range out correction
-      if (pots[i] < calibration[i][0] + centerOffset) pots[i] = calibration[i][0] + centerOffset;
-      if (pots[i] > calibration[i][1] + centerOffset) pots[i] = calibration[i][1] + centerOffset;
+      if (pots[i] < calibration[i][0] + centerOffset)
+      {
+        pots[i] = calibration[i][0] + centerOffset;
+      }
       
+      if (pots[i] > calibration[i][1] + centerOffset)
+      {
+        pots[i] = calibration[i][1] + centerOffset;
+      }
       
       // EPA
       int epaVal = 0;
@@ -41,21 +50,30 @@ void read_pots()
       
       epaVal = 500 - (500 * epa[i] / 100);
       
-      if (i == 1) epaVal_bwd = 500 - (500 * epa[2] / 100);
+      if (i == 1)
+      {
+        epaVal_bwd = 500 - (500 * epa[2] / 100);
+      }
       
       unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[i]; 
       unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[i];
       unsigned short trimServoMax = MAX_CONTROL_VAL - epaVal + subTrim[i];
 
       // Convert Analog Value to pots value
-      if (pots[i]  < (POT_CENTER - deadBand))
+      if (pots[i] < (POT_CENTER - deadBand))
       {
-        if (i == 1) trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[i];
+        if (i == 1)
+        {
+          trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[i];
+        }
         
         pots_control_val = map(pots[i], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
         
         // EXPO
-        if (expo[i] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[i]);
+        if (expo[i] > 0)
+        {
+          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[i]);
+        }
       }
       else if (pots[i]  > (POT_CENTER + deadBand))
       {
@@ -69,17 +87,22 @@ void read_pots()
         pots_control_val = trimServoMid;
       }
       
-      
       // Check Servo Reversing and applying Reverse value if necessary
       if (bitRead(servoReverse, i) == 1)
       {
         pots_control_val = MAX_CONTROL_VAL - pots_control_val + MIN_CONTROL_VAL;
       }
       
-      
       //Min Max Validation
-      if (pots_control_val < MIN_CONTROL_VAL) pots_control_val = MIN_CONTROL_VAL;
-      if (pots_control_val > MAX_CONTROL_VAL) pots_control_val = MAX_CONTROL_VAL;
+      if (pots_control_val < MIN_CONTROL_VAL)
+      {
+        pots_control_val = MIN_CONTROL_VAL;
+      }
+      
+      if (pots_control_val > MAX_CONTROL_VAL)
+      {
+        pots_control_val = MAX_CONTROL_VAL;
+      }
     }
     else
     {

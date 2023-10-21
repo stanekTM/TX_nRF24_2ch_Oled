@@ -48,42 +48,40 @@ void main_screen()
   char char_buffer[10];
   char msg_buffer[9];
   char menu_buffer[7];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
-
-
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
+  
   u8g2.setFont(u8g2_font_6x10_tr);
   
+
   // Print "MODEL"
   strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
   u8g2.print(chName_buffer);
-
+  
   // Print number of which model in use
   u8g2.setCursor(32, 7);
   u8g2.print(modelActual + 1);
-    
-
+  
   // Print ">"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(43, 7);
   u8g2.print(char_buffer);
-
+  
   // Print MODEL NAME
   u8g2.drawStr(50, 7, modelName);
-
-    
+  
   // Print value TX battery
   u8g2.setCursor(91, 7);
   u8g2.print(val_TX_battery);
-
+  
   // Print "V"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
   u8g2.setCursor(109, 7);
   u8g2.print(char_buffer);
-
+  
   // Battery symbol contruction
   u8g2.drawFrame(116, 0, 11, 7);      // Battery box
   u8g2.drawBox(116, 1, perc_batt, 5); // level bar
@@ -103,7 +101,7 @@ void main_screen()
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
     u8g2.print(chName_buffer);
-      
+    
     // Print "LOW!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[6])));
     u8g2.setCursor(38, 23);
@@ -115,7 +113,7 @@ void main_screen()
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
     u8g2.print(chName_buffer);
-
+    
     // Print value RX battery
     u8g2.setCursor(38, 23);
     u8g2.print(telemetry_packet.batt_A1);
@@ -126,21 +124,21 @@ void main_screen()
     u8g2.print(char_buffer);
   }
   
+
   // Drawing only first 2 channels
-    
   u8g2.setFont(u8g2_font_5x7_tr);
   
   for (int i = 0; i < 2; i++)
   {
     //Drawing vertical middle/center separation line
     u8g2.drawVLine(64, 38 + (i * 16), 9);
-
+    
     // Define value bar reference
     unsigned int valBar;
-
+    
     // Value bars subdivision (pots value / 50)
     valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
-
+    
     // Draw boxes/frames for every channel
     u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
     
@@ -158,13 +156,13 @@ void main_screen()
     unsigned short subTrimVal;
     
     subTrimVal = map(subTrim[i], 0, 500, 0, 50);
-
+    
     // Check Servo Reversing and applying Reverse value if necessary
     if (bitRead(servoReverse, i) == 1)
     {
       subTrimVal = -subTrimVal;
     }
-     
+    
     // EPA
     unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
@@ -181,16 +179,34 @@ void main_screen()
         epa_1 = epa[2];
       }
     }
-                                                        //  64 - 1 = 63
+    
+    //64 - 1 = 63
     minMaxValid = 63 - (50 * epa_1 / 100) + subTrimVal; //113 - 63 = 50
-    if (minMaxValid < 13) minMaxValid = 13;             // 63 - 50 = 13
-    if (minMaxValid > 113) minMaxValid = 113;           //100 + 13 = 113
-    u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
+    
+    if (minMaxValid < 13)
+    {
+      minMaxValid = 13; //63 - 50 = 13
+    }
+
+    if (minMaxValid > 113)
+    {
+      minMaxValid = 113; //100 + 13 = 113
+      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
+    }
+    
 
     minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal; //114 - 64 = 50
-    if (minMaxValid < 14) minMaxValid = 14;             // 64 - 50 = 14
-    if (minMaxValid > 114) minMaxValid = 114;           //100 + 14 = 114
-    u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
+    
+    if (minMaxValid < 14)
+    {
+      minMaxValid = 14; //64 - 50 = 14
+    }
+    
+    if (minMaxValid > 114)
+    {
+      minMaxValid = 114; //100 + 14 = 114
+      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
+    }
     
     
     // Print channel items name "STR and THR"
@@ -283,8 +299,8 @@ void main_screen()
     } 
   }
   // End drawing CH3 and CH4
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
   
   u8g2.setFont(u8g2_font_6x10_tr); // set font menu, submenu
 }
@@ -322,10 +338,10 @@ void menu_screen()
   //char chName_buffer[14];
   char menu_buffer[7];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
 
 /*
   // Print "MODEL"
@@ -358,8 +374,10 @@ void menu_screen()
   for (int i = 1; i < 6; i++)
   {
     if (i + (5 * menuPage) > MENU_COUNT)
-    break;
-    
+    {
+      break;
+    }
+
     // Print main menu items "SERVO DIRECTION, EPA, MODEL SELECTION, SAVE MODEL DATA, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
     
@@ -382,7 +400,7 @@ void menu_screen()
     }
   }
   
-//  } while (u8g2.nextPage());
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -417,21 +435,19 @@ void servo_dir_screen()
   char menu_buffer[7];
   char chName_buffer[14];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
-
-
+  
+  //u8g2.firstPage(); do {
+    
+  read_pots(); // Macro again for stable pots value
+  
   // Print "SERVO DIRECTION"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
-
+  
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
-
-
+  
   // Drawing only first 4 channels
   for (int i = 0; i < CHANNELS; i++)
   {
@@ -482,8 +498,8 @@ void servo_dir_screen()
     u8g2.drawBox(map(pots_value[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);   
   }
   // End drawing only first 4 channels
-    
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -518,23 +534,21 @@ void epa_screen()
   char menu_buffer[7];
   char chName_buffer[14];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
-
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
   
   // Print "EPA"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[1])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
-
+  
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
-
-    
+  
   unsigned char counterTemp = 0;
-
+  
   // Print EPA channels list
   for (int i = 0; i < 3; i++)
   {
@@ -602,8 +616,8 @@ void epa_screen()
     
     counterTemp++;
   }
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -641,9 +655,9 @@ void model_sel_screen()
   // For Eeprom position reference
   unsigned int eepromPos;
   int tempModelNoIdx;
-
-//  u8g2.firstPage(); do {
-
+  
+  //u8g2.firstPage(); do {
+  
   // Print "MODEL"
   strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
@@ -741,8 +755,8 @@ void model_sel_screen()
     }
     // Right Section End
   }
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -798,7 +812,7 @@ void save_model_screen()
 
   // Start of Save Data message screen -------------------------------------
   u8g2.firstPage(); do {
-  
+
     // Set memory buffer for text strings
     char msg_buffer[9];
     char chName_buffer[14];
@@ -864,12 +878,11 @@ void sub_trim_screen()
   char menu_buffer[7];
   char chName_buffer[14];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
-
-
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
+  
   // Print "SUB TRIM"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
   u8g2.setCursor(0, 7);
@@ -929,8 +942,8 @@ void sub_trim_screen()
 
     temp_Counter++;
   }
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -965,9 +978,9 @@ void model_name_screen()
   char menu_buffer[7];
   char chName_buffer[14];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
+  
+  //u8g2.firstPage(); do {
+  
   // Print "MODEL NAME"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[5])));
   u8g2.setCursor(0, 7);
@@ -1019,8 +1032,8 @@ void model_name_screen()
   }
   
   u8g2.setFont(u8g2_font_6x10_tr);
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
 
 //************************************************************************************************************************************************************************
@@ -1055,12 +1068,11 @@ void expo_screen()
   char menu_buffer[7];
   char chName_buffer[14];
   char char_buffer[10];
-
-//  u8g2.firstPage(); do {
-
-//  read_pots(); // Macro again for stable pots value
-
-
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
+  
   // Print "EXPO"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
   u8g2.setCursor(0, 7);
@@ -1131,7 +1143,7 @@ void expo_screen()
       }
     }
   }
-
-//  } while (u8g2.nextPage());
+  
+  //} while (u8g2.nextPage());
 }
  

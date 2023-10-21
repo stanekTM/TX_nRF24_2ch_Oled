@@ -30,7 +30,7 @@ void TX_batt_check()
 
   // Low battery beep alarm
   //if (perc_batt <= 1 || battStatus == 0) {
-  if (perc_batt <= 1 )
+  if (perc_batt <= 1)
   {
     // Set byte 0 to mantain battery alarm even voltage floating +/- on minBat value
     battStatus = 0;
