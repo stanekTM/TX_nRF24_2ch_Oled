@@ -39,7 +39,7 @@ void Calibration()
     
     delay(10);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
+    // Set calibStatus = 0 to exit calibration procedure by pressing button UP
     if (read_button() == 1)
     {
       calibStatus = 0;
@@ -48,14 +48,14 @@ void Calibration()
   
   calibStatus = 1;
   
-  // buttonUp not pressed check
+  // button UP not pressed check
   while (read_button() != 0)
   {
     delay(10);
   }
   
   // Setting default mid value reference for CENTER calibration
-  // only for Throttle and Steering
+  // only for throttle and steering
   for (int i = 0; i < 2; i++)
   {
     centerPos[i] = 512;
@@ -74,7 +74,7 @@ void Calibration()
     
     delay(10);
     
-    // Set calibStatus = 0 to exit calibration procedure by pressing buttonUp
+    // Set calibStatus = 0 to exit calibration procedure by pressing button UP
     if (read_button() == 1)
     {
       calibStatus = 0;

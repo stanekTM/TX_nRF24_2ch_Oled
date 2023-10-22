@@ -76,7 +76,7 @@ void setup()
 void loop()
 {
   //----------------------------------------------------------------------------
-  // Start Calibration screen if buttonSelect is pressed on power on
+  // Start Calibration screen if button SELECT is pressed on power on
   //----------------------------------------------------------------------------
   if (calibStatus == 1 && read_button() == 2)
   {

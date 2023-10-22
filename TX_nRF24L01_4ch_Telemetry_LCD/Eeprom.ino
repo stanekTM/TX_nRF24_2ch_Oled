@@ -109,13 +109,13 @@ void EEPROMUpdateInt(int p_address, int p_value)
 }
 
 //************************************************************************************************************************************************************************
-// Hold buttonDown on power ON to initialize default memory data
+// Hold button DOWN on power ON to initialize default memory data
 // Will only write data settings to default (not erase calibration data)
 // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
 //************************************************************************************************************************************************************************
 void resetEeprom_screen()
 {
-  if ((PIND & (1 << 3)) == 0)
+  if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
     bool isWait = true;
 
@@ -146,7 +146,7 @@ void resetEeprom_screen()
       u8g2.setCursor(32, 40);
       u8g2.print(char_buffer);
 
-      // Print "SEL"
+      // Print "DOWN"
       strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[5])));
       u8g2.setCursor(39, 40);
       u8g2.print(chName_buffer);
@@ -172,13 +172,13 @@ void resetEeprom_screen()
     {
       switch (read_button())
       {
-        // buttonUp
+        // button UP
         case 1:
         isWait = false;
         break;
 
-        // buttonSelect
-        case 2:
+        // button DOWN
+        case 3:
         isWait = false;
         
         // Recall "Reset to default" macro
