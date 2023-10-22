@@ -7,8 +7,8 @@ void Calibration()
   // Setting default mid value reference for Min and Max calibration
   for (int ch = 0; ch < CHANNELS; ch++)
   {
-    calibration[ch][0] = 512;
-    calibration[ch][1] = 512;
+    calibration[ch][0] = POT_CENTER;
+    calibration[ch][1] = POT_CENTER;
   }
   
   while (calibStatus == 1)
@@ -22,13 +22,13 @@ void Calibration()
       raw_pots = analogRead(ch);
       
       // Get MIN values
-      if (raw_pots <= calibration[ch][0])
+      if (raw_pots < calibration[ch][0])
       {
         calibration[ch][0] = raw_pots;
       }
 
       // Get MAX values
-      if (raw_pots >= calibration[ch][1])
+      if (raw_pots > calibration[ch][1])
       {
         calibration[ch][1] = raw_pots;
       }
@@ -58,7 +58,7 @@ void Calibration()
   // only for throttle and steering
   for (int ch = 0; ch < 2; ch++)
   {
-    centerPos[ch] = 512;
+    centerPos[ch] = POT_CENTER;
   }
   
   while (calibStatus == 1)

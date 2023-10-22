@@ -90,7 +90,7 @@ void main_screen()
   
   if (RFstate)
   {
-    // Print "RX-RF OFF!"
+    // Print "RX off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[1])));
     u8g2.setCursor(0, 23);
     u8g2.print(msg_buffer);
@@ -495,7 +495,7 @@ void servo_dir_screen()
     // Drawing dynamic graphics items
     u8g2.drawHLine(72, 20 + i * 13, 45);
     u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
-    u8g2.drawBox(map(pots_value[i], 1000 , 2000, 74, 114) - 1, 18 + (i * 13), 3, 2);   
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 74, 114) - 1, 18 + (i * 13), 3, 2);   
   }
   // End drawing only first 4 channels
   
