@@ -30,11 +30,9 @@ void setup()
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
   pinMode(PIN_BUZZER, OUTPUT);
-  //delay(100); // Delay before reading button (about charge capacitor pulse on pin)
+  delay(100); // Delay before reading button (about charge capacitor pulse on pin)
   
-  //------------------------------------------------------------------
   // LCD config with U8G2 library display init (mandatory)
-  //------------------------------------------------------------------
   //u8g2.setBusClock(800000); //max 800000
   u8g2.begin();
   //u8g2.setFlipMode(1);   
@@ -44,14 +42,12 @@ void setup()
   boot_screen(); // print boot screen
   radio_setup();
   
-  //-------------------------------------------------------------------------------------
   // Default state config parameters
-  //-------------------------------------------------------------------------------------
   // SERVO DIRECTION bit mask: 0 Normal, 1 Reverse
   servoReverse = 0b00000000;
   
   // EPA and SUB TRIM default values (only for first two channels)
-  for (int i = 0; i < CHANNELS - 2; i++)
+  for (int i = 0; i < 2; i++)
   {
     epa[i] = 100;
     subTrim[i] = 0;
@@ -75,9 +71,7 @@ void setup()
 //************************************************************************************************************************************************************************
 void loop()
 {
-  //----------------------------------------------------------------------------
   // Start Calibration screen if button SELECT is pressed on power on
-  //----------------------------------------------------------------------------
   if (calibStatus == 1 && read_button() == 2)
   {
     // Recall calibration procedure
