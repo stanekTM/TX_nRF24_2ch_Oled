@@ -2,22 +2,23 @@
 //************************************************************************************************************************************************************************
 // Macro for read pots, joysticks, values, applying calibration and rules
 //************************************************************************************************************************************************************************
+int ch;
 void read_pots()
 {
-  for (int i = 0; i < CHANNELS; i++)
+  for (ch = 0; ch < CHANNELS; ch++)
   {
     int pots_control_val = MID_CONTROL_VAL;
     
-    raw_pots[i] = analogRead(i);
+    raw_pots[ch] = analogRead(ch);
     
     // only for throttle and steering ch
-    if (i < 2)
+    if (ch < 2)
     {
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
       // So, Longer side length is used for both side
-      int gap = calibration[i][1] - centerPos[i];
-      int gapTemp = centerPos[i] - calibration[i][0];
+      int gap = calibration[ch][1] - centerPos[ch];
+      int gapTemp = centerPos[ch] - calibration[ch][0];
 
       // Select longer side
       if (gap < gapTemp)
@@ -26,59 +27,59 @@ void read_pots()
       }
 
       // Calculate Center offset
-      int centerOffset = POT_CENTER - centerPos[i];
+      int centerOffset = POT_CENTER - centerPos[ch];
 
       // Applying initial value with center offset
-      pots[i] = raw_pots[i] + centerOffset;
+      pots[ch] = raw_pots[ch] + centerOffset;
 
       // range out correction
-      if (pots[i] < calibration[i][0] + centerOffset)
+      if (pots[ch] < calibration[ch][0] + centerOffset)
       {
-        pots[i] = calibration[i][0] + centerOffset;
+        pots[ch] = calibration[ch][0] + centerOffset;
       }
       
-      if (pots[i] > calibration[i][1] + centerOffset)
+      if (pots[ch] > calibration[ch][1] + centerOffset)
       {
-        pots[i] = calibration[i][1] + centerOffset;
+        pots[ch] = calibration[ch][1] + centerOffset;
       }
       
       // EPA
       int epaVal = 0;
       int epaVal_bwd = 0;
       
-      epaVal = 500 - (500 * epa[i] / 100);
+      epaVal = 500 - (500 * epa[ch] / 100);
       
-      if (i == 1)
+      if (ch == 1)
       {
         epaVal_bwd = 500 - (500 * epa[2] / 100);
       }
       
-      unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[i]; 
-      unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[i];
-      unsigned short trimServoMax = MAX_CONTROL_VAL - epaVal + subTrim[i];
+      unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[ch]; 
+      unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[ch];
+      unsigned short trimServoMax = MAX_CONTROL_VAL - epaVal + subTrim[ch];
 
       // Convert Analog Value to pots value
-      if (pots[i] < (POT_CENTER - deadBand))
+      if (pots[ch] < (POT_CENTER - deadBand))
       {
-        if (i == 1)
+        if (ch == 1)
         {
-          trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[i];
+          trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[ch];
         }
         
-        pots_control_val = map(pots[i], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
+        pots_control_val = map(pots[ch], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
         
         // EXPO
-        if (expo[i] > 0)
+        if (expo[ch] > 0)
         {
-          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[i]);
+          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[ch]);
         }
       }
-      else if (pots[i]  > (POT_CENTER + deadBand))
+      else if (pots[ch]  > (POT_CENTER + deadBand))
       {
-        pots_control_val = map(pots[i], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
+        pots_control_val = map(pots[ch], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
-        if (expo[i] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[i]);
+        if (expo[ch] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[ch]);
       }
       else
       {
@@ -86,7 +87,7 @@ void read_pots()
       }
       
       // Check Servo Reversing and applying Reverse value if necessary
-      if (bitRead(servoReverse, i) == 1)
+      if (bitRead(servoReverse, ch) == 1)
       {
         pots_control_val = MAX_CONTROL_VAL - pots_control_val + MIN_CONTROL_VAL;
       }
@@ -105,33 +106,33 @@ void read_pots()
     else
     {
       // mapping pot value CH3
-      if (i == 2)
+      if (ch == 2)
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          pots_control_val = map(analogRead(2), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), calibration[ch][0], calibration[ch][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(2), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), calibration[ch][0], calibration[ch][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
       
       // mapping pot value CH4
-      if (i == 3)
+      if (ch == 3)
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          pots_control_val = map(analogRead(3), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), calibration[ch][0], calibration[ch][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(3), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), calibration[ch][0], calibration[ch][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
     }
     
-    pots_value[i] = pots_control_val;
+    pots_value[ch] = pots_control_val;
   }
 }
  
