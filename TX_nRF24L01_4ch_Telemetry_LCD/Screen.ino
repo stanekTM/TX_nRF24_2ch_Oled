@@ -23,17 +23,17 @@ void draw_main_screen()
 {
   static uint8_t is_next_page = 0;
   
-  //call to first page, if required
+  // call to first page, if required
   if (is_next_page == 0)
   {
     u8g2.firstPage();
     is_next_page = 1;
   }
   
-  //draw our screen
+  // draw our screen
   main_screen();
   
-  //call to next page
+  // call to next page
   if (u8g2.nextPage() == 0)
   {
     is_next_page = 0; // ensure, that first page is called 
@@ -70,7 +70,7 @@ void main_screen()
   u8g2.setCursor(43, 7);
   u8g2.print(char_buffer);
   
-  // Print MODEL NAME
+  // Print "MODEL NAME"
   u8g2.drawStr(50, 7, modelName);
   
   // Print value TX battery
@@ -130,7 +130,7 @@ void main_screen()
   
   for (int i = 0; i < 2; i++)
   {
-    //Drawing vertical middle/center separation line
+    // Drawing vertical middle/center separation line
     u8g2.drawVLine(64, 38 + (i * 16), 9);
     
     // Define value bar reference
@@ -320,10 +320,10 @@ void draw_menu_screen()
     is_next_page = 1;
   }
   
-  //draw our screen
+  // draw our screen
   menu_screen();
   
-  //call to next page
+  // call to next page
   if (u8g2.nextPage() == 0)
   {
     is_next_page = 0; // ensure, that first page is called

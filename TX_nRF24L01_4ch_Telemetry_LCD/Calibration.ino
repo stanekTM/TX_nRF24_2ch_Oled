@@ -5,10 +5,10 @@
 void Calibration()
 {
   // Setting default mid value reference for Min and Max calibration
-  for (int i = 0; i < CHANNELS; i++)
+  for (int ch = 0; ch < CHANNELS; ch++)
   {
-    calibration[i][0] = 512;
-    calibration[i][1] = 512;
+    calibration[ch][0] = 512;
+    calibration[ch][1] = 512;
   }
   
   while (calibStatus == 1)
@@ -16,21 +16,21 @@ void Calibration()
     // Reading MIN and MAX value for every channel
     unsigned int raw_pots;
     
-    for (int i = 0; i < CHANNELS; i++)
+    for (int ch = 0; ch < CHANNELS; ch++)
     {
       // Get value from every ADC ports
-      raw_pots = analogRead(i);
+      raw_pots = analogRead(ch);
       
       // Get MIN values
-      if (raw_pots <= calibration[i][0])
+      if (raw_pots <= calibration[ch][0])
       {
-        calibration[i][0] = raw_pots;
+        calibration[ch][0] = raw_pots;
       }
 
       // Get MAX values
-      if (raw_pots >= calibration[i][1])
+      if (raw_pots >= calibration[ch][1])
       {
-        calibration[i][1] = raw_pots;
+        calibration[ch][1] = raw_pots;
       }
     }
     
@@ -56,17 +56,17 @@ void Calibration()
   
   // Setting default mid value reference for CENTER calibration
   // only for throttle and steering
-  for (int i = 0; i < 2; i++)
+  for (int ch = 0; ch < 2; ch++)
   {
-    centerPos[i] = 512;
+    centerPos[ch] = 512;
   }
   
   while (calibStatus == 1)
   {
-    for (int i = 0; i < 2; i++)
+    for (int ch = 0; ch < 2; ch++)
     {
       // Get value from every ADC ports
-      centerPos[i] = analogRead(i);
+      centerPos[ch] = analogRead(ch);
     }
     
     // Print calibration "CENTER" real time channels
@@ -89,23 +89,23 @@ void Calibration()
   unsigned int posEeprom;
   
   // Save MIN and MAX calibration values from Eeprom
-  for (int i = 0; i < CHANNELS; i++)
+  for (int ch = 0; ch < CHANNELS; ch++)
   {
     // Save MIN calibration values for channels
-    posEeprom = 1000 + (i * 4);
-    EEPROMUpdateInt(posEeprom, calibration[i][0]);
+    posEeprom = 1000 + (ch * 4);
+    EEPROMUpdateInt(posEeprom, calibration[ch][0]);
 
     // Save MAX calibration values for channels
     posEeprom += 2;
-    EEPROMUpdateInt(posEeprom, calibration[i][1]);
+    EEPROMUpdateInt(posEeprom, calibration[ch][1]);
   }
   
   // Save CENTER calibration values from Eeprom
-  for (int i = 0; i < 2; i++)
+  for (int ch = 0; ch < 2; ch++)
   {
     // Save CENTER calibration values for channels
-    posEeprom = 1016 + (i * 2);
-    EEPROMUpdateInt(posEeprom, centerPos[i]);
+    posEeprom = 1016 + (ch * 2);
+    EEPROMUpdateInt(posEeprom, centerPos[ch]);
   }
   
   delay(2000); // Screen message for 2sec
