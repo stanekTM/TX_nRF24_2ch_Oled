@@ -6,8 +6,6 @@ Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https
 and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch)
 for code inspiration.
 
-The firmware has been completely redesigned according to my requirements.
-
 This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
 
 ## Arduino pins
