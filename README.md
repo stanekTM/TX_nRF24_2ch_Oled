@@ -37,6 +37,6 @@ D13 - SCK
 
 ## Used libraries
 * <RF24.h>    https://github.com/nRF24/RF24
-* <U8g2lib.h> https://github.com/olikraus/u8g2 v2.27.6
+* <U8g2lib.h> https://github.com/olikraus/u8g2
 * <EEPROM.h>  Arduino standard library
 * <SPI.h>     Arduino standard library
