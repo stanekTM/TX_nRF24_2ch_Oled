@@ -12,7 +12,7 @@ unsigned char perc_batt;         // Battery bar level indicator (20 pixel) only 
 void TX_batt_check()
 {
   // battery voltage from average from 0 to 4.2V LiPo
-  val_TX_battery = read_adc(7) * (TX_BATTERY_VOLTAGE / 1023);
+  val_TX_battery = analogRead(7) * (TX_BATTERY_VOLTAGE / 1023);
 
   // Calculating correct value voltage for battery bar
   calc_bar_batt = (val_TX_battery * 10)/* + correct_volt 2 */;

@@ -42,7 +42,6 @@ void setup()
   u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
   
   boot_screen(); // print boot screen
-  read_adc_setup();
   radio_setup();
   
   //-------------------------------------------------------------------------------------

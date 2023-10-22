@@ -7,11 +7,9 @@ void read_pots()
   for (int i = 0; i < CHANNELS; i++)
   {
     int pots_control_val = MID_CONTROL_VAL;
-
-    raw_pots[i] = read_adc(i);
     
-    //Serial.println(pots_value[1]); //print value on a serial monitor
-
+    raw_pots[i] = analogRead(i);
+    
     // only for throttle and steering ch
     if (i < 2)
     {
@@ -111,11 +109,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(read_adc(2), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
       
@@ -124,11 +122,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), calibration[i][0], calibration[i][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(read_adc(3), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), calibration[i][0], calibration[i][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
     }

@@ -19,7 +19,7 @@ void Calibration()
     for (int i = 0; i < CHANNELS; i++)
     {
       // Get value from every ADC ports
-      raw_pots = read_adc(i);
+      raw_pots = analogRead(i);
       
       // Get MIN values
       if (raw_pots <= calibration[i][0])
@@ -66,7 +66,7 @@ void Calibration()
     for (int i = 0; i < 2; i++)
     {
       // Get value from every ADC ports
-      centerPos[i] = read_adc(i);
+      centerPos[i] = analogRead(i);
     }
     
     // Print calibration "CENTER" real time channels
@@ -144,28 +144,28 @@ void calib_MinMax_screen()
     u8g2.setCursor(5, 20);
     u8g2.print(chName_buffer);
     u8g2.setCursor(30, 20);
-    u8g2.print(read_adc(0));
+    u8g2.print(analogRead(0));
 
     // Print "THR" and value
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
     u8g2.print(chName_buffer);
     u8g2.setCursor(95, 20);
-    u8g2.print(read_adc(1));
+    u8g2.print(analogRead(1));
 
     // Print "CH3" and value
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[2])));
     u8g2.setCursor(5, 35);
     u8g2.print(chName_buffer);
     u8g2.setCursor(30, 35);
-    u8g2.print(read_adc(2));
+    u8g2.print(analogRead(2));
 
     // Print "CH4" and value
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[3])));
     u8g2.setCursor(70, 35);
     u8g2.print(chName_buffer);
     u8g2.setCursor(95, 35);
-    u8g2.print(read_adc(3));
+    u8g2.print(analogRead(3));
 
     // Print "Move the Pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[4])));
@@ -223,14 +223,14 @@ void calib_center_screen()
     u8g2.setCursor(5, 20);
     u8g2.print(chName_buffer);
     u8g2.setCursor(30, 20);
-    u8g2.print(read_adc(0));
+    u8g2.print(analogRead(0));
 
     // Print "THR" and value
     strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
     u8g2.print(chName_buffer);
     u8g2.setCursor(95, 20);
-    u8g2.print(read_adc(1));
+    u8g2.print(analogRead(1));
 
     // Print "Don't"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[3])));
