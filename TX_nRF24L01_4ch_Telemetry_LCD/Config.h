@@ -211,25 +211,25 @@ const char* const one_char[] PROGMEM = {
 //************************************************************************************************************************************************************************
 // Array text strings for screen messages "msg_buffer[9]" ****************************************************************************************************************
 //************************************************************************************************************************************************************************
-const char Message_0[] PROGMEM = "SAVE DATA";
-const char Message_1[] PROGMEM = "RX off!";
-const char Message_2[] PROGMEM = "CALIBRATION";
-const char Message_3[] PROGMEM = "Don't";
-const char Message_4[] PROGMEM = "Move the Pots";
-const char Message_5[] PROGMEM = "ERASE DATA";
-const char Message_6[] PROGMEM = "LOW!";
-const char Message_7[] PROGMEM = "MIN-MAX";
-const char Message_8[] PROGMEM = "CENTER";
+const char message_0[] PROGMEM = "SAVE DATA";
+const char message_1[] PROGMEM = "RX off!";
+const char message_2[] PROGMEM = "CALIBRATION";
+const char message_3[] PROGMEM = "Don't";
+const char message_4[] PROGMEM = "Move the Pots";
+const char message_5[] PROGMEM = "ERASE DATA";
+const char message_6[] PROGMEM = "LOW!";
+const char message_7[] PROGMEM = "MIN-MAX";
+const char message_8[] PROGMEM = "CENTER";
 
-const char* const messages[] PROGMEM = {
-  Message_0,
-  Message_1,
-  Message_2,
-  Message_3,
-  Message_4,
-  Message_5,
-  Message_6,
-  Message_7,
-  Message_8
+const char* const message[] PROGMEM = {
+  message_0,
+  message_1,
+  message_2,
+  message_3,
+  message_4,
+  message_5,
+  message_6,
+  message_7,
+  message_8
 };
  

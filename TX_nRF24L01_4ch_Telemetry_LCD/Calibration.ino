@@ -126,12 +126,12 @@ void calib_MinMax_screen()
   read_pots(); // Macro again for stable pots value
     
     // Print "MIN-MAX"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[7])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[7])));
     u8g2.setCursor(7, 7);
     u8g2.print(msg_buffer);
 
     // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[2])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
     u8g2.setCursor(55, 7);
     u8g2.print(msg_buffer);
 
@@ -168,12 +168,12 @@ void calib_MinMax_screen()
     u8g2.print(analogRead(3));
 
     // Print "Move the Pots"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[4])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[4])));
     u8g2.setCursor(2, 54);
     u8g2.print(msg_buffer);
 
     // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
     u8g2.setCursor(2, 64);
     u8g2.print(msg_buffer);
 
@@ -205,12 +205,12 @@ void calib_center_screen()
   read_pots(); // Macro again for stable pots value
     
     // Print "CENTER"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[8])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
     u8g2.setCursor(10, 7);
     u8g2.print(msg_buffer);
 
     // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[2])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
     u8g2.setCursor(55, 7);
     u8g2.print(msg_buffer);
 
@@ -233,17 +233,17 @@ void calib_center_screen()
     u8g2.print(analogRead(1));
 
     // Print "Don't"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[3])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[3])));
     u8g2.setCursor(2, 54);
     u8g2.print(msg_buffer);
 
     // Print "Move the Pots"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[4])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[4])));
     u8g2.setCursor(37, 54);
     u8g2.print(msg_buffer);
 
     // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
     u8g2.setCursor(2, 64);
     u8g2.print(msg_buffer);
 
@@ -271,12 +271,12 @@ void calib_save_screen()
   u8g2.firstPage(); do {
     
     // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
     u8g2.setCursor(30, 15);
     u8g2.print(msg_buffer);
 
     // Print "CALIBRATION"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[2])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[2])));
     u8g2.setCursor(27, 30);
     u8g2.print(msg_buffer);
 

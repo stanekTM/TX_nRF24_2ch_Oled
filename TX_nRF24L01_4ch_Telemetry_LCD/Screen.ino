@@ -91,7 +91,7 @@ void main_screen()
   if (RFstate)
   {
     // Print "RX off!"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[1])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
     u8g2.setCursor(0, 23);
     u8g2.print(msg_buffer);
   }
@@ -103,7 +103,7 @@ void main_screen()
     u8g2.print(name_buffer);
     
     // Print "LOW!"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[6])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
     u8g2.setCursor(38, 23);
     u8g2.print(msg_buffer);
   }
@@ -818,7 +818,7 @@ void save_model_screen()
     char name_buffer[14];
 
     // Print "SAVE DATA"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
     u8g2.setCursor(40, 12);
     u8g2.print(msg_buffer);
 

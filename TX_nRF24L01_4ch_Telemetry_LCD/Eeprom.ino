@@ -128,7 +128,7 @@ void resetEeprom_screen()
     u8g2.firstPage(); do
     {
       // Print "ERASE DATA"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[5])));
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
       u8g2.setCursor(30, 20);
       u8g2.print(msg_buffer);
 
@@ -188,7 +188,7 @@ void resetEeprom_screen()
         u8g2.firstPage(); do
         {
           // Print "ERASE DATA"
-          strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[5])));
+          strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
           u8g2.setCursor(35, 20);
           u8g2.print(msg_buffer);
 
