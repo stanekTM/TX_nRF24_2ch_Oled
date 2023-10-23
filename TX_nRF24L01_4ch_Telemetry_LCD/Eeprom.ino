@@ -121,7 +121,7 @@ void resetEeprom_screen()
     bool isWait = true;
 
     // Set memory buffer for text strings
-    char chName_buffer[14];
+    char name_buffer[14];
     char msg_buffer[9];
     char char_buffer[10];
     
@@ -148,9 +148,9 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
 
       // Print "DOWN"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[5])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[5])));
       u8g2.setCursor(39, 40);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
 
       // Print "N"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
@@ -163,9 +163,9 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
 
       // Print "UP"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[4])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
       u8g2.setCursor(89, 40);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
       
     } while (u8g2.nextPage());
     

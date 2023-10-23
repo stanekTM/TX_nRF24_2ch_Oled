@@ -118,7 +118,7 @@ void calib_MinMax_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[9];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
 
   u8g2.firstPage(); do {
@@ -140,30 +140,30 @@ void calib_MinMax_screen()
     u8g2.drawVLine(64, 10, 30);
 
     // Print "STR" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[0])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
     u8g2.setCursor(5, 20);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
 
     // Print "THR" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(95, 20);
     u8g2.print(analogRead(1));
 
     // Print "CH3" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[2])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[2])));
     u8g2.setCursor(5, 35);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(30, 35);
     u8g2.print(analogRead(2));
 
     // Print "CH4" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[3])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[3])));
     u8g2.setCursor(70, 35);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(95, 35);
     u8g2.print(analogRead(3));
 
@@ -183,9 +183,9 @@ void calib_MinMax_screen()
     u8g2.print(char_buffer);
 
     // Print "UP"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[4])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
     u8g2.setCursor(70, 64);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
       
   } while (u8g2.nextPage());
 }
@@ -197,7 +197,7 @@ void calib_center_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[9];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   u8g2.firstPage(); do {
@@ -219,16 +219,16 @@ void calib_center_screen()
     u8g2.drawVLine(64, 10, 30);
 
     // Print "STR" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[0])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
     u8g2.setCursor(5, 20);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
 
     // Print "THR" and value
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     u8g2.setCursor(95, 20);
     u8g2.print(analogRead(1));
 
@@ -253,9 +253,9 @@ void calib_center_screen()
     u8g2.print(char_buffer);
 
     // Print "UP"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[4])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
     u8g2.setCursor(70, 64);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
       
   } while (u8g2.nextPage());
 }

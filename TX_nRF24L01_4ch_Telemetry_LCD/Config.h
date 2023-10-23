@@ -128,84 +128,84 @@ unsigned char modelPage     = 0; // for Model Page
 // Using PROGMEM for characters and text strings to save RAM memory
 // Array text strings for drawing menu "menu_buffer[7]"
 //************************************************************************************************************************************************************************
-const char menu_0[] PROGMEM = "SERVO DIRECTION";
-const char menu_1[] PROGMEM = "EPA";
-const char menu_2[] PROGMEM = "MODEL SELECTION";
-const char menu_3[] PROGMEM = "SAVE MODEL DATA";
-const char menu_4[] PROGMEM = "SUB TRIM";
-const char menu_5[] PROGMEM = "MODEL NAME";
-const char menu_6[] PROGMEM = "EXPO";
+const char menu_name_0[] PROGMEM = "SERVO DIRECTION";
+const char menu_name_1[] PROGMEM = "EPA";
+const char menu_name_2[] PROGMEM = "MODEL SELECTION";
+const char menu_name_3[] PROGMEM = "SAVE MODEL DATA";
+const char menu_name_4[] PROGMEM = "SUB TRIM";
+const char menu_name_5[] PROGMEM = "MODEL NAME";
+const char menu_name_6[] PROGMEM = "EXPO";
 
 const char* const menu_name[] PROGMEM = {
-  menu_0,
-  menu_1,
-  menu_2,
-  menu_3,
-  menu_4,
-  menu_5,
-  menu_6
+  menu_name_0,
+  menu_name_1,
+  menu_name_2,
+  menu_name_3,
+  menu_name_4,
+  menu_name_5,
+  menu_name_6
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings (short) for Channel/Pots names, status, model for all screens "chName_buffer[14]" ******************************************************************
+// Array text strings (short) for Channel/Pots names, status, model for all screens "name_buffer[14]" ******************************************************************
 //************************************************************************************************************************************************************************
-const char chName_0[] PROGMEM = "STR";
-const char chName_1[] PROGMEM = "THR";
-const char chName_2[] PROGMEM = "CH3";
-const char chName_3[] PROGMEM = "CH4";
-const char chName_4[] PROGMEM = "UP";
-const char chName_5[] PROGMEM = "DOWN";
-const char chName_6[] PROGMEM = "RXbatt";
-const char chName_7[] PROGMEM = "TRIM";
-const char chName_8[] PROGMEM = "NOR";
-const char chName_9[] PROGMEM = "REV";
-const char chName_10[] PROGMEM = "PPM";
-const char chName_11[] PROGMEM = "MODEL";
-const char chName_12[] PROGMEM = "FWD";
-const char chName_13[] PROGMEM = "BWD";
+const char channel_name_0[] PROGMEM = "STR";
+const char channel_name_1[] PROGMEM = "THR";
+const char channel_name_2[] PROGMEM = "CH3";
+const char channel_name_3[] PROGMEM = "CH4";
+const char channel_name_4[] PROGMEM = "UP";
+const char channel_name_5[] PROGMEM = "DOWN";
+const char channel_name_6[] PROGMEM = "RXbatt";
+const char channel_name_7[] PROGMEM = "TRIM";
+const char channel_name_8[] PROGMEM = "NOR";
+const char channel_name_9[] PROGMEM = "REV";
+const char channel_name_10[] PROGMEM = "PPM";
+const char channel_name_11[] PROGMEM = "MODEL";
+const char channel_name_12[] PROGMEM = "FWD";
+const char channel_name_13[] PROGMEM = "BWD";
 
 const char* const channel_name[] PROGMEM = {
-  chName_0,
-  chName_1,
-  chName_2,
-  chName_3,
-  chName_4,
-  chName_5,
-  chName_6,
-  chName_7,
-  chName_8,
-  chName_9,
-  chName_10,
-  chName_11,
-  chName_12,
-  chName_13
+  channel_name_0,
+  channel_name_1,
+  channel_name_2,
+  channel_name_3,
+  channel_name_4,
+  channel_name_5,
+  channel_name_6,
+  channel_name_7,
+  channel_name_8,
+  channel_name_9,
+  channel_name_10,
+  channel_name_11,
+  channel_name_12,
+  channel_name_13
 };
 
 //************************************************************************************************************************************************************************
 // Array for single characters "char_buffer[10]" *************************************************************************************************************************
 //************************************************************************************************************************************************************************
-const char character_0[] PROGMEM = "Y";
-const char character_1[] PROGMEM = "N";
-const char character_2[] PROGMEM = "[";
-const char character_3[] PROGMEM = "]";
-const char character_4[] PROGMEM = "=";
-const char character_5[] PROGMEM = "*";
-const char character_6[] PROGMEM = ">";
-const char character_7[] PROGMEM = "?";
-const char character_8[] PROGMEM = "/";
-const char character_9[] PROGMEM = "V";
+const char one_char_0[] PROGMEM = "Y";
+const char one_char_1[] PROGMEM = "N";
+const char one_char_2[] PROGMEM = "[";
+const char one_char_3[] PROGMEM = "]";
+const char one_char_4[] PROGMEM = "=";
+const char one_char_5[] PROGMEM = "*";
+const char one_char_6[] PROGMEM = ">";
+const char one_char_7[] PROGMEM = "?";
+const char one_char_8[] PROGMEM = "/";
+const char one_char_9[] PROGMEM = "V";
 
 const char* const one_char[] PROGMEM = {
-  character_0,
-  character_1,
-  character_2,
-  character_3,
-  character_4,
-  character_5,
-  character_6,
-  character_7,
-  character_8,
-  character_9
+  one_char_0,
+  one_char_1,
+  one_char_2,
+  one_char_3,
+  one_char_4,
+  one_char_5,
+  one_char_6,
+  one_char_7,
+  one_char_8,
+  one_char_9
 };
 
 //************************************************************************************************************************************************************************

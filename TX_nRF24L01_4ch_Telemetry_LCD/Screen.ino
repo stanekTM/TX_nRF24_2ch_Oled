@@ -44,7 +44,7 @@ void draw_main_screen()
 void main_screen()
 {
   // Set memory buffer for text strings
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   char msg_buffer[9];
   char menu_buffer[7];
@@ -57,9 +57,9 @@ void main_screen()
   
 
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
-  u8g2.print(chName_buffer);
+  u8g2.print(name_buffer);
   
   // Print number of which model in use
   u8g2.setCursor(32, 7);
@@ -98,9 +98,9 @@ void main_screen()
   else if (RXbattstate)
   {
     // Print "RXbatt"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     
     // Print "LOW!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[6])));
@@ -110,9 +110,9 @@ void main_screen()
   else
   {
     // Print "RXbatt"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
     u8g2.setCursor(0, 23);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     
     // Print value RX battery
     u8g2.setCursor(38, 23);
@@ -210,17 +210,17 @@ void main_screen()
     
     
     // Print channel items name "STR and THR"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(0, 39 + i * 16);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     
     
     if (subTrim[i] > 0)
     {
       // Print "TRIM"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[7])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[7])));
       u8g2.setCursor(44, 39 + i * 16);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
           
       // Print SUB TRIM value
       u8g2.setCursor(66, 39 + i * 16);
@@ -229,9 +229,9 @@ void main_screen()
     else if (subTrim[i] < 0)
     {
       // Print "TRIM"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[7])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[7])));
       u8g2.setCursor(44, 39 + i * 16);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
             
       // Print SUB TRIM value
       u8g2.setCursor(66, 39 + i * 16);
@@ -253,9 +253,9 @@ void main_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(23, 39 + i * 16);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     }
     
     
@@ -279,9 +279,9 @@ void main_screen()
   for (int i = 2; i < CHANNELS; i++)
   {
     // Print "CH3 and CH4"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(81, 3 + i * 8);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
 
     // Print CH3 and CH4 value in %
     unsigned int value[i];
@@ -293,9 +293,9 @@ void main_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(114, 3 + i * 8);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     } 
   }
   // End drawing CH3 and CH4
@@ -335,7 +335,7 @@ void menu_screen()
 {
 
   // Set memory buffer for text strings
-  //char chName_buffer[14];
+  //char name_buffer[14];
   char menu_buffer[7];
   char char_buffer[10];
   
@@ -345,9 +345,9 @@ void menu_screen()
 
 /*
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
-  u8g2.print(chName_buffer);
+  u8g2.print(name_buffer);
 
   // Print number of which model in use
   u8g2.setCursor(32, 7);
@@ -433,7 +433,7 @@ void servo_dir_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   //u8g2.firstPage(); do {
@@ -473,23 +473,23 @@ void servo_dir_screen()
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(38, 20 + i * 13);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     }
     else
     {
       // Print "NOR"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[8])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[8])));
       u8g2.setCursor(38, 20 + i * 13);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     }
     
     
     // Print channel items name "STR, THR, CH3, CH4"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(12, 20 + i * 13);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
 
 
     // Drawing dynamic graphics items
@@ -532,7 +532,7 @@ void epa_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   //u8g2.firstPage(); do {
@@ -556,30 +556,30 @@ void epa_screen()
     if (i > 1)
     {
       // Print "THR"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[1])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     }
     else
     {
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     }
     
     u8g2.setCursor(10, 20 + i * 13);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     
     if (i == 1)
     {
       // Print "FWD"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[12])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[12])));
       u8g2.setCursor(32, 20 + i * 13);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     }
     
     if (i == 2)
     {
       // Print "BWD"
-      strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[13])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[13])));
       u8g2.setCursor(32, 20 + i * 13);
-      u8g2.print(chName_buffer);
+      u8g2.print(name_buffer);
     }
     
     if (menuSubActual - 1 == counterTemp)
@@ -650,7 +650,7 @@ void model_sel_screen()
 {
   // Set memory buffer for text strings
   char char_buffer[10];
-  char chName_buffer[14];
+  char name_buffer[14];
 
   // For Eeprom position reference
   unsigned int eepromPos;
@@ -659,9 +659,9 @@ void model_sel_screen()
   //u8g2.firstPage(); do {
   
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
-  u8g2.print(chName_buffer);
+  u8g2.print(name_buffer);
 
   // Print number of which model in use
   u8g2.setCursor(32, 7);
@@ -815,7 +815,7 @@ void save_model_screen()
 
     // Set memory buffer for text strings
     char msg_buffer[9];
-    char chName_buffer[14];
+    char name_buffer[14];
 
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(messages[0])));
@@ -823,9 +823,9 @@ void save_model_screen()
     u8g2.print(msg_buffer);
 
     // Print "MODEL"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
     u8g2.setCursor(43, 35);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
 
     u8g2.setCursor(78, 35);
     u8g2.print(modelActual + 1);
@@ -876,7 +876,7 @@ void sub_trim_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   //u8g2.firstPage(); do {
@@ -898,9 +898,9 @@ void sub_trim_screen()
   for (int i = 0; i < 2; i++)
   {
     // Print channel items name "STR, THR"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
     
     if (menuSubActual - 1 == temp_Counter)
     {
@@ -936,9 +936,9 @@ void sub_trim_screen()
 
 
     // Print "PPM"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[10])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[10])));
     u8g2.setCursor(98, 20 + i * 13);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
 
     temp_Counter++;
   }
@@ -976,7 +976,7 @@ void model_name_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   //u8g2.firstPage(); do {
@@ -987,9 +987,9 @@ void model_name_screen()
   u8g2.print(menu_buffer);
   
   // Print "MODEL"
-  strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(85, 7);
-  u8g2.print(chName_buffer);
+  u8g2.print(name_buffer);
 
   // Print number of which model in use
   u8g2.setCursor(117, 7);
@@ -1066,7 +1066,7 @@ void expo_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char chName_buffer[14];
+  char name_buffer[14];
   char char_buffer[10];
   
   //u8g2.firstPage(); do {
@@ -1085,9 +1085,9 @@ void expo_screen()
   for (int i = 0; i < 2; i++)
   {
     // Print channel items name "STR, THR"
-    strcpy_P(chName_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
-    u8g2.print(chName_buffer);
+    u8g2.print(name_buffer);
 
     // Print EXPO value
     u8g2.setCursor(37, 20 + i * 13);
