@@ -44,9 +44,9 @@ void draw_main_screen()
 void main_screen()
 {
   // Set memory buffer for text strings
-  char name_buffer[14];
-  char char_buffer[10];
-  char msg_buffer[9];
+  char name_buffer[13];
+  char char_buffer[8];
+  char msg_buffer[10];
   char menu_buffer[7];
   
   //u8g2.firstPage(); do {
@@ -66,7 +66,7 @@ void main_screen()
   u8g2.print(modelActual + 1);
   
   // Print ">"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
   u8g2.setCursor(43, 7);
   u8g2.print(char_buffer);
   
@@ -78,7 +78,7 @@ void main_screen()
   u8g2.print(val_TX_battery);
   
   // Print "V"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
   u8g2.setCursor(109, 7);
   u8g2.print(char_buffer);
   
@@ -97,10 +97,10 @@ void main_screen()
   }
   else if (RXbattstate)
   {
-    // Print "RXbatt"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    // Print "RX batt"
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
     u8g2.setCursor(0, 23);
-    u8g2.print(name_buffer);
+    u8g2.print(msg_buffer);
     
     // Print "LOW!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
@@ -109,17 +109,17 @@ void main_screen()
   }
   else
   {
-    // Print "RXbatt"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    // Print "RX batt"
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
     u8g2.setCursor(0, 23);
-    u8g2.print(name_buffer);
+    u8g2.print(msg_buffer);
     
     // Print value RX battery
     u8g2.setCursor(38, 23);
     u8g2.print(telemetry_packet.batt_A1);
     
     // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
     u8g2.setCursor(56, 23);
     u8g2.print(char_buffer);
   }
@@ -237,6 +237,7 @@ void main_screen()
       u8g2.setCursor(66, 39 + i * 16);
       u8g2.print(subTrim[i]);
     }
+
 /*    
       // SUB TRIM Box
       u8g2.setFontMode(1);
@@ -335,9 +336,9 @@ void menu_screen()
 {
 
   // Set memory buffer for text strings
-  //char name_buffer[14];
+  //char name_buffer[13];
   char menu_buffer[7];
-  char char_buffer[10];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
   
@@ -358,7 +359,7 @@ void menu_screen()
 */
 
   // Print "/"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(117, 7);
   u8g2.print(char_buffer);
 
@@ -366,7 +367,7 @@ void menu_screen()
   u8g2.print(menuPage + 1);
 
   u8g2.setCursor(123, 7);
-  u8g2.print( (MENU_COUNT - 1) / 5 + 1);  // Total Menu Count / menu count per page + 1
+  u8g2.print((MENU_COUNT - 1) / 5 + 1); // Total Menu Count / menu count per page + 1
 
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
@@ -383,8 +384,8 @@ void menu_screen()
     
     if (i + (5 * menuPage) == menuSubActual)
     {
-      // Print "*"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+      // Print ">"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
       u8g2.setCursor(5, 9 + (i * 10));
       u8g2.print(char_buffer);
 
@@ -433,12 +434,13 @@ void servo_dir_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[14];
-  char char_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
     
   read_pots(); // Macro again for stable pots value
+  
   
   // Print "SERVO DIRECTION"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
@@ -532,12 +534,13 @@ void epa_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[14];
-  char char_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
   
   read_pots(); // Macro again for stable pots value
+  
   
   // Print "EPA"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[1])));
@@ -577,7 +580,7 @@ void epa_screen()
     if (i == 2)
     {
       // Print "BWD"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[13])));
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
       u8g2.setCursor(32, 20 + i * 13);
       u8g2.print(name_buffer);
     }
@@ -587,7 +590,7 @@ void epa_screen()
       if (epaSelection == counterTemp)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       
@@ -604,7 +607,7 @@ void epa_screen()
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
@@ -649,8 +652,8 @@ void draw_model_sel_screen()
 void model_sel_screen()
 {
   // Set memory buffer for text strings
-  char char_buffer[10];
-  char name_buffer[14];
+  char char_buffer[8];
+  char name_buffer[13];
 
   // For Eeprom position reference
   unsigned int eepromPos;
@@ -668,7 +671,7 @@ void model_sel_screen()
   u8g2.print(modelActual + 1);
 
   // Print "/"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(117, 7);
   u8g2.print(char_buffer);
 
@@ -685,9 +688,7 @@ void model_sel_screen()
   // Print MODEL SELECTION list
   for (int i = 0; i < 5; i++)
   {
-    //--------------------------------------------------------------------
     // Left Section Start
-    //--------------------------------------------------------------------
     tempModelNoIdx = i + (10 * modelPage);
     
     if (tempModelNoIdx > MODELS)
@@ -720,9 +721,8 @@ void model_sel_screen()
     }
     // Left Section End
     
-    //--------------------------------------------------------------------
+    
     // Right Section Start
-    //--------------------------------------------------------------------
     tempModelNoIdx = (i + 5) + (10 * modelPage);
     
     if (tempModelNoIdx > MODELS)
@@ -767,9 +767,6 @@ void save_model_screen()
   // For Eeprom position reference
   unsigned int eepromBase;
 
-  // For write/Update SUB TRIM stored values
-  //unsigned int posEeprom;
-
   // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
   eepromBase = NUM_BYTES_PER_MODEL * modelActual;
 
@@ -810,12 +807,12 @@ void save_model_screen()
     eepromPos++;
   }
 
-  // Start of Save Data message screen -------------------------------------
+  // Start of Save Data message screen
   u8g2.firstPage(); do {
 
     // Set memory buffer for text strings
-    char msg_buffer[9];
-    char name_buffer[14];
+    char msg_buffer[10];
+    char name_buffer[13];
 
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
@@ -876,12 +873,13 @@ void sub_trim_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[14];
-  char char_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
   
   read_pots(); // Macro again for stable pots value
+  
   
   // Print "SUB TRIM"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
@@ -907,7 +905,7 @@ void sub_trim_screen()
       if (subTrimSelection == temp_Counter)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
@@ -924,7 +922,7 @@ void sub_trim_screen()
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }
@@ -976,10 +974,11 @@ void model_name_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[14];
-  char char_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
+  
   
   // Print "MODEL NAME"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[5])));
@@ -1024,7 +1023,7 @@ void model_name_screen()
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(1 + (i * 23), 45);
         u8g2.print(char_buffer);
       }
@@ -1066,12 +1065,13 @@ void expo_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[14];
-  char char_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   //u8g2.firstPage(); do {
   
   read_pots(); // Macro again for stable pots value
+  
   
   // Print "EXPO"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
@@ -1099,7 +1099,7 @@ void expo_screen()
       if (expoSelection == i)
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
@@ -1116,7 +1116,7 @@ void expo_screen()
       else
       {
         // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
       }

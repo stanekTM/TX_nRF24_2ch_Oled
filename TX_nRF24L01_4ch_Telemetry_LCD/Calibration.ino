@@ -117,13 +117,13 @@ void Calibration()
 void calib_MinMax_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[9];
-  char name_buffer[14];
-  char char_buffer[10];
+  char msg_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
 
   u8g2.firstPage(); do {
   
-  read_pots(); // Macro again for stable pots value
+    read_pots(); // Macro again for stable pots value
     
     // Print "MIN-MAX"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[7])));
@@ -196,13 +196,13 @@ void calib_MinMax_screen()
 void calib_center_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[9];
-  char name_buffer[14];
-  char char_buffer[10];
+  char msg_buffer[10];
+  char name_buffer[13];
+  char char_buffer[8];
   
   u8g2.firstPage(); do {
   
-  read_pots(); // Macro again for stable pots value
+    read_pots(); // Macro again for stable pots value
     
     // Print "CENTER"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[8])));
@@ -266,7 +266,7 @@ void calib_center_screen()
 void calib_save_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[9];
+  char msg_buffer[10];
 
   u8g2.firstPage(); do {
     

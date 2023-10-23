@@ -68,7 +68,6 @@ unsigned char storedDataEeprom(unsigned char mod)
     posEeprom = 1016 + (i * 2);
     centerPos[i] = EEPROMReadInt(posEeprom);
   }
-  
   return mod;
 }
 
@@ -121,22 +120,17 @@ void resetEeprom_screen()
     bool isWait = true;
 
     // Set memory buffer for text strings
-    char name_buffer[14];
-    char msg_buffer[9];
-    char char_buffer[10];
+    char name_buffer[13];
+    char msg_buffer[10];
+    char char_buffer[8];
     
-    u8g2.firstPage(); do
-    {
-      // Print "ERASE DATA"
+    u8g2.firstPage(); do {
+      
+      // Print "ERASE DATA ?"
       strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
       u8g2.setCursor(30, 20);
       u8g2.print(msg_buffer);
-
-      // Print "?"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-      u8g2.setCursor(92, 20);
-      u8g2.print(char_buffer);
-
+      
       // Print "Y"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[0])));
       u8g2.setCursor(25, 40);
@@ -185,8 +179,8 @@ void resetEeprom_screen()
         // Recall "Reset to default" macro
         resetEeprom();
         
-        u8g2.firstPage(); do
-        {
+        u8g2.firstPage(); do {
+          
           // Print "ERASE DATA"
           strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
           u8g2.setCursor(35, 20);

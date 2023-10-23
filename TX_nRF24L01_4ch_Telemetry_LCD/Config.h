@@ -147,7 +147,7 @@ const char* const menu_name[] PROGMEM = {
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings (short) for Channel/Pots names, status, model for all screens "name_buffer[14]" ******************************************************************
+// Array text strings (short) for Channel/Pots names, status, model for all screens "name_buffer[13]" ******************************************************************
 //************************************************************************************************************************************************************************
 const char channel_name_0[] PROGMEM = "STR";
 const char channel_name_1[] PROGMEM = "THR";
@@ -155,14 +155,13 @@ const char channel_name_2[] PROGMEM = "CH3";
 const char channel_name_3[] PROGMEM = "CH4";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
-const char channel_name_6[] PROGMEM = "RXbatt";
+const char channel_name_6[] PROGMEM = "BWD";
 const char channel_name_7[] PROGMEM = "TRIM";
 const char channel_name_8[] PROGMEM = "NOR";
 const char channel_name_9[] PROGMEM = "REV";
 const char channel_name_10[] PROGMEM = "PPM";
 const char channel_name_11[] PROGMEM = "MODEL";
 const char channel_name_12[] PROGMEM = "FWD";
-const char channel_name_13[] PROGMEM = "BWD";
 
 const char* const channel_name[] PROGMEM = {
   channel_name_0,
@@ -177,23 +176,20 @@ const char* const channel_name[] PROGMEM = {
   channel_name_9,
   channel_name_10,
   channel_name_11,
-  channel_name_12,
-  channel_name_13
+  channel_name_12
 };
 
 //************************************************************************************************************************************************************************
-// Array for single characters "char_buffer[10]" *************************************************************************************************************************
+// Array for single characters "char_buffer[8]" *************************************************************************************************************************
 //************************************************************************************************************************************************************************
 const char one_char_0[] PROGMEM = "Y";
 const char one_char_1[] PROGMEM = "N";
 const char one_char_2[] PROGMEM = "[";
 const char one_char_3[] PROGMEM = "]";
 const char one_char_4[] PROGMEM = "=";
-const char one_char_5[] PROGMEM = "*";
-const char one_char_6[] PROGMEM = ">";
-const char one_char_7[] PROGMEM = "?";
-const char one_char_8[] PROGMEM = "/";
-const char one_char_9[] PROGMEM = "V";
+const char one_char_5[] PROGMEM = ">";
+const char one_char_6[] PROGMEM = "/";
+const char one_char_7[] PROGMEM = "V";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -203,13 +199,11 @@ const char* const one_char[] PROGMEM = {
   one_char_4,
   one_char_5,
   one_char_6,
-  one_char_7,
-  one_char_8,
-  one_char_9
+  one_char_7
 };
 
 //************************************************************************************************************************************************************************
-// Array text strings for screen messages "msg_buffer[9]" ****************************************************************************************************************
+// Array text strings for screen messages "msg_buffer[10]" ****************************************************************************************************************
 //************************************************************************************************************************************************************************
 const char message_0[] PROGMEM = "SAVE DATA";
 const char message_1[] PROGMEM = "RX off!";
@@ -220,6 +214,7 @@ const char message_5[] PROGMEM = "ERASE DATA";
 const char message_6[] PROGMEM = "LOW!";
 const char message_7[] PROGMEM = "MIN-MAX";
 const char message_8[] PROGMEM = "CENTER";
+const char message_9[] PROGMEM = "RX batt";
 
 const char* const message[] PROGMEM = {
   message_0,
@@ -230,6 +225,7 @@ const char* const message[] PROGMEM = {
   message_5,
   message_6,
   message_7,
-  message_8
+  message_8,
+  message_9
 };
  

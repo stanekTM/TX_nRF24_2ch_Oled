@@ -62,8 +62,8 @@ void select()
       }
     }
   }
+
   
-  //******************************************
   unsigned char pressedKey = read_button();
   
   // If pressed button SELECT

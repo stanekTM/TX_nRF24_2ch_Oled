@@ -29,7 +29,7 @@ struct rc_packet_size
   unsigned int ch2;
   //unsigned int ch3;
   //unsigned int ch4;
-  //unsigned int ch5; //unused channel, only adding byte array RX 5ch
+  //unsigned int ch5;
 };
 rc_packet_size rc_packet;
 
@@ -38,7 +38,7 @@ rc_packet_size rc_packet;
 //************************************************************************************************************************************************************************
 struct telemetry_packet_size
 {
-  uint8_t rssi;     //not used yet
+  uint8_t rssi;  //not used yet
   float batt_A1;
   float batt_A2; //not used yet
 };
