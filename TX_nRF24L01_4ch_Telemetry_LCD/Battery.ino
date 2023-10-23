@@ -1,8 +1,8 @@
 
-//************************************************************************************************************************************************************************
+//*********************************************************************************************************************
 // Macro to calculate average ADC value, checking battery voltage alarm and value for battery bar.
 // For "TX_MONITORED_VOLTAGE" do not under default value in config file because arduino will be more unstable.
-//************************************************************************************************************************************************************************
+//*********************************************************************************************************************
 float val_TX_battery;            // input battery pin value
 int calc_bar_batt;               // Calculating correct voltage value voltage for battery bar
 int calc_max_batt;
