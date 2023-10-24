@@ -82,10 +82,9 @@ void loop()
     calibStatus = 0;
   }
   
-  receive_time();
+  //receive_time();
   send_and_receive_data();
   
-  RX_batt_check();         // Checking RX battery status
   TX_batt_check();         // Checking TX battery status
 
   read_button_exit();      // Macro for read button status definitions

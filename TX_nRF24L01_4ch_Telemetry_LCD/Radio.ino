@@ -3,7 +3,6 @@
 // Setup radio comunication
 //*********************************************************************************************************************
 RF24 radio(PIN_CE, PIN_CSN); //setup CE and CSN pins
-uint8_t invert_address = ~address[5]; //invert bits for reading so that telemetry packets have a different address
 
 void radio_setup()
 {
@@ -17,7 +16,6 @@ void radio_setup()
   radio.setPALevel(RF24_PA_MIN); //RF24_PA_MIN (-18dBm), RF24_PA_LOW (-12dBm), RF24_PA_HIGH (-6dbm), RF24_PA_MAX (0dBm)
   radio.stopListening();
   radio.openWritingPipe(address);
-  radio.openReadingPipe(1, invert_address);
 }
 
 //*********************************************************************************************************************
@@ -38,37 +36,29 @@ rc_packet_size rc_packet;
 //*********************************************************************************************************************
 struct telemetry_packet_size
 {
-  uint8_t rssi;  //not used yet
-  float batt_A1;
-  float batt_A2; //not used yet
+  byte rssi; // not used yet
+  //float batt_A1;
+  byte batt_A1;
+  byte batt_A2; // not used yet
 };
 telemetry_packet_size telemetry_packet;
-
-//*********************************************************************************************************************
-// Gain time after losing RF data or turning off the RX, display "RX off!" and disable the RX battery status
-//*********************************************************************************************************************
-unsigned long rx_time = 0;
-int RFstate;
-int RXbattstate;
-
-void receive_time()
-{
-  if (millis() - rx_time > 1000) //1s
-  {
-    RFstate = 1;
-    RXbattstate = 0;
-  }
-}
 
 //*********************************************************************************************************************
 // RX battery status check. If the battery voltage RX is < RX_MONITORED_VOLTAGE = the TX display reports "RXbatt LOW!"
 // at 1s interval and the RX LED flashes at 0.5s interval
 //*********************************************************************************************************************
 unsigned long RXbattTime = 0;
+int RXbattstate;
 
 void RX_batt_check()
 {
-  if (telemetry_packet.batt_A1 <= RX_MONITORED_VOLTAGE)
+  
+  //telemetry_packet.batt_A1
+
+
+
+
+  /*if (telemetry_packet.batt_A1 <= RX_MONITORED_VOLTAGE)
   {
     if (millis() - RXbattTime > 1000) //1s
     {
@@ -88,7 +78,7 @@ void RX_batt_check()
   if (telemetry_packet.batt_A1 >= RX_MONITORED_VOLTAGE)
   {
     RXbattstate = 0;
-  }
+  }*/
   
   //Serial.println(telemetry_packet.batt_A1);
 }
@@ -96,6 +86,8 @@ void RX_batt_check()
 //*********************************************************************************************************************
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
+bool RF_state = 1;
+
 void send_and_receive_data()
 {
   rc_packet.ch1 = pots_value[0]; //A0
@@ -103,15 +95,29 @@ void send_and_receive_data()
   //rc_packet.ch3 = pots_value[2]; //A2
   //rc_packet.ch4 = pots_value[3]; //A3
   
+  
   if (radio.write(&rc_packet, sizeof(rc_packet_size)))
   {
     if (radio.isAckPayloadAvailable())
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      rx_time = millis();
+      RF_state = 0;
+      RX_batt_check();
+    }
+  }
+  
+/*  
+  if (radio.write(&rc_packet, sizeof(rc_packet_size)))
+  {
+    if (radio.available())
+    {
+      radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
+      
       RFstate = 0;
     }
   }
+*/
+
 }
  
