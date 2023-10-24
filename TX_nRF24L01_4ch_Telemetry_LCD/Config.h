@@ -55,7 +55,7 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 #define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
 #define TX_MONITORED_VOLTAGE  3.12 // Minimum battery voltage for alarm
-#define RX_MONITORED_VOLTAGE  3.29 // Minimum battery voltage for alarm
+#define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
 
 //*********************************************************************************************************************
 // setting the control range value
@@ -190,6 +190,7 @@ const char one_char_4[] PROGMEM = "=";
 const char one_char_5[] PROGMEM = ">";
 const char one_char_6[] PROGMEM = "/";
 const char one_char_7[] PROGMEM = "V";
+//const char one_char_8[] PROGMEM = ".";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -199,7 +200,8 @@ const char* const one_char[] PROGMEM = {
   one_char_4,
   one_char_5,
   one_char_6,
-  one_char_7
+  one_char_7,
+  //one_char_8
 };
 
 //*********************************************************************************************************************
@@ -211,7 +213,7 @@ const char message_2[] PROGMEM = "CALIBRATION";
 const char message_3[] PROGMEM = "Don't";
 const char message_4[] PROGMEM = "Move the Pots";
 const char message_5[] PROGMEM = "ERASE DATA";
-const char message_6[] PROGMEM = "LOW!";
+const char message_6[] PROGMEM = "low!";
 const char message_7[] PROGMEM = "MIN-MAX";
 const char message_8[] PROGMEM = "CENTER";
 const char message_9[] PROGMEM = "RX batt";

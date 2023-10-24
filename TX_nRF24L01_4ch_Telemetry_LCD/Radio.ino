@@ -36,8 +36,7 @@ rc_packet_size rc_packet;
 //*********************************************************************************************************************
 struct telemetry_packet_size
 {
-  byte rssi; // not used yet
-  //float batt_A1;
+  byte rssi;    // not used yet
   byte batt_A1;
   byte batt_A2; // not used yet
 };
@@ -47,13 +46,33 @@ telemetry_packet_size telemetry_packet;
 // RX battery status check. If the battery voltage RX is < RX_MONITORED_VOLTAGE = the TX display reports "RXbatt LOW!"
 // at 1s interval and the RX LED flashes at 0.5s interval
 //*********************************************************************************************************************
-unsigned long RXbattTime = 0;
-int RXbattstate;
+unsigned long RX_batt_time = 0;
+int RX_batt;
+bool RX_batt_state = 0;
 
 void RX_batt_check()
 {
+  RX_batt = ((telemetry_packet.batt_A1 * 4) / 2) - 70;
   
-  //telemetry_packet.batt_A1
+  
+  if (RX_batt <= RX_MONITORED_VOLTAGE * 100)
+  {
+    //RX_batt_state = 1;
+    
+    if (millis() - RX_batt_time > 1000) //1s
+    {
+      RX_batt_time = millis();
+      
+      if (RX_batt_state)
+      {
+        RX_batt_state = 0;
+      }
+      else
+      {
+        RX_batt_state = 1;
+      }
+    }
+  }
 
 
 
@@ -73,14 +92,9 @@ void RX_batt_check()
         RXbattstate = 1;
       }
     }
-  }
-  
-  if (telemetry_packet.batt_A1 >= RX_MONITORED_VOLTAGE)
-  {
-    RXbattstate = 0;
   }*/
   
-  //Serial.println(telemetry_packet.batt_A1);
+  //Serial.println(test2);
 }
 
 //*********************************************************************************************************************

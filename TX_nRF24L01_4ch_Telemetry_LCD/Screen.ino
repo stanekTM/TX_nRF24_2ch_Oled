@@ -104,23 +104,24 @@ void main_screen()
 
     // Print value RX battery
     u8g2.setCursor(46, 23);
-    u8g2.print(telemetry_packet.batt_A1);
+    u8g2.print(RX_batt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(64, 23);
+    u8g2.setCursor(70, 23);
     u8g2.print(char_buffer);
   }
   RF_state = 1;
   
   
-  /*if (RXbattstate)
+  if (RX_batt_state)
   {
-    // Print "LOW!"
+    // Print "low!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
     u8g2.setCursor(46, 23);
     u8g2.print(msg_buffer);
-  }*/
+  }
+  RX_batt_state = 0;
   
   
   // Drawing only first 2 channels
