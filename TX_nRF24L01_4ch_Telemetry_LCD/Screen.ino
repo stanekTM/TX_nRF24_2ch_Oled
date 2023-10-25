@@ -65,11 +65,6 @@ void main_screen()
   u8g2.setCursor(32, 7);
   u8g2.print(modelActual + 1);
   
-  // Print ">"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-  u8g2.setCursor(43, 7);
-  u8g2.print(char_buffer);
-  
   // Print "MODEL NAME"
   u8g2.drawStr(50, 7, modelName);
   
@@ -114,13 +109,12 @@ void main_screen()
       // Print value RX battery
       u8g2.setCursor(46, 23);
       u8g2.print(rx_batt_volt);
+
+      // Print "V"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
+      u8g2.setCursor(65, 23);
+      u8g2.print(char_buffer);
     }
-    low_batt_detect = previous_state_batt;
-    
-    // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(70, 23);
-    u8g2.print(char_buffer);
   }
   rf_state = 1;
   

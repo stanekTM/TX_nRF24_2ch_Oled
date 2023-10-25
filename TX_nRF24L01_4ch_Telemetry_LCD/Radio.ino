@@ -55,7 +55,7 @@ unsigned long rx_batt_time = 0;
 void RX_batt_check()
 {
   rx_batt_volt = ((telemetry_packet.batt_A1 * 4) / 2) - 70;
-
+  
   low_batt_detect = rx_batt_volt <= (RX_MONITORED_VOLTAGE * 100);
   
   if (low_batt_detect)
@@ -78,7 +78,7 @@ void RX_batt_check()
   }
   low_batt_detect = previous_state_batt;
   
-  //Serial.println(rx_batt_volt);
+  //Serial.println(low_batt_detect);
 }
 
 //*********************************************************************************************************************
