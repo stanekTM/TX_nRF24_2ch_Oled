@@ -43,64 +43,48 @@ struct telemetry_packet_size
 telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
-// RX battery status check. If the battery voltage RX is < RX_MONITORED_VOLTAGE = the TX display reports "RXbatt LOW!"
-// at 1s interval and the RX LED flashes at 0.5s interval
+// RX battery status check.
+// If RX battery voltage < RX_MONITORED_VOLTAGE = TX display reports "RX batt low!" in an interval of 1s
 //*********************************************************************************************************************
-unsigned long RX_batt_time = 0;
-int RX_batt;
-bool RX_batt_state = 0;
+int rx_batt_volt;
+bool low_batt_detect = 0;
+bool previous_state_batt;
+bool rx_batt_state = 0;
+unsigned long rx_batt_time = 0;
 
 void RX_batt_check()
 {
-  RX_batt = ((telemetry_packet.batt_A1 * 4) / 2) - 70;
+  rx_batt_volt = ((telemetry_packet.batt_A1 * 4) / 2) - 70;
+
+  low_batt_detect = rx_batt_volt <= (RX_MONITORED_VOLTAGE * 100);
   
-  
-  if (RX_batt <= RX_MONITORED_VOLTAGE * 100)
+  if (low_batt_detect)
   {
-    //RX_batt_state = 1;
+    previous_state_batt = 1;
     
-    if (millis() - RX_batt_time > 1000) //1s
+    if (millis() - rx_batt_time > 1000) //1s
     {
-      RX_batt_time = millis();
+      rx_batt_time = millis();
       
-      if (RX_batt_state)
+      if (rx_batt_state)
       {
-        RX_batt_state = 0;
+        rx_batt_state = 0;
       }
       else
       {
-        RX_batt_state = 1;
+        rx_batt_state = 1;
       }
     }
   }
-
-
-
-
-  /*if (telemetry_packet.batt_A1 <= RX_MONITORED_VOLTAGE)
-  {
-    if (millis() - RXbattTime > 1000) //1s
-    {
-      RXbattTime = millis();
-      
-      if (RXbattstate)
-      {
-        RXbattstate = 0;
-      }
-      else
-      {
-        RXbattstate = 1;
-      }
-    }
-  }*/
+  low_batt_detect = previous_state_batt;
   
-  //Serial.println(test2);
+  //Serial.println(rx_batt_volt);
 }
 
 //*********************************************************************************************************************
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
-bool RF_state = 1;
+bool rf_state = 1;
 
 void send_and_receive_data()
 {
@@ -116,7 +100,7 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      RF_state = 0;
+      rf_state = 0;
       RX_batt_check();
     }
   }
@@ -128,7 +112,7 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      RFstate = 0;
+      rf_state = 0;
     }
   }
 */

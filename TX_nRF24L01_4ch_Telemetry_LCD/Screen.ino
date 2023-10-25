@@ -88,7 +88,7 @@ void main_screen()
   u8g2.drawVLine(127, 2, 3);          // Battery nipple plus pole
   
   
-  if (RF_state)
+  if (rf_state)
   {
     // Print "RX off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
@@ -101,27 +101,28 @@ void main_screen()
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
     u8g2.setCursor(0, 23);
     u8g2.print(msg_buffer);
-
-    // Print value RX battery
-    u8g2.setCursor(46, 23);
-    u8g2.print(RX_batt);
+    
+    if (rx_batt_state)
+    {
+      // Print "low!"
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
+      u8g2.setCursor(46, 23);
+      u8g2.print(msg_buffer);
+    }
+    else
+    {
+      // Print value RX battery
+      u8g2.setCursor(46, 23);
+      u8g2.print(rx_batt_volt);
+    }
+    low_batt_detect = previous_state_batt;
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
     u8g2.setCursor(70, 23);
     u8g2.print(char_buffer);
   }
-  RF_state = 1;
-  
-  
-  if (RX_batt_state)
-  {
-    // Print "low!"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-    u8g2.setCursor(46, 23);
-    u8g2.print(msg_buffer);
-  }
-  RX_batt_state = 0;
+  rf_state = 1;
   
   
   // Drawing only first 2 channels
