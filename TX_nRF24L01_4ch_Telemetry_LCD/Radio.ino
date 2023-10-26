@@ -46,7 +46,7 @@ telemetry_packet_size telemetry_packet;
 // RX battery status check.
 // If RX battery voltage < RX_MONITORED_VOLTAGE = TX display reports "RX batt low!" in an interval of 1s
 //*********************************************************************************************************************
-int rx_batt_volt;
+int rx_batt_volt = 0;
 bool low_batt_detect = 0;
 bool previous_state_batt;
 bool rx_batt_state = 0;
@@ -56,27 +56,20 @@ void RX_batt_check()
 {
   rx_batt_volt = ((telemetry_packet.batt_A1 * 4) / 2) - 70;
   
-  low_batt_detect = rx_batt_volt <= (RX_MONITORED_VOLTAGE * 100);
+  /*low_batt_detect = rx_batt_volt <= (RX_MONITORED_VOLTAGE * 100);
   
   if (low_batt_detect)
   {
     previous_state_batt = 1;
     
-    if (millis() - rx_batt_time > 1000) //1s
+    if ((millis() - rx_batt_time) > 1000) //1s
     {
       rx_batt_time = millis();
       
-      if (rx_batt_state)
-      {
-        rx_batt_state = 0;
-      }
-      else
-      {
-        rx_batt_state = 1;
-      }
+      rx_batt_state = !rx_batt_state;
     }
   }
-  low_batt_detect = previous_state_batt;
+  low_batt_detect = previous_state_batt;*/
   
   //Serial.println(low_batt_detect);
 }
@@ -84,7 +77,7 @@ void RX_batt_check()
 //*********************************************************************************************************************
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
-bool rf_state = 1;
+bool rf_off_state = 1;
 
 void send_and_receive_data()
 {
@@ -100,8 +93,7 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      rf_state = 0;
-      RX_batt_check();
+      rf_off_state = 0;
     }
   }
   
@@ -112,7 +104,7 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      rf_state = 0;
+      rf_off_state = 1;
     }
   }
 */

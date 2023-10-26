@@ -82,11 +82,11 @@ void loop()
     calibStatus = 0;
   }
   
-  //receive_time();
+  RX_batt_check();
   send_and_receive_data();
   
   TX_batt_check();         // Checking TX battery status
-
+  
   read_button_exit();      // Macro for read button status definitions
   read_pots();             // Macro for read pots, joysticks, values, applying calibration and rules
   select();                // Select screen, calibration, step control for channels/values
