@@ -55,6 +55,8 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 #define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
 #define TX_MONITORED_VOLTAGE  3.12 // Minimum battery voltage for alarm
+
+#define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
 #define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
 
 //*********************************************************************************************************************
