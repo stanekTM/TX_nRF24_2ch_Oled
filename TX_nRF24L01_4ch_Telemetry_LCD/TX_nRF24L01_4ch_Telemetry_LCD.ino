@@ -18,7 +18,7 @@
 //*********************************************************************************************************************
 void setup()
 {
-  Serial.begin(9600); // print value on a serial monitor
+  //Serial.begin(9600); // print value on a serial monitor
   
   //-----------------------------------------------------------------
   // Debouncing mechanical buttons
@@ -82,7 +82,7 @@ void loop()
     calibStatus = 0;
   }
   
-  RX_batt_check();
+
   send_and_receive_data();
   
   TX_batt_check();         // Checking TX battery status
