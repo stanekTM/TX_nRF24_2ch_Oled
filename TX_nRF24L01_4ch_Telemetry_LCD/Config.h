@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Version
 //*********************************************************************************************************************
-const char ver_str[] = "TX stanekTM v1.0";
+const char ver_str[] = "TX stanekTM v 1.0";
 
 //*********************************************************************************************************************
 // pins connecting
@@ -44,6 +44,15 @@ const byte address[] = "jirka";
 //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 #define RADIO_CHANNEL  76
 
+// this struct defines data, which are embedded inside the ACK payload
+struct telemetry_packet_size
+{
+  byte rssi;    // not used yet
+  byte batt_A1;
+  byte batt_A2; // not used yet
+};
+telemetry_packet_size telemetry_packet;
+
 //*********************************************************************************************************************
 // Config LCD display
 //*********************************************************************************************************************
@@ -54,7 +63,7 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 // Battery voltage settings TX/RX, minimum battery voltage for alarm
 //*********************************************************************************************************************
 #define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
-#define TX_MONITORED_VOLTAGE  3.12 // Minimum battery voltage for alarm
+#define TX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
 
 #define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
 #define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
@@ -207,10 +216,10 @@ const char* const one_char[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array text strings for screen messages "msg_buffer[10]"
+// Array text strings for screen messages "msg_buffer[11]"
 //*********************************************************************************************************************
 const char message_0[] PROGMEM = "SAVE DATA";
-const char message_1[] PROGMEM = "RX off!";
+const char message_1[] PROGMEM = "off!";
 const char message_2[] PROGMEM = "CALIBRATION";
 const char message_3[] PROGMEM = "Don't";
 const char message_4[] PROGMEM = "Move the Pots";
@@ -218,7 +227,8 @@ const char message_5[] PROGMEM = "ERASE DATA";
 const char message_6[] PROGMEM = "low!";
 const char message_7[] PROGMEM = "MIN-MAX";
 const char message_8[] PROGMEM = "CENTER";
-const char message_9[] PROGMEM = "RX batt";
+const char message_9[] PROGMEM = "RX";
+const char message_10[] PROGMEM = "TX";
 
 const char* const message[] PROGMEM = {
   message_0,
@@ -230,6 +240,7 @@ const char* const message[] PROGMEM = {
   message_6,
   message_7,
   message_8,
-  message_9
+  message_9,
+  message_10
 };
  

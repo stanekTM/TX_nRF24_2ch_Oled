@@ -121,7 +121,7 @@ void resetEeprom_screen()
 
     // Set memory buffer for text strings
     char name_buffer[13];
-    char msg_buffer[10];
+    char msg_buffer[11];
     char char_buffer[8];
     
     u8g2.firstPage(); do {

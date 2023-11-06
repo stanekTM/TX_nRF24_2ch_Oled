@@ -32,20 +32,9 @@ struct rc_packet_size
 rc_packet_size rc_packet;
 
 //*********************************************************************************************************************
-// this struct defines data, which are embedded inside the ACK payload
-//*********************************************************************************************************************
-struct telemetry_packet_size
-{
-  byte rssi;    // not used yet
-  byte batt_A1;
-  byte batt_A2; // not used yet
-};
-telemetry_packet_size telemetry_packet;
-
-//*********************************************************************************************************************
 // send and receive data **********************************************************************************************
 //*********************************************************************************************************************
-bool rf_off_state = 0;
+bool rf_state = 0;
 
 void send_and_receive_data()
 {
@@ -61,7 +50,7 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      rf_off_state = 1;
+      rf_state = 1;
       
       RX_batt_check();
     }
@@ -74,26 +63,10 @@ void send_and_receive_data()
     {
       radio.read(&telemetry_packet, sizeof(telemetry_packet_size));
       
-      rf_off_state = 1;
+      rf_state = 1;
     }
   }
 */
 
-}
-
-//*********************************************************************************************************************
-// RX battery status check.
-// If RX battery voltage < RX_MONITORED_VOLTAGE = TX display reports "RX batt low!" in an interval of 1s
-//*********************************************************************************************************************
-float rx_batt_volt;
-bool low_batt_detect = 0;
-
-void RX_batt_check()
-{
-  rx_batt_volt = telemetry_packet.batt_A1 * (RX_BATTERY_VOLTAGE / 255);
-  
-  low_batt_detect = rx_batt_volt <= RX_MONITORED_VOLTAGE;
-  
-  //Serial.println(rx_batt_volt);
 }
  

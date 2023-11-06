@@ -117,7 +117,7 @@ void Calibration()
 void calib_MinMax_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[10];
+  char msg_buffer[11];
   char name_buffer[13];
   char char_buffer[8];
 
@@ -196,7 +196,7 @@ void calib_MinMax_screen()
 void calib_center_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[10];
+  char msg_buffer[11];
   char name_buffer[13];
   char char_buffer[8];
   
@@ -266,7 +266,7 @@ void calib_center_screen()
 void calib_save_screen()
 {
   // Set memory buffer for text strings
-  char msg_buffer[10];
+  char msg_buffer[11];
 
   u8g2.firstPage(); do {
     

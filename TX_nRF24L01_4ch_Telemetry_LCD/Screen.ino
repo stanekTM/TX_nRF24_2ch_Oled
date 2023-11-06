@@ -46,7 +46,7 @@ void main_screen()
   // Set memory buffer for text strings
   char name_buffer[13];
   char char_buffer[8];
-  char msg_buffer[10];
+  char msg_buffer[11];
   char menu_buffer[7];
   
   //u8g2.firstPage(); do {
@@ -55,68 +55,80 @@ void main_screen()
   
   u8g2.setFont(u8g2_font_6x10_tr);
   
-
-  // Print "MODEL"
+  
+  // Print "MODEL" ************************************************
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-  u8g2.setCursor(0, 7);
+  u8g2.setCursor(0, 17);
   u8g2.print(name_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(32, 7);
+  u8g2.setCursor(32, 17);
   u8g2.print(modelActual + 1);
   
-  // Print "MODEL NAME"
-  u8g2.drawStr(50, 7, modelName);
   
-  // Print value TX battery
-  u8g2.setCursor(91, 7);
-  u8g2.print(val_TX_battery);
-  
-  // Print "V"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-  u8g2.setCursor(109, 7);
-  u8g2.print(char_buffer);
-  
-  // Battery symbol contruction
-  u8g2.drawFrame(116, 0, 11, 7);      // Battery box
-  u8g2.drawBox(116, 1, perc_batt, 5); // level bar
-  u8g2.drawVLine(127, 2, 3);          // Battery nipple plus pole
+  // Print "MODEL NAME" *********
+  u8g2.drawStr(48, 17, modelName);
   
   
-  if (rf_off_state)
+  // Print "TX" *********************************************
+  strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[10])));
+  u8g2.setCursor(0, 7);
+  u8g2.print(msg_buffer);
+  
+  if (tx_low_batt)
   {
-    // Print "RX batt"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
-    u8g2.setCursor(0, 23);
+    // Print "low!"
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
+    u8g2.setCursor(14, 7);
     u8g2.print(msg_buffer);
+  }
+  else
+  {
+    // Print TX battery voltage
+    u8g2.setCursor(14, 7);
+    u8g2.print(tx_batt_volt);
     
-    if (low_batt_detect)
+    // Print "V"
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
+    u8g2.setCursor(39, 7);
+    u8g2.print(char_buffer);
+  }
+  
+  
+  // Print "RX" ********************************************
+  strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
+  u8g2.setCursor(84, 7);
+  u8g2.print(msg_buffer);
+  
+  if (rf_state)
+  {
+    if (rx_low_batt)
     {
       // Print "low!"
      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-     u8g2.setCursor(46, 23);
+     u8g2.setCursor(98, 7);
      u8g2.print(msg_buffer);
     }
     else
     {
-    // Print value RX battery
-    u8g2.setCursor(46, 23);
+    // Print RX battery voltage
+    u8g2.setCursor(98, 7);
     u8g2.print(rx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(71, 23);
+    u8g2.setCursor(123, 7);
     u8g2.print(char_buffer);
     }
   }
   else
   {
-    // Print "RX off!"
+    // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
-    u8g2.setCursor(0, 23);
+    u8g2.setCursor(98, 7);
     u8g2.print(msg_buffer);
   }
-  rf_off_state = 0;
+  rf_state = 0;
   
   
   
@@ -232,19 +244,8 @@ void main_screen()
       u8g2.setCursor(66, 39 + i * 16);
       u8g2.print(subTrim[i]);
     }
-
-/*    
-      // SUB TRIM Box
-      u8g2.setFontMode(1);
-      u8g2.setDrawColor(2);
-      u8g2.drawBox(88, 11, 8, 18);
-
-      u8g2.setFontMode(0);
-      u8g2.setDrawColor(1);
-      u8g2.drawFrame(88, 11, 40, 18);
-*/
-
-
+    
+    
     // Drawing REV channel status for every channel
     if (bitRead(servoReverse, i) == 1)
     {
@@ -806,7 +807,7 @@ void save_model_screen()
   u8g2.firstPage(); do {
 
     // Set memory buffer for text strings
-    char msg_buffer[10];
+    char msg_buffer[11];
     char name_buffer[13];
 
     // Print "SAVE DATA"
