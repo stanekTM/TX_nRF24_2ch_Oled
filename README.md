@@ -1,5 +1,5 @@
 # RC TX nRF24L01 4ch
-Surface 4 channel RC transmitter nRF24L01 with ATmega328P/16Mhz, Arduino Nano or Pro Mini for cars, boats and robots. 
+Surface 4 channel RC transmitter nRF24L01 with ATmega328P/16Mhz, for cars, boats and robots. 
 It contains the telemetry of the monitored voltage RX displayed on the LCD display.
 
 Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) 
