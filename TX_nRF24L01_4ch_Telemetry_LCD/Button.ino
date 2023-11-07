@@ -6,7 +6,7 @@ unsigned long button_time = 0;
 
 unsigned char read_button()
 {
-  if (millis() - button_time > 150) //150ms
+  if (millis() - button_time > 200)
   {
     if (digitalRead(PIN_BUTTON_SELECT) == LOW)
     {
@@ -47,7 +47,7 @@ void read_button_exit()
       menuSubActual = 1;
       menuActual = 0;
       menuPage=0;
-
+      
       epaSelection = 0xFF;
       subTrimSelection = 0xFF;
       modelNameSelection = 0xFF;

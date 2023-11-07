@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Macro for buzzer beep battery alarm
 //*********************************************************************************************************************
-byte pulseBuzzer; // Sound pulse for battery alarm
+/*byte pulseBuzzer; // Sound pulse for battery alarm
 
 void beep()
 {
@@ -29,9 +29,9 @@ void beep()
   }
   
   pulseBuzzer++;
-
-/*
- // Another indication when an LED is used instead of a buzzer
+  
+ 
+  // Another indication when an LED is used instead of a buzzer
   if (pulseBuzzer < 5)
   {
     digitalWrite(PIN_BUZZER, HIGH);
@@ -45,8 +45,6 @@ void beep()
   {
     pulseBuzzer = 0;
   }
-  
   pulseBuzzer++;
-*/  
-}
+}*/
  

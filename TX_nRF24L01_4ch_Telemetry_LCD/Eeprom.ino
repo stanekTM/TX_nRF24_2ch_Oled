@@ -118,7 +118,7 @@ void resetEeprom_screen()
   if (digitalRead(PIN_BUTTON_EXIT) == LOW)
   {
     bool isWait = true;
-
+    
     // Set memory buffer for text strings
     char name_buffer[13];
     char msg_buffer[11];
@@ -135,27 +135,27 @@ void resetEeprom_screen()
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[0])));
       u8g2.setCursor(25, 40);
       u8g2.print(char_buffer);
-
+      
       // Print "="
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(32, 40);
       u8g2.print(char_buffer);
-
+      
       // Print "DOWN"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[5])));
       u8g2.setCursor(39, 40);
       u8g2.print(name_buffer);
-
+      
       // Print "N"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
       u8g2.setCursor(75, 40);
       u8g2.print(char_buffer);
-
+      
       // Print "="
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
       u8g2.setCursor(82, 40);
       u8g2.print(char_buffer);
-
+      
       // Print "UP"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
       u8g2.setCursor(89, 40);
@@ -171,7 +171,7 @@ void resetEeprom_screen()
         case 1:
         isWait = false;
         break;
-
+        
         // button DOWN
         case 3:
         isWait = false;
@@ -185,7 +185,7 @@ void resetEeprom_screen()
           strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
           u8g2.setCursor(35, 20);
           u8g2.print(msg_buffer);
-
+          
         } while (u8g2.nextPage());
         
         break;
@@ -204,7 +204,7 @@ void resetEeprom()
   
   // Writing default model[0]
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, 0);
-
+  
   // Start writing default values for every model memory bank
   for (int j = 0; j < MODELS; j++)
   {

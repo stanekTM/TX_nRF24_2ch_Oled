@@ -22,7 +22,7 @@ const char ver_str[] = "TX stanekTM v 1.0";
 #define PIN_BUTTON_EXIT    5 //for Exit
 
 //pin buzzer (buzzer with standalone sound generator)
-#define PIN_BUZZER         6
+//#define PIN_BUZZER         6
 
 //pins for nRF24L01
 #define PIN_CE             9
@@ -43,6 +43,17 @@ const byte address[] = "jirka";
 
 //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 #define RADIO_CHANNEL  76
+
+// this structure defines the sent data in bytes (structure size max. 32 bytes)
+struct rc_packet_size
+{
+  unsigned int ch1;
+  unsigned int ch2;
+  //unsigned int ch3;
+  //unsigned int ch4;
+  //unsigned int ch5;
+};
+rc_packet_size rc_packet;
 
 // this struct defines data, which are embedded inside the ACK payload
 struct telemetry_packet_size

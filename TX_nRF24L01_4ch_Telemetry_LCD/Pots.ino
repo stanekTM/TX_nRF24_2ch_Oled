@@ -19,19 +19,19 @@ void read_pots()
       // So, Longer side length is used for both side
       int gap = calibration[ch][1] - centerPos[ch];
       int gapTemp = centerPos[ch] - calibration[ch][0];
-
+      
       // Select longer side
       if (gap < gapTemp)
       {
         gap = gapTemp;
       }
-
+      
       // Calculate Center offset
       int centerOffset = POT_CENTER - centerPos[ch];
-
+      
       // Applying initial value with center offset
       pots[ch] = raw_pots[ch] + centerOffset;
-
+      
       // range out correction
       if (pots[ch] < calibration[ch][0] + centerOffset)
       {
@@ -54,10 +54,10 @@ void read_pots()
         epaVal_bwd = 500 - (500 * epa[2] / 100);
       }
       
-      unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[ch]; 
+      unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[ch];
       unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[ch];
       unsigned short trimServoMax = MAX_CONTROL_VAL - epaVal + subTrim[ch];
-
+      
       // Convert Analog Value to pots value
       if (pots[ch] < (POT_CENTER - deadBand))
       {
@@ -74,12 +74,15 @@ void read_pots()
           pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[ch]);
         }
       }
-      else if (pots[ch]  > (POT_CENTER + deadBand))
+      else if (pots[ch] > (POT_CENTER + deadBand))
       {
         pots_control_val = map(pots[ch], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
-        if (expo[ch] > 0) pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[ch]);
+        if (expo[ch] > 0)
+        {
+          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[ch]);
+        }
       }
       else
       {

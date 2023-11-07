@@ -30,31 +30,31 @@ void select()
       {
         draw_epa_screen();
       }
-
+      
       // Execute MODEL SELECTION task
       if (menuActual == 3)
       {
         draw_model_sel_screen();
       }
-
+      
       // Execute SAVE MODEL DATA task
       if (menuActual == 4)
       {
         save_model_screen();
       }
-
+      
       // Execute SUB TRIM task
       if (menuActual == 5)
       {
         draw_sub_trim_screen();
       }
-
+      
       // Execute MODEL NAME task
       if (menuActual == 6)
       {
         draw_model_name_screen();
       }
-
+      
       // Execute EXPO task
       if (menuActual == 7)
       {
@@ -62,7 +62,7 @@ void select()
       }
     }
   }
-
+  
   
   unsigned char pressedKey = read_button();
   
@@ -85,7 +85,7 @@ void select()
         screen--;
         menuActual--;
       }
-
+      
       // Options for each menu
       if (menuActual == 1)
       {
@@ -105,23 +105,23 @@ void select()
           epaSelection = menuSubActual - 1;
         }
       }
-
+      
       // MODEL SELECTION data
       if (menuActual == 3)
       {
         // Selection value for MODEL SELECTION
         modelActual = menuSubModel;
-
+        
         // Save data in eeprom
         EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
         storedDataEeprom(modelActual);
-
+        
         screen = 0;
         menuActual = 0;
-
+        
         delay(10);
       }
-
+      
       if (menuActual == 5)
       {
         // Selection value for SUB TRIM
@@ -147,7 +147,7 @@ void select()
           modelNameSelection = menuSubActual - 1;
         }
       }
-
+      
       if (menuActual == 7)
       {
         // Selection value for EXPO
