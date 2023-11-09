@@ -100,8 +100,10 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 unsigned short int pots_value[CHANNELS];     // pots value output array
 unsigned short int pots[CHANNELS];           // Input ADC data array
-unsigned short int calibration[CHANNELS][2]; // Min/Max value array for read channels and store calibration
+//unsigned short int calibration[CHANNELS][2]; // Min/Max value array for read channels and store calibration
+unsigned short int pot_calib_min[] = {0, 0, 0, 0};
 unsigned short int pot_calib_mid[] = {512, 512, 512, 512};
+unsigned short int pot_calib_max[] = {1023, 1023, 1023, 1023};
 
 //*********************************************************************************************************************
 // Servo management parameters

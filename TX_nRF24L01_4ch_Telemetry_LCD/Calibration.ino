@@ -7,8 +7,8 @@ void Calibration()
   // Setting default mid value reference for Min and Max calibration
   for (int ch = 0; ch < CHANNELS; ch++)
   {
-    calibration[ch][0] = POT_CENTER;
-    calibration[ch][1] = POT_CENTER;
+    pot_calib_min[ch] = POT_CENTER;
+    pot_calib_max[ch] = POT_CENTER;
   }
   
   while (calibStatus == 1)
@@ -22,15 +22,15 @@ void Calibration()
       raw_pots = analogRead(ch);
       
       // Get MIN values
-      if (raw_pots < calibration[ch][0])
+      if (raw_pots < pot_calib_min[ch])
       {
-        calibration[ch][0] = raw_pots;
+        pot_calib_min[ch] = raw_pots;
       }
       
       // Get MAX values
-      if (raw_pots > calibration[ch][1])
+      if (raw_pots > pot_calib_max[ch])
       {
-        calibration[ch][1] = raw_pots;
+        pot_calib_max[ch] = raw_pots;
       }
     }
     
@@ -87,11 +87,11 @@ void Calibration()
   {
     // Save MIN calibration values for channels
     posEeprom = 1000 + (ch * 4);
-    EEPROMUpdateInt(posEeprom, calibration[ch][0]);
+    EEPROMUpdateInt(posEeprom, pot_calib_min[ch]);
     
     // Save MAX calibration values for channels
     posEeprom += 2;
-    EEPROMUpdateInt(posEeprom, calibration[ch][1]);
+    EEPROMUpdateInt(posEeprom, pot_calib_max[ch]);
   }
   
   // Save CENTER calibration values from Eeprom

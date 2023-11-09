@@ -54,11 +54,11 @@ unsigned char storedDataEeprom(unsigned char mod)
   {
     // Read MIN calibration values for channels
     posEeprom = 1000 + (i * 4);
-    calibration[i][0] = EEPROMReadInt(posEeprom);
+    pot_calib_min[i] = EEPROMReadInt(posEeprom);
 
     // Read MAX calibration values for channels
     posEeprom += 2;
-    calibration[i][1] = EEPROMReadInt(posEeprom);
+    pot_calib_max[i] = EEPROMReadInt(posEeprom);
   }
 
   // Read CENTER calibration values from Eeprom

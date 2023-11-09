@@ -17,8 +17,8 @@ void read_pots()
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
       // So, Longer side length is used for both side
-      int gap = calibration[ch][1] - pot_calib_mid[ch];
-      int gapTemp = pot_calib_mid[ch] - calibration[ch][0];
+      int gap = pot_calib_max[ch] - pot_calib_mid[ch];
+      int gapTemp = pot_calib_mid[ch] - pot_calib_min[ch];
       
       // Select longer side
       if (gap < gapTemp)
@@ -26,15 +26,16 @@ void read_pots()
         gap = gapTemp;
       }
       
-      // range out correction
-      if (pots[ch] < calibration[ch][0])
+      // range out correction MIN
+      if (pots[ch] < pot_calib_min[ch])
       {
-        pots[ch] = calibration[ch][0];
+        pots[ch] = pot_calib_min[ch];
       }
       
-      if (pots[ch] > calibration[ch][1])
+      // MAX
+      if (pots[ch] > pot_calib_max[ch])
       {
-        pots[ch] = calibration[ch][1];
+        pots[ch] = pot_calib_max[ch];
       }
       
       // EPA
@@ -107,11 +108,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          pots_control_val = map(analogRead(2), calibration[ch][0], calibration[ch][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(2), calibration[ch][0], calibration[ch][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
       
@@ -120,11 +121,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          pots_control_val = map(analogRead(3), calibration[ch][0], calibration[ch][1], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(3), calibration[ch][0], calibration[ch][1], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          pots_control_val = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
     }
