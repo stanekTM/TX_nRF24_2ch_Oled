@@ -4,13 +4,6 @@
 //*********************************************************************************************************************
 void Calibration()
 {
-  // Setting default mid value reference for Min and Max calibration
-  for (int ch = 0; ch < CHANNELS; ch++)
-  {
-    pot_calib_min[ch] = POT_CENTER;
-    pot_calib_max[ch] = POT_CENTER;
-  }
-  
   while (calibStatus == 1)
   {
     // Reading MIN and MAX value for every channel
@@ -47,7 +40,7 @@ void Calibration()
   }
   calibStatus = 1;
   
-
+  
   // button UP not pressed check
   while (read_button() != 0)
   {

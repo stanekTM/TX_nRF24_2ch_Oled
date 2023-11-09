@@ -2,10 +2,9 @@
 //*********************************************************************************************************************
 // Macro for read pots, joysticks, values, applying calibration and rules
 //*********************************************************************************************************************
-int ch;
 void read_pots()
 {
-  for (ch = 0; ch < CHANNELS; ch++)
+  for (int ch = 0; ch < CHANNELS; ch++)
   {
     int pots_control_val = MID_CONTROL_VAL;
     
@@ -26,18 +25,20 @@ void read_pots()
         gap = gapTemp;
       }
       
-      // range out correction MIN
+
+      // MIN range correction
       if (pots[ch] < pot_calib_min[ch])
       {
         pots[ch] = pot_calib_min[ch];
       }
       
-      // MAX
+      // MAX range correction
       if (pots[ch] > pot_calib_max[ch])
       {
         pots[ch] = pot_calib_max[ch];
       }
       
+
       // EPA
       int epaVal = 0;
       int epaVal_bwd = 0;
@@ -48,6 +49,7 @@ void read_pots()
       {
         epaVal_bwd = 500 - (500 * epa[2] / 100);
       }
+      
       
       unsigned short trimServoMid = MID_CONTROL_VAL + subTrim[ch];
       unsigned short trimServoMin = MIN_CONTROL_VAL + epaVal + subTrim[ch];
