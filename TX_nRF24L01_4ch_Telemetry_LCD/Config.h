@@ -89,17 +89,17 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 // Config global TX param
 //*********************************************************************************************************************
-#define CHANNELS             4   // Number of channels 4
-#define MODELS               10  // Total memory models 30
-#define NUM_BYTES_PER_MODEL  25  // Maximum bytes for data storage per model 32/25
-#define POT_CENTER           512 // Pot Center reference value
-#define EPA_MAX              100 // Maximum EPA value
+#define CHANNELS              4    // Number of channels 4
+#define MODELS                10   // Total memory models 30
+#define NUM_BYTES_PER_MODEL   25   // Maximum bytes for data storage per model 32/25
+unsigned short int deadBand = 10; // Deadband center stick value (25 suggested value) 30
 
 //*********************************************************************************************************************
 //
 //*********************************************************************************************************************
-unsigned short int pots_value[CHANNELS]; // pots value output array
+#define POT_CENTER 512                   // Pot Center reference value
 unsigned short int pots[CHANNELS];       // Input ADC data array
+unsigned short int pots_value[CHANNELS]; // pots value output array
 unsigned short int pot_calib_min[] = {0, 0, 0, 0};
 unsigned short int pot_calib_mid[] = {512, 512, 512, 512};
 unsigned short int pot_calib_max[] = {1023, 1023, 1023, 1023};
@@ -107,14 +107,14 @@ unsigned short int pot_calib_max[] = {1023, 1023, 1023, 1023};
 //*********************************************************************************************************************
 // Servo management parameters
 //*********************************************************************************************************************
+#define EPA_MAX 100                         // Maximum EPA value
+unsigned char epa[3];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
 unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 unsigned char servoReverse;                 // Reading bit status
-unsigned char epa[3];                       // EPA value array
 unsigned char expo[2];                      // EXPO value array
 short subTrim[2];                           // SUB TRIM channel array
-unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value) 30
 
 //*********************************************************************************************************************
 // MODEL NAME

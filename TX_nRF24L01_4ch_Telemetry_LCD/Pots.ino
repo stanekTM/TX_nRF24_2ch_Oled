@@ -6,7 +6,7 @@ void read_pots()
 {
   for (int ch = 0; ch < CHANNELS; ch++)
   {
-    int pots_control_val = MID_CONTROL_VAL;
+    int value_pots = MID_CONTROL_VAL;
     
     pots[ch] = analogRead(ch);
     
@@ -63,44 +63,44 @@ void read_pots()
           trimServoMin = MIN_CONTROL_VAL + epaVal_bwd + subTrim[ch];
         }
         
-        pots_control_val = map(pots[ch], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
+        value_pots = map(pots[ch], POT_CENTER - gap, POT_CENTER - deadBand, trimServoMin, trimServoMid);
         
         // EXPO
         if (expo[ch] > 0)
         {
-          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMin, expo[ch]);
+          value_pots = calc_expo(trimServoMid, value_pots, trimServoMin, expo[ch]);
         }
       }
       else if (pots[ch] > (POT_CENTER + deadBand))
       {
-        pots_control_val = map(pots[ch], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
+        value_pots = map(pots[ch], POT_CENTER + deadBand, POT_CENTER + gap - 1, trimServoMid, trimServoMax);
         
         // EXPO
         if (expo[ch] > 0)
         {
-          pots_control_val = calc_expo(trimServoMid, pots_control_val, trimServoMax, expo[ch]);
+          value_pots = calc_expo(trimServoMid, value_pots, trimServoMax, expo[ch]);
         }
       }
       else
       {
-        pots_control_val = trimServoMid;
+        value_pots = trimServoMid;
       }
       
       // Check Servo Reversing and applying Reverse value if necessary
       if (bitRead(servoReverse, ch) == 1)
       {
-        pots_control_val = MAX_CONTROL_VAL - pots_control_val + MIN_CONTROL_VAL;
+        value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
       }
       
       //Min Max Validation
-      if (pots_control_val < MIN_CONTROL_VAL)
+      if (value_pots < MIN_CONTROL_VAL)
       {
-        pots_control_val = MIN_CONTROL_VAL;
+        value_pots = MIN_CONTROL_VAL;
       }
       
-      if (pots_control_val > MAX_CONTROL_VAL)
+      if (value_pots > MAX_CONTROL_VAL)
       {
-        pots_control_val = MAX_CONTROL_VAL;
+        value_pots = MAX_CONTROL_VAL;
       }
     }
     else
@@ -110,11 +110,11 @@ void read_pots()
       {
         if (bitRead(servoReverse, 2) == 1)
         {
-          pots_control_val = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          value_pots = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          value_pots = map(analogRead(2), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
       
@@ -123,16 +123,16 @@ void read_pots()
       {
         if (bitRead(servoReverse, 3) == 1)
         {
-          pots_control_val = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
+          value_pots = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MAX_CONTROL_VAL, MIN_CONTROL_VAL);
         }
         else
         {
-          pots_control_val = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
+          value_pots = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
     }
     
-    pots_value[ch] = pots_control_val;
+    pots_value[ch] = value_pots;
   }
 }
  
