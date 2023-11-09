@@ -9,7 +9,7 @@ void read_pots()
   {
     int pots_control_val = MID_CONTROL_VAL;
     
-    raw_pots[ch] = analogRead(ch);
+    pots[ch] = analogRead(ch);
     
     // only for throttle and steering ch
     if (ch < 2)
@@ -17,8 +17,8 @@ void read_pots()
       // Applying calibration mapping
       // In case of surface TX, Left and Right rotation rate should be same.
       // So, Longer side length is used for both side
-      int gap = calibration[ch][1] - centerPos[ch];
-      int gapTemp = centerPos[ch] - calibration[ch][0];
+      int gap = calibration[ch][1] - pot_calib_mid[ch];
+      int gapTemp = pot_calib_mid[ch] - calibration[ch][0];
       
       // Select longer side
       if (gap < gapTemp)
@@ -26,21 +26,15 @@ void read_pots()
         gap = gapTemp;
       }
       
-      // Calculate Center offset
-      int centerOffset = POT_CENTER - centerPos[ch];
-      
-      // Applying initial value with center offset
-      pots[ch] = raw_pots[ch] + centerOffset;
-      
       // range out correction
-      if (pots[ch] < calibration[ch][0] + centerOffset)
+      if (pots[ch] < calibration[ch][0])
       {
-        pots[ch] = calibration[ch][0] + centerOffset;
+        pots[ch] = calibration[ch][0];
       }
       
-      if (pots[ch] > calibration[ch][1] + centerOffset)
+      if (pots[ch] > calibration[ch][1])
       {
-        pots[ch] = calibration[ch][1] + centerOffset;
+        pots[ch] = calibration[ch][1];
       }
       
       // EPA

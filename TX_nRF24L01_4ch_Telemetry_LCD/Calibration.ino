@@ -45,28 +45,22 @@ void Calibration()
       calibStatus = 0;
     }
   }
-  
   calibStatus = 1;
   
+
   // button UP not pressed check
   while (read_button() != 0)
   {
     delay(10);
   }
   
-  // Setting default mid value reference for CENTER calibration
-  // only for throttle and steering
-  for (int ch = 0; ch < 2; ch++)
-  {
-    centerPos[ch] = POT_CENTER;
-  }
   
   while (calibStatus == 1)
   {
     for (int ch = 0; ch < 2; ch++)
     {
       // Get value from every ADC ports
-      centerPos[ch] = analogRead(ch);
+      pot_calib_mid[ch] = analogRead(ch);
     }
     
     // Print calibration "CENTER" real time channels
@@ -105,7 +99,7 @@ void Calibration()
   {
     // Save CENTER calibration values for channels
     posEeprom = 1016 + (ch * 2);
-    EEPROMUpdateInt(posEeprom, centerPos[ch]);
+    EEPROMUpdateInt(posEeprom, pot_calib_mid[ch]);
   }
   
   delay(2000); // Screen message for 2sec

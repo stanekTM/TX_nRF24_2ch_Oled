@@ -66,7 +66,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   {
     // Read CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
-    centerPos[i] = EEPROMReadInt(posEeprom);
+    pot_calib_mid[i] = EEPROMReadInt(posEeprom);
   }
   return mod;
 }
