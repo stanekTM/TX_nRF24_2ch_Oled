@@ -89,10 +89,10 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 // Config global TX param
 //*********************************************************************************************************************
-#define CHANNELS              4    // Number of channels 4
-#define MODELS                10   // Total memory models 30
-#define NUM_BYTES_PER_MODEL   25   // Maximum bytes for data storage per model 32/25
-unsigned short int deadBand = 10; // Deadband center stick value (25 suggested value) 30
+#define CHANNELS                 4    // Number of channels 4
+#define MODELS                   10   // Total memory models 30
+#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32/25
+#define ACTUAL_MODEL_EEPROM_ADDR 1023
 
 //*********************************************************************************************************************
 //
@@ -107,6 +107,7 @@ unsigned short int pot_calib_max[] = {1023, 1023, 1023, 1023};
 //*********************************************************************************************************************
 // Servo management parameters
 //*********************************************************************************************************************
+unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value) 30
 #define EPA_MAX 100                         // Maximum EPA value
 unsigned char epa[3];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
@@ -126,13 +127,6 @@ unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selecti
 // Checking conditions control status for switch and calibration
 //*********************************************************************************************************************
 bool calibStatus = 1; // Checking status to enter in calibration procedure
-bool battStatus  = 1;
-bool exitStatus  = 1;
-
-//*********************************************************************************************************************
-//
-//*********************************************************************************************************************
-#define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //*********************************************************************************************************************
 // Menu management variables
@@ -171,8 +165,8 @@ const char* const menu_name[] PROGMEM = {
 //*********************************************************************************************************************
 // Array text strings (short) for Channel/Pots names, status, model for all screens "name_buffer[13]"
 //*********************************************************************************************************************
-const char channel_name_0[] PROGMEM = "STR";
-const char channel_name_1[] PROGMEM = "THR";
+const char channel_name_0[] PROGMEM = "CH1";
+const char channel_name_1[] PROGMEM = "CH2";
 const char channel_name_2[] PROGMEM = "CH3";
 const char channel_name_3[] PROGMEM = "CH4";
 const char channel_name_4[] PROGMEM = "UP";

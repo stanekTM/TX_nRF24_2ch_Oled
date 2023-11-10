@@ -216,7 +216,7 @@ void main_screen()
     }
     
     
-    // Print channel items name "STR and THR"
+    // Print channel items name "CH1 and CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(0, 39 + i * 16);
     u8g2.print(name_buffer);
@@ -273,7 +273,7 @@ void main_screen()
   
   
   // Drawing CH3 and CH4    
-  for (int i = 2; i < CHANNELS; i++)
+  /*for (int i = 2; i < CHANNELS; i++)
   {
     // Print "CH3 and CH4"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
@@ -294,7 +294,7 @@ void main_screen()
       u8g2.setCursor(114, 3 + i * 8);
       u8g2.print(name_buffer);
     } 
-  }
+  }*/
   // End drawing CH3 and CH4
   
   //} while (u8g2.nextPage());
@@ -484,7 +484,7 @@ void servo_dir_screen()
     }
     
     
-    // Print channel items name "STR, THR, CH3, CH4"
+    // Print channel items name "CH1, CH2, CH3, CH4"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(12, 20 + i * 13);
     u8g2.print(name_buffer);
@@ -493,7 +493,7 @@ void servo_dir_screen()
     // Drawing dynamic graphics items
     u8g2.drawHLine(72, 20 + i * 13, 45);
     u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 74, 114) - 1, 18 + (i * 13), 3, 2);   
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 74, 114) - 1, 18 + (i * 13), 3, 2);
   }
   // End drawing only first 4 channels
   
@@ -551,10 +551,10 @@ void epa_screen()
   // Print EPA channels list
   for (int i = 0; i < 3; i++)
   {
-    // Print channel items name "STR, THR"
+    // Print channel items name "CH1, CH2"
     if (i > 1)
     {
-      // Print "THR"
+      // Print "CH2"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     }
     else
@@ -891,7 +891,7 @@ void sub_trim_screen()
   // Print SUB TRIM channels list
   for (int i = 0; i < 2; i++)
   {
-    // Print channel items name "STR, THR"
+    // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(name_buffer);
@@ -1080,7 +1080,7 @@ void expo_screen()
   // Print EXPO channels list
   for (int i = 0; i < 2; i++)
   {
-    // Print channel items name "STR, THR"
+    // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(10, 20 + i * 13);
     u8g2.print(name_buffer);

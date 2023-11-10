@@ -10,7 +10,7 @@ void read_pots()
     
     pots[ch] = analogRead(ch);
     
-    // only for throttle and steering ch
+    // only for CH1 "steering" and CH2 "throttle"
     if (ch < 2)
     {
       // Applying calibration mapping
@@ -103,7 +103,7 @@ void read_pots()
         value_pots = MAX_CONTROL_VAL;
       }
     }
-    else
+    /*else
     {
       // mapping pot value CH3
       if (ch == 2)
@@ -130,7 +130,7 @@ void read_pots()
           value_pots = map(analogRead(3), pot_calib_min[ch], pot_calib_max[ch], MIN_CONTROL_VAL, MAX_CONTROL_VAL);
         }
       }
-    }
+    }*/
     
     pots_value[ch] = value_pots;
   }

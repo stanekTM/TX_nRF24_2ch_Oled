@@ -34,6 +34,8 @@ unsigned char read_button()
 //*********************************************************************************************************************
 void read_button_exit()
 {
+  bool exitStatus  = 1;
+  
   // excute only one time after button EXIT is up
   if (exitStatus == 1 && digitalRead(PIN_BUTTON_EXIT) == LOW)
   {

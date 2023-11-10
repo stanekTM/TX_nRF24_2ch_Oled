@@ -126,14 +126,14 @@ void calib_MinMax_screen()
     u8g2.drawHLine(0, 8, 128);
     u8g2.drawVLine(64, 10, 30);
     
-    // Print "STR" and value
+    // Print "CH1" and value
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
     u8g2.setCursor(5, 20);
     u8g2.print(name_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
     
-    // Print "THR" and value
+    // Print "CH2" and value
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
     u8g2.print(name_buffer);
@@ -205,14 +205,14 @@ void calib_center_screen()
     u8g2.drawHLine(0, 8, 128);
     u8g2.drawVLine(64, 10, 30);
     
-    // Print "STR" and value
+    // Print "CH1" and value
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
     u8g2.setCursor(5, 20);
     u8g2.print(name_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
     
-    // Print "THR" and value
+    // Print "CH2" and value
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
     u8g2.setCursor(70, 20);
     u8g2.print(name_buffer);
