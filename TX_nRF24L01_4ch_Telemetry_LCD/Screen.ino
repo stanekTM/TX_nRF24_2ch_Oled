@@ -58,16 +58,15 @@ void main_screen()
   
   // Print "MODEL" ************************************************
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-  u8g2.setCursor(0, 17);
+  u8g2.setCursor(0, 22);
   u8g2.print(name_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(32, 17);
+  u8g2.setCursor(32, 22);
   u8g2.print(modelActual + 1);
   
-  
-  // Print "MODEL NAME" *********
-  u8g2.drawStr(48, 17, modelName);
+  // Print "MODEL NAME"
+  u8g2.drawStr(48, 22, modelName);
   
   
   // Print "TX" *********************************************
@@ -132,22 +131,22 @@ void main_screen()
   
   
   
-  // Drawing only first 2 channels
+  // Drawing only first 2 channels ***************************************
   u8g2.setFont(u8g2_font_5x7_tr);
   
   for (int i = 0; i < 2; i++)
   {
+    // Draw boxes/frames for every channel
+    u8g2.drawFrame(13, 40 + (i * 16), 102, 8); //13, 40 + (i * 16), 102, 8
+
     // Drawing vertical middle/center separation line
-    u8g2.drawVLine(64, 38 + (i * 16), 9);
+    u8g2.drawVLine(64, 38 + (i * 16), 9); //64, 38 + (i * 16), 9
     
     // Define value bar reference
     unsigned int valBar;
     
     // Value bars subdivision (pots value / 50)
     valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
-    
-    // Draw boxes/frames for every channel
-    u8g2.drawFrame(13, 40 + (i * 16), 102, 8);
     
     // Drawing cursor in every channel bar
     if (valBar < 50)
@@ -170,6 +169,7 @@ void main_screen()
       subTrimVal = -subTrimVal;
     }
     
+
     // EPA
     unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
@@ -188,7 +188,7 @@ void main_screen()
     }
     
     //64 - 1 = 63
-    minMaxValid = 63 - (50 * epa_1 / 100) + subTrimVal; //113 - 63 = 50
+    minMaxValid = 63 - (50 * (epa_1 / 100)) + subTrimVal; //113 - 63 = 50
     
     if (minMaxValid < 13)
     {
@@ -201,8 +201,8 @@ void main_screen()
       u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
     }
     
-
-    minMaxValid = 64 + (50 * epa_2 / 100) + subTrimVal; //114 - 64 = 50
+    
+    minMaxValid = 64 + (50 * (epa_2 / 100)) + subTrimVal; //114 - 64 = 50
     
     if (minMaxValid < 14)
     {
@@ -218,30 +218,20 @@ void main_screen()
     
     // Print channel items name "CH1 and CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(0, 39 + i * 16);
+    u8g2.setCursor(0, 39 + (i * 16));
     u8g2.print(name_buffer);
     
     
     if (subTrim[i] > 0)
     {
-      // Print "TRIM"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[7])));
-      u8g2.setCursor(44, 39 + i * 16);
-      u8g2.print(name_buffer);
-          
-      // Print SUB TRIM value
-      u8g2.setCursor(66, 39 + i * 16);
+      // Print sub trim value
+      u8g2.setCursor(66, 39 + (i * 16));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] < 0)
     {
-      // Print "TRIM"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[7])));
-      u8g2.setCursor(44, 39 + i * 16);
-      u8g2.print(name_buffer);
-            
-      // Print SUB TRIM value
-      u8g2.setCursor(66, 39 + i * 16);
+      // Print sub trim value
+      u8g2.setCursor(66, 39 + (i * 16));
       u8g2.print(subTrim[i]);
     }
     
@@ -251,7 +241,7 @@ void main_screen()
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(23, 39 + i * 16);
+      u8g2.setCursor(23, 39 + (i * 16));
       u8g2.print(name_buffer);
     }
     
@@ -261,11 +251,11 @@ void main_screen()
     {
       // Print "EXPO"
       strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
-      u8g2.setCursor(102, 39 + i * 16);
+      u8g2.setCursor(102, 39 + (i * 16));
       u8g2.print(menu_buffer);
-
-      // Print EXPO value
-      u8g2.setCursor(124, 39 + i * 16);
+      
+      // Print expo value
+      u8g2.setCursor(124, 39 + (i * 16));
       u8g2.print(expo[i]);
     }
   }
@@ -277,21 +267,22 @@ void main_screen()
   {
     // Print "CH3 and CH4"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(81, 3 + i * 8);
+    u8g2.setCursor(81, 3 + (i * 8));
     u8g2.print(name_buffer);
-
+    
     // Print CH3 and CH4 value in %
     unsigned int value[i];
+    
     value[i] = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
-    u8g2.setCursor(98, 3 + i * 8);
+    u8g2.setCursor(98, 3 + (i * 8));
     u8g2.print(value[i]);
-      
+    
     // Drawing REV channel status for every channel
     if (bitRead(servoReverse, i) == 1)
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(114, 3 + i * 8);
+      u8g2.setCursor(114, 3 + (i * 8));
       u8g2.print(name_buffer);
     } 
   }*/
