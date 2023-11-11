@@ -15,7 +15,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   
   // Define start position for Eeprom read (25 * [0,1,2,3,4])
   eepromBase = NUM_BYTES_PER_MODEL * mod;
-
+  
   unsigned int eepromPos = eepromBase;
   
   // read MODEL NAME
@@ -26,29 +26,29 @@ unsigned char storedDataEeprom(unsigned char mod)
   
   // Read SERVO DIRECTION from first position
   servoReverse = EEPROM.read(eepromPos++);
-
+  
   // Read SUB TRIM offset values for selected model
   for (int i = 0; i < 2; i++)
   {
     subTrim[i] = EEPROMReadInt(eepromPos);
     eepromPos += 2;
   }
-
+  
   // Read EPA values after first position
   for (int i = 0; i < 3; i++)
   {
     epa[i] = EEPROM.read(eepromPos++);
   }
-
+  
   // Read EXPO values after first position
   for (int i = 0; i < 2; i++)
   {
     expo[i] = EEPROM.read(eepromPos++);
   } 
-
+  
   // Read MIN, MAX, CENTER values in Eeprom
   unsigned int posEeprom;
-
+  
   // Read MIN and MAX calibration values from Eeprom
   for (int i = 0; i < CHANNELS; i++)
   {
@@ -60,7 +60,7 @@ unsigned char storedDataEeprom(unsigned char mod)
     posEeprom += 2;
     pot_calib_max[i] = EEPROMReadInt(posEeprom);
   }
-
+  
   // Read CENTER calibration values from Eeprom
   for (int i = 0; i < 2; i++)
   {
@@ -91,7 +91,7 @@ int EEPROMReadInt(int p_address)
   // Read a 16 bit value in Eeprom
   byte Byte1 = EEPROM.read(p_address);
   byte Byte2 = EEPROM.read(p_address + 1);
-
+  
   long firstTwoBytes = ((Byte1 << 0) & 0xFF) + ((Byte2 << 8) & 0xFF00);
   
   return (firstTwoBytes);
@@ -103,7 +103,7 @@ void EEPROMUpdateInt(int p_address, int p_value)
   // Write a 16bit value in Eeprom
   byte Byte1 = ((p_value >> 0) & 0xFF);
   byte Byte2 = ((p_value >> 8) & 0xFF);
-
+  
   EEPROM.update(p_address, Byte1);
   EEPROM.update(p_address + 1, Byte2);
 }

@@ -25,7 +25,7 @@ void read_pots()
         gap = gapTemp;
       }
       
-
+      
       // MIN range correction
       if (pots[ch] < pot_calib_min[ch])
       {
@@ -38,7 +38,7 @@ void read_pots()
         pots[ch] = pot_calib_max[ch];
       }
       
-
+      
       // EPA
       int epaVal = 0;
       int epaVal_bwd = 0;

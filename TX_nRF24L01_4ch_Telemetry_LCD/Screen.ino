@@ -224,13 +224,13 @@ void main_screen()
     
     if (subTrim[i] > 0)
     {
-      // Print sub trim value
+      // Print SUB TRIM value
       u8g2.setCursor(66, 39 + (i * 16));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] < 0)
     {
-      // Print sub trim value
+      // Print SUB TRIM value
       u8g2.setCursor(66, 39 + (i * 16));
       u8g2.print(subTrim[i]);
     }
@@ -254,7 +254,7 @@ void main_screen()
       u8g2.setCursor(102, 39 + (i * 16));
       u8g2.print(menu_buffer);
       
-      // Print expo value
+      // Print EXPO value
       u8g2.setCursor(124, 39 + (i * 16));
       u8g2.print(expo[i]);
     }
@@ -580,12 +580,12 @@ void epa_screen()
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
-      
+        
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(59, 20 + i * 13);
         u8g2.print(char_buffer);
-
+        
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(85, 20 + i * 13);
@@ -823,7 +823,7 @@ void save_model_screen()
     
   } while (u8g2.nextPage());
   
-  delay(1000); // Screen message for 2sec
+  delay(1000); // Screen message for 1sec
   
   screen--;
   menuActual = 0;

@@ -107,7 +107,7 @@ unsigned short int pot_calib_max[] = {1023, 1023, 1023, 1023};
 //*********************************************************************************************************************
 // Servo management parameters
 //*********************************************************************************************************************
-unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value) 30
+unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value)
 #define EPA_MAX 100                         // Maximum EPA value
 unsigned char epa[3];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
