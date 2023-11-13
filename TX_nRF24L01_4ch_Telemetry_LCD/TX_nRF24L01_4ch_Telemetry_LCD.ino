@@ -18,7 +18,7 @@
 //*********************************************************************************************************************
 void setup()
 {
-  //Serial.begin(9600); // print value on a serial monitor
+  Serial.begin(9600); // print value on a serial monitor
   
   //-----------------------------------------------------------------
   // Debouncing mechanical buttons
@@ -45,10 +45,15 @@ void setup()
   // SERVO DIRECTION bit mask: 0 Normal, 1 Reverse
   servoReverse = 0b00000000;
   
-  // EPA and SUB TRIM default values (only for first two channels)
+  // EPA default values
+  for (int i = 0; i < 4; i++)
+  {
+    epa[i] = EPA_MAX;
+  }
+  
+  // SUB TRIM default values
   for (int i = 0; i < 2; i++)
   {
-    epa[i] = 100;
     subTrim[i] = 0;
   }
   

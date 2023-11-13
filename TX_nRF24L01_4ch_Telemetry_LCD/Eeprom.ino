@@ -35,7 +35,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   }
   
   // Read EPA values after first position
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 4; i++)
   {
     epa[i] = EEPROM.read(eepromPos++);
   }
@@ -230,7 +230,7 @@ void resetEeprom()
     
     // Writing EPA values for every channels in every model memory bank
     // Writing values will start after first address of start position
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
       // Writing default EPA for channels
       EEPROM.update(eepromPos++, 100);

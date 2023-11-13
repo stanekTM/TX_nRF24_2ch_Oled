@@ -163,7 +163,7 @@ void select()
     }
   }
   
-  // MIN step control for selecting channels/values (button DOWN)
+  // min step control for selecting channels/values (button DOWN)
   if (pressedKey == 3)
   {
     switch (menuActual)
@@ -173,8 +173,8 @@ void select()
       // Initial value for EPA selection value
       if (epaSelection == 0xFF)
       {
-        // Only first 3 values
-        if (menuSubActual < 3)
+        // Only first 4 values
+        if (menuSubActual < 4) //3*
         {
           menuSubActual++;
           
@@ -189,7 +189,7 @@ void select()
         // EPA step control for changing selected channel value(DOWN)
         if ((epaSelection % 1) == 0) //% 2
         {
-          // Define Min for EPA value
+          // Define min for EPA value
           if (epa[epaSelection / 1] > 0) //2
           {
             // Define step value
@@ -237,7 +237,7 @@ void select()
         if ((subTrimSelection % 1)  == 0)
         {
           // Define Min SUB TRIM value
-          if (subTrim[subTrimSelection / 1] > POT_CENTER * -1)
+          if (subTrim[subTrimSelection / 1] > SUB_TRIM_MAX * -1)
           {
             // Define step value
             subTrim[subTrimSelection / 1] -= 1;
@@ -315,7 +315,7 @@ void select()
   }
   
   //************************************************************
-  // MAX step control for selecting channels/values (button UP)
+  // max step control for selecting channels/values (button UP)
   //************************************************************
   if (pressedKey == 1)
   {
@@ -344,7 +344,7 @@ void select()
         // Step control for changing selected channel value UP
         if ((epaSelection % 1) == 0)
         {
-          // Define Max for EPA value
+          // Define max for EPA value
           if (epa[epaSelection / 1] < EPA_MAX)
           {
             // Define step value
@@ -397,7 +397,7 @@ void select()
         if ((subTrimSelection % 1) == 0 )
         {
           // Define max value for SUB TRIM
-          if ((subTrim[subTrimSelection / 1]) < POT_CENTER)
+          if ((subTrim[subTrimSelection / 1]) < SUB_TRIM_MAX)
           {
             // Define step value
             subTrim[subTrimSelection / 1] += 1;

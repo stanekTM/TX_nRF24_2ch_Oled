@@ -169,21 +169,21 @@ void main_screen()
       subTrimVal = -subTrimVal;
     }
     
-
+    
     // EPA
     unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
     short epa_2 = epa[i];
-    
+    //Serial.println(epa[i]);
     if (i == 1)
     {
       if (bitRead(servoReverse, i) == 1)
       {
-        epa_2 = epa[2];
+        epa_2 = epa[2]; //2*
       }
       else
       {
-        epa_1 = epa[2];
+        epa_1 = epa[2]; //2*
       }
     }
     
@@ -540,10 +540,10 @@ void epa_screen()
   unsigned char counterTemp = 0;
   
   // Print EPA channels list
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 4; i++)
   {
     // Print channel items name "CH1, CH2"
-    if (i > 1)
+    if (i > 0) //1*
     {
       // Print "CH2"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
@@ -781,12 +781,12 @@ void save_model_screen()
   }
 
   // Save EPA data
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 4; i++)
   {
     EEPROM.update(eepromPos, epa[i]);
     eepromPos++;
   }
-
+  
   // Save EXPO data
   for (int i = 0; i < 2; i++)
   {
