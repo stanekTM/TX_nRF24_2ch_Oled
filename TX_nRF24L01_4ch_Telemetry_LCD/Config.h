@@ -91,7 +91,7 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 //*********************************************************************************************************************
 #define CHANNELS                 2    // Number of channels
 #define MODELS                   10   // Total memory models 30
-#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32/25
+#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32
 #define ACTUAL_MODEL_EEPROM_ADDR 1023
 
 //*********************************************************************************************************************

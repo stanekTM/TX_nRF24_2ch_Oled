@@ -86,7 +86,7 @@ void read_pots()
     
     
     pots_value[ch] = value_pots;
-    //Serial.println(pots_value[1]);
+    //Serial.println(pots_value[0]);
   }
 }
  

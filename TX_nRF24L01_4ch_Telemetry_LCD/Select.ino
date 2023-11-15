@@ -174,7 +174,7 @@ void select()
       if (epaSelection == 0xFF)
       {
         // Only first 4 values
-        if (menuSubActual < 4) //3*
+        if (menuSubActual < 4)
         {
           menuSubActual++;
           
@@ -187,13 +187,13 @@ void select()
       else
       {
         // EPA step control for changing selected channel value(DOWN)
-        if ((epaSelection % 1) == 0) //% 2
+        if ((epaSelection % 1) == 0)
         {
           // Define min for EPA value
-          if (epa[epaSelection / 1] > 0) //2
+          if (epa[epaSelection / 1] > 0)
           {
             // Define step value
-            epa[epaSelection / 1]--; //2
+            epa[epaSelection / 1]--;
           }
         }
       }

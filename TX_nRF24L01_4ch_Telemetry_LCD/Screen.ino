@@ -475,7 +475,7 @@ void servo_dir_screen()
     }
     
     
-    // Print channel items name "CH1, CH2, CH3, CH4"
+    // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
     u8g2.setCursor(12, 20 + i * 13);
     u8g2.print(name_buffer);
@@ -504,8 +504,8 @@ void draw_epa_screen()
   {
     u8g2.firstPage();
     is_next_page = 1;
-  } 
-
+  }
+  
   // draw our screen
   epa_screen();
   
@@ -536,45 +536,47 @@ void epa_screen()
   
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
+
+
+  /*if (i == 1)
+  {
+    // Print "FWD"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[12])));
+    u8g2.setCursor(32, 20 + i * 13);
+    u8g2.print(name_buffer);
+  }
   
-  unsigned char counterTemp = 0;
+  if (i == 2)
+  {
+    // Print "BWD"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    u8g2.setCursor(32, 20 + i * 13);
+    u8g2.print(name_buffer);
+  }*/
   
-  // Print EPA channels list
-  for (int i = 0; i < 4; i++)
+  
+  //unsigned char section_epa;
+  int section_epa;
+  
+  for (int i = 0; i < 2; i++)
   {
     // Print channel items name "CH1, CH2"
-    if (i > 0) //1*
-    {
-      // Print "CH2"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
-    }
-    else
-    {
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    }
-    
-    u8g2.setCursor(10, 20 + i * 13);
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    u8g2.setCursor(53, 20 + i * 13);
     u8g2.print(name_buffer);
     
-    if (i == 1)
-    {
-      // Print "FWD"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[12])));
-      u8g2.setCursor(32, 20 + i * 13);
-      u8g2.print(name_buffer);
-    }
     
-    if (i == 2)
-    {
-      // Print "BWD"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
-      u8g2.setCursor(32, 20 + i * 13);
-      u8g2.print(name_buffer);
-    }
+    // Left Section Start
+    section_epa = i;
     
-    if (menuSubActual - 1 == counterTemp)
+    // EPA value
+    u8g2.setCursor(17, 20 + i * 13);
+    u8g2.print(epa[i]);
+    
+    
+    if (menuSubActual - 1 == section_epa)
     {
-      if (epaSelection == counterTemp)
+      if (epaSelection == section_epa)
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
@@ -583,12 +585,12 @@ void epa_screen()
         
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(59, 20 + i * 13);
+        u8g2.setCursor(10, 20 + i * 13);
         u8g2.print(char_buffer);
         
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(85, 20 + i * 13);
+        u8g2.setCursor(36, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else
@@ -599,12 +601,48 @@ void epa_screen()
         u8g2.print(char_buffer);
       }
     }
+    // Left Section End
+    
+    
+    // Right Section Start
+    section_epa = i + 2;
     
     // EPA value
-    u8g2.setCursor(66, 20 + i * 13);
-    u8g2.print(epa[i]);
+    u8g2.setCursor(100, 20);
+    u8g2.print(epa[2]);
     
-    counterTemp++;
+    u8g2.setCursor(100, 33);
+    u8g2.print(epa[3]);
+    
+    
+    if (menuSubActual - 1 == section_epa)
+    {
+      if (epaSelection == section_epa)
+      {
+        // Print ">"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+        u8g2.setCursor(91, 20 + i * 13);
+        u8g2.print(char_buffer);
+        
+        // Print "["
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
+        u8g2.setCursor(95, 20 + i * 13);
+        u8g2.print(char_buffer);
+        
+        // Print "]"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
+        u8g2.setCursor(124, 20 + i * 13);
+        u8g2.print(char_buffer);
+      }
+      else
+      {
+        // Print ">"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+        u8g2.setCursor(94, 20 + i * 13);
+        u8g2.print(char_buffer);
+      }
+    }
+    // Right Section End
   }
   
   //} while (u8g2.nextPage());
@@ -623,8 +661,8 @@ void draw_model_sel_screen()
   {
     u8g2.firstPage();
     is_next_page = 1;
-  } 
-
+  }
+  
   // draw our screen
   model_sel_screen();
   
@@ -632,7 +670,7 @@ void draw_model_sel_screen()
   if (u8g2.nextPage() == 0)
   {
     is_next_page = 0; // ensure, that first page is called
-  }  
+  }
 }
 
 //------------------------------------------------------------------------
@@ -641,7 +679,7 @@ void model_sel_screen()
   // Set memory buffer for text strings
   char char_buffer[8];
   char name_buffer[13];
-
+  
   // For Eeprom position reference
   unsigned int eepromPos;
   int tempModelNoIdx;
@@ -652,26 +690,26 @@ void model_sel_screen()
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 7);
   u8g2.print(name_buffer);
-
+  
   // Print number of which model in use
   u8g2.setCursor(32, 7);
   u8g2.print(modelActual + 1);
-
+  
   // Print "/"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(117, 7);
   u8g2.print(char_buffer);
-
+  
   u8g2.setCursor(111, 7);
   u8g2.print(modelPage + 1);
-
+  
   u8g2.setCursor(123, 7);
   u8g2.print((MODELS - 1) / 10 + 1);  // Total model Count / model count per page + 1
-
+  
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
-
-    
+  
+  
   // Print MODEL SELECTION list
   for (int i = 0; i < 5; i++)
   {
@@ -683,7 +721,7 @@ void model_sel_screen()
     
     u8g2.setCursor(8, 19 + i * 10);
     u8g2.print(tempModelNoIdx + 1);
-
+    
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
@@ -700,7 +738,7 @@ void model_sel_screen()
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(0, 19 + i * 10);
       u8g2.print(char_buffer);
-        
+      
       // Print "]"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(55, 19 + i * 10);
@@ -717,7 +755,7 @@ void model_sel_screen()
     
     u8g2.setCursor(75, 19 + i * 10);
     u8g2.print(tempModelNoIdx + 1);
-
+    
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
@@ -734,7 +772,7 @@ void model_sel_screen()
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(67, 19 + i * 10);
       u8g2.print(char_buffer);
-
+      
       // Print "]"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(122, 19 + i * 10);
@@ -843,8 +881,8 @@ void draw_sub_trim_screen()
   {
     u8g2.firstPage();
     is_next_page = 1;
-  } 
-
+  }
+  
   // draw our screen
   sub_trim_screen();
   
@@ -852,7 +890,7 @@ void draw_sub_trim_screen()
   if (u8g2.nextPage() == 0)
   {
     is_next_page = 0; // ensure, that first page is called
-  }  
+  }
 }
 
 //------------------------------------------------------------------------
@@ -872,13 +910,13 @@ void sub_trim_screen()
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
-
+  
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
-    
-
+  
+  
   unsigned char temp_Counter = 0;
-
+  
   // Print SUB TRIM channels list
   for (int i = 0; i < 2; i++)
   {
@@ -895,12 +933,12 @@ void sub_trim_screen()
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
-
+        
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(50, 20 + i * 13);
         u8g2.print(char_buffer);
-
+        
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(85, 20 + i * 13);
@@ -918,13 +956,13 @@ void sub_trim_screen()
     // Print SUB TRIM value
     u8g2.setCursor(58, 20 + i * 13);
     u8g2.print(subTrim[i]);
-
-
+    
+    
     // Print "PPM"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[10])));
     u8g2.setCursor(98, 20 + i * 13);
     u8g2.print(name_buffer);
-
+    
     temp_Counter++;
   }
   
