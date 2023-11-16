@@ -536,8 +536,8 @@ void epa_screen()
   
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
-
-
+  
+  
   /*if (i == 1)
   {
     // Print "FWD"
@@ -566,67 +566,54 @@ void epa_screen()
     u8g2.print(name_buffer);
     
     
-    // Left Section Start
+    // Left section start
     section_epa = i;
     
     // EPA value
-    u8g2.setCursor(17, 20 + i * 13);
-    u8g2.print(epa[i]);
+    u8g2.setCursor(8, 20 + i * 13);
+    u8g2.print(epa[section_epa]);
     
     
     if (menuSubActual - 1 == section_epa)
     {
       if (epaSelection == section_epa)
       {
-        // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(2, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(10, 20 + i * 13);
+        u8g2.setCursor(1, 20 + i * 13);
         u8g2.print(char_buffer);
         
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(36, 20 + i * 13);
+        u8g2.setCursor(27, 20 + i * 13);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(2, 20 + i * 13);
+        u8g2.setCursor(0, 20 + i * 13);
         u8g2.print(char_buffer);
       }
     }
-    // Left Section End
+    // Left section end
     
     
-    // Right Section Start
-    section_epa = i + 2;
+    // Right section start
+    section_epa = 2 + i;
     
     // EPA value
-    u8g2.setCursor(100, 20);
-    u8g2.print(epa[2]);
-    
-    u8g2.setCursor(100, 33);
-    u8g2.print(epa[3]);
+    u8g2.setCursor(105, 20 + i * 13);
+    u8g2.print(epa[section_epa]);
     
     
     if (menuSubActual - 1 == section_epa)
     {
       if (epaSelection == section_epa)
       {
-        // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(91, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(95, 20 + i * 13);
+        u8g2.setCursor(98, 20 + i * 13);
         u8g2.print(char_buffer);
         
         // Print "]"
@@ -638,11 +625,11 @@ void epa_screen()
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(94, 20 + i * 13);
+        u8g2.setCursor(97, 20 + i * 13);
         u8g2.print(char_buffer);
       }
     }
-    // Right Section End
+    // Right section end
   }
   
   //} while (u8g2.nextPage());

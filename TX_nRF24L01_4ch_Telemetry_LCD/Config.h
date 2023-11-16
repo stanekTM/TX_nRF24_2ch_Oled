@@ -5,9 +5,17 @@
 const char ver_str[] = "TX stanekTM v 1.0";
 
 //*********************************************************************************************************************
+// Battery voltage settings TX/RX, minimum battery voltage for alarm
+//*********************************************************************************************************************
+#define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
+#define TX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
+
+#define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
+#define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
+
+//*********************************************************************************************************************
 // pins connecting
 //*********************************************************************************************************************
-
 //joystick 1               A0
 //joystick 2               A1
 //potentiometer 3          A2
@@ -49,9 +57,6 @@ struct rc_packet_size
 {
   unsigned int ch1;
   unsigned int ch2;
-  //unsigned int ch3;
-  //unsigned int ch4;
-  //unsigned int ch5;
 };
 rc_packet_size rc_packet;
 
@@ -65,19 +70,12 @@ struct telemetry_packet_size
 telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
-// Config LCD display
+// Config global TX param
 //*********************************************************************************************************************
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C
-u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
-
-//*********************************************************************************************************************
-// Battery voltage settings TX/RX, minimum battery voltage for alarm
-//*********************************************************************************************************************
-#define TX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
-#define TX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
-
-#define RX_BATTERY_VOLTAGE    4.2  // Maximum battery voltage
-#define RX_MONITORED_VOLTAGE  3.35 // Minimum battery voltage for alarm
+#define CHANNELS                 2    // Number of channels
+#define MODELS                   10   // Total memory models 30
+#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32
+#define ACTUAL_MODEL_EEPROM_ADDR 1023
 
 //*********************************************************************************************************************
 // setting the control range value
@@ -87,18 +85,10 @@ u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2
 #define MAX_CONTROL_VAL  2000
 
 //*********************************************************************************************************************
-// Config global TX param
+// Value of pots
 //*********************************************************************************************************************
-#define CHANNELS                 2    // Number of channels
-#define MODELS                   10   // Total memory models 30
-#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32
-#define ACTUAL_MODEL_EEPROM_ADDR 1023
-
-//*********************************************************************************************************************
-//
-//*********************************************************************************************************************
-unsigned short int pots[CHANNELS];       // Input ADC data array
-unsigned short int pots_value[CHANNELS]; // pots value output array
+unsigned short int pots[CHANNELS];
+unsigned short int pots_value[CHANNELS];
 unsigned short int pot_calib_min[] = {0, 0};
 unsigned short int pot_calib_mid[] = {512, 512};
 unsigned short int pot_calib_max[] = {1023, 1023};
@@ -106,15 +96,18 @@ unsigned short int pot_calib_max[] = {1023, 1023};
 //*********************************************************************************************************************
 // Servo management parameters
 //*********************************************************************************************************************
-#define EPA_MAX 100                         // Maximum EPA value
-#define SUB_TRIM_MAX 500                    // Maximum SUB TRIM value
 unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value)
-short subTrim[2];                           // SUB TRIM channel array
+#define EPA_MAX 100                         // Maximum EPA value
 unsigned char epa[4];                       // EPA value array
-unsigned char expo[2];                      // EXPO value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
-unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
+
+#define SUB_TRIM_MAX 500                    // Maximum SUB TRIM value
+short subTrim[2];                           // SUB TRIM channel array
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
+
+unsigned char expo[2];                      // EXPO value array
+unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
+
 unsigned char servoReverse;                 // Reading bit status
 
 //*********************************************************************************************************************
@@ -139,6 +132,12 @@ unsigned char menuSubModel  = 0; // Added for Model Menu management
 unsigned char screen        = 0;
 unsigned char menuPage      = 0; // for Menu Page
 unsigned char modelPage     = 0; // for Model Page
+
+//*********************************************************************************************************************
+// Config LCD display
+//*********************************************************************************************************************
+U8G2_SSD1306_128X64_NONAME_1_HW_I2C
+u8g2(U8G2_R0, U8X8_PIN_NONE);       //https://github.com/olikraus/u8g2/wiki/u8g2setupcpp#constructor-name
 
 //*********************************************************************************************************************
 // Using PROGMEM for characters and text strings to save RAM memory

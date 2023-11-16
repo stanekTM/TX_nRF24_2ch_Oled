@@ -29,7 +29,6 @@ void setup()
   pinMode(PIN_BUTTON_DOWN, INPUT_PULLUP);
   pinMode(PIN_BUTTON_SELECT, INPUT_PULLUP);
   pinMode(PIN_BUTTON_EXIT, INPUT_PULLUP);
-//  pinMode(PIN_BUZZER, OUTPUT);
   
   // LCD config with U8G2 library display init (mandatory)
   //u8g2.setBusClock(800000); //max 800000

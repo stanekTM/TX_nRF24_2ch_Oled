@@ -33,13 +33,13 @@ void read_pots()
     if (ch == 0)
     {
       epaVal_bwd = 500 - (500 * epa[0] / EPA_MAX);
-          epaVal = 500 - (500 * epa[1] / EPA_MAX);
+          epaVal = 500 - (500 * epa[2] / EPA_MAX);
     }
     
     if (ch == 1)
     {
-      epaVal_bwd = 500 - (500 * epa[2] / EPA_MAX);
-          epaVal = 500 - (500 * epa[3] / EPA_MAX);
+          epaVal = 500 - (500 * epa[1] / EPA_MAX);
+      epaVal_bwd = 500 - (500 * epa[3] / EPA_MAX);
     }
     
     unsigned short mid_control_trim = MID_CONTROL_VAL + subTrim[ch];
@@ -86,7 +86,7 @@ void read_pots()
     
     
     pots_value[ch] = value_pots;
-    //Serial.println(pots_value[0]);
+    //Serial.println(pots_value[1]);
   }
 }
  
