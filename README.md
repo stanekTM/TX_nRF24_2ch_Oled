@@ -1,26 +1,23 @@
-# RC TX nRF24L01 4ch
-Surface 4 channel RC transmitter nRF24L01 with ATmega328P/16Mhz, for cars, boats and robots. 
+# RC TX nRF24L01 2ch
+Surface 2 channel RC transmitter nRF24L01 with ATmega328P/16Mhz, for cars, boats and robots. 
 It contains the telemetry of the monitored voltage RX displayed on the LCD display.
+
+This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
 
 Thanks to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) 
 and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch)
 for code inspiration.
 
-This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
-
 ## Arduino pins
 ```
 A0 - joystick 1
 A1 - joystick 2
-A2 - potentiometer 3
-A3 - potentiometer 4
 
 D2 - button Up/Prev
 D3 - button Down/Next
 D4 - button Menu/Select
 D5 - button Exit
 
-D6 - buzzer
 A7 - input TX battery
 
 LCD I2C:
