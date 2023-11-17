@@ -1,4 +1,4 @@
-# RC TX nRF24 Stanek 2ch Oled
+# RC TX Stanek nRF24 2ch Oled
 Simple surface 2 channel RC transmitter for cars, boats and robots.
 The hardware includes a cheap, years-proven nRF24L01+ transceiver and an ATmega328P processor with an OLED screen.
 
