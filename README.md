@@ -4,7 +4,7 @@ The hardware includes a cheap, years-proven nRF24L01+ transceiver and an ATmega3
 
 **It is written for Arduino and includes:**
 * Two proportional channels 1000us - 2000us
-* Adjustable left and right endpoints for each control channel 0 - 100%
+* Adjustable left and right endpoints control channel 0 - 100%
 * Adjustable subtrims -500us and +500us
 * Adjustable exponential curves in steps 1 - 9
 
