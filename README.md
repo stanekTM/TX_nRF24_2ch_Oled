@@ -3,7 +3,7 @@ Simple surface 2 channel RC transmitter for cars, boats and robots.
 The hardware includes a cheap, years-proven nRF24L01+ transceiver and an ATmega328P processor with an OLED screen.
 
 **It is written for Arduino and includes:**
-* Two proportional channels 1000us - 2000us
+* Two proportional control channels 1000us - 2000us
 * Adjustable left and right EPA endpoints for each control channel 0 - 100%
 * Adjustable sub trims for each control channel -500us and +500us
 * Adjustable exponential curves for each control channel in steps 1 - 9
