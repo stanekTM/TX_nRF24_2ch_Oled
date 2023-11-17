@@ -27,30 +27,30 @@ void read_pots()
     
     
     // EPA check
-    int epaVal = 0;
-    int epaVal_bwd = 0;
+    int left_epa_value = 0;
+    int right_epa_value = 0;
     
     if (ch == 0)
     {
-      epaVal_bwd = 500 - (500 * epa[0] / EPA_MAX);
-          epaVal = 500 - (500 * epa[2] / EPA_MAX);
+      right_epa_value = 500 - (500 * epa[0] / EPA_MAX);
+       left_epa_value = 500 - (500 * epa[2] / EPA_MAX);
     }
     
     if (ch == 1)
     {
-          epaVal = 500 - (500 * epa[1] / EPA_MAX);
-      epaVal_bwd = 500 - (500 * epa[3] / EPA_MAX);
+       left_epa_value = 500 - (500 * epa[1] / EPA_MAX);
+      right_epa_value = 500 - (500 * epa[3] / EPA_MAX);
     }
     
     unsigned short mid_control_trim = MID_CONTROL_VAL + subTrim[ch];
-    unsigned short min_control_trim = MIN_CONTROL_VAL + epaVal + subTrim[ch];
-    unsigned short max_control_trim = MAX_CONTROL_VAL - epaVal + subTrim[ch];
+    unsigned short min_control_trim = MIN_CONTROL_VAL + left_epa_value + subTrim[ch];
+    unsigned short max_control_trim = MAX_CONTROL_VAL - left_epa_value + subTrim[ch];
     
     
     // Convert analog value to pots value
     if (pots[ch] < (pot_calib_mid[ch] - deadBand))
     {
-      if (ch == 0) min_control_trim = MIN_CONTROL_VAL + epaVal_bwd + subTrim[ch];
+      if (ch == 0) min_control_trim = MIN_CONTROL_VAL + right_epa_value + subTrim[ch];
       
       //value_pots = map(pots[ch], pot_calib_mid[ch] - gap, pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
       value_pots = map(pots[ch], pot_calib_min[ch], pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
@@ -61,7 +61,7 @@ void read_pots()
     }
     else if (pots[ch] > (pot_calib_mid[ch] + deadBand))
     {
-      if (ch == 1) max_control_trim = MAX_CONTROL_VAL - epaVal_bwd + subTrim[ch];
+      if (ch == 1) max_control_trim = MAX_CONTROL_VAL - right_epa_value + subTrim[ch];
       
       //value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_mid[ch] + gap - 1, mid_control_trim, max_control_trim);
       value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_max[ch], mid_control_trim, max_control_trim);
@@ -79,14 +79,14 @@ void read_pots()
     // Check Servo Reversing and applying Reverse value if necessary
     if (bitRead(servoReverse, ch) == 1) value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
     
-    //Min Max Validation
+    //Min Max validation
     //if (value_pots < MIN_CONTROL_VAL) value_pots = MIN_CONTROL_VAL;
     
     //if (value_pots > MAX_CONTROL_VAL) value_pots = MAX_CONTROL_VAL;
     
     
     pots_value[ch] = value_pots;
-    //Serial.println(pots_value[1]);
+    Serial.println(pots_value[1]);
   }
 }
  
