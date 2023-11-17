@@ -5,6 +5,8 @@ The hardware includes a cheap, years-proven nRF24L01+ transceiver and an ATmega3
 **It is written for Arduino and includes:**
 * Two proportional channels 1000us - 2000us
 * Adjustable left and right EPA endpoints for each control channel 0 - 100%
+* Adjustable sub trims for each control channel -500us and +500us
+
 
 This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
 
