@@ -1,6 +1,7 @@
-# RC TX nRF24L01 2ch
-Surface 2 channel RC transmitter nRF24L01 with ATmega328P/16Mhz, for cars, boats and robots. 
-It contains the telemetry of the monitored voltage RX displayed on the LCD display.
+# RC TX nRF24 Stanek 2ch Oled
+Simple surface 2 channel RC transmitter for cars, boats and robots.
+The hardware includes a cheap, years-proven nRF24L01+ transceiver and an ATmega328P processor with an OLED screen.
+It is written for Arduino and includes:
 
 This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
 
