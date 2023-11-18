@@ -18,8 +18,6 @@ const char ver_str[] = "TX stanekTM v 1.0";
 //*********************************************************************************************************************
 //joystick 1               A0
 //joystick 2               A1
-//potentiometer 3          A2
-//potentiometer 4          A3
 
 //pin battery              A7
 
@@ -28,9 +26,6 @@ const char ver_str[] = "TX stanekTM v 1.0";
 #define PIN_BUTTON_DOWN    3 //for Down/Next functions
 #define PIN_BUTTON_SELECT  4 //for Menu/Select functions
 #define PIN_BUTTON_EXIT    5 //for Exit
-
-//pin buzzer (buzzer with standalone sound generator)
-//#define PIN_BUZZER         6
 
 //pins for nRF24L01
 #define PIN_CE             9
@@ -70,7 +65,7 @@ struct telemetry_packet_size
 telemetry_packet_size telemetry_packet;
 
 //*********************************************************************************************************************
-// Config global TX param
+// Configuration of the global TX parameter
 //*********************************************************************************************************************
 #define CHANNELS                 2    // Number of channels
 #define MODELS                   10   // Total memory models 30
@@ -78,14 +73,14 @@ telemetry_packet_size telemetry_packet;
 #define ACTUAL_MODEL_EEPROM_ADDR 1023
 
 //*********************************************************************************************************************
-// setting the control range value
+// Control range value
 //*********************************************************************************************************************
 #define MIN_CONTROL_VAL  1000
 #define MID_CONTROL_VAL  1500
 #define MAX_CONTROL_VAL  2000
 
 //*********************************************************************************************************************
-// Value of pots
+// Parameters of potentiometers
 //*********************************************************************************************************************
 unsigned short int pots[CHANNELS];
 unsigned short int pots_value[CHANNELS];
@@ -94,7 +89,7 @@ unsigned short int pot_calib_mid[] = {512, 512};
 unsigned short int pot_calib_max[] = {1023, 1023};
 
 //*********************************************************************************************************************
-// Servo management parameters
+// PPM setting parameters
 //*********************************************************************************************************************
 unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value)
 #define EPA_MAX 100                         // Maximum EPA value
@@ -108,7 +103,7 @@ unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 unsigned char expo[2];                      // EXPO value array
 unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
 
-unsigned char servoReverse;                 // Reading bit status
+unsigned char reverse;                      // Reading bit status
 
 //*********************************************************************************************************************
 // MODEL NAME
@@ -117,7 +112,7 @@ char modelName[5];                       // MODEL NAME 5 char
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selection
 
 //*********************************************************************************************************************
-// Checking conditions control status for switch and calibration
+// Checking the status of the calibration switch
 //*********************************************************************************************************************
 bool calibStatus = 1; // Checking status to enter in calibration procedure
 
@@ -166,17 +161,17 @@ const char* const menu_name[] PROGMEM = {
 //*********************************************************************************************************************
 const char channel_name_0[] PROGMEM = "CH1";
 const char channel_name_1[] PROGMEM = "CH2";
-const char channel_name_2[] PROGMEM = "CH3";
-const char channel_name_3[] PROGMEM = "CH4";
+const char channel_name_2[] PROGMEM = "free";
+const char channel_name_3[] PROGMEM = "free";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
-const char channel_name_6[] PROGMEM = "BWD";
+const char channel_name_6[] PROGMEM = "free";
 const char channel_name_7[] PROGMEM = "TRIM";
 const char channel_name_8[] PROGMEM = "NOR";
 const char channel_name_9[] PROGMEM = "REV";
 const char channel_name_10[] PROGMEM = "PPM";
 const char channel_name_11[] PROGMEM = "model";
-const char channel_name_12[] PROGMEM = "FWD";
+const char channel_name_12[] PROGMEM = "free";
 
 const char* const channel_name[] PROGMEM = {
   channel_name_0,
@@ -205,7 +200,6 @@ const char one_char_4[] PROGMEM = "=";
 const char one_char_5[] PROGMEM = ">";
 const char one_char_6[] PROGMEM = "/";
 const char one_char_7[] PROGMEM = "V";
-//const char one_char_8[] PROGMEM = ".";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -215,8 +209,7 @@ const char* const one_char[] PROGMEM = {
   one_char_4,
   one_char_5,
   one_char_6,
-  one_char_7,
-  //one_char_8
+  one_char_7
 };
 
 //*********************************************************************************************************************

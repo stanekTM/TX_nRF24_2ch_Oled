@@ -76,8 +76,8 @@ void read_pots()
     }
     
     
-    // Check Servo Reversing and applying Reverse value if necessary
-    if (bitRead(servoReverse, ch) == 1) value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
+    // Check reverse and applying reverse value if necessary
+    if (bitRead(reverse, ch) == 1) value_pots = MAX_CONTROL_VAL - value_pots + MIN_CONTROL_VAL;
     
     //Min Max validation
     //if (value_pots < MIN_CONTROL_VAL) value_pots = MIN_CONTROL_VAL;

@@ -24,8 +24,8 @@ unsigned char storedDataEeprom(unsigned char mod)
     modelName[i] = EEPROM.read(eepromPos++);
   }
   
-  // Read SERVO DIRECTION from first position
-  servoReverse = EEPROM.read(eepromPos++);
+  // Read REVERSE from first position
+  reverse = EEPROM.read(eepromPos++);
   
   // Read SUB TRIM offset values for selected model
   for (int i = 0; i < 2; i++)
@@ -199,7 +199,7 @@ void resetEeprom_screen()
 //*********************************************************************************************************************
 void resetEeprom()
 {
-  // For write SERVO DIRECTION and EPA position
+  // For write REVERE and EPA position
   unsigned int eepromPos;
   
   // Writing default model[0]
@@ -217,7 +217,7 @@ void resetEeprom()
       EEPROM.update(eepromPos++, 0x5f);
     }
     
-    // Writing SERVO DIRECTION default value in first address of start position
+    // Writing REVERSE default value in first address of start position
     EEPROM.update(eepromPos++, 0x00);
     
     // Writing SUB TRIM offset values for two channels in every model memory bank

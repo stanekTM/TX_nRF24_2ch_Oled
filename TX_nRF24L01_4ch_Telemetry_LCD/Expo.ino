@@ -1,38 +1,38 @@
 
 //*********************************************************************************************************************
 // EXPO Eq.
-// Y = X * EXPO((X-EndPoint)/dV))
-// proper dV value : 300 ~ 700
+// Y = X * EXPO((X-EndPoint)/dv))
+// proper dv value : 300 ~ 700
 //*********************************************************************************************************************
-int calc_expo(unsigned short trimServoMid, unsigned short value, unsigned short inMax, unsigned short dV)
+int calc_expo(unsigned short trim_ppm_mid, unsigned short value, unsigned short in_max, unsigned short dv)
 {
-  if (value == trimServoMid)
+  if (value == trim_ppm_mid)
   {
     return value;
   }
   
-  if (dV <= 0)
+  if (dv <= 0)
   {
     return value;
   }
   
-  dV = 9 - dV; //1 ~ 9 -> 9 ~ 1 conversion
+  dv = 9 - dv; //1 ~ 9 -> 9 ~ 1 conversion
   
-  dV = map(dV, 1, 9, 300, 700);
+  dv = map(dv, 1, 9, 300, 700);
   
-  if (value > trimServoMid)
+  if (value > trim_ppm_mid)
   {
-    value = (value - trimServoMid) * exp((((double)value - trimServoMid) - (inMax - trimServoMid)) / dV ) + trimServoMid;
+    value = (value - trim_ppm_mid) * exp((((double)value - trim_ppm_mid) - (in_max - trim_ppm_mid)) / dv) + trim_ppm_mid;
     return value;
   }
   else
   {
-    unsigned short trimVal = trimServoMid - MID_CONTROL_VAL;
-    value = (MAX_CONTROL_VAL + trimVal) - value + (MIN_CONTROL_VAL + trimVal);
-    inMax = (MAX_CONTROL_VAL + trimVal) - inMax + (MIN_CONTROL_VAL + trimVal);
+    unsigned short trim_value = trim_ppm_mid - MID_CONTROL_VAL;
+    value = (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
+    in_max = (MAX_CONTROL_VAL + trim_value) - in_max + (MIN_CONTROL_VAL + trim_value);
     
-    value = (value - trimServoMid) * exp((((double)value - trimServoMid) - (inMax - trimServoMid)) / dV ) + trimServoMid;
-    return (MAX_CONTROL_VAL + trimVal) - value + (MIN_CONTROL_VAL + trimVal);
+    value = (value - trim_ppm_mid) * exp((((double)value - trim_ppm_mid) - (in_max - trim_ppm_mid)) / dv) + trim_ppm_mid;
+    return (MAX_CONTROL_VAL + trim_value) - value + (MIN_CONTROL_VAL + trim_value);
   }
 }
  

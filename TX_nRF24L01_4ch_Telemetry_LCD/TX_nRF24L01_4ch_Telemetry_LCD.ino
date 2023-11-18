@@ -41,8 +41,8 @@ void setup()
   radio_setup();
   
   // Default state config parameters
-  // SERVO DIRECTION bit mask: 0 Normal, 1 Reverse
-  servoReverse = 0b00000000;
+  // REVERSE bit mask: 0 Normal, 1 Reverse
+  reverse = 0b00000000;
   
   // EPA default values
   for (int i = 0; i < 4; i++)

@@ -19,10 +19,10 @@ void select()
     
     if (screen == 2)
     {
-      // Execute SERVO DIRECTION task
+      // Execute REVERSE task
       if (menuActual == 1)
       {
-        draw_servo_dir_screen();
+        draw_reverse_screen();
       }
       
       // Execute EPA task
@@ -31,13 +31,13 @@ void select()
         draw_epa_screen();
       }
       
-      // Execute MODEL SELECTION task
+      // Execute MODEL SELECT task
       if (menuActual == 3)
       {
-        draw_model_sel_screen();
+        draw_model_select_screen();
       }
       
-      // Execute SAVE MODEL DATA task
+      // Execute SAVE MODEL task
       if (menuActual == 4)
       {
         save_model_screen();
@@ -89,8 +89,8 @@ void select()
       // Options for each menu
       if (menuActual == 1)
       {
-        // Selection value for SERVO DIRECTION
-        bitWrite(servoReverse, menuSubActual - 1, !bitRead(servoReverse, menuSubActual - 1));
+        // Selection value for REVERSE
+        bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
       }
       
       if (menuActual == 2)
@@ -106,10 +106,10 @@ void select()
         }
       }
       
-      // MODEL SELECTION data
+      // MODEL SELECT data
       if (menuActual == 3)
       {
-        // Selection value for MODEL SELECTION
+        // Selection value for MODEL SELECT
         modelActual = menuSubModel;
         
         // Save data in eeprom
@@ -199,7 +199,7 @@ void select()
       }
       break;
       
-      // MODEL SELECTION
+      // MODEL SELECT
       case 3:
       
       if (menuSubModel < MODELS - 1)
@@ -354,7 +354,7 @@ void select()
       }
       break;
       
-      // MODEL SELECTION
+      // MODEL SELECT
       case 3:
       
       if (menuSubModel > 0)

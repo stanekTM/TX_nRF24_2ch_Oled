@@ -163,8 +163,8 @@ void main_screen()
     
     subTrimVal = map(subTrim[i], 0, 500, 0, 50);
     
-    // Check Servo Reversing and applying Reverse value if necessary
-    if (bitRead(servoReverse, i) == 1)
+    // Check reverse and applying reverse value if necessary
+    if (bitRead(reverse, i) == 1)
     {
       subTrimVal = -subTrimVal;
     }
@@ -177,7 +177,7 @@ void main_screen()
     //Serial.println(epa[i]);
     if (i == 1)
     {
-      if (bitRead(servoReverse, i) == 1)
+      if (bitRead(reverse, i) == 1)
       {
         epa_2 = epa[2]; //2*
       }
@@ -236,8 +236,8 @@ void main_screen()
     }
     
     
-    // Drawing REV channel status for every channel
-    if (bitRead(servoReverse, i) == 1)
+    // Drawing REVERSE channel status for every channel
+    if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
@@ -261,32 +261,6 @@ void main_screen()
   }
   // End drawing only first 2 channels
   
-  
-  // Drawing CH3 and CH4    
-  /*for (int i = 2; i < CHANNELS; i++)
-  {
-    // Print "CH3 and CH4"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(81, 3 + (i * 8));
-    u8g2.print(name_buffer);
-    
-    // Print CH3 and CH4 value in %
-    unsigned int value[i];
-    
-    value[i] = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
-    u8g2.setCursor(98, 3 + (i * 8));
-    u8g2.print(value[i]);
-    
-    // Drawing REV channel status for every channel
-    if (bitRead(servoReverse, i) == 1)
-    {
-      // Print "REV"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(114, 3 + (i * 8));
-      u8g2.print(name_buffer);
-    } 
-  }*/
-  // End drawing CH3 and CH4
   
   //} while (u8g2.nextPage());
   
@@ -366,7 +340,7 @@ void menu_screen()
       break;
     }
 
-    // Print main menu items "SERVO DIRECTION, EPA, MODEL SELECTION, SAVE MODEL DATA, SUB TRIM, MODEL NAME, EXPO"
+    // Print main menu items "REVERSE, EPA, MODEL SELECT, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
     
     if (i + (5 * menuPage) == menuSubActual)
@@ -392,10 +366,10 @@ void menu_screen()
 }
 
 //*********************************************************************************************************************
-// Drawing SERVO DIRECTION screen display
+// Drawing REVERSE screen display
 //*********************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_servo_dir_screen()
+void draw_reverse_screen()
 {
   static uint8_t is_next_page = 0;
   
@@ -407,7 +381,7 @@ void draw_servo_dir_screen()
   }
 
   // draw our screen
-  servo_dir_screen();
+  reverse_screen();
   
   // call to next page
   if (u8g2.nextPage() == 0)
@@ -417,7 +391,7 @@ void draw_servo_dir_screen()
 }
 
 //------------------------------------------------------------------------
-void servo_dir_screen()
+void reverse_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
@@ -429,7 +403,7 @@ void servo_dir_screen()
   read_pots(); // Macro again for stable pots value
   
   
-  // Print "SERVO DIRECTION"
+  // Print "REVERSE"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
@@ -459,7 +433,7 @@ void servo_dir_screen()
     }
     
     
-    if (bitRead(servoReverse, i) == 1)
+    if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
@@ -636,10 +610,10 @@ void epa_screen()
 }
 
 //*********************************************************************************************************************
-// Drawing MODEL SELECTION screen display
+// Drawing MODEL SELECT screen display
 //*********************************************************************************************************************
 // this is the state machine, which will replace the do - while loop
-void draw_model_sel_screen()
+void draw_model_select_screen()
 {
   static uint8_t is_next_page = 0;
   
@@ -651,7 +625,7 @@ void draw_model_sel_screen()
   }
   
   // draw our screen
-  model_sel_screen();
+  model_select_screen();
   
   // call to next page
   if (u8g2.nextPage() == 0)
@@ -661,7 +635,7 @@ void draw_model_sel_screen()
 }
 
 //------------------------------------------------------------------------
-void model_sel_screen()
+void model_select_screen()
 {
   // Set memory buffer for text strings
   char char_buffer[8];
@@ -697,7 +671,7 @@ void model_sel_screen()
   u8g2.drawHLine(0, 8, 128);
   
   
-  // Print MODEL SELECTION list
+  // Print MODEL SELECT list
   for (int i = 0; i < 5; i++)
   {
     // Left Section Start
@@ -772,7 +746,7 @@ void model_sel_screen()
 }
 
 //*********************************************************************************************************************
-// Drawing SAVE MODEL DATA screen display
+// Drawing SAVE MODEL screen display
 //*********************************************************************************************************************
 void save_model_screen()
 {
@@ -785,7 +759,7 @@ void save_model_screen()
   // Save Actual Model data
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
 
-  // For write/Update SERVO DIRECTION and EPA position
+  // For write/Update REVERSE and EPA position
   unsigned int eepromPos = eepromBase;
 
   // Save MODEL NAME
@@ -794,8 +768,8 @@ void save_model_screen()
     EEPROM.update(eepromPos++, modelName[i]);
   }
 
-  // Save SERVO DIRECTION data
-  EEPROM.update(eepromPos++, servoReverse);
+  // Save REVERSE data
+  EEPROM.update(eepromPos++, reverse);
 
   // Save SUB TRIM center stick values for two channels in every model memory bank
   for (int i = 0; i < 2; i++)

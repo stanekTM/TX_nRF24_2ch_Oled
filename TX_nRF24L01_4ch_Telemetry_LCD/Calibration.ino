@@ -140,20 +140,6 @@ void calib_MinMax_screen()
     u8g2.setCursor(95, 20);
     u8g2.print(analogRead(1));
     
-    // Print "CH3" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[2])));
-    u8g2.setCursor(5, 35);
-    u8g2.print(name_buffer);
-    u8g2.setCursor(30, 35);
-    u8g2.print(analogRead(2));
-    
-    // Print "CH4" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[3])));
-    u8g2.setCursor(70, 35);
-    u8g2.print(name_buffer);
-    u8g2.setCursor(95, 35);
-    u8g2.print(analogRead(3));
-    
     // Print "Move the Pots"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[4])));
     u8g2.setCursor(2, 54);
