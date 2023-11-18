@@ -1,8 +1,13 @@
 # RC TX nRF24 2ch Oled
 Simple surface 2 channel RC transmitter for cars, boats and tanks.
+The code is written for Arduino and contains only the necessary functions of modern transmitters for DIY racing cars, where only the steering and throttle channel is enough without unnecessary functions.
 The hardware includes a low-cost nRF24L01+ transceiver and an ATmega328P processor with an OLED screen.
 
-**It is written for Arduino and includes:**
+This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
+
+Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch) for code inspiration.
+
+## The firmware includes
 * Two proportional channels 1000us - 2000us
 * Adjustable left and right endpoints 0 - 100%
 * Adjustable sub trims -500us and +500us
@@ -12,13 +17,6 @@ The hardware includes a low-cost nRF24L01+ transceiver and an ATmega328P process
 * Memory for ten models
 * Five character model name
 * RX voltage telemetry
-
-
-This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telemetry_Motor_Servo](https://github.com/stanekTM/RX_nRF24L01_Telemetry_Motor_Servo)
-
-Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) 
-and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch)
-for code inspiration.
 
 ## Arduino pins
 ```
