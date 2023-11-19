@@ -92,6 +92,13 @@ void select()
         // Selection value for REVERSE
         bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
       }
+      /*else
+      {
+        reverse = menuSubActual - 1;
+      }*/
+
+
+
       
       if (menuActual == 2)
       {

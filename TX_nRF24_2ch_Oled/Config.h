@@ -103,7 +103,7 @@ unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
 unsigned char expo[2];                      // EXPO value array
 unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
-
+//unsigned char reverseSelection = 0;
 unsigned char reverse;                      // Reading bit status
 
 //*********************************************************************************************************************
