@@ -10,7 +10,7 @@ Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](ht
 ## The firmware includes
 * Two proportional channels 1000us - 2000us
 * Adjustable left and right endpoints 0 - 100%
-* Adjustable sub trims -500us and +500us
+* Adjustable sub trims +-125us
 * Adjustable exponential curves in steps 1 - 9
 * Channel reverse
 * Calibration of potentiometers
