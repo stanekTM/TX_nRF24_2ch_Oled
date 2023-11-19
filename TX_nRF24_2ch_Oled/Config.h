@@ -96,7 +96,7 @@ unsigned short int deadBand = 10;           // Deadband center stick value (25 s
 unsigned char epa[4];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
 
-#define SUB_TRIM_MAX 500                    // Maximum SUB TRIM value
+#define SUB_TRIM_MAX 125                    // Maximum SUB TRIM value
 short subTrim[2];                           // SUB TRIM channel array
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
