@@ -13,11 +13,11 @@ void read_pots()
     // Applying calibration mapping
     // In case of surface TX, Left and Right rotation rate should be same
     // So, Longer side length is used for both side
-    int gap = pot_calib_max[ch] - pot_calib_mid[ch];
-    int gapTemp = pot_calib_mid[ch] - pot_calib_min[ch];
+    //int gap = pot_calib_max[ch] - pot_calib_mid[ch];
+    //int gapTemp = pot_calib_mid[ch] - pot_calib_min[ch];
     
     // Select longer side
-    if (gap < gapTemp) gap = gapTemp;
+    //if (gap < gapTemp) gap = gapTemp;
     
     // MIN range correction
     //if (pots[ch] < pot_calib_min[ch]) pots[ch] = pot_calib_min[ch];
@@ -43,14 +43,14 @@ void read_pots()
     }
     
     unsigned short mid_control_trim = MID_CONTROL_VAL + subTrim[ch];
-    unsigned short min_control_trim = MIN_CONTROL_VAL + left_epa_value + subTrim[ch];
-    unsigned short max_control_trim = MAX_CONTROL_VAL - left_epa_value + subTrim[ch];
+    unsigned short min_control_trim = MIN_CONTROL_VAL + left_epa_value;
+    unsigned short max_control_trim = MAX_CONTROL_VAL - left_epa_value;
     
     
     // Convert analog value to pots value
     if (pots[ch] < (pot_calib_mid[ch] - deadBand))
     {
-      if (ch == 0) min_control_trim = MIN_CONTROL_VAL + right_epa_value + subTrim[ch];
+      if (ch == 0) min_control_trim = MIN_CONTROL_VAL + right_epa_value;
       
       //value_pots = map(pots[ch], pot_calib_mid[ch] - gap, pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
       value_pots = map(pots[ch], pot_calib_min[ch], pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
@@ -61,7 +61,7 @@ void read_pots()
     }
     else if (pots[ch] > (pot_calib_mid[ch] + deadBand))
     {
-      if (ch == 1) max_control_trim = MAX_CONTROL_VAL - right_epa_value + subTrim[ch];
+      if (ch == 1) max_control_trim = MAX_CONTROL_VAL - right_epa_value;
       
       //value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_mid[ch] + gap - 1, mid_control_trim, max_control_trim);
       value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_max[ch], mid_control_trim, max_control_trim);
@@ -86,7 +86,7 @@ void read_pots()
     
     
     pots_value[ch] = value_pots;
-    Serial.println(pots_value[1]);
+    Serial.println(pots_value[0]);
   }
 }
  
