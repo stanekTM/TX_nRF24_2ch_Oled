@@ -161,7 +161,7 @@ void main_screen()
     
     unsigned short subTrimVal;
     
-    subTrimVal = map(subTrim[i], 0, 500, 0, 50);
+    subTrimVal = map(subTrim[i], 0, SUB_TRIM_MAX, 0, 50);
     
     // Check reverse and applying reverse value if necessary
     if (bitRead(reverse, i) == 1)
@@ -174,16 +174,16 @@ void main_screen()
     unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
     short epa_2 = epa[i];
-    //Serial.println(epa[i]);
+    
     if (i == 1)
     {
       if (bitRead(reverse, i) == 1)
       {
-        epa_2 = epa[2]; //2*
+        epa_2 = epa[2];
       }
       else
       {
-        epa_1 = epa[2]; //2*
+        epa_1 = epa[2];
       }
     }
     
@@ -411,7 +411,7 @@ void reverse_screen()
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
   
-  // Drawing only first 4 channels
+  // Drawing only first 2 channels
   for (int i = 0; i < CHANNELS; i++)
   {
     if (i == menuSubActual - 1)
@@ -460,7 +460,112 @@ void reverse_screen()
     u8g2.drawVLine(94, 20 + i * 13 - 4, 4);
     u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 74, 114) - 1, 18 + (i * 13), 3, 2);
   }
-  // End drawing only first 4 channels
+  // End drawing only first 2 channels
+  
+  //} while (u8g2.nextPage());
+}
+
+//*********************************************************************************************************************
+// Drawing SUB TRIM screen display
+//*********************************************************************************************************************
+// this is the state machine, which will replace the do - while loop
+void draw_sub_trim_screen()
+{
+  static uint8_t is_next_page = 0;
+  
+  // call to first page, if required
+  if (is_next_page == 0)
+  {
+    u8g2.firstPage();
+    is_next_page = 1;
+  }
+  
+  // draw our screen
+  sub_trim_screen();
+  
+  // call to next page
+  if (u8g2.nextPage() == 0)
+  {
+    is_next_page = 0; // ensure, that first page is called
+  }
+}
+
+//------------------------------------------------------------------------
+void sub_trim_screen()
+{
+  // Set memory buffer for text strings
+  char menu_buffer[7];
+  char name_buffer[13];
+  char char_buffer[8];
+  
+  //u8g2.firstPage(); do {
+  
+  read_pots(); // Macro again for stable pots value
+  
+  
+  // Print "SUB TRIM"
+  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
+  u8g2.setCursor(0, 7);
+  u8g2.print(menu_buffer);
+  
+  // Drawing horizontal line under header
+  u8g2.drawHLine(0, 8, 128);
+  
+  
+  unsigned char temp_Counter = 0;
+  
+  // Print SUB TRIM channels list
+  for (int i = 0; i < 2; i++)
+  {
+    // Print channel items name "CH1, CH2"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    u8g2.setCursor(8, 20 + i * 13);
+    u8g2.print(name_buffer);
+    
+    // Print SUB TRIM value
+    u8g2.setCursor(47, 20 + i * 13);
+    u8g2.print(subTrim[i]);
+    
+    // Print PPM value
+    u8g2.setCursor(92, 20 + i * 13);
+    u8g2.print(pots_value[i]);
+    
+    // Print "us"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    u8g2.setCursor(117, 20 + i * 13);
+    u8g2.print(name_buffer);
+    
+    
+    if (menuSubActual - 1 == temp_Counter)
+    {
+      if (subTrimSelection == temp_Counter)
+      {
+        // Print ">"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.print(char_buffer);
+        
+        // Print "["
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
+        u8g2.setCursor(41, 20 + i * 13);
+        u8g2.print(char_buffer);
+        
+        // Print "]"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
+        u8g2.setCursor(71, 20 + i * 13);
+        u8g2.print(char_buffer);
+      }
+      else
+      {
+        // Print ">"
+        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+        u8g2.setCursor(0, 20 + i * 13);
+        u8g2.print(char_buffer);
+      }
+    }
+    
+    temp_Counter++;
+  }
   
   //} while (u8g2.nextPage());
 }
@@ -827,107 +932,6 @@ void save_model_screen()
   screen--;
   menuActual = 0;
   menuSubActual = 4;
-}
-
-//*********************************************************************************************************************
-// Drawing SUB TRIM screen display
-//*********************************************************************************************************************
-// this is the state machine, which will replace the do - while loop
-void draw_sub_trim_screen()
-{
-  static uint8_t is_next_page = 0;
-  
-  // call to first page, if required
-  if (is_next_page == 0)
-  {
-    u8g2.firstPage();
-    is_next_page = 1;
-  }
-  
-  // draw our screen
-  sub_trim_screen();
-  
-  // call to next page
-  if (u8g2.nextPage() == 0)
-  {
-    is_next_page = 0; // ensure, that first page is called
-  }
-}
-
-//------------------------------------------------------------------------
-void sub_trim_screen()
-{
-  // Set memory buffer for text strings
-  char menu_buffer[7];
-  char name_buffer[13];
-  char char_buffer[8];
-  
-  //u8g2.firstPage(); do {
-  
-  read_pots(); // Macro again for stable pots value
-  
-  
-  // Print "SUB TRIM"
-  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[4])));
-  u8g2.setCursor(0, 7);
-  u8g2.print(menu_buffer);
-  
-  // Drawing horizontal line under header
-  u8g2.drawHLine(0, 8, 128);
-  
-  
-  unsigned char temp_Counter = 0;
-  
-  // Print SUB TRIM channels list
-  for (int i = 0; i < 2; i++)
-  {
-    // Print channel items name "CH1, CH2"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(10, 20 + i * 13);
-    u8g2.print(name_buffer);
-    
-    if (menuSubActual - 1 == temp_Counter)
-    {
-      if (subTrimSelection == temp_Counter)
-      {
-        // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(2, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
-        // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(50, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
-        // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(85, 20 + i * 13);
-        u8g2.print(char_buffer);
-      }
-      else
-      {
-        // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(2, 20 + i * 13);
-        u8g2.print(char_buffer);
-      }
-    }
-    
-    // Print SUB TRIM value
-    u8g2.setCursor(58, 20 + i * 13);
-    u8g2.print(subTrim[i]);
-    
-    
-    // Print "PPM"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[10])));
-    u8g2.setCursor(98, 20 + i * 13);
-    u8g2.print(name_buffer);
-    
-    temp_Counter++;
-  }
-  
-  //} while (u8g2.nextPage());
 }
 
 //*********************************************************************************************************************

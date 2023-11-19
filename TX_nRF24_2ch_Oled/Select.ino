@@ -234,7 +234,7 @@ void select()
       else
       {
         // SUB TRIM step control for changing selected channel value DOWN
-        if ((subTrimSelection % 1)  == 0)
+        if ((subTrimSelection % 1) == 0)
         {
           // Define Min SUB TRIM value
           if (subTrim[subTrimSelection / 1] > SUB_TRIM_MAX * -1)

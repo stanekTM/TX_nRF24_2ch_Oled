@@ -67,10 +67,10 @@ telemetry_packet_size telemetry_packet;
 //*********************************************************************************************************************
 // Configuration of the global TX parameter
 //*********************************************************************************************************************
-#define CHANNELS                 2    // Number of channels
-#define MODELS                   10   // Total memory models 30
-#define NUM_BYTES_PER_MODEL      25   // Maximum bytes for data storage per model 32
-#define ACTUAL_MODEL_EEPROM_ADDR 1023
+#define CHANNELS                  2    // Number of channels
+#define MODELS                    10   // Total memory models 30
+#define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model 32
+#define ACTUAL_MODEL_EEPROM_ADDR  1023
 
 //*********************************************************************************************************************
 // Control range value
@@ -91,12 +91,13 @@ unsigned short int pot_calib_max[] = {1023, 1023};
 //*********************************************************************************************************************
 // PPM setting parameters
 //*********************************************************************************************************************
-unsigned short int deadBand = 10;           // Deadband center stick value (25 suggested value)
-#define EPA_MAX 100                         // Maximum EPA value
+#define DEAD_ZONE  10                       // Dead zone bar center value of poor quality joysticks
+
+#define EPA_MAX  100                        // Maximum EPA value
 unsigned char epa[4];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
 
-#define SUB_TRIM_MAX 125                    // Maximum SUB TRIM value
+#define SUB_TRIM_MAX  125                   // Maximum SUB TRIM value
 short subTrim[2];                           // SUB TRIM channel array
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
@@ -165,11 +166,11 @@ const char channel_name_2[] PROGMEM = "free";
 const char channel_name_3[] PROGMEM = "free";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
-const char channel_name_6[] PROGMEM = "free";
+const char channel_name_6[] PROGMEM = "us";
 const char channel_name_7[] PROGMEM = "TRIM";
 const char channel_name_8[] PROGMEM = "NOR";
 const char channel_name_9[] PROGMEM = "REV";
-const char channel_name_10[] PROGMEM = "PPM";
+const char channel_name_10[] PROGMEM = "free";
 const char channel_name_11[] PROGMEM = "model";
 const char channel_name_12[] PROGMEM = "free";
 

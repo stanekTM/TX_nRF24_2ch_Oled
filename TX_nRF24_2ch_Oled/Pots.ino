@@ -10,15 +10,6 @@ void read_pots()
     
     pots[ch] = analogRead(ch);
     
-    // Applying calibration mapping
-    // In case of surface TX, Left and Right rotation rate should be same
-    // So, Longer side length is used for both side
-    //int gap = pot_calib_max[ch] - pot_calib_mid[ch];
-    //int gapTemp = pot_calib_mid[ch] - pot_calib_min[ch];
-    
-    // Select longer side
-    //if (gap < gapTemp) gap = gapTemp;
-    
     // MIN range correction
     //if (pots[ch] < pot_calib_min[ch]) pots[ch] = pot_calib_min[ch];
     
@@ -27,8 +18,8 @@ void read_pots()
     
     
     // EPA check
-    int left_epa_value = 0;
-    int right_epa_value = 0;
+    unsigned short left_epa_value = 0;
+    unsigned short right_epa_value = 0;
     
     if (ch == 0)
     {
@@ -48,23 +39,21 @@ void read_pots()
     
     
     // Convert analog value to pots value
-    if (pots[ch] < (pot_calib_mid[ch] - deadBand))
+    if (pots[ch] < (pot_calib_mid[ch] - DEAD_ZONE))
     {
       if (ch == 0) min_control_trim = MIN_CONTROL_VAL + right_epa_value;
       
-      //value_pots = map(pots[ch], pot_calib_mid[ch] - gap, pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
-      value_pots = map(pots[ch], pot_calib_min[ch], pot_calib_mid[ch] - deadBand, min_control_trim, mid_control_trim);
+      value_pots = map(pots[ch], pot_calib_min[ch], pot_calib_mid[ch] - DEAD_ZONE, min_control_trim, mid_control_trim);
       
       // EXPO
       if (expo[ch] > 0) value_pots = calc_expo(mid_control_trim, value_pots, min_control_trim, expo[ch]);
       
     }
-    else if (pots[ch] > (pot_calib_mid[ch] + deadBand))
+    else if (pots[ch] > (pot_calib_mid[ch] + DEAD_ZONE))
     {
       if (ch == 1) max_control_trim = MAX_CONTROL_VAL - right_epa_value;
       
-      //value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_mid[ch] + gap - 1, mid_control_trim, max_control_trim);
-      value_pots = map(pots[ch], pot_calib_mid[ch] + deadBand, pot_calib_max[ch], mid_control_trim, max_control_trim);
+      value_pots = map(pots[ch], pot_calib_mid[ch] + DEAD_ZONE, pot_calib_max[ch], mid_control_trim, max_control_trim);
       
       // EXPO
       if (expo[ch] > 0) value_pots = calc_expo(mid_control_trim, value_pots, max_control_trim, expo[ch]);
@@ -86,7 +75,8 @@ void read_pots()
     
     
     pots_value[ch] = value_pots;
-    Serial.println(pots_value[0]);
+
+    //Serial.println(pots_value[1]);
   }
 }
  
