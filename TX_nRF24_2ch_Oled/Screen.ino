@@ -350,7 +350,7 @@ void menu_screen()
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
       u8g2.setCursor(5, 9 + (i * 10));
       u8g2.print(char_buffer);
-
+      
       // Print main menu items
       u8g2.setCursor(14, 9 + (i * 10));
       u8g2.print(menu_buffer);
@@ -412,9 +412,7 @@ void reverse_screen()
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
   
-
-  unsigned char temp_Counter = 0;
-
+  
   // Drawing only first 2 channels
   for (int i = 0; i < CHANNELS; i++)
   {
@@ -423,7 +421,7 @@ void reverse_screen()
     u8g2.setCursor(12, 20 + i * 13);
     u8g2.print(name_buffer);
     
-
+    
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
@@ -445,56 +443,32 @@ void reverse_screen()
     u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 74, 114) - 1, 18 + (i * 13), 3, 2);
     
     
-    //if (menuSubActual - 1 == temp_Counter)
-    //{
-      //if (reverseSelection == temp_Counter)
-      //{
-
-
-    //if (i == menuSubActual - 1)
-    //{
-      //if (reverseSelection == i)
-      //{
-
-
-    //if (menuSubActual - 1 == i)
-    //{
-      //if (reverseSelection == i)
-      //{
-
-
+    if (menuSubActual - 1 == i)
+    {
+      // Print "["
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
+      u8g2.setCursor(5, 20 + i * 13);
+      u8g2.print(char_buffer);
       
-      if (i == menuSubActual - 1)
-      {
-        // Print "["
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(5, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
-        // Print "="
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
-        u8g2.setCursor(31, 20 + i * 13);
-        u8g2.print(char_buffer);
-        
-        // Print "]"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(57, 20 + i * 13);
-        u8g2.print(char_buffer);
-      }
-      /*else
-      {
-        // Print ">"
-        strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(0, 20 + i * 13);
-        u8g2.print(char_buffer);
-      }*/
+      // Print "="
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+      u8g2.setCursor(31, 20 + i * 13);
+      u8g2.print(char_buffer);
       
-      temp_Counter++;
-    //}
-    //temp_Counter++;
-
+      // Print "]"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
+      u8g2.setCursor(57, 20 + i * 13);
+      u8g2.print(char_buffer);
+    }
+    /*else
+    {
+      // Print ">"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+      u8g2.setCursor(0, 20 + i * 13);
+      u8g2.print(char_buffer);
+    }*/
+    
   }
-  
   // End drawing only first 2 channels
   
   //} while (u8g2.nextPage());

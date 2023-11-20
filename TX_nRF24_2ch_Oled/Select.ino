@@ -75,7 +75,7 @@ void select()
       menuActual = menuSubActual;
       menuSubActual = 1;
       menuSubModel = modelActual;
-      modelPage = (menuSubModel) / 10;
+      modelPage = menuSubModel / 10;
     }
     else
     {
@@ -86,23 +86,20 @@ void select()
         menuActual--;
       }
       
+      
+      //****************************************************************************
       // Options for each menu
+      //****************************************************************************
+      // Selection value for REVERSE
       if (menuActual == 1)
       {
-        // Selection value for REVERSE
         bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
       }
-      /*else
-      {
-        reverse = menuSubActual - 1;
-      }*/
-
-
-
       
+      
+      // Selection value for EPA
       if (menuActual == 2)
       {
-        // Selection value for EPA
         if (epaSelection != 0xFF)
         {
           epaSelection = 0xFF;
@@ -113,10 +110,10 @@ void select()
         }
       }
       
-      // MODEL SELECT data
+      
+      // Selection value for MODEL SELECT
       if (menuActual == 3)
       {
-        // Selection value for MODEL SELECT
         modelActual = menuSubModel;
         
         // Save data in eeprom
@@ -129,9 +126,10 @@ void select()
         delay(10);
       }
       
+      
+      // Selection value for SUB TRIM
       if (menuActual == 5)
       {
-        // Selection value for SUB TRIM
         if (subTrimSelection != 0xFF)
         {
           subTrimSelection = 0xFF;
@@ -142,9 +140,10 @@ void select()
         }
       }
       
+      
+      // Selection value for Set MODEL NAME
       if (menuActual == 6)
       {
-        // Selection value for Set MODEL NAME
         if (modelNameSelection != 0xFF)
         {
           modelNameSelection = 0xFF;
@@ -155,9 +154,10 @@ void select()
         }
       }
       
+      
+      // Selection value for EXPO
       if (menuActual == 7)
       {
-        // Selection value for EXPO
         if (expoSelection != 0xFF)
         {
           expoSelection = 0xFF;
@@ -170,11 +170,29 @@ void select()
     }
   }
   
-  // min step control for selecting channels/values (button DOWN)
+  
+  //**************************************************************
+  // Min step control for selecting channels/values (button DOWN)
+  //**************************************************************
   if (pressedKey == 3)
   {
     switch (menuActual)
     {
+      // REVERSE
+      case 1:
+      // Only first 2 channels
+      if (menuSubActual < 2)
+      {
+        menuSubActual++;
+         
+        if (screen == 0)
+        {
+          screen++;
+        }
+      }
+      break;
+      
+      
       // EPA
       case 2:
       // Initial value for EPA selection value
@@ -206,6 +224,7 @@ void select()
       }
       break;
       
+      
       // MODEL SELECT
       case 3:
       
@@ -221,9 +240,9 @@ void select()
       }
       break;
       
+      
       // SUB TRIM
       case 5:
-      
       // Initial value for SUB TRIM selection value
       if (subTrimSelection == 0xFF)
       {
@@ -253,9 +272,9 @@ void select()
       }
       break;
       
+      
       // MODEL NAME
       case 6:
-      
       // Initial value for MODEL NAME selection value
       if (modelNameSelection == 0xFF)
       {
@@ -280,9 +299,9 @@ void select()
       }
       break;
       
+      
       // EXPO
       case 7:
-      
       // Initial value for EXPO selection value
       if (expoSelection == 0xFF)
       {
@@ -308,6 +327,7 @@ void select()
       }
       break;
       
+      
       // DEFAULT
       default:
       
@@ -321,8 +341,9 @@ void select()
     }
   }
   
+  
   //************************************************************
-  // max step control for selecting channels/values (button UP)
+  // Max step control for selecting channels/values (button UP)
   //************************************************************
   if (pressedKey == 1)
   {
@@ -330,7 +351,6 @@ void select()
     {
       // EPA
       case 2:
-      
       // Initial value for EPA selection value
       if (epaSelection == 0xFF)
       {
@@ -361,6 +381,7 @@ void select()
       }
       break;
       
+      
       // MODEL SELECT
       case 3:
       
@@ -380,6 +401,7 @@ void select()
         }
       }
       break;
+      
       
       // SUB TRIM
       case 5:
@@ -413,9 +435,9 @@ void select()
       }
       break;
       
+      
       // MODEL NAME
       case 6:
-      
       // Initial value for MODEL NAME selection value
       if (modelNameSelection == 0xFF)
       {
@@ -441,9 +463,9 @@ void select()
       }
       break;
       
+      
       // EXPO
       case 7:
-      
       // Initial value for EXPO selection value
       if (expoSelection == 0xFF)
       {
@@ -469,6 +491,7 @@ void select()
         }
       }
       break;
+      
       
       // DEFAULT
       default:
