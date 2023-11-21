@@ -28,7 +28,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   reverse = EEPROM.read(eepromPos++);
   
   // Read SUB TRIM offset values for selected model
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     subTrim[i] = EEPROMReadInt(eepromPos);
     eepromPos += 2;
@@ -41,7 +41,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   }
   
   // Read EXPO values after first position
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     expo[i] = EEPROM.read(eepromPos++);
   } 
@@ -62,7 +62,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   }
   
   // Read CENTER calibration values from Eeprom
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     // Read CENTER calibration values for channels
     posEeprom = 1016 + (i * 2);
@@ -221,7 +221,7 @@ void resetEeprom()
     EEPROM.update(eepromPos++, 0x00);
     
     // Writing SUB TRIM offset values for two channels in every model memory bank
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < CHANNELS; i++)
     {
       // Writing SUB TRIM stick values for every channels
       EEPROMUpdateInt(eepromPos, 0);
@@ -238,7 +238,7 @@ void resetEeprom()
     
     // Writing EXPO values for every channels in every model memory bank
     // Writing values will start after first address of start position
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < CHANNELS; i++)
     {
       // Writing default EXPO for channels
       EEPROM.update(eepromPos++, 0);

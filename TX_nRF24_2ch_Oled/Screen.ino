@@ -887,7 +887,7 @@ void save_model_screen()
   EEPROM.update(eepromPos++, reverse);
 
   // Save SUB TRIM center stick values for two channels in every model memory bank
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     // Save CENTER stick values
     EEPROMUpdateInt(eepromPos, subTrim[i]);
@@ -902,7 +902,7 @@ void save_model_screen()
   }
   
   // Save EXPO data
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     EEPROM.update(eepromPos, expo[i]);
     eepromPos++;

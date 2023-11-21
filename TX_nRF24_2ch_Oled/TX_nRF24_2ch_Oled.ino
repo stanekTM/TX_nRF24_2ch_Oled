@@ -51,7 +51,7 @@ void setup()
   }
   
   // SUB TRIM default values
-  for (int i = 0; i < 2; i++)
+  for (int i = 0; i < CHANNELS; i++)
   {
     subTrim[i] = 0;
   }

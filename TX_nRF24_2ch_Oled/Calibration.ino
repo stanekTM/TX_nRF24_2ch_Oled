@@ -50,7 +50,7 @@ void Calibration()
   
   while (calibStatus == 1)
   {
-    for (int ch = 0; ch < 2; ch++)
+    for (int ch = 0; ch < CHANNELS; ch++)
     {
       // Get value from every ADC ports
       pot_calib_mid[ch] = analogRead(ch);
@@ -88,7 +88,7 @@ void Calibration()
   }
   
   // Save CENTER calibration values from Eeprom
-  for (int ch = 0; ch < 2; ch++)
+  for (int ch = 0; ch < CHANNELS; ch++)
   {
     // Save CENTER calibration values for channels
     posEeprom = 1016 + (ch * 2);
