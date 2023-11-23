@@ -184,7 +184,7 @@ void select()
       if (menuSubActual < 2)
       {
         menuSubActual++;
-         
+        
         if (screen == 0)
         {
           screen++;
@@ -231,7 +231,7 @@ void select()
       if (menuSubModel < MODELS - 1)
       {
         menuSubModel++;
-        modelPage = (menuSubModel) / 10;
+        modelPage = menuSubModel / 10;
         
         if (screen == 0)
         {
@@ -263,7 +263,7 @@ void select()
         if ((subTrimSelection % 1) == 0)
         {
           // Define Min SUB TRIM value
-          if (subTrim[subTrimSelection / 1] > SUB_TRIM_MAX * -1)
+          if (subTrim[subTrimSelection / 1] > SUB_TRIM_MAX * - 1)
           {
             // Define step value
             subTrim[subTrimSelection / 1] -= 1;
@@ -334,9 +334,15 @@ void select()
       if (menuSubActual < MENU_COUNT) // 1 to 5 items
       {
         menuSubActual++;
+        
+        /*if (screen == 0)
+        {
+          screen++;
+        }*/
       }
       
       menuPage = (menuSubActual - 1) / 5;
+      
       break;
     }
   }
@@ -349,12 +355,38 @@ void select()
   {
     switch (menuActual)
     {
+      // REVERSE
+      case 1:
+      // Only first 2 channels
+      if (menuSubActual < 2)
+      {
+        screen--;
+        menuSubActual = 1;
+        menuActual = 0;
+      }
+      else
+      {
+        menuSubActual--;
+
+
+          //menuSubActual = 0;
+          //screen = 1;
+          //screen--;
+          //screen++;
+          //menuActual = 1;
+          //menuActual--;
+          //menuActual++;
+
+      }
+      break;
+      
+      
       // EPA
       case 2:
       // Initial value for EPA selection value
       if (epaSelection == 0xFF)
       {
-        // Only first 2 channels
+        // Only first 4 values
         if (menuSubActual < 2)
         {
           screen--;
@@ -388,7 +420,7 @@ void select()
       if (menuSubModel > 0)
       {
         menuSubModel--;
-        modelPage = (menuSubModel) / 10;
+        modelPage = menuSubModel / 10;
       }
       else
       {

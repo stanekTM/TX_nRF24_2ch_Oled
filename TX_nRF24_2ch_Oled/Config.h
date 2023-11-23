@@ -103,7 +103,7 @@ unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
 unsigned char expo[2];                      // EXPO value array
 unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
-//unsigned char reverseSelection = 0;
+
 unsigned char reverse;                      // Reading bit status
 
 //*********************************************************************************************************************
@@ -191,7 +191,7 @@ const char* const channel_name[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array for single characters "char_buffer[8]"
+// Array for single characters "char_buffer[9]"
 //*********************************************************************************************************************
 const char one_char_0[] PROGMEM = "Y";
 const char one_char_1[] PROGMEM = "N";
@@ -201,6 +201,7 @@ const char one_char_4[] PROGMEM = "=";
 const char one_char_5[] PROGMEM = ">";
 const char one_char_6[] PROGMEM = "/";
 const char one_char_7[] PROGMEM = "V";
+const char one_char_8[] PROGMEM = "<";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -210,7 +211,8 @@ const char* const one_char[] PROGMEM = {
   one_char_4,
   one_char_5,
   one_char_6,
-  one_char_7
+  one_char_7,
+  one_char_8
 };
 
 //*********************************************************************************************************************
