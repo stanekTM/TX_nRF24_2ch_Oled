@@ -79,7 +79,7 @@ void select()
     }
     else
     {
-      // Added if Menu/button SELECT is pressed without menu cursor (do nothing)
+      // Added if MENU/SELECT button is pressed without menu cursor (do nothing)
       if (menuActual == 0)
       {
         screen--;
@@ -178,19 +178,19 @@ void select()
   {
     switch (menuActual)
     {
-      // REVERSE
-      case 1:
+      // REVERSE*
+      /*case 1:
       // Only first 2 channels
       if (menuSubActual < 2)
       {
         menuSubActual++;
-        
+
         if (screen == 0)
         {
           screen++;
         }
       }
-      break;
+      break;*/
       
       
       // EPA
@@ -342,7 +342,7 @@ void select()
       }
       
       menuPage = (menuSubActual - 1) / 5;
-      
+
       break;
     }
   }
@@ -356,7 +356,7 @@ void select()
     switch (menuActual)
     {
       // REVERSE
-      case 1:
+      /*case 1:
       // Only first 2 channels
       if (menuSubActual < 2)
       {
@@ -367,18 +367,8 @@ void select()
       else
       {
         menuSubActual--;
-
-
-          //menuSubActual = 0;
-          //screen = 1;
-          //screen--;
-          //screen++;
-          //menuActual = 1;
-          //menuActual--;
-          //menuActual++;
-
       }
-      break;
+      break;*/
       
       
       // EPA

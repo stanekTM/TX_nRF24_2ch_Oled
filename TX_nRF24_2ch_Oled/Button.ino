@@ -48,7 +48,7 @@ void read_button_exit()
       screen = 0;
       menuSubActual = 1;
       menuActual = 0;
-      menuPage=0;
+      menuPage = 0;
       
       epaSelection = 0xFF;
       subTrimSelection = 0xFF;

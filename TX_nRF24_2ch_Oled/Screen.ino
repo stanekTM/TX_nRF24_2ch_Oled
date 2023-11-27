@@ -51,6 +51,7 @@ void main_screen()
   
   //u8g2.firstPage(); do {
   
+  
   read_pots(); // Macro again for stable pots value
   
   u8g2.setFont(u8g2_font_6x10_tr);
@@ -304,6 +305,7 @@ void menu_screen()
   
   //u8g2.firstPage(); do {
   
+
   read_pots(); // Macro again for stable pots value
   
 /*
@@ -363,6 +365,7 @@ void menu_screen()
     }
   }
   
+
   //} while (u8g2.nextPage());
 }
 
@@ -401,6 +404,7 @@ void reverse_screen()
   
   //u8g2.firstPage(); do {
   
+
   read_pots(); // Macro again for stable pots value
   
   
@@ -442,13 +446,14 @@ void reverse_screen()
       u8g2.print(name_buffer);
     }
     
+
     // Drawing dynamic graphics items
     u8g2.drawHLine(83, 20 + i * 13, 45); //72, 20 + i * 13, 45
     u8g2.drawVLine(105, 20 + i * 13 - 4, 4); //94, 20 + i * 13 - 4, 4
     u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 13), 3, 2); //74, 114) - 1, 18 + (i * 13), 3, 2
     
     
-    if (menuSubActual - 1 == i)
+    if (i == menuSubActual - 1)
     {
       // Print ">"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
@@ -457,6 +462,7 @@ void reverse_screen()
     }
   }
   // End drawing only first 2 channels
+  
   
   //} while (u8g2.nextPage());
 }
@@ -496,6 +502,7 @@ void sub_trim_screen()
   
   //u8g2.firstPage(); do {
   
+
   read_pots(); // Macro again for stable pots value
   
   
@@ -563,6 +570,7 @@ void sub_trim_screen()
     temp_Counter++;
   }
   
+
   //} while (u8g2.nextPage());
 }
 
@@ -601,6 +609,7 @@ void epa_screen()
   
   //u8g2.firstPage(); do {
   
+
   read_pots(); // Macro again for stable pots value
   
   
@@ -705,6 +714,7 @@ void epa_screen()
     // Right section end
   }
   
+
   //} while (u8g2.nextPage());
 }
 
@@ -842,6 +852,7 @@ void model_select_screen()
     // Right Section End
   }
   
+
   //} while (u8g2.nextPage());
 }
 
@@ -878,7 +889,7 @@ void save_model_screen()
     EEPROMUpdateInt(eepromPos, subTrim[i]);
     eepromPos += 2;
   }
-
+  
   // Save EPA data
   for (int i = 0; i < 4; i++)
   {
@@ -896,6 +907,7 @@ void save_model_screen()
   // Start of Save Data message screen
   u8g2.firstPage(); do {
     
+
     // Set memory buffer for text strings
     char msg_buffer[11];
     char name_buffer[13];
@@ -920,6 +932,7 @@ void save_model_screen()
       u8g2.print(modelName[i]);
     }
     
+
   } while (u8g2.nextPage());
   
   delay(1000); // Screen message for 1sec
@@ -1017,6 +1030,7 @@ void model_name_screen()
   
   u8g2.setFont(u8g2_font_6x10_tr);
   
+
   //} while (u8g2.nextPage());
 }
 
@@ -1055,6 +1069,7 @@ void expo_screen()
   
   //u8g2.firstPage(); do {
   
+
   read_pots(); // Macro again for stable pots value
   
   
@@ -1132,6 +1147,7 @@ void expo_screen()
     }
   }
   
+
   //} while (u8g2.nextPage());
 }
  
