@@ -19,22 +19,22 @@ void select()
     
     if (screen == 2)
     {
-      // Execute REVERSE task
-      if (menuActual == 1)
-      {
-        draw_reverse_screen();
-      }
-      
       // Execute EPA task
-      if (menuActual == 2)
+      if (menuActual == 1)
       {
         draw_epa_screen();
       }
       
       // Execute MODEL SELECT task
-      if (menuActual == 3)
+      if (menuActual == 2)
       {
         draw_model_select_screen();
+      }
+      
+      // Execute REVERSE task
+      if (menuActual == 3)
+      {
+        draw_reverse_screen();
       }
       
       // Execute SAVE MODEL task
@@ -75,7 +75,7 @@ void select()
       menuActual = menuSubActual;
       menuSubActual = 1;
       menuSubModel = modelActual;
-      modelPage = menuSubModel / 10;
+      modelPage = menuSubModel / MODELS;
     }
     else
     {
@@ -90,15 +90,8 @@ void select()
       //****************************************************************************
       // Options for each menu
       //****************************************************************************
-      // Selection value for REVERSE
-      if (menuActual == 1)
-      {
-        bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
-      }
-      
-      
       // Selection value for EPA
-      if (menuActual == 2)
+      if (menuActual == 1)
       {
         if (epaSelection != 0xFF)
         {
@@ -112,7 +105,7 @@ void select()
       
       
       // Selection value for MODEL SELECT
-      if (menuActual == 3)
+      if (menuActual == 2)
       {
         modelActual = menuSubModel;
         
@@ -124,6 +117,13 @@ void select()
         menuActual = 0;
         
         delay(10);
+      }
+      
+      
+      // Selection value for REVERSE
+      if (menuActual == 3)
+      {
+        bitWrite(reverse, menuSubActual - 1, !bitRead(reverse, menuSubActual - 1));
       }
       
       
@@ -178,23 +178,8 @@ void select()
   {
     switch (menuActual)
     {
-      // REVERSE*
-      /*case 1:
-      // Only first 2 channels
-      if (menuSubActual < 2)
-      {
-        menuSubActual++;
-
-        if (screen == 0)
-        {
-          screen++;
-        }
-      }
-      break;*/
-      
-      
       // EPA
-      case 2:
+      case 1:
       // Initial value for EPA selection value
       if (epaSelection == 0xFF)
       {
@@ -226,13 +211,28 @@ void select()
       
       
       // MODEL SELECT
-      case 3:
+      case 2:
       
       if (menuSubModel < MODELS - 1)
       {
         menuSubModel++;
-        modelPage = menuSubModel / 10;
+        modelPage = menuSubModel / MODELS;
         
+        if (screen == 0)
+        {
+          screen++;
+        }
+      }
+      break;
+      
+      
+      // REVERSE
+      case 3:
+      // Only first 2 channels
+      if (menuSubActual < 2)
+      {
+        menuSubActual++;
+
         if (screen == 0)
         {
           screen++;
@@ -330,19 +330,12 @@ void select()
       
       // DEFAULT
       default:
-      
-      if (menuSubActual < MENU_COUNT) // 1 to 5 items
+      // 1 to 5 items
+      if (menuSubActual < MENU_COUNT)
       {
         menuSubActual++;
-        
-        /*if (screen == 0)
-        {
-          screen++;
-        }*/
+        menuPage = (menuSubActual - 1) / 5;
       }
-      
-      menuPage = (menuSubActual - 1) / 5;
-
       break;
     }
   }
@@ -355,32 +348,16 @@ void select()
   {
     switch (menuActual)
     {
-      // REVERSE
-      /*case 1:
-      // Only first 2 channels
-      if (menuSubActual < 2)
-      {
-        screen--;
-        menuSubActual = 1;
-        menuActual = 0;
-      }
-      else
-      {
-        menuSubActual--;
-      }
-      break;*/
-      
-      
       // EPA
-      case 2:
+      case 1:
       // Initial value for EPA selection value
       if (epaSelection == 0xFF)
       {
-        // Only first 4 values
+        // Only first 4 values (2 / 2)
         if (menuSubActual < 2)
         {
           screen--;
-          menuSubActual = 2;
+          menuSubActual = 1;
           menuActual = 0;
         }
         else
@@ -405,12 +382,12 @@ void select()
       
       
       // MODEL SELECT
-      case 3:
+      case 2:
       
       if (menuSubModel > 0)
       {
         menuSubModel--;
-        modelPage = menuSubModel / 10;
+        modelPage = menuSubModel / MODELS;
       }
       else
       {
@@ -418,9 +395,25 @@ void select()
         {
           screen--;
           menuSubModel = 1;
-          menuSubActual = 3;
+          menuSubActual = 2;
           menuActual = 0;
         }
+      }
+      break;
+      
+      
+      // REVERSE
+      case 3:
+      // Only first 2 channels
+      if (menuSubActual < 2)
+      {
+        screen--;
+        menuSubActual = 3;
+        menuActual = 0;
+      }
+      else
+      {
+        menuSubActual--;
       }
       break;
       
@@ -537,5 +530,6 @@ void select()
       
     }
   }
+  //Serial.println(menuActual);
 }
  

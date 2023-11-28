@@ -51,7 +51,7 @@ void main_screen()
   
   //u8g2.firstPage(); do {
   
-  
+
   read_pots(); // Macro again for stable pots value
   
   u8g2.setFont(u8g2_font_6x10_tr);
@@ -343,7 +343,7 @@ void menu_screen()
       break;
     }
     
-    // Print main menu items "REVERSE, EPA, MODEL SELECT, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
+    // Print main menu items "EPA, MODEL SELECT, REVERSE, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
     
     if (i + (5 * menuPage) == menuSubActual)
@@ -365,7 +365,9 @@ void menu_screen()
     }
   }
   
-
+  menuActual = 0; // To move the cursor DOWN properly
+  
+  
   //} while (u8g2.nextPage());
 }
 
@@ -409,7 +411,7 @@ void reverse_screen()
   
   
   // Print "REVERSE"
-  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
+  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[2])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
   
@@ -446,14 +448,14 @@ void reverse_screen()
       u8g2.print(name_buffer);
     }
     
-
+    
     // Drawing dynamic graphics items
     u8g2.drawHLine(83, 20 + i * 13, 45); //72, 20 + i * 13, 45
     u8g2.drawVLine(105, 20 + i * 13 - 4, 4); //94, 20 + i * 13 - 4, 4
     u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 13), 3, 2); //74, 114) - 1, 18 + (i * 13), 3, 2
     
     
-    if (i == menuSubActual - 1)
+    if (menuSubActual - 1 == i)
     {
       // Print ">"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
@@ -614,7 +616,7 @@ void epa_screen()
   
   
   // Print "EPA"
-  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[1])));
+  strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
   
@@ -775,7 +777,7 @@ void model_select_screen()
   u8g2.print(modelPage + 1);
   
   u8g2.setCursor(123, 7);
-  u8g2.print((MODELS - 1) / 10 + 1);  // Total model Count / model count per page + 1
+  u8g2.print((MODELS - 1) / MODELS + 1);  // Total model Count / model count per page + 1
   
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 8, 128);
@@ -785,7 +787,7 @@ void model_select_screen()
   for (int i = 0; i < 5; i++)
   {
     // Left Section Start
-    tempModelNoIdx = i + (10 * modelPage);
+    tempModelNoIdx = i + (MODELS * modelPage);
     
     if (tempModelNoIdx > MODELS)
     break;
@@ -819,7 +821,7 @@ void model_select_screen()
     
     
     // Right Section Start
-    tempModelNoIdx = (i + 5) + (10 * modelPage);
+    tempModelNoIdx = (i + 5) + (MODELS * modelPage);
     
     if (tempModelNoIdx > MODELS)
     break;
