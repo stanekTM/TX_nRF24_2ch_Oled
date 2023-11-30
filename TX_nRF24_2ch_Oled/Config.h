@@ -172,7 +172,6 @@ const char channel_name_8[] PROGMEM = "NOR";
 const char channel_name_9[] PROGMEM = "REV";
 const char channel_name_10[] PROGMEM = "free";
 const char channel_name_11[] PROGMEM = "model";
-const char channel_name_12[] PROGMEM = "free";
 
 const char* const channel_name[] PROGMEM = {
   channel_name_0,
@@ -186,8 +185,7 @@ const char* const channel_name[] PROGMEM = {
   channel_name_8,
   channel_name_9,
   channel_name_10,
-  channel_name_11,
-  channel_name_12
+  channel_name_11
 };
 
 //*********************************************************************************************************************
@@ -201,7 +199,8 @@ const char one_char_4[] PROGMEM = "=";
 const char one_char_5[] PROGMEM = ">";
 const char one_char_6[] PROGMEM = "/";
 const char one_char_7[] PROGMEM = "V";
-const char one_char_8[] PROGMEM = "<";
+const char one_char_8[] PROGMEM = "L";
+const char one_char_9[] PROGMEM = "R";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -212,7 +211,8 @@ const char* const one_char[] PROGMEM = {
   one_char_5,
   one_char_6,
   one_char_7,
-  one_char_8
+  one_char_8,
+  one_char_9
 };
 
 //*********************************************************************************************************************
