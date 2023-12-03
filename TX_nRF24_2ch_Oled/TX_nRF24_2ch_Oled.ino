@@ -35,7 +35,8 @@ void setup()
   u8g2.begin();
   //u8g2.setFlipMode(1);   
   //u8g2.setContrast(10);
-  u8g2.setFont(u8g2_font_6x10_tr); // Set default font type used for all display sessions (mandatory)
+  // Set default font type used for all display sessions (mandatory)
+  u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
   
   boot_screen(); // print boot screen
   radio_setup();

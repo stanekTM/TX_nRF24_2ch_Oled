@@ -127,19 +127,20 @@ void main_screen()
   u8g2.print(modelActual + 1);
   
   // Print "MODEL NAME"
-  u8g2.setFont(u8g2_font_VCR_OSD_tr);
+  u8g2.setFont(u8g2_font_VCR_OSD_tr);//height 15 pixels (dafont)
   u8g2.drawStr(48, 25, modelName);
-  u8g2.setFont(u8g2_font_6x10_tr);
   
   
   // Drawing only first 2 channels
   for (int i = 0; i < CHANNELS; i++)
   {
     // Draw boxes/frames for every channel
-    u8g2.drawFrame(13, 40 + (i * 16), 102, 8); //13, 40 + (i * 16), 102, 8
-
+    //            (20, 40 + (i * 16), 108, 8)
+    u8g2.drawFrame(20, 40 + (i * 16), 108, 8); //128 - (108 / 2) = 74
+    
     // Drawing vertical middle/center separation line
-    u8g2.drawVLine(64, 38 + (i * 16), 9); //64, 38 + (i * 16), 9
+    //            (74, 41 + (i * 16), 6)
+    u8g2.drawVLine(74, 41 + (i * 16), 6);
     
     // Define value bar reference
     unsigned int valBar;
@@ -149,15 +150,16 @@ void main_screen()
     
     // Drawing cursor in every channel bar
     if (valBar < 50)
-    {
-      u8g2.drawBox(14 + valBar, 41 + (i * 16), 50 - valBar, 6); //64 - 50 = 14
+    {           //(21 + valBar, 41 + (i * 16), 54 - valBar, 6)
+      u8g2.drawBox(21 + valBar, 41 + (i * 16), 54 - valBar, 6);
     }
     else if (valBar > 50)
-    {
-      u8g2.drawBox(65, 41 + (i * 16), valBar - 50, 6);          //64 + 1 = 65
+    {           //(74, 41 + (i * 16), valBar - 46, 6)
+      u8g2.drawBox(74, 41 + (i * 16), valBar - 45, 6);
     }
     
     
+    // REVERSE
     unsigned short subTrimVal;
     
     subTrimVal = map(subTrim[i], 0, SUB_TRIM_MAX, 0, 50);
@@ -170,7 +172,7 @@ void main_screen()
     
     
     // EPA
-    unsigned short minMaxValid = 0;
+    /*unsigned short minMaxValid = 0;
     short epa_1 = epa[i];
     short epa_2 = epa[i];
     
@@ -190,38 +192,32 @@ void main_screen()
     minMaxValid = 63 - (50 * (epa_1 / 100)) + subTrimVal; //113 - 63 = 50
     
     if (minMaxValid < 13)
-    {
-      minMaxValid = 13; //63 - 50 = 13
+    {   //63 - 50 = 13
+      minMaxValid = 13;
     }
 
     if (minMaxValid > 113)
-    {
-      minMaxValid = 113; //100 + 13 = 113
-      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
+    {  //100 + 13 = 113
+      minMaxValid = 113;        //41 + (i * 16), 6)
+      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 5);
     }
     
     
     minMaxValid = 64 + (50 * (epa_2 / 100)) + subTrimVal; //114 - 64 = 50
     
     if (minMaxValid < 14)
-    {
-      minMaxValid = 14; //64 - 50 = 14
+    {   //64 - 50 = 14
+      minMaxValid = 14;
     }
     
     if (minMaxValid > 114)
-    {
-      minMaxValid = 114; //100 + 14 = 114
-      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 6);
-    }
+    {  //100 + 14 = 114
+      minMaxValid = 114;        //41 + (i * 16), 6)
+      u8g2.drawVLine(minMaxValid, 41 + (i * 16), 5);
+    }*/
     
-    
-    u8g2.setFont(u8g2_font_5x7_tr);
 
-    // Print channel items name "CH1 and CH2"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(0, 39 + (i * 16));
-    u8g2.print(name_buffer);
-    
+    u8g2.setFont(u8g2_font_5x7_tr); //height 6 pixels (X11)
     
     if (subTrim[i] > 0)
     {
@@ -259,13 +255,17 @@ void main_screen()
       u8g2.setCursor(124, 39 + (i * 16));
       u8g2.print(expo[i]);
     }
+
+    u8g2.setFont(u8g2_font_6x10_tr); //height 7 pixels (X11)
+    
+    // Print channel items name "CH1 and CH2"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    u8g2.setCursor(0, 40 + (i * 16));
+    u8g2.print(name_buffer);
   }
   // End drawing only first 2 channels
   
-  
   //} while (u8g2.nextPage());
-  
-  u8g2.setFont(u8g2_font_6x10_tr); // set font main, menu and submenu screen display
 }
 
 //*********************************************************************************************************************
@@ -448,9 +448,12 @@ void reverse_screen()
     
     
     // Drawing dynamic graphics items
-    u8g2.drawHLine(83, 20 + i * 13, 45); //72, 20 + i * 13, 45
-    u8g2.drawVLine(105, 20 + i * 13 - 4, 4); //94, 20 + i * 13 - 4, 4
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 13), 3, 2); //74, 114) - 1, 18 + (i * 13), 3, 2
+    //            (72, 20 + i * 13, 45)
+    u8g2.drawHLine(83, 20 + i * 13, 45);
+    //             (94, 20 + i * 13 - 4, 4)
+    u8g2.drawVLine(105, 20 + i * 13 - 4, 4);
+    //                                                                74, 114) - 1, 18 + (i * 13), 3, 2)
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 13), 3, 2);
     
     
     if (menuSubActual - 1 == i)
