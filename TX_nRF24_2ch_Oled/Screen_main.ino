@@ -107,12 +107,12 @@ void main_screen()
   u8g2.print(name_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(38, 21);
+  u8g2.setCursor(40, 21);
   u8g2.print(modelActual + 1);
   
   // Print "MODEL NAME"
   //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  u8g2.drawStr(49, 21, modelName);
+  u8g2.drawStr(54, 21, modelName);
   
   
   // Drawing only first 2 channels

@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Version
 //*********************************************************************************************************************
-const char ver_str[] = "TX stanekTM v 1.0";
+const char ver_str[] = "TX stanekTM v1.0";
 
 //*********************************************************************************************************************
 // Battery voltage settings TX/RX, minimum battery voltage for alarm
@@ -162,8 +162,8 @@ const char* const menu_name[] PROGMEM = {
 //*********************************************************************************************************************
 const char channel_name_0[] PROGMEM = "CH1";
 const char channel_name_1[] PROGMEM = "CH2";
-const char channel_name_2[] PROGMEM = "free";
-const char channel_name_3[] PROGMEM = "free";
+const char channel_name_2[] PROGMEM = "left";
+const char channel_name_3[] PROGMEM = "right";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
 const char channel_name_6[] PROGMEM = "us";

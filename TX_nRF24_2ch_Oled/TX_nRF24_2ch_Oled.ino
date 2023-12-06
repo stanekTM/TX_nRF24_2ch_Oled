@@ -41,16 +41,16 @@ void setup()
   //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
   //u8g2.setFont(u8g2_font_6x13_tr); // height 9 pixels (X11)
   //u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
-  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels
-  //u8g2.setFont(u8g2_font_7x14_tr); // height 10 pixels
-  //u8g2.setFont(u8g2_font_9x15_tr); // height 10 pixels
-  //u8g2.setFont(u8g2_font_9x18_tr); // height 10 pixels
+  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
+  //u8g2.setFont(u8g2_font_7x14_tr); // height 10 pixels (X11)
+  //u8g2.setFont(u8g2_font_9x15_tr); // height 10 pixels (X11)
+  //u8g2.setFont(u8g2_font_9x18_tr); // height 10 pixels (X11)
   
   // print boot screen
   u8g2.firstPage(); do {
     
     // Print version string
-    u8g2.setCursor(4, 28);
+    u8g2.setCursor(0, 28);
     u8g2.print(ver_str);
 
   } while (u8g2.nextPage());
