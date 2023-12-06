@@ -18,7 +18,9 @@
 //*********************************************************************************************************************
 void setup()
 {
-  //Serial.begin(9600); // print value on a serial monitor
+  Serial.begin(9600); // print value on a serial monitor
+  
+  radio_setup();
   
   //-----------------------------------------------------------------
   // Debouncing mechanical buttons
@@ -36,10 +38,25 @@ void setup()
   //u8g2.setFlipMode(1);   
   //u8g2.setContrast(10);
   // Set default font type used for all display sessions (mandatory)
-  u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
+  //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
+  //u8g2.setFont(u8g2_font_6x13_tr); // height 9 pixels (X11)
+  //u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
+  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels
+  //u8g2.setFont(u8g2_font_7x14_tr); // height 10 pixels
+  //u8g2.setFont(u8g2_font_9x15_tr); // height 10 pixels
+  //u8g2.setFont(u8g2_font_9x18_tr); // height 10 pixels
   
-  boot_screen(); // print boot screen
-  radio_setup();
+  // print boot screen
+  u8g2.firstPage(); do {
+    
+    // Print version string
+    u8g2.setCursor(4, 28);
+    u8g2.print(ver_str);
+
+  } while (u8g2.nextPage());
+  
+  delay(1000);
+  
   
   // Default state config parameters
   // REVERSE bit mask: 0 Normal, 1 Reverse

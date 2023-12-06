@@ -151,7 +151,7 @@ void calib_MinMax_screen()
     u8g2.print(msg_buffer);
     
     // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
     u8g2.setCursor(60, 64);
     u8g2.print(char_buffer);
     
@@ -221,7 +221,7 @@ void calib_center_screen()
     u8g2.print(msg_buffer);
     
     // Print "="
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
     u8g2.setCursor(60, 64);
     u8g2.print(char_buffer);
     

@@ -195,12 +195,13 @@ const char one_char_0[] PROGMEM = "Y";
 const char one_char_1[] PROGMEM = "N";
 const char one_char_2[] PROGMEM = "[";
 const char one_char_3[] PROGMEM = "]";
-const char one_char_4[] PROGMEM = "=";
+const char one_char_4[] PROGMEM = "<";
 const char one_char_5[] PROGMEM = ">";
 const char one_char_6[] PROGMEM = "/";
 const char one_char_7[] PROGMEM = "V";
 const char one_char_8[] PROGMEM = "L";
 const char one_char_9[] PROGMEM = "R";
+const char one_char_10[] PROGMEM = "=";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -212,7 +213,8 @@ const char* const one_char[] PROGMEM = {
   one_char_6,
   one_char_7,
   one_char_8,
-  one_char_9
+  one_char_9,
+  one_char_10
 };
 
 //*********************************************************************************************************************

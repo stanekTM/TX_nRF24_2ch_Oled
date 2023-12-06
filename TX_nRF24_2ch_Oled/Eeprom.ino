@@ -137,7 +137,7 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
       
       // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
       u8g2.setCursor(32, 40);
       u8g2.print(char_buffer);
       
@@ -152,7 +152,7 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
       
       // Print "="
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
       u8g2.setCursor(82, 40);
       u8g2.print(char_buffer);
       
