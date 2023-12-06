@@ -39,32 +39,32 @@ void main_screen()
   
   // Print "TX"
   strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[10])));
-  u8g2.setCursor(0, 8);
+  u8g2.setCursor(0, 9);
   u8g2.print(msg_buffer);
   
   if (tx_low_batt)
   {
     // Print "low!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-    u8g2.setCursor(19, 8);
+    u8g2.setCursor(18, 9);
     u8g2.print(msg_buffer);
   }
   else
   {
     // Print TX battery voltage
-    u8g2.setCursor(19, 8);
+    u8g2.setCursor(17, 9);
     u8g2.print(tx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(43, 8);
+    u8g2.setCursor(50, 9);
     u8g2.print(char_buffer);
   }
   
   
   // Print "RX"
   strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
-  u8g2.setCursor(81, 8);
+  u8g2.setCursor(72, 9);
   u8g2.print(msg_buffer);
   
   if (rf_state)
@@ -73,18 +73,18 @@ void main_screen()
     {
       // Print "low!"
      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[6])));
-     u8g2.setCursor(95, 8);
+     u8g2.setCursor(90, 9);
      u8g2.print(msg_buffer);
     }
     else
     {
     // Print RX battery voltage
-    u8g2.setCursor(95, 8);
+    u8g2.setCursor(88, 9);
     u8g2.print(rx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(120, 8);
+    u8g2.setCursor(122, 9);
     u8g2.print(char_buffer);
     }
   }
@@ -92,27 +92,27 @@ void main_screen()
   {
     // Print "off!"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
-    u8g2.setCursor(95, 8);
+    u8g2.setCursor(90, 9);
     u8g2.print(msg_buffer);
   }
   rf_state = 0;
   
 
   // Drawing horizontal line under header
-  u8g2.drawHLine(0, 9, 128);
+  u8g2.drawHLine(0, 10, 128);
   
   // Print "model"
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-  u8g2.setCursor(0, 19);
+  u8g2.setCursor(0, 21);
   u8g2.print(name_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(32, 19);
+  u8g2.setCursor(38, 21);
   u8g2.print(modelActual + 1);
   
   // Print "MODEL NAME"
   //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  u8g2.drawStr(48, 19, modelName);
+  u8g2.drawStr(49, 21, modelName);
   
   
   // Drawing only first 2 channels
