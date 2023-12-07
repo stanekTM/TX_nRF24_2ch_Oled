@@ -32,8 +32,6 @@ void menu_screen()
   char menu_buffer[7];
   char char_buffer[9];
   
-  //u8g2.firstPage(); do {
-  
   read_pots(); // Macro again for stable pots value
   
   // Print "model"
@@ -69,9 +67,7 @@ void menu_screen()
   for (int i = 1; i < 6; i++)
   {
     if (i + (5 * menuPage) > MENU_COUNT)
-    {
-      break;
-    }
+    break;
     
     // Print main menu items "EPA, MODEL SELECT, REVERSE, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
@@ -96,7 +92,5 @@ void menu_screen()
   }
   
   menuActual = 0; // To move the cursor DOWN properly
-  
-  //} while (u8g2.nextPage());
 }
  
