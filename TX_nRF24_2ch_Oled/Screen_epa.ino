@@ -32,8 +32,6 @@ void epa_screen()
   char name_buffer[13];
   char char_buffer[9];
   
-  //u8g2.firstPage(); do {
-  
   read_pots(); // Macro again for stable pots value
   
   // Print "EPA"
@@ -54,7 +52,7 @@ void epa_screen()
   u8g2.setCursor(89, 21);
   u8g2.print(name_buffer);
   
-  //u8g2.drawVLine(64, 12, 52);
+  //u8g2.drawVLine(64, 12, 52); // test center
   
   
   int section_epa;
@@ -63,15 +61,15 @@ void epa_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(52, 33 + i * 10);
+    u8g2.setCursor(53, 33 + i * 10);
     u8g2.print(name_buffer);
     
     
     // Left section start
     section_epa = i;
-
+    
     // EPA value
-    u8g2.setCursor(8, 33 + i * 10);
+    u8g2.setCursor(7, 33 + i * 10);
     u8g2.print(epa[section_epa]);
     
     
@@ -86,14 +84,14 @@ void epa_screen()
         
         // Print "]"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(32, 33 + i * 10);
+        u8g2.setCursor(31, 33 + i * 10);
         u8g2.print(char_buffer);
       }
       else
       {
         // Print "<"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
-        u8g2.setCursor(33, 33 + i * 10);
+        u8g2.setCursor(32, 33 + i * 10);
         u8g2.print(char_buffer);
       }
     }
@@ -102,7 +100,7 @@ void epa_screen()
     
     // Right section start
     section_epa = i + 2;
-
+    
     // EPA value
     u8g2.setCursor(99, 33 + i * 10);
     u8g2.print(epa[section_epa]);
@@ -114,7 +112,7 @@ void epa_screen()
       {
         // Print "["
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(91, 33 + i * 10);
+        u8g2.setCursor(92, 33 + i * 10);
         u8g2.print(char_buffer);
         
         // Print "]"
@@ -126,13 +124,11 @@ void epa_screen()
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(90, 33 + i * 10);
+        u8g2.setCursor(91, 33 + i * 10);
         u8g2.print(char_buffer);
       }
     }
     // Right section end
   }
-  
-  //} while (u8g2.nextPage());
 }
  
