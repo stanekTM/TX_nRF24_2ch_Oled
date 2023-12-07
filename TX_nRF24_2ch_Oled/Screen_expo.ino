@@ -67,12 +67,12 @@ void expo_screen()
         u8g2.setCursor(2, 20 + i * 13);
         u8g2.print(char_buffer);
 
-        // Print "["
+        // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(30, 20 + i * 13);
         u8g2.print(char_buffer);
 
-        // Print "]"
+        // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(44, 20 + i * 13);
         u8g2.print(char_buffer);

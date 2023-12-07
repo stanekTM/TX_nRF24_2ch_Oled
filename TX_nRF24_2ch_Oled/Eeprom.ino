@@ -214,7 +214,7 @@ void resetEeprom()
     // MODEL NAME 5 byte
     for (int i = 0; i < 5; i++)
     {
-      EEPROM.update(eepromPos++, 0x5f);
+      EEPROM.update(eepromPos++, 0x2d); // print ASCII "-"
     }
     
     // Writing REVERSE default value in first address of start position
@@ -233,7 +233,7 @@ void resetEeprom()
     for (int i = 0; i < 4; i++)
     {
       // Writing default EPA for channels
-      EEPROM.update(eepromPos++, 100);
+      EEPROM.update(eepromPos++, EPA_MAX);
     }
     
     // Writing EXPO values for every channels in every model memory bank

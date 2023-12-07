@@ -31,25 +31,19 @@ void model_select_screen()
   char char_buffer[9];
   char name_buffer[13];
   
-  // For Eeprom position reference
-  unsigned int eepromPos;
-  int tempModelNoIdx;
-  
-  //u8g2.firstPage(); do {
-  
-  // Print "MODEL"
+  // Print "model"
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(0, 9);
   u8g2.print(name_buffer);
   
   // Print number of which model in use
-  u8g2.setCursor(32, 9);
+  u8g2.setCursor(40, 9);
   u8g2.print(modelActual + 1);
   
   /*
   u8g2.setCursor(111, 9);
   u8g2.print(modelPage + 1);
-
+  
   // Print "/"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
   u8g2.setCursor(117, 9);
@@ -63,6 +57,10 @@ void model_select_screen()
   u8g2.drawHLine(0, 10, 128);
   
   
+  // For Eeprom position reference
+  unsigned int eepromPos;
+  int tempModelNoIdx;
+  
   // Print MODEL SELECT list
   for (int i = 0; i < 5; i++)
   {
@@ -72,7 +70,7 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(8, 21 + i * 10);
+    u8g2.setCursor(7, 21 + i * 10);
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
@@ -80,21 +78,21 @@ void model_select_screen()
     
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(23 + (j * 6), 21 + i * 10);
+      //u8g2.setCursor(16 + (j * 7), 21 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
     if (tempModelNoIdx == menuSubModel)
     {
-      // Print "["
+      // Print "("
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(0, 21 + i * 10);
       u8g2.print(char_buffer);
       
-      // Print "]"
+      // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(55, 21 + i * 10);
+      u8g2.setCursor(54, 21 + i * 10);
       u8g2.print(char_buffer);
     }
     // Left Section End
@@ -114,26 +112,24 @@ void model_select_screen()
     
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(90 + (j * 6), 21 + i * 10);
+      //u8g2.setCursor(90 + (j * 7), 21 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
     if (tempModelNoIdx == menuSubModel)
     {
-      // Print "["
+      // Print "("
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
       u8g2.setCursor(67, 21 + i * 10);
       u8g2.print(char_buffer);
       
-      // Print "]"
+      // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
       u8g2.setCursor(122, 21 + i * 10);
       u8g2.print(char_buffer);
     }
     // Right Section End
   }
-  
-  //} while (u8g2.nextPage());
 }
  

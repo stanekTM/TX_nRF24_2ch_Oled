@@ -78,12 +78,12 @@ void sub_trim_screen()
         u8g2.setCursor(0, 20 + i * 13);
         u8g2.print(char_buffer);
         
-        // Print "["
+        // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(41, 20 + i * 13);
         u8g2.print(char_buffer);
         
-        // Print "]"
+        // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(71, 20 + i * 13);
         u8g2.print(char_buffer);

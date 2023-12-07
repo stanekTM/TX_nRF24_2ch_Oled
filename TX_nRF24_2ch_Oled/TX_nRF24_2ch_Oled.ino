@@ -77,7 +77,7 @@ void setup()
   // Default MODEL NAME 5 byte
   for (int i = 0; i < 5; i++)
   {
-    modelName[i] = 0x5f;
+    modelName[i] = 0x2d; // print ASCII "-"
   }
   
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!

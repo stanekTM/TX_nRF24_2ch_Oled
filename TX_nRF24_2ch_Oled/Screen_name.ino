@@ -39,7 +39,7 @@ void model_name_screen()
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
   
-  // Print "MODEL"
+  // Print "model"
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
   u8g2.setCursor(85, 7);
   u8g2.print(name_buffer);
@@ -64,12 +64,12 @@ void model_name_screen()
     {
       if (modelNameSelection == i)
       {
-        // Print "["
+        // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
         u8g2.setCursor(1 + (i * 23), 45);
         u8g2.print(char_buffer);
         
-        // Print "]"
+        // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
         u8g2.setCursor(25 + (i * 23), 45);
         u8g2.print(char_buffer);
