@@ -51,13 +51,13 @@ void setup()
     
     // Print version string
     u8g2.setCursor(0, 28);
-    u8g2.print(ver_str);
+    u8g2.print(fw_version);
 
   } while (u8g2.nextPage());
   
   delay(1000);
   
-  
+  /*
   // Default state config parameters
   // REVERSE bit mask: 0 Normal, 1 Reverse
   reverse = 0b00000000;
@@ -75,11 +75,15 @@ void setup()
   }
   
   // Default MODEL NAME 5 byte
-  for (int i = 0; i < 5; i++)
+  //for (int i = 0; i < 5; i++)
   {
-    modelName[i] = 0x2d; // print ASCII "-"
+    //modelName[i] = 0x2d;
+    //modelName[5];
+    //modelName[0x6d, 0x6f, 0x64, 0x65, 0x6c];
+    //modelName[] = "model";
   }
-  
+  */
+
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
   resetEeprom_screen(); // print "ERASE DATA" screen
   
