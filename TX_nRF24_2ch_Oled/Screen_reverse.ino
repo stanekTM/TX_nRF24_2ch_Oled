@@ -32,17 +32,15 @@ void reverse_screen()
   char name_buffer[13];
   char char_buffer[9];
   
-  //u8g2.firstPage(); do {
-  
   read_pots(); // Macro again for stable pots value
   
   // Print "REVERSE"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[2])));
-  u8g2.setCursor(0, 7);
+  u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
   // Drawing horizontal line under header
-  u8g2.drawHLine(0, 8, 128);
+  u8g2.drawHLine(0, 10, 128);
   
   
   // Drawing only first 2 channels
@@ -50,12 +48,12 @@ void reverse_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(10, 20 + i * 13);
+    u8g2.setCursor(10, 21 + i * 10);
     u8g2.print(name_buffer);
     
     // Print "="
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-    u8g2.setCursor(33, 20 + i * 13);
+    u8g2.setCursor(38, 21 + i * 10);
     u8g2.print(char_buffer);
     
     
@@ -63,37 +61,34 @@ void reverse_screen()
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(44, 20 + i * 13);
+      u8g2.setCursor(50, 21 + i * 10);
       u8g2.print(name_buffer);
     }
     else
     {
       // Print "NOR"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[8])));
-      u8g2.setCursor(44, 20 + i * 13);
+      u8g2.setCursor(50, 21 + i * 10);
       u8g2.print(name_buffer);
     }
     
     
     // Drawing dynamic graphics items
-    //            (72, 20 + i * 13, 45)
-    u8g2.drawHLine(83, 20 + i * 13, 45);
-    //             (94, 20 + i * 13 - 4, 4)
-    u8g2.drawVLine(105, 20 + i * 13 - 4, 4);
-    //                                                                74, 114) - 1, 18 + (i * 13), 3, 2)
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 13), 3, 2);
+    u8g2.drawHLine(83, 20 + i * 10, 45);
+    
+    u8g2.drawVLine(105, 16 + i * 10, 4);
+    //                                                                85, 125) - 1, 18 + i * 10, 3, 2)
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + i * 10, 3, 2);
     
     
     if (menuSubActual - 1 == i)
     {
       // Print ">"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-      u8g2.setCursor(0, 20 + i * 13);
+      u8g2.setCursor(0, 21 + i * 10);
       u8g2.print(char_buffer);
     }
   }
   // End drawing only first 2 channels
-  
-  //} while (u8g2.nextPage());
 }
  
