@@ -196,7 +196,7 @@ void select()
       }
       else
       {
-        // EPA step control for changing selected channel value(DOWN)
+        // EPA step control for changing selected channel value (DOWN)
         if ((epaSelection % 1) == 0)
         {
           // Define min for EPA value
@@ -259,7 +259,7 @@ void select()
       }
       else
       {
-        // SUB TRIM step control for changing selected channel value DOWN
+        // SUB TRIM step control for changing selected channel value (DOWN)
         if ((subTrimSelection % 1) == 0)
         {
           // Define Min SUB TRIM value
@@ -291,7 +291,7 @@ void select()
       }
       else
       {
-        // changing selected position character ASCII value(DOWN)
+        // changing selected position character ASCII value (DOWN)
         if (modelName[modelNameSelection] > 0x20)
         {
           modelName[modelNameSelection]--;
@@ -318,7 +318,7 @@ void select()
       }
       else
       {
-        // EXPO step control for changing selected channel value(DOWN)
+        // EXPO step control for changing selected channel value (DOWN)
         if (expo[expoSelection] > 0)
         {
           // Define step value
@@ -367,7 +367,7 @@ void select()
       }
       else
       {
-        // Step control for changing selected channel value UP
+        // Step control for changing selected channel value (UP)
         if ((epaSelection % 1) == 0)
         {
           // Define max for EPA value
@@ -437,7 +437,7 @@ void select()
       }
       else
       {
-        // SUB TRIM step control for changing selected channel UP
+        // SUB TRIM step control for changing selected channel (UP)
         if ((subTrimSelection % 1) == 0 )
         {
           // Define max value for SUB TRIM
@@ -470,7 +470,7 @@ void select()
       }
       else
       {
-        // changing selected position character ASCII value(UP)
+        // changing selected position character ASCII value (UP)
         if (modelName[modelNameSelection] < 0x7e)
         {
           modelName[modelNameSelection]++;
@@ -498,7 +498,7 @@ void select()
       }
       else
       {
-        // Step control for changing selected channel value UP
+        // Step control for changing selected channel value (UP)
         if (expo[expoSelection] < 9)
         {
           // Define step value
