@@ -10,13 +10,13 @@ void save_model_screen()
   // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
   eepromBase = NUM_BYTES_PER_MODEL * modelActual;
   
-  // Save Actual Model data
+  // Save ACTUAL MODEL DATA
   EEPROM.update(ACTUAL_MODEL_EEPROM_ADDR, modelActual);
   
   // For write/Update REVERSE and EPA position
   unsigned int eepromPos = eepromBase;
   
-  // Save MODEL NAME
+  // Save MODEL NAME 5 byte
   for (int i = 0; i < 5; i++)
   {
     EEPROM.update(eepromPos++, modelName[i]);
@@ -52,31 +52,23 @@ void save_model_screen()
     
     // Set memory buffer for text strings
     char msg_buffer[11];
-    char name_buffer[13];
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(40, 12);
+    u8g2.setCursor(28, 9);
     u8g2.print(msg_buffer);
     
-    // Print "MODEL"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-    u8g2.setCursor(43, 35);
-    u8g2.print(name_buffer);
+    // Print MODEL NAME "model"
+    u8g2.setCursor(30, 55);
+    u8g2.print(modelName);
     
-    u8g2.setCursor(78, 35);
+    // Print number of which model in use
+    u8g2.setCursor(70, 55);
     u8g2.print(modelActual + 1);
-    
-    // Print MODEL NAME 5 byte
-    for (int i = 0; i < 5; i++)
-    {
-      u8g2.setCursor(47 + i * 7, 55);
-      u8g2.print(modelName[i]);
-    }
     
   } while (u8g2.nextPage());
   
-  delay(1000); // Screen message for 1sec
+  delay(5000); // Screen message for 1sec
   
   screen--;
   menuActual = 0;

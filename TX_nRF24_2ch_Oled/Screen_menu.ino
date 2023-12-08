@@ -28,23 +28,18 @@ void draw_menu_screen()
 void menu_screen()
 {
   // Set memory buffer for text strings
-  char name_buffer[13];
   char menu_buffer[7];
   char char_buffer[9];
   
   read_pots(); // Macro again for stable pots value
   
-  // Print "model"
-  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  // Print MODEL NAME "model"
   u8g2.setCursor(0, 9);
-  u8g2.print(name_buffer);
-  
+  u8g2.print(modelName);
+
   // Print number of which model in use
   u8g2.setCursor(40, 9);
   u8g2.print(modelActual + 1);
-  
-  // Print MODEL NAME
-  u8g2.drawStr(54, 9, modelName);
   
   
   // Print "1"

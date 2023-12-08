@@ -2,7 +2,7 @@
 //*********************************************************************************************************************
 // Version
 //*********************************************************************************************************************
-const char ver_str[] = "TX stanekTM v1.0";
+const char fw_version[] = "TX stanekTM v1.0";
 
 //*********************************************************************************************************************
 // Battery voltage settings TX/RX, minimum battery voltage for alarm
@@ -44,9 +44,6 @@ const char ver_str[] = "TX stanekTM v1.0";
 //setting RF channels address (5 bytes number or character)
 const byte address[] = "jirka";
 
-//RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
-#define RADIO_CHANNEL  76
-
 // this structure defines the sent data in bytes (structure size max. 32 bytes)
 struct rc_packet_size
 {
@@ -67,10 +64,17 @@ telemetry_packet_size telemetry_packet;
 //*********************************************************************************************************************
 // Configuration of the global TX parameter
 //*********************************************************************************************************************
+#define DEAD_ZONE                 10   // Dead zone bar center value of poor quality joysticks
+#define EPA_MAX                   100  // Maximum EPA value
+#define SUB_TRIM_MAX              125  // Maximum SUB TRIM value
 #define CHANNELS                  2    // Number of channels
+
+#define MENU_COUNT                7    // Total Menu Count
 #define MODELS                    10   // Total memory models 30
 #define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model 32
 #define ACTUAL_MODEL_EEPROM_ADDR  1023
+
+#define RADIO_CHANNEL             76   //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 
 //*********************************************************************************************************************
 // Control range value
@@ -91,13 +95,9 @@ unsigned short int pot_calib_max[] = {1023, 1023};
 //*********************************************************************************************************************
 // PPM setting parameters
 //*********************************************************************************************************************
-#define DEAD_ZONE  10                       // Dead zone bar center value of poor quality joysticks
-
-#define EPA_MAX  100                        // Maximum EPA value
 unsigned char epa[4];                       // EPA value array
 unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
 
-#define SUB_TRIM_MAX  125                   // Maximum SUB TRIM value
 short subTrim[2];                           // SUB TRIM channel array
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
@@ -109,7 +109,7 @@ unsigned char reverse;                      // Reading bit status
 //*********************************************************************************************************************
 // MODEL NAME
 //*********************************************************************************************************************
-char modelName[5];                       // MODEL NAME 5 char
+char modelName[] = "model";              // MODEL NAME 5 byte
 unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selection
 
 //*********************************************************************************************************************
@@ -120,7 +120,6 @@ bool calibStatus = 1; // Checking status to enter in calibration procedure
 //*********************************************************************************************************************
 // Menu management variables
 //*********************************************************************************************************************
-#define MENU_COUNT  7 // Total Menu Count
 unsigned char menuActual    = 0;
 unsigned char menuSubActual = 1;
 unsigned char modelActual   = 0; // Added for Model Menu management

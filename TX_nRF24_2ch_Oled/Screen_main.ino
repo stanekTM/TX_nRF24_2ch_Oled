@@ -33,8 +33,6 @@ void main_screen()
   char msg_buffer[11];
   char menu_buffer[7];
   
-  //u8g2.firstPage(); do {
-  
   read_pots(); // Macro again for stable pots value
   
   // Print "TX"
@@ -101,18 +99,14 @@ void main_screen()
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 10, 128);
   
-  // Print "model"
-  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-  u8g2.setCursor(0, 21);
-  u8g2.print(name_buffer);
-  
   // Print number of which model in use
   u8g2.setCursor(40, 21);
   u8g2.print(modelActual + 1);
   
-  // Print "MODEL NAME"
+  // Print MODEL NAME "model"
   //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  u8g2.drawStr(54, 21, modelName);
+  u8g2.setCursor(0, 21);
+  u8g2.print(modelName);
   
   
   // Drawing only first 2 channels
@@ -205,7 +199,5 @@ void main_screen()
   // End drawing only first 2 channels
   
   //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
-  
-  //} while (u8g2.nextPage());
 }
  

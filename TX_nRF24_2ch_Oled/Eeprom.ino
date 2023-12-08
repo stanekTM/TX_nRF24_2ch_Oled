@@ -18,7 +18,7 @@ unsigned char storedDataEeprom(unsigned char mod)
   
   unsigned int eepromPos = eepromBase;
   
-  // read MODEL NAME
+  // read MODEL NAME 5 byte
   for (int i = 0; i < 5; i++)
   {
     modelName[i] = EEPROM.read(eepromPos++);
@@ -211,10 +211,10 @@ void resetEeprom()
     // Define start position for Eeprom storing (32 * [0,1,2,3,4...])
     eepromPos = NUM_BYTES_PER_MODEL * j;
     
-    // MODEL NAME 5 byte
-    for (int i = 0; i < 5; i++)
+    // Writing MODEL NAME 5 byte
+    for (uint8_t i = 0; i < 5; i++)
     {
-      EEPROM.update(eepromPos++, 0x2d); // print ASCII "-"
+      EEPROM.update(eepromPos++, modelName[i]);
     }
     
     // Writing REVERSE default value in first address of start position
