@@ -58,8 +58,8 @@ void model_select_screen()
   
   
   // For Eeprom position reference
-  unsigned int eepromPos;
   int tempModelNoIdx;
+  unsigned int eepromPos;
   
   // Print MODEL SELECT list
   for (int i = 0; i < 5; i++)
@@ -70,15 +70,16 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(7, 21 + i * 10);
+    u8g2.setCursor(52, 21 + i * 10);
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
+    // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      //u8g2.setCursor(16 + (j * 7), 21 + i * 10);
+      u8g2.setCursor(7 + (j * 8), 21 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
@@ -92,7 +93,7 @@ void model_select_screen()
       
       // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(54, 21 + i * 10);
+      u8g2.setCursor(46, 21 + i * 10);
       u8g2.print(char_buffer);
     }
     // Left Section End
@@ -104,15 +105,16 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(75, 21 + i * 10);
+    u8g2.setCursor(113, 21 + i * 10);
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
     eepromPos = NUM_BYTES_PER_MODEL * tempModelNoIdx;
     
+    // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      //u8g2.setCursor(90 + (j * 7), 21 + i * 10);
+      u8g2.setCursor(68 + (j * 8), 21 + i * 10);
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
@@ -121,12 +123,12 @@ void model_select_screen()
     {
       // Print "("
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-      u8g2.setCursor(67, 21 + i * 10);
+      u8g2.setCursor(61, 21 + i * 10);
       u8g2.print(char_buffer);
       
       // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(122, 21 + i * 10);
+      u8g2.setCursor(107, 21 + i * 10);
       u8g2.print(char_buffer);
     }
     // Right Section End
