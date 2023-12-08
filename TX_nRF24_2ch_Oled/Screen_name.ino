@@ -32,8 +32,6 @@ void model_name_screen()
   char name_buffer[13];
   char char_buffer[9];
   
-  //u8g2.firstPage(); do {
-  
   // Print "MODEL NAME"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[5])));
   u8g2.setCursor(0, 7);
@@ -85,7 +83,5 @@ void model_name_screen()
   }
   
   //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
-  
-  //} while (u8g2.nextPage());
 }
  
