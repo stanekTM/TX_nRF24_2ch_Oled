@@ -85,31 +85,33 @@ void expo_screen()
       
       
       // Draw EXPO Graph
-      u8g2.drawHLine(53, 36, 75); //vodorovná prostřední čára
-
-      u8g2.drawVLine(92, 10, 54); //prostřední čára
+      //            (53, 36, 75)
+      u8g2.drawHLine(77, 37, 50); //vodorovná prostřední čára
+      
+      //            (92, 10, 54)
+      u8g2.drawVLine(102, 13, 50); //prostřední čára
       
       //            (53, 10, 75, 54)
-      u8g2.drawFrame(53, 10, 75, 54); //rámeček
+      u8g2.drawFrame(76, 12, 52, 52); //rámeček
       
       //           (52, 64, 128, 10)
-      u8g2.drawLine(52, 64, 128, 10); //šikmá čára
+      u8g2.drawLine(76, 63, 127, 12); //šikmá čára
       
-      
+
       if (expo[i] > 0)
       { //  (int j = 52; j <= 91; j++)
-        for (int j = 52; j <= 91; j++)
+        for (int j = 76; j <= 102; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           // (j, 52, 91, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 64, 36));
-          map(j, 52, 91, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 64, 36));
+          map(j, 76, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 37));
         }
         //  (int j = 91; j <= 128; j++)
-        for (int j = 91; j <= 128; j++)
+        for (int j = 102; j <= 127; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           // (j, 91, 128, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 35, 9));
-          map(j, 91, 128, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 35, 9));
+          map(j, 102, 127, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 36, 12));
         }
       }
     }
