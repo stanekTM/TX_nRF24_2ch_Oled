@@ -69,12 +69,12 @@ telemetry_packet_size telemetry_packet;
 #define SUB_TRIM_MAX              125  // Maximum SUB TRIM value
 #define CHANNELS                  2    // Number of channels
 
-#define MENU_COUNT                7    // Total Menu Count
+#define MENU_COUNT                7    // Total menu count
 #define MODELS                    10   // Total memory models 30
 #define NUM_BYTES_PER_MODEL       25   // Maximum bytes for data storage per model 32
 #define ACTUAL_MODEL_EEPROM_ADDR  1023
 
-#define RADIO_CHANNEL             76   //RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
+#define RADIO_CHANNEL             76   // RF communication channel settings (0-125, 2.4Ghz + 76 = 2.476Ghz)
 
 //*********************************************************************************************************************
 // Control range value
@@ -96,21 +96,21 @@ unsigned short int pot_calib_max[] = {1023, 1023};
 // PPM setting parameters
 //*********************************************************************************************************************
 unsigned char epa[4];                       // EPA value array
-unsigned char epaSelection = 0xFF;          // Default value for EPA Selection
+unsigned char epaSelection = 0xFF;          // Default value for EPA selection
 
 short subTrim[2];                           // SUB TRIM channel array
 unsigned short int subTrimSelection = 0xFF; // Default value for SUB TRIM
 
 unsigned char expo[2];                      // EXPO value array
-unsigned char expoSelection = 0xFF;         // Default value for EXPO Selection
+unsigned char expoSelection = 0xFF;         // Default value for EXPO selection
 
 unsigned char reverse;                      // Reading bit status
 
 //*********************************************************************************************************************
 // MODEL NAME
 //*********************************************************************************************************************
-char modelName[] = "model";              // MODEL NAME 5 byte
-unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME Selection
+char modelName[] = "MODEL";              // MODEL NAME 5 byte
+unsigned char modelNameSelection = 0xFF; // Default value for MODEL NAME selection
 
 //*********************************************************************************************************************
 // Checking the status of the calibration switch
@@ -122,11 +122,11 @@ bool calibStatus = 1; // Checking status to enter in calibration procedure
 //*********************************************************************************************************************
 unsigned char menuActual    = 0;
 unsigned char menuSubActual = 1;
-unsigned char modelActual   = 0; // Added for Model Menu management
-unsigned char menuSubModel  = 0; // Added for Model Menu management
+unsigned char modelActual   = 0; // Added for model menu management
+unsigned char menuSubModel  = 0; // Added for model menu management
 unsigned char screen        = 0;
-unsigned char menuPage      = 0; // for Menu Page
-unsigned char modelPage     = 0; // for Model Page
+unsigned char menuPage      = 0; // for menu page
+unsigned char modelPage     = 0; // for model page
 
 //*********************************************************************************************************************
 // Config LCD display
@@ -157,7 +157,7 @@ const char* const menu_name[] PROGMEM = {
 };
 
 //*********************************************************************************************************************
-// Array text strings (short) for Channel/Pots names, status, model for all screens "name_buffer[13]"
+// Array text strings (short) for channel/pots names, status, model for all screens "name_buffer[13]"
 //*********************************************************************************************************************
 const char channel_name_0[] PROGMEM = "CH1";
 const char channel_name_1[] PROGMEM = "CH2";
@@ -166,11 +166,9 @@ const char channel_name_3[] PROGMEM = "right";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
 const char channel_name_6[] PROGMEM = "us";
-const char channel_name_7[] PROGMEM = "TRIM";
+const char channel_name_7[] PROGMEM = "free";
 const char channel_name_8[] PROGMEM = "NOR";
 const char channel_name_9[] PROGMEM = "REV";
-const char channel_name_10[] PROGMEM = "free";
-const char channel_name_11[] PROGMEM = "model";
 
 const char* const channel_name[] PROGMEM = {
   channel_name_0,
@@ -182,9 +180,7 @@ const char* const channel_name[] PROGMEM = {
   channel_name_6,
   channel_name_7,
   channel_name_8,
-  channel_name_9,
-  channel_name_10,
-  channel_name_11
+  channel_name_9
 };
 
 //*********************************************************************************************************************

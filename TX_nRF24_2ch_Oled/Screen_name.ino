@@ -37,10 +37,9 @@ void model_name_screen()
   u8g2.setCursor(0, 7);
   u8g2.print(menu_buffer);
   
-  // Print "model"
-  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
-  u8g2.setCursor(85, 7);
-  u8g2.print(name_buffer);
+  // Print MODEL NAME "MODEL"
+  u8g2.setCursor(0, 9);
+  u8g2.print(modelName);
   
   // Print number of which model in use
   u8g2.setCursor(117, 7);

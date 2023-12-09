@@ -1,10 +1,10 @@
 
 //*********************************************************************************************************************
-// Macro for read selected model data from Eeprom
+// Macro for read selected model data from eeprom
 //*********************************************************************************************************************
 unsigned char storedDataEeprom(unsigned char mod)
 {
-  // For Eeprom position reference
+  // For eeprom position reference
   unsigned int eepromBase;
   
   // Read which model to upload data
@@ -13,7 +13,7 @@ unsigned char storedDataEeprom(unsigned char mod)
     mod = EEPROM.read(ACTUAL_MODEL_EEPROM_ADDR);
   }
   
-  // Define start position for Eeprom read (25 * [0,1,2,3,4])
+  // Define start position for eeprom read (25 * [0,1,2,3,4])
   eepromBase = NUM_BYTES_PER_MODEL * mod;
   
   unsigned int eepromPos = eepromBase;

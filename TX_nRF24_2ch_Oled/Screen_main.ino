@@ -100,10 +100,10 @@ void main_screen()
   u8g2.drawHLine(0, 10, 128);
   
   // Print number of which model in use
-  u8g2.setCursor(40, 21);
+  u8g2.setCursor(41, 21);
   u8g2.print(modelActual + 1);
   
-  // Print MODEL NAME "model"
+  // Print MODEL NAME "MODEL"
   //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
   u8g2.setCursor(0, 21);
   u8g2.print(modelName);

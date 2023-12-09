@@ -83,7 +83,7 @@ void setup()
     //modelName[] = "model";
   }
   */
-
+  
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
   resetEeprom_screen(); // print "ERASE DATA" screen
   

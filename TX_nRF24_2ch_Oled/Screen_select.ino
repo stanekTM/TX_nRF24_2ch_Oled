@@ -31,13 +31,12 @@ void model_select_screen()
   char char_buffer[9];
   char name_buffer[13];
   
-  // Print "model"
-  strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[11])));
+  // Print MODEL NAME "MODEL"
   u8g2.setCursor(0, 9);
-  u8g2.print(name_buffer);
+  u8g2.print(modelName);
   
   // Print number of which model in use
-  u8g2.setCursor(40, 9);
+  u8g2.setCursor(41, 9);
   u8g2.print(modelActual + 1);
   
   /*
