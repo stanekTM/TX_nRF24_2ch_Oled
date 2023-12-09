@@ -7,6 +7,8 @@ This RC transmitter works with RC receiver from my repository [RX_nRF24L01_Telem
 
 Thank you to the original authors "Gabapentin" [Arduino-RC-6CH-Radio-control](https://github.com/Gabapentin/Arduino-RC-6CH-Radio-control) and "doohans" [arduino_surface_TX_4ch](https://github.com/doohans/arduino_surface_TX_4ch) for code inspiration.
 
+NOTE: :) This transmitter is programmed in a small apartment with two kids, a permissive girlfriend, and zero privacy, where there is a lot of yelling, crying, and joy. It serves only for the need of self-relaxation. Please excuse my mistakes. I lost my private RC/electronics lab after moving.
+
 ## The firmware includes
 * Two proportional channels 1000us - 2000us
 * Adjustable left and right endpoints 0 - 100%
