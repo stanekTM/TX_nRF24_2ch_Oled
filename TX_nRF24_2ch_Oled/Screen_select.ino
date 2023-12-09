@@ -29,7 +29,6 @@ void model_select_screen()
 {
   // Set memory buffer for text strings
   char char_buffer[9];
-  char name_buffer[13];
   
   // Print MODEL NAME "MODEL"
   u8g2.setCursor(0, 9);
@@ -40,16 +39,18 @@ void model_select_screen()
   u8g2.print(modelActual + 1);
   
   /*
-  u8g2.setCursor(111, 9);
+  // Print "1"
+  u8g2.setCursor(104, 9);
   u8g2.print(modelPage + 1);
   
   // Print "/"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
-  u8g2.setCursor(117, 9);
+  u8g2.setCursor(113, 9);
   u8g2.print(char_buffer);
   
-  u8g2.setCursor(123, 9);
-  u8g2.print((MODELS - 1) / MODELS + 1);  // Total model Count / model count per page + 1
+  // Total model count/model count per page + 1
+  u8g2.setCursor(121, 9);
+  u8g2.print((MODELS - 1) / MODELS + 1);
   */
   
   // Drawing horizontal line under header
@@ -69,7 +70,7 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(52, 21 + i * 10);
+    u8g2.setCursor(53, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
@@ -78,7 +79,7 @@ void model_select_screen()
     // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(7 + (j * 8), 21 + i * 10);
+      u8g2.setCursor(8 + (j * 8), 21 + (i * 10));
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
@@ -87,12 +88,12 @@ void model_select_screen()
     {
       // Print "("
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-      u8g2.setCursor(0, 21 + i * 10);
+      u8g2.setCursor(0, 21 + (i * 10));
       u8g2.print(char_buffer);
       
       // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(46, 21 + i * 10);
+      u8g2.setCursor(47, 21 + (i * 10));
       u8g2.print(char_buffer);
     }
     // Left Section End
@@ -104,7 +105,7 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(113, 21 + i * 10);
+    u8g2.setCursor(113, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
@@ -113,7 +114,7 @@ void model_select_screen()
     // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(68 + (j * 8), 21 + i * 10);
+      u8g2.setCursor(68 + (j * 8), 21 + (i * 10));
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
@@ -122,12 +123,12 @@ void model_select_screen()
     {
       // Print "("
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-      u8g2.setCursor(61, 21 + i * 10);
+      u8g2.setCursor(60, 21 + (i * 10));
       u8g2.print(char_buffer);
       
       // Print ")"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(107, 21 + i * 10);
+      u8g2.setCursor(107, 21 + (i * 10));
       u8g2.print(char_buffer);
     }
     // Right Section End

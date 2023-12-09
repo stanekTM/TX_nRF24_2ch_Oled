@@ -29,24 +29,19 @@ void model_name_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[13];
   char char_buffer[9];
   
   // Print "MODEL NAME"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[5])));
-  u8g2.setCursor(0, 7);
+  u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
-  // Print MODEL NAME "MODEL"
-  u8g2.setCursor(0, 9);
-  u8g2.print(modelName);
-  
   // Print number of which model in use
-  u8g2.setCursor(117, 7);
+  u8g2.setCursor(90, 9);
   u8g2.print(modelActual + 1);
   
   // Drawing horizontal line under header
-  u8g2.drawHLine(0, 8, 128);
+  u8g2.drawHLine(0, 10, 128);
   
   
   //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)

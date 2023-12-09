@@ -51,7 +51,7 @@ void menu_screen()
   u8g2.setCursor(113, 9);
   u8g2.print(char_buffer);
   
-  // Total Menu Count / menu count per page + 1
+  // Total Menu count/menu count per page + 1
   u8g2.setCursor(121, 9);
   u8g2.print((MENU_COUNT - 1) / 5 + 1);
   
@@ -71,17 +71,17 @@ void menu_screen()
     {
       // Print ">"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-      u8g2.setCursor(0, 11 + i * 10);
+      u8g2.setCursor(0, 11 + (i * 10));
       u8g2.print(char_buffer);
       
       // Print main menu items
-      u8g2.setCursor(10, 11 + i * 10);
+      u8g2.setCursor(10, 11 + (i * 10));
       u8g2.print(menu_buffer);
     }
     else
     {
       // Print main menu items
-      u8g2.setCursor(17, 11 + i * 10);
+      u8g2.setCursor(17, 11 + (i * 10));
       u8g2.print(menu_buffer);
     }
   }

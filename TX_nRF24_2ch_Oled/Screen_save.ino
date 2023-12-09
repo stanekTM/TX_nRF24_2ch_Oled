@@ -59,11 +59,11 @@ void save_model_screen()
     u8g2.print(msg_buffer);
     
     // Print MODEL NAME "MODEL"
-    u8g2.setCursor(35, 50);
+    u8g2.setCursor(36, 50);
     u8g2.print(modelName);
     
     // Print number of which model in use
-    u8g2.setCursor(76, 50);
+    u8g2.setCursor(77, 50);
     u8g2.print(modelActual + 1);
     
   } while (u8g2.nextPage());
