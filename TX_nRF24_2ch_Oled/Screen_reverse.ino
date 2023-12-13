@@ -48,12 +48,12 @@ void reverse_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(10, 21 + (i * 10));
+    u8g2.setCursor(8, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print "="
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-    u8g2.setCursor(39, 21 + (i * 10));
+    u8g2.setCursor(37, 21 + (i * 10));
     u8g2.print(char_buffer);
     
     

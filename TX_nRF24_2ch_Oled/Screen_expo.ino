@@ -48,7 +48,7 @@ void expo_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(9, 21 + (i * 10));
+    u8g2.setCursor(8, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print EXPO value
@@ -85,33 +85,29 @@ void expo_screen()
       
       
       // Draw EXPO Graph
-      //            (53, 36, 75)
-      u8g2.drawHLine(77, 37, 50); //vodorovná prostřední čára
+      u8g2.drawFrame(77, 13, 51, 51); //rámeček
       
-      //            (92, 10, 54)
-      u8g2.drawVLine(102, 13, 50); //prostřední čára
+      //u8g2.drawHLine(78, 38, 49); //vodorovná čára
+      //u8g2.drawHLine(0, 62, 128); //pomocná
       
-      //            (53, 10, 75, 54)
-      u8g2.drawFrame(76, 12, 52, 52); //rámeček
+      u8g2.drawVLine(102, 14, 49); //svislá čára
+      //u8g2.drawVLine(126, 0, 64); //pomocná
       
-      //           (52, 64, 128, 10)
-      u8g2.drawLine(76, 63, 127, 12); //šikmá čára
+      u8g2.drawLine(77, 63, 127, 13); //šikmá čára
       
-
+      
       if (expo[i] > 0)
-      { //  (int j = 52; j <= 91; j++)
-        for (int j = 76; j <= 102; j++)
+      { // bottom
+        for (int j = 77; j <= 102; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
-          // (j, 52, 91, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 64, 36));
-          map(j, 76, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 37));
+          map(j, 77, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 38));
         }
-        //  (int j = 91; j <= 128; j++)
+        // top
         for (int j = 102; j <= 127; j++)
         {
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
-          // (j, 91, 128, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 35, 9));
-          map(j, 102, 127, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 36, 12));
+          map(j, 102, 127, MID_CONTROL_VAL, MAX_CONTROL_VAL), MAX_CONTROL_VAL, expo[i]), MID_CONTROL_VAL, MAX_CONTROL_VAL, 38, 13));
         }
       }
     }
