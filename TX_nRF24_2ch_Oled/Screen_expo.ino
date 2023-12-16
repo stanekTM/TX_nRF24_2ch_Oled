@@ -87,7 +87,7 @@ void expo_screen()
       // Draw EXPO Graph
       u8g2.drawFrame(77, 13, 51, 51); //rámeček
       
-      //u8g2.drawHLine(78, 38, 49); //vodorovná čára
+      u8g2.drawHLine(78, 38, 49); //vodorovná čára
       //u8g2.drawHLine(0, 62, 128); //pomocná
       
       u8g2.drawVLine(102, 14, 49); //svislá čára
@@ -103,6 +103,7 @@ void expo_screen()
           u8g2.drawPixel(j, map(calc_expo(MID_CONTROL_VAL,
           map(j, 77, 102, MIN_CONTROL_VAL, MID_CONTROL_VAL), MIN_CONTROL_VAL, expo[i]), MIN_CONTROL_VAL, MID_CONTROL_VAL, 63, 38));
         }
+        
         // top
         for (int j = 102; j <= 127; j++)
         {

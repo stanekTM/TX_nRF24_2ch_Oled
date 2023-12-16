@@ -100,12 +100,12 @@ void main_screen()
   u8g2.drawHLine(0, 10, 128);
   
   // Print number of which model in use
-  u8g2.setCursor(41, 21);
+  u8g2.setCursor(80, 21);
   u8g2.print(modelActual + 1);
   
   // Print MODEL NAME "MODEL"
-  //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  u8g2.setCursor(0, 21);
+  u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
+  u8g2.setCursor(0, 29);
   u8g2.print(modelName);
   
   
@@ -149,7 +149,7 @@ void main_screen()
     }
     
     
-    //u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
+    u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
     
     if (subTrim[i] > 0)
     {
@@ -188,16 +188,22 @@ void main_screen()
       u8g2.print(expo[i]);
     }
     
-    //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
-    //u8g2.setFont(u8g2_font_t0_14_tr); // *height 7 pixels (X11)*
+    
+    u8g2.setFont(u8g2_font_6x13B_tr); // height 9 pixels (X11)
+    //u8g2.setFont(u8g2_font_7x13B_tr); // height 9 pixels (X11)
+    //u8g2.setFont(u8g2_font_7x14_tr); // height 10 pixels (X11)
+    //u8g2.setFont(u8g2_font_7x14B_tr); // height 10 pixels (X11)
+    //u8g2.setFont(u8g2_font_8x13B_tr); // height 10 pixels (X11)
+    //u8g2.setFont(u8g2_font_9x15B_tr); // height 10 pixels (X11)
+    //u8g2.setFont(u8g2_font_9x18B_tr); // height 10 pixels (X11)
     
     // Print channel items name "CH1 and CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(0, 40 + (i * 16));
+    u8g2.setCursor(0, 45 + (i * 16));
     u8g2.print(name_buffer);
   }
   // End drawing only first 2 channels
   
-  //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
+  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
 }
  

@@ -44,9 +44,9 @@ void model_name_screen()
   u8g2.drawHLine(0, 10, 128);
   
   
-  //u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  
   // Print MODEL NAME 5 byte
+  u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
+  
   for (int i = 0; i < 5; i++)
   {
     u8g2.setCursor(13 + (i * 23), 45);
@@ -76,6 +76,6 @@ void model_name_screen()
     }
   }
   
-  //u8g2.setFont(u8g2_font_6x10_tr); // height 7 pixels (X11)
+  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
 }
  
