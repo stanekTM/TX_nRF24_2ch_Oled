@@ -55,7 +55,7 @@ void main_screen()
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(45, 9);
+    u8g2.setCursor(44, 9);
     u8g2.print(char_buffer);
   }
   
@@ -100,13 +100,13 @@ void main_screen()
   //u8g2.drawHLine(0, 10, 128);
   
   // Print number of which model in use
-  u8g2.setCursor(113, 26); //61
+  u8g2.setCursor(115, 26);
   u8g2.print(modelActual + 1);
   
   // Print MODEL NAME "MODEL"
   u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
   
-  u8g2.setCursor(52, 27); //0
+  u8g2.setCursor(54, 27);
   u8g2.print(modelName);
   
   
@@ -136,7 +136,9 @@ void main_screen()
     }
     
     
-    // REVERSE
+    u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
+    
+    // Drawing REVERSE channel status for every channel
     unsigned short subTrimVal;
     
     subTrimVal = map(subTrim[i], 0, SUB_TRIM_MAX, 0, 50);
@@ -145,37 +147,30 @@ void main_screen()
     if (bitRead(reverse, i) == 1)
     {
       subTrimVal = -subTrimVal;
+      
+      // Print "REV"
+      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      u8g2.setCursor(22, 35 + (i * 20));
+      u8g2.print(name_buffer);
     }
     
-    u8g2.drawHLine(0, 10 + (i * 17), 128);
     
-    u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
-    
+    // SUB TRIM
     if (subTrim[i] > 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(67, 35 + (i * 20));
+      u8g2.setCursor(68, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] < 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(62, 35 + (i * 20));
+      u8g2.setCursor(63, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     
     
-    // Drawing REVERSE channel status for every channel
-    if (bitRead(reverse, i) == 1)
-    {
-      // Print "REV"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(26, 35 + (i * 20));
-      u8g2.print(name_buffer);
-    }
-    
-    
-    // Drawing EXPO
+    // EXPO
     if (expo[i] > 0)
     {
       // Print "EXPO"
@@ -188,7 +183,8 @@ void main_screen()
       u8g2.print(expo[i]);
     }
     
-    
+    u8g2.drawHLine(0, 10 + (i * 17), 128);
+
     // Print channel items name "CH1 and CH2"
     u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
     

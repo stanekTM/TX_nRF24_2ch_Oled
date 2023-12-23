@@ -38,21 +38,21 @@ void menu_screen()
   u8g2.print(modelName);
 
   // Print number of which model in use
-  u8g2.setCursor(41, 9);
+  u8g2.setCursor(40, 9);
   u8g2.print(modelActual + 1);
   
   
-  // Print "1"
-  u8g2.setCursor(104, 9);
+  // Print "1 or 2"
+  u8g2.setCursor(107, 9);
   u8g2.print(menuPage + 1);
   
   // Print "/"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
-  u8g2.setCursor(113, 9);
+  u8g2.setCursor(114, 9);
   u8g2.print(char_buffer);
   
   // Total Menu count/menu count per page + 1
-  u8g2.setCursor(121, 9);
+  u8g2.setCursor(122, 9);
   u8g2.print((MENU_COUNT - 1) / 5 + 1);
   
   // Drawing horizontal line under header
@@ -81,7 +81,7 @@ void menu_screen()
     else
     {
       // Print main menu items
-      u8g2.setCursor(17, 11 + (i * 10));
+      u8g2.setCursor(23, 11 + (i * 10));
       u8g2.print(menu_buffer);
     }
   }

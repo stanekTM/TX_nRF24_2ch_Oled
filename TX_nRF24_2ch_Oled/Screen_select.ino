@@ -35,21 +35,21 @@ void model_select_screen()
   u8g2.print(modelName);
   
   // Print number of which model in use
-  u8g2.setCursor(41, 9);
+  u8g2.setCursor(40, 9);
   u8g2.print(modelActual + 1);
   
   /*
-  // Print "1"
-  u8g2.setCursor(104, 9);
+  // Print "1 or 2"
+  u8g2.setCursor(107, 9);
   u8g2.print(modelPage + 1);
   
   // Print "/"
   strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
-  u8g2.setCursor(113, 9);
+  u8g2.setCursor(114, 9);
   u8g2.print(char_buffer);
   
   // Total model count/model count per page + 1
-  u8g2.setCursor(121, 9);
+  u8g2.setCursor(122, 9);
   u8g2.print((MODELS - 1) / MODELS + 1);
   */
   
@@ -70,7 +70,7 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(53, 21 + (i * 10));
+    u8g2.setCursor(50, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (32 * [0,1,2,3,4])
@@ -79,21 +79,16 @@ void model_select_screen()
     // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(8 + (j * 8), 21 + (i * 10));
+      u8g2.setCursor(9 + (j * 8), 21 + (i * 10));
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
     if (tempModelNoIdx == menuSubModel)
     {
-      // Print "("
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
+      // Print ">"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
       u8g2.setCursor(0, 21 + (i * 10));
-      u8g2.print(char_buffer);
-      
-      // Print ")"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(47, 21 + (i * 10));
       u8g2.print(char_buffer);
     }
     // Left Section End
@@ -105,7 +100,7 @@ void model_select_screen()
     if (tempModelNoIdx > MODELS)
     break;
     
-    u8g2.setCursor(113, 21 + (i * 10));
+    u8g2.setCursor(115, 21 + (i * 10));
     u8g2.print(tempModelNoIdx + 1);
     
     // Define start position for Eeprom write/update (25 * [0,1,2,3,4])
@@ -114,21 +109,16 @@ void model_select_screen()
     // Print MODEL NAME
     for (int j = 0; j < 5; j++)
     {
-      u8g2.setCursor(68 + (j * 8), 21 + (i * 10));
+      u8g2.setCursor(74 + (j * 8), 21 + (i * 10));
       char ch = EEPROM.read(eepromPos++);
       u8g2.print(ch);
     }
     
     if (tempModelNoIdx == menuSubModel)
     {
-      // Print "("
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-      u8g2.setCursor(60, 21 + (i * 10));
-      u8g2.print(char_buffer);
-      
-      // Print ")"
-      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-      u8g2.setCursor(107, 21 + (i * 10));
+      // Print ">"
+      strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
+      u8g2.setCursor(65, 21 + (i * 10));
       u8g2.print(char_buffer);
     }
     // Right Section End

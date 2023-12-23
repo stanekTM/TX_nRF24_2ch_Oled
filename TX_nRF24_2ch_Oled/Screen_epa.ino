@@ -44,24 +44,24 @@ void epa_screen()
   
   // Print "left"
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[2])));
-  u8g2.setCursor(0, 21);
+  u8g2.setCursor(4, 21);
   u8g2.print(name_buffer);
   
   // Print "right"
   strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[3])));
-  u8g2.setCursor(89, 21);
+  u8g2.setCursor(94, 21);
   u8g2.print(name_buffer);
   
-  //u8g2.drawVLine(64, 12, 52); // test center
+  //u8g2.drawVLine(64, 0, 64); // central auxiliary line
   
   
   int section_epa;
   
   for (int i = 0; i < 2; i++)
   {
-    // Print channel items name "CH1, CH2"
+    // Print channel items name "CH1 and CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(53, 33 + (i * 10));
+    u8g2.setCursor(55, 33 + (i * 10));
     u8g2.print(name_buffer);
     
     
@@ -69,7 +69,7 @@ void epa_screen()
     section_epa = i;
     
     // EPA value
-    u8g2.setCursor(7, 33 + (i * 10));
+    u8g2.setCursor(8, 33 + (i * 10));
     u8g2.print(epa[section_epa]);
     
     
@@ -84,7 +84,7 @@ void epa_screen()
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(30, 33 + (i * 10));
+        u8g2.setCursor(29, 33 + (i * 10));
         u8g2.print(char_buffer);
       }
       else
@@ -102,7 +102,7 @@ void epa_screen()
     section_epa = i + 2;
     
     // EPA value
-    u8g2.setCursor(100, 33 + (i * 10));
+    u8g2.setCursor(102, 33 + (i * 10));
     u8g2.print(epa[section_epa]);
     
     
@@ -112,7 +112,7 @@ void epa_screen()
       {
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(93, 33 + (i * 10));
+        u8g2.setCursor(94, 33 + (i * 10));
         u8g2.print(char_buffer);
         
         // Print ")"
