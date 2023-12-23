@@ -38,7 +38,7 @@ void setup()
   //u8g2.setFlipMode(1);   
   //u8g2.setContrast(10);
   // Set default font type used for all display sessions (mandatory)
-  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
+  u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
   
   // print boot screen
   u8g2.firstPage(); do {

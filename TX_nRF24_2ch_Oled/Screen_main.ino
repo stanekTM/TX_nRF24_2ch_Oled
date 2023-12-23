@@ -50,12 +50,12 @@ void main_screen()
   else
   {
     // Print TX battery voltage
-    u8g2.setCursor(17, 9);
+    u8g2.setCursor(15, 9);
     u8g2.print(tx_batt_volt);
     
     // Print "V"
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
-    u8g2.setCursor(50, 9);
+    u8g2.setCursor(45, 9);
     u8g2.print(char_buffer);
   }
   
@@ -95,17 +95,18 @@ void main_screen()
   }
   rf_state = 0;
   
-
+  
   // Drawing horizontal line under header
-  u8g2.drawHLine(0, 10, 128);
+  //u8g2.drawHLine(0, 10, 128);
   
   // Print number of which model in use
-  u8g2.setCursor(80, 21);
+  u8g2.setCursor(113, 26); //61
   u8g2.print(modelActual + 1);
   
   // Print MODEL NAME "MODEL"
   u8g2.setFont(u8g2_font_VCR_OSD_tr); // height 15 pixels (dafont)
-  u8g2.setCursor(0, 29);
+  
+  u8g2.setCursor(52, 27); //0
   u8g2.print(modelName);
   
   
@@ -113,12 +114,10 @@ void main_screen()
   for (int i = 0; i < CHANNELS; i++)
   {
     // Draw boxes/frames for every channel
-    //            (20, 40 + (i * 16), 108, 8)
-    u8g2.drawFrame(20, 40 + (i * 16), 108, 8); //128 - (108 / 2) = 74
+    u8g2.drawFrame(22, 36 + (i * 20), 106, 8); //128 - (106 / 2) = 75
     
     // Drawing vertical middle/center separation line
-    //            (74, 41 + (i * 16), 6)
-    u8g2.drawVLine(74, 41 + (i * 16), 6);
+    u8g2.drawVLine(75, 34 + (i * 20), 6);
     
     // Define value bar reference
     unsigned int valBar;
@@ -128,12 +127,12 @@ void main_screen()
     
     // Drawing cursor in every channel bar
     if (valBar < 50)
-    {           //(21 + valBar, 41 + (i * 16), 54 - valBar, 6)
-      u8g2.drawBox(21 + valBar, 41 + (i * 16), 54 - valBar, 6);
+    {
+      u8g2.drawBox(23 + valBar, 37 + (i * 20), 53 - valBar, 6);
     }
     else if (valBar > 50)
-    {           //(74, 41 + (i * 16), valBar - 46, 6)
-      u8g2.drawBox(74, 41 + (i * 16), valBar - 45, 6);
+    {
+      u8g2.drawBox(75, 37 + (i * 20), valBar - 45, 6);
     }
     
     
@@ -148,19 +147,20 @@ void main_screen()
       subTrimVal = -subTrimVal;
     }
     
+    u8g2.drawHLine(0, 10 + (i * 17), 128);
     
     u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
     
     if (subTrim[i] > 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(66, 39 + (i * 16));
+      u8g2.setCursor(67, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] < 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(66, 39 + (i * 16));
+      u8g2.setCursor(62, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     
@@ -170,7 +170,7 @@ void main_screen()
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(23, 39 + (i * 16));
+      u8g2.setCursor(26, 35 + (i * 20));
       u8g2.print(name_buffer);
     }
     
@@ -180,30 +180,22 @@ void main_screen()
     {
       // Print "EXPO"
       strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[6])));
-      u8g2.setCursor(102, 39 + (i * 16));
+      u8g2.setCursor(102, 35 + (i * 20));
       u8g2.print(menu_buffer);
       
       // Print EXPO value
-      u8g2.setCursor(124, 39 + (i * 16));
+      u8g2.setCursor(124, 35 + (i * 20));
       u8g2.print(expo[i]);
     }
     
     
-    u8g2.setFont(u8g2_font_6x13B_tr); // height 9 pixels (X11)
-    //u8g2.setFont(u8g2_font_7x13B_tr); // height 9 pixels (X11)
-    //u8g2.setFont(u8g2_font_7x14_tr); // height 10 pixels (X11)
-    //u8g2.setFont(u8g2_font_7x14B_tr); // height 10 pixels (X11)
-    //u8g2.setFont(u8g2_font_8x13B_tr); // height 10 pixels (X11)
-    //u8g2.setFont(u8g2_font_9x15B_tr); // height 10 pixels (X11)
-    //u8g2.setFont(u8g2_font_9x18B_tr); // height 10 pixels (X11)
-    
     // Print channel items name "CH1 and CH2"
+    u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
+    
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(0, 45 + (i * 16));
+    u8g2.setCursor(0, 44 + (i * 20));
     u8g2.print(name_buffer);
   }
   // End drawing only first 2 channels
-  
-  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
 }
  

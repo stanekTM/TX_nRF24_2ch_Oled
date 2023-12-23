@@ -76,6 +76,6 @@ void model_name_screen()
     }
   }
   
-  u8g2.setFont(u8g2_font_8x13_tr); // height 9 pixels (X11)
+  u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
 }
  
