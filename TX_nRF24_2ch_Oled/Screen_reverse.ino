@@ -77,8 +77,8 @@ void reverse_screen()
     u8g2.drawHLine(83, 20 + (i * 10), 45);
     
     u8g2.drawVLine(105, 16 + (i * 10), 4);
-    //                                                                85, 125) - 1, 18 + (i * 10), 3, 2)
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 85, 125) - 1, 18 + (i * 10), 3, 2);
+    //                                                                83, 125), 18 + (i * 10), 3, 2)
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 83, 125), 18 + (i * 10), 3, 2);
     
     
     if (menuSubActual - 1 == i)

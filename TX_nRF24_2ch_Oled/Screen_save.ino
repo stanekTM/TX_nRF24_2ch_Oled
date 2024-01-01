@@ -68,7 +68,7 @@ void save_model_screen()
     
   } while (u8g2.nextPage());
   
-  delay(5000); // Screen message for 1sec
+  delay(1000); // Screen message for 1sec
   
   screen--;
   menuActual = 0;

@@ -119,35 +119,39 @@ void main_screen()
     // Drawing vertical middle/center separation line
     u8g2.drawVLine(75, 34 + (i * 20), 6);
     
+
     // Define value bar reference
     unsigned int valBar;
     
     // Value bars subdivision (pots value / 50)
-    valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 100);
+    valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 103);
     
     // Drawing cursor in every channel bar
-    if (valBar < 50)
-    {
-      u8g2.drawBox(23 + valBar, 37 + (i * 20), 53 - valBar, 6);
+    //if (valBar < 52)
+    {//            23                          52
+      //u8g2.drawBox(24 + valBar, 37 + (i * 20), 52 - valBar, 6);
     }
-    else if (valBar > 50)
-    {
-      u8g2.drawBox(75, 37 + (i * 20), valBar - 45, 6);
-    }
+    /*else*/ /*if (valBar > 51) //52
+    {//            76                         52
+      u8g2.drawBox(75, 37 + (i * 20),valBar - 51, 6);
+    }*/
     
     
+
+    //u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 23, 125), 37 + (i * 20), 3, 6);
+
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 23, 125), 37 + (i * 20), 3, 6);
+
+
+
+
+
+
     u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
-    
-    // Drawing REVERSE channel status for every channel
-    unsigned short subTrimVal;
-    
-    subTrimVal = map(subTrim[i], 0, SUB_TRIM_MAX, 0, 50);
     
     // Check reverse and applying reverse value if necessary
     if (bitRead(reverse, i) == 1)
     {
-      subTrimVal = -subTrimVal;
-      
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
       u8g2.setCursor(22, 35 + (i * 20));
@@ -189,7 +193,7 @@ void main_screen()
     u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
     
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(0, 44 + (i * 20));
+    u8g2.setCursor(0, 42 + (i * 20));
     u8g2.print(name_buffer);
   }
   // End drawing only first 2 channels
