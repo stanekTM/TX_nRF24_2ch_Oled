@@ -114,39 +114,46 @@ void main_screen()
   for (int i = 0; i < CHANNELS; i++)
   {
     // Draw boxes/frames for every channel
-    u8g2.drawFrame(22, 36 + (i * 20), 106, 8); //128 - (106 / 2) = 75
+    u8g2.drawFrame(23, 36 + (i * 20), 105, 8);
     
     // Drawing vertical middle/center separation line
-    u8g2.drawVLine(75, 34 + (i * 20), 6);
+    u8g2.drawVLine(75, 34 + (i * 20), 9);
     
+    int val_center;
+    
+    if (bitRead(reverse, i) == 1)
+    {
+      val_center = map(subTrim[i], -125, 125, 65, 39);
 
+      u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
+    }
+    else
+    {
+      // 0=52, 50=57, 100=62, 125=65
+      val_center = map(subTrim[i], -125, 125, 39, 65);
+
+      u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
+    }
+    
     // Define value bar reference
-    unsigned int valBar;
+    byte val_bar;
     
     // Value bars subdivision (pots value / 50)
-    valBar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 103);
+    val_bar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
-    //if (valBar < 52)
-    {//            23                          52
-      //u8g2.drawBox(24 + valBar, 37 + (i * 20), 52 - valBar, 6);
+    if (val_bar < val_center)
+    {
+      u8g2.drawBox(24 + val_bar, 37 + (i * 20), val_center - val_bar, 6);
     }
-    /*else*/ /*if (valBar > 51) //52
-    {//            76                         52
-      u8g2.drawBox(75, 37 + (i * 20),valBar - 51, 6);
-    }*/
+    else if (val_bar > val_center)
+    {
+      u8g2.drawBox(val_center + 23, 37 + (i * 20), val_bar - val_center, 6);
+    }
+    
+    //Serial.println(val_center);
     
     
-
-    //u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 23, 125), 37 + (i * 20), 3, 6);
-
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 23, 125), 37 + (i * 20), 3, 6);
-
-
-
-
-
-
     u8g2.setFont(u8g2_font_5x7_tr); // height 6 pixels (X11)
     
     // Check reverse and applying reverse value if necessary
@@ -154,22 +161,22 @@ void main_screen()
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(22, 35 + (i * 20));
+      u8g2.setCursor(23, 35 + (i * 20));
       u8g2.print(name_buffer);
     }
     
     
     // SUB TRIM
-    if (subTrim[i] > 0)
+    if (subTrim[i] < 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(68, 35 + (i * 20));
+      u8g2.setCursor(73, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
-    else if (subTrim[i] < 0)
+    else if (subTrim[i] > 0)
     {
       // Print SUB TRIM value
-      u8g2.setCursor(63, 35 + (i * 20));
+      u8g2.setCursor(78, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     
