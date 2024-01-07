@@ -123,14 +123,14 @@ void main_screen()
     
     if (bitRead(reverse, i) == 1)
     {
-      val_center = map(subTrim[i], -125, 125, 65, 39);
+      val_center = map(subTrim[i], -125, 116, 65, 39);
 
       u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
     }
     else
     {
       // 0=52, 50=57, 100=62, 125=65
-      val_center = map(subTrim[i], -125, 125, 39, 65);
+      val_center = map(subTrim[i], -125, 116, 39, 65);
 
       u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
     }
