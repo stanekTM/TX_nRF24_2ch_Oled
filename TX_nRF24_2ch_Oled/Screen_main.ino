@@ -123,22 +123,23 @@ void main_screen()
     
     if (bitRead(reverse, i) == 1)
     {
-      val_center = map(subTrim[i], -125, 116, 65, 39);
-
+      val_center = map(subTrim[i], -136, 126, 65, 39);
+      
       u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
     }
     else
     {
-      // 0=52, 50=57, 100=62, 125=65
-      val_center = map(subTrim[i], -125, 116, 39, 65);
-
+      val_center = map(subTrim[i], -136, 126, 39, 65);
+      
       u8g2.drawVLine(val_center + 23, 37 + (i * 20), 6);
     }
     
     // Define value bar reference
     byte val_bar;
     
-    // Value bars subdivision (pots value / 50)
+    // Value bars subdivision (pots value / 2)
+    //value sub trim  1=52, 10=53, 50=57, 100=62, 125=65
+    //value sub trim -1=51, 10=50, 50=46, 100=41, 125=39
     val_bar = map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 0, 104);
     
     // Drawing cursor in every channel bar
