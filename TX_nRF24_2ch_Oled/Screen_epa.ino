@@ -55,21 +55,30 @@ void epa_screen()
   //u8g2.drawVLine(64, 0, 64); // central auxiliary line
   
   
-  int section_epa;
-  
   for (int i = 0; i < 2; i++)
   {
     // Print channel items name "CH1 and CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(55, 33 + (i * 10));
+    u8g2.setCursor(51, 23 + (i * 22));
     u8g2.print(name_buffer);
     
+    // Print PPM value
+    u8g2.setCursor(44, 33 + (i * 22));
+    u8g2.print(pots_value[i]);
+    
+    // Print "us"
+    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    u8g2.setCursor(73, 33 + (i * 22));
+    u8g2.print(name_buffer);
+    
+    
+    int section_epa;
     
     // Left section start
     section_epa = i;
     
     // EPA value
-    u8g2.setCursor(8, 33 + (i * 10));
+    u8g2.setCursor(8, 33 + (i * 22));
     u8g2.print(epa[section_epa]);
     
     
@@ -79,19 +88,19 @@ void epa_screen()
       {
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(0, 33 + (i * 10));
+        u8g2.setCursor(0, 33 + (i * 22));
         u8g2.print(char_buffer);
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(29, 33 + (i * 10));
+        u8g2.setCursor(29, 33 + (i * 22));
         u8g2.print(char_buffer);
       }
       else
       {
         // Print "<"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[4])));
-        u8g2.setCursor(32, 33 + (i * 10));
+        u8g2.setCursor(32, 33 + (i * 22));
         u8g2.print(char_buffer);
       }
     }
@@ -102,7 +111,7 @@ void epa_screen()
     section_epa = i + 2;
     
     // EPA value
-    u8g2.setCursor(102, 33 + (i * 10));
+    u8g2.setCursor(102, 33 + (i * 22));
     u8g2.print(epa[section_epa]);
     
     
@@ -112,19 +121,19 @@ void epa_screen()
       {
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(94, 33 + (i * 10));
+        u8g2.setCursor(94, 33 + (i * 22));
         u8g2.print(char_buffer);
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(123, 33 + (i * 10));
+        u8g2.setCursor(123, 33 + (i * 22));
         u8g2.print(char_buffer);
       }
       else
       {
         // Print ">"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[5])));
-        u8g2.setCursor(91, 33 + (i * 10));
+        u8g2.setCursor(91, 33 + (i * 22));
         u8g2.print(char_buffer);
       }
     }

@@ -20,8 +20,8 @@ void draw_main_screen()
   // call to next page
   if (u8g2.nextPage() == 0)
   {
-    is_next_page = 0; // ensure, that first page is called 
-  }  
+    is_next_page = 0; // ensure, that first page is called
+  }
 }
 
 //------------------------------------------------------------------------
@@ -135,7 +135,7 @@ void main_screen()
     }
     
     // Define value bar reference
-    byte val_bar;
+    int val_bar;
     
     // Value bars subdivision (pots value / 2)
     //value sub trim  1=52, 10=53, 50=57, 100=62, 125=65

@@ -48,12 +48,12 @@ void reverse_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(8, 21 + (i * 10));
+    u8g2.setCursor(9, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print "="
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-    u8g2.setCursor(37, 21 + (i * 10));
+    u8g2.setCursor(38, 21 + (i * 10));
     u8g2.print(char_buffer);
     
     
@@ -74,11 +74,11 @@ void reverse_screen()
     
     
     // Drawing dynamic graphics items
-    u8g2.drawHLine(83, 20 + (i * 10), 45);
+    u8g2.drawHLine(84, 20 + (i * 10), 44);
     
-    u8g2.drawVLine(105, 16 + (i * 10), 4);
+    u8g2.drawVLine(105, 13 + (i * 10), 7);
     //                                                                83, 125), 18 + (i * 10), 3, 2)
-    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 83, 125), 18 + (i * 10), 3, 2);
+    u8g2.drawBox(map(pots_value[i], MIN_CONTROL_VAL, MAX_CONTROL_VAL, 84, 125), 16 + (i * 10), 3, 4);
     
     
     if (menuSubActual - 1 == i)

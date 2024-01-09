@@ -51,33 +51,6 @@ void setup()
   
   delay(1000);
   
-  /*
-  // Default state config parameters
-  // REVERSE bit mask: 0 Normal, 1 Reverse
-  reverse = 0b00000000;
-  
-  // EPA default values
-  for (int i = 0; i < 4; i++)
-  {
-    epa[i] = EPA_MAX;
-  }
-  
-  // SUB TRIM default values
-  for (int i = 0; i < CHANNELS; i++)
-  {
-    subTrim[i] = 0;
-  }
-  
-  // Default MODEL NAME 5 byte
-  //for (int i = 0; i < 5; i++)
-  {
-    //modelName[i] = 0x2d;
-    //modelName[5];
-    //modelName[0x6d, 0x6f, 0x64, 0x65, 0x6c];
-    //modelName[] = "model";
-  }
-  */
-  
   // NOTE: SHOULD BE USED FOR THE FIRST TIME AFTER CALIBRATION !!!
   resetEeprom_screen(); // print "ERASE DATA" screen
   
