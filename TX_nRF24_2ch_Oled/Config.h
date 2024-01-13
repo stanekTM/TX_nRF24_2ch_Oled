@@ -161,8 +161,8 @@ const char* const menu_name[] PROGMEM = {
 //*********************************************************************************************************************
 const char channel_name_0[] PROGMEM = "CH1";
 const char channel_name_1[] PROGMEM = "CH2";
-const char channel_name_2[] PROGMEM = "left %";
-const char channel_name_3[] PROGMEM = "right %";
+const char channel_name_2[] PROGMEM = "free";
+const char channel_name_3[] PROGMEM = "free";
 const char channel_name_4[] PROGMEM = "UP";
 const char channel_name_5[] PROGMEM = "DOWN";
 const char channel_name_6[] PROGMEM = "us";
@@ -192,11 +192,12 @@ const char one_char_2[] PROGMEM = "(";
 const char one_char_3[] PROGMEM = ")";
 const char one_char_4[] PROGMEM = "<";
 const char one_char_5[] PROGMEM = ">";
-const char one_char_6[] PROGMEM = "/";
-const char one_char_7[] PROGMEM = "V";
+const char one_char_6[] PROGMEM = "L";
+const char one_char_7[] PROGMEM = "R";
 const char one_char_8[] PROGMEM = "%";
-const char one_char_9[] PROGMEM = "free";
+const char one_char_9[] PROGMEM = "/";
 const char one_char_10[] PROGMEM = "=";
+const char one_char_11[] PROGMEM = "V";
 
 const char* const one_char[] PROGMEM = {
   one_char_0,
@@ -209,7 +210,8 @@ const char* const one_char[] PROGMEM = {
   one_char_7,
   one_char_8,
   one_char_9,
-  one_char_10
+  one_char_10,
+  one_char_11
 };
 
 //*********************************************************************************************************************

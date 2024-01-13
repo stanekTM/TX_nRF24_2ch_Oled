@@ -54,7 +54,7 @@ void main_screen()
     u8g2.print(tx_batt_volt);
     
     // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
     u8g2.setCursor(44, 9);
     u8g2.print(char_buffer);
   }
@@ -81,7 +81,7 @@ void main_screen()
     u8g2.print(rx_batt_volt);
     
     // Print "V"
-    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
+    strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[11])));
     u8g2.setCursor(122, 9);
     u8g2.print(char_buffer);
     }
@@ -167,16 +167,14 @@ void main_screen()
     }
     
     
-    // SUB TRIM
+    // Print SUB TRIM value
     if (subTrim[i] < 0)
     {
-      // Print SUB TRIM value
       u8g2.setCursor(73, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }
     else if (subTrim[i] > 0)
     {
-      // Print SUB TRIM value
       u8g2.setCursor(78, 35 + (i * 20));
       u8g2.print(subTrim[i]);
     }

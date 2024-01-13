@@ -36,7 +36,7 @@ void menu_screen()
   // Print MODEL NAME "MODEL"
   u8g2.setCursor(0, 9);
   u8g2.print(modelName);
-
+  
   // Print number of which model in use
   u8g2.setCursor(40, 9);
   u8g2.print(modelActual + 1);
@@ -47,7 +47,7 @@ void menu_screen()
   u8g2.print(menuPage + 1);
   
   // Print "/"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[6])));
+  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[9])));
   u8g2.setCursor(114, 9);
   u8g2.print(char_buffer);
   

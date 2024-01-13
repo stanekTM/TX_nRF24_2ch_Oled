@@ -48,11 +48,11 @@ void expo_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(8, 21 + (i * 10));
+    u8g2.setCursor(10, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print EXPO value
-    u8g2.setCursor(38, 21 + (i * 10));
+    u8g2.setCursor(43, 21 + (i * 10));
     u8g2.print(expo[i]);
     
     
@@ -67,12 +67,12 @@ void expo_screen()
         
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(31, 21 + (i * 10));
+        u8g2.setCursor(35, 21 + (i * 10));
         u8g2.print(char_buffer);
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(45, 21 + (i * 10));
+        u8g2.setCursor(50, 21 + (i * 10));
         u8g2.print(char_buffer);
       }
       else

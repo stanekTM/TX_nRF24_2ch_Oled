@@ -50,20 +50,28 @@ void sub_trim_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(8, 21 + (i * 10));
+    u8g2.setCursor(10, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print SUB TRIM value
-    u8g2.setCursor(40, 21 + (i * 10));
-    u8g2.print(subTrim[i]);
+    if (subTrim[i] < 0)
+    {
+      u8g2.setCursor(44, 21 + (i * 10));
+      u8g2.print(subTrim[i]);
+    }
+    else if (subTrim[i] > 0)
+    {
+      u8g2.setCursor(51, 21 + (i * 10));
+      u8g2.print(subTrim[i]);
+    }
     
     // Print PPM value
-    u8g2.setCursor(81, 21 + (i * 10));
+    u8g2.setCursor(87, 21 + (i * 10));
     u8g2.print(pots_value[i]);
     
     // Print "us"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
-    u8g2.setCursor(113, 21 + (i * 10));
+    u8g2.setCursor(115, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     
@@ -78,12 +86,12 @@ void sub_trim_screen()
         
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(33, 21 + (i * 10));
+        u8g2.setCursor(39, 21 + (i * 10));
         u8g2.print(char_buffer);
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(71, 21 + (i * 10));
+        u8g2.setCursor(72, 21 + (i * 10));
         u8g2.print(char_buffer);
       }
       else

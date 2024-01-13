@@ -48,7 +48,7 @@ void reverse_screen()
   {
     // Print channel items name "CH1, CH2"
     strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
-    u8g2.setCursor(9, 21 + (i * 10));
+    u8g2.setCursor(10, 21 + (i * 10));
     u8g2.print(name_buffer);
     
     // Print "="
@@ -61,14 +61,14 @@ void reverse_screen()
     {
       // Print "REV"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
-      u8g2.setCursor(53, 21 + (i * 10));
+      u8g2.setCursor(52, 21 + (i * 10));
       u8g2.print(name_buffer);
     }
     else
     {
       // Print "NOR"
       strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[8])));
-      u8g2.setCursor(53, 21 + (i * 10));
+      u8g2.setCursor(52, 21 + (i * 10));
       u8g2.print(name_buffer);
     }
     
