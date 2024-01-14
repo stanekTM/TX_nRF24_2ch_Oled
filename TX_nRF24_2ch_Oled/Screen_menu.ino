@@ -64,7 +64,7 @@ void menu_screen()
     if (i + (5 * menuPage) > MENU_COUNT)
     break;
     
-    // Print main menu items "EPA, MODEL SELECT, REVERSE, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
+    // Print main menu items "END POINT, MODEL SELECT, REVERSE, SAVE MODEL, SUB TRIM, MODEL NAME, EXPO"
     strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[i + (5 * menuPage) - 1])));
     
     if (i + (5 * menuPage) == menuSubActual)

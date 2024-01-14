@@ -1,7 +1,7 @@
 
 //*********************************************************************************************************************
 // EXPO Eq.
-// Y = X * EXPO((X-EndPoint)/dv))
+// Y = X * EXPO((X - EndPoint) / dv))
 // proper dv value : 300 ~ 700
 //*********************************************************************************************************************
 int calc_expo(unsigned short trim_ppm_mid, unsigned short value, unsigned short in_max, unsigned short dv)

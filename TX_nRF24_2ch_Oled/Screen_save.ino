@@ -55,15 +55,15 @@ void save_model_screen()
     
     // Print "SAVE DATA"
     strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[0])));
-    u8g2.setCursor(28, 20);
+    u8g2.setCursor(25, 20);
     u8g2.print(msg_buffer);
     
     // Print MODEL NAME "MODEL"
-    u8g2.setCursor(36, 50);
+    u8g2.setCursor(25, 40);
     u8g2.print(modelName);
     
     // Print number of which model in use
-    u8g2.setCursor(77, 50);
+    u8g2.setCursor(75, 40);
     u8g2.print(modelActual + 1);
     
   } while (u8g2.nextPage());
