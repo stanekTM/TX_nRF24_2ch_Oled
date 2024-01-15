@@ -29,7 +29,7 @@ void reverse_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[9];
   
   read_pots(); // Macro again for stable pots value
@@ -47,9 +47,9 @@ void reverse_screen()
   for (int i = 0; i < CHANNELS; i++)
   {
     // Print channel items name "CH1, CH2"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(10, 21 + (i * 10));
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
     // Print "="
     strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
@@ -60,16 +60,16 @@ void reverse_screen()
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[9])));
       u8g2.setCursor(52, 21 + (i * 10));
-      u8g2.print(name_buffer);
+      u8g2.print(word_buffer);
     }
     else
     {
       // Print "NOR"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[8])));
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[8])));
       u8g2.setCursor(52, 21 + (i * 10));
-      u8g2.print(name_buffer);
+      u8g2.print(word_buffer);
     }
     
     

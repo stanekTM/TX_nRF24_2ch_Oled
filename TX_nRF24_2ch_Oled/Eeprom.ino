@@ -120,7 +120,7 @@ void resetEeprom_screen()
     bool isWait = true;
     
     // Set memory buffer for text strings
-    char name_buffer[13];
+    char word_buffer[13];
     char msg_buffer[11];
     char char_buffer[8];
     
@@ -133,33 +133,33 @@ void resetEeprom_screen()
       
       // Print "Y"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[0])));
-      u8g2.setCursor(15, 40);
+      u8g2.setCursor(0, 40);
       u8g2.print(char_buffer);
       
       // Print "="
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-      u8g2.setCursor(17, 40);
+      u8g2.setCursor(10, 40);
       u8g2.print(char_buffer);
       
       // Print "DOWN"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[5])));
-      u8g2.setCursor(39, 40);
-      u8g2.print(name_buffer);
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[5])));
+      u8g2.setCursor(20, 40);
+      u8g2.print(word_buffer);
       
       // Print "N"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
-      u8g2.setCursor(75, 40);
+      u8g2.setCursor(95, 40);
       u8g2.print(char_buffer);
       
       // Print "="
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[10])));
-      u8g2.setCursor(82, 40);
+      u8g2.setCursor(105, 40);
       u8g2.print(char_buffer);
       
       // Print "UP"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
-      u8g2.setCursor(89, 40);
-      u8g2.print(name_buffer);
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
+      u8g2.setCursor(115, 40);
+      u8g2.print(word_buffer);
       
     } while (u8g2.nextPage());
     
@@ -183,7 +183,7 @@ void resetEeprom_screen()
           
           // Print "ERASE DATA"
           strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
-          u8g2.setCursor(35, 20);
+          u8g2.setCursor(25, 20);
           u8g2.print(msg_buffer);
           
         } while (u8g2.nextPage());

@@ -28,7 +28,7 @@ void draw_main_screen()
 void main_screen()
 {
   // Set memory buffer for text strings
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[8];
   char msg_buffer[11];
   char menu_buffer[7];
@@ -161,9 +161,9 @@ void main_screen()
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[9])));
       u8g2.setCursor(23, 35 + (i * 20));
-      u8g2.print(name_buffer);
+      u8g2.print(word_buffer);
     }
     
     
@@ -198,9 +198,9 @@ void main_screen()
     // Print channel items name "CH1 and CH2"
     u8g2.setFont(u8g2_font_7x13_tr); // height 9 pixels (X11)
     
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(0, 42 + (i * 20));
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
   }
   // End drawing only first 2 channels
 }

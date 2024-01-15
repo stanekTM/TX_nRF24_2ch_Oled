@@ -105,7 +105,7 @@ void calib_MinMax_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[11];
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[8];
   
   u8g2.firstPage(); do {
@@ -127,16 +127,16 @@ void calib_MinMax_screen()
     u8g2.drawVLine(64, 10, 30);
     
     // Print "CH1" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[0])));
     u8g2.setCursor(5, 20);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
     
     // Print "CH2" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
     u8g2.setCursor(70, 20);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     u8g2.setCursor(95, 20);
     u8g2.print(analogRead(1));
     
@@ -156,9 +156,9 @@ void calib_MinMax_screen()
     u8g2.print(char_buffer);
     
     // Print "UP"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
     u8g2.setCursor(70, 64);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
   } while (u8g2.nextPage());
 }
@@ -170,7 +170,7 @@ void calib_center_screen()
 {
   // Set memory buffer for text strings
   char msg_buffer[11];
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[8];
   
   u8g2.firstPage(); do {
@@ -192,16 +192,16 @@ void calib_center_screen()
     u8g2.drawVLine(64, 10, 30);
     
     // Print "CH1" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[0])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[0])));
     u8g2.setCursor(5, 20);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     u8g2.setCursor(30, 20);
     u8g2.print(analogRead(0));
     
     // Print "CH2" and value
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[1])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[1])));
     u8g2.setCursor(70, 20);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     u8g2.setCursor(95, 20);
     u8g2.print(analogRead(1));
     
@@ -226,9 +226,9 @@ void calib_center_screen()
     u8g2.print(char_buffer);
     
     // Print "UP"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[4])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
     u8g2.setCursor(70, 64);
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
   } while (u8g2.nextPage());
 }

@@ -29,7 +29,7 @@ void expo_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[9];
   
   read_pots(); // Macro again for stable pots value
@@ -47,9 +47,9 @@ void expo_screen()
   for (int i = 0; i < CHANNELS; i++)
   {
     // Print channel items name "CH1, CH2"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(10, 21 + (i * 10));
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
     // Print EXPO value
     u8g2.setCursor(43, 21 + (i * 10));

@@ -29,20 +29,20 @@ void epa_screen()
 {
   // Set memory buffer for text strings
   char menu_buffer[7];
-  char name_buffer[13];
+  char word_buffer[13];
   char char_buffer[9];
   
   read_pots(); // Macro again for stable pots value
   
-  // Print "EPA"
+  // Print "END POINT"
   strcpy_P(menu_buffer, (char*)pgm_read_word(&(menu_name[0])));
   u8g2.setCursor(0, 9);
   u8g2.print(menu_buffer);
   
-  // Print "%"
-  strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[8])));
-  u8g2.setCursor(122, 9);
-  u8g2.print(char_buffer);
+  // Print "in %"
+  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[7])));
+  u8g2.setCursor(101, 9);
+  u8g2.print(word_buffer);
   
   // Drawing horizontal line under header
   u8g2.drawHLine(0, 10, 128);
@@ -51,17 +51,17 @@ void epa_screen()
   for (int i = 0; i < 2; i++)
   {
     // Print channel items name "CH1 and CH2"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[i])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[i])));
     u8g2.setCursor(44, 21 + (i * 26));
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
     // Check reverse and applying reverse value if necessary
     if (bitRead(reverse, i) == 1)
     {
       // Print "REV"
-      strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[9])));
+      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[9])));
       u8g2.setCursor(72, 21 + (i * 26));
-      u8g2.print(name_buffer);
+      u8g2.print(word_buffer);
       
       // Print "R"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[7])));
@@ -91,9 +91,9 @@ void epa_screen()
     u8g2.print(pots_value[i]);
     
     // Print "us"
-    strcpy_P(name_buffer, (char*)pgm_read_word(&(channel_name[6])));
+    strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[6])));
     u8g2.setCursor(72, 31 + (i * 26));
-    u8g2.print(name_buffer);
+    u8g2.print(word_buffer);
     
     
     int section_epa;
