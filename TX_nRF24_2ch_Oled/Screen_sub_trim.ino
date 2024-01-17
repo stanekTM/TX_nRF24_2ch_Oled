@@ -54,16 +54,8 @@ void sub_trim_screen()
     u8g2.print(word_buffer);
     
     // Print SUB TRIM value
-    if (subTrim[i] < 0)
-    {
-      u8g2.setCursor(44, 21 + (i * 10));
-      u8g2.print(subTrim[i]);
-    }
-    else if (subTrim[i] > 0)
-    {
-      u8g2.setCursor(51, 21 + (i * 10));
-      u8g2.print(subTrim[i]);
-    }
+    u8g2.setCursor(46, 21 + (i * 10));
+    u8g2.print(subTrim[i]);
     
     // Print PPM value
     u8g2.setCursor(87, 21 + (i * 10));
@@ -86,12 +78,12 @@ void sub_trim_screen()
         
         // Print "("
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[2])));
-        u8g2.setCursor(39, 21 + (i * 10));
+        u8g2.setCursor(38, 21 + (i * 10));
         u8g2.print(char_buffer);
         
         // Print ")"
         strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[3])));
-        u8g2.setCursor(72, 21 + (i * 10));
+        u8g2.setCursor(74, 21 + (i * 10));
         u8g2.print(char_buffer);
       }
       else

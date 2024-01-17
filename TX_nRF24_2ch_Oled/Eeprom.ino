@@ -120,14 +120,13 @@ void resetEeprom_screen()
     bool isWait = true;
     
     // Set memory buffer for text strings
-    char word_buffer[13];
     char msg_buffer[11];
     char char_buffer[8];
     
     u8g2.firstPage(); do {
       
       // Print "ERASE DATA ?"
-      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
       u8g2.setCursor(25, 20);
       u8g2.print(msg_buffer);
       
@@ -142,9 +141,9 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
       
       // Print "DOWN"
-      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[5])));
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[10])));
       u8g2.setCursor(20, 40);
-      u8g2.print(word_buffer);
+      u8g2.print(msg_buffer);
       
       // Print "N"
       strcpy_P(char_buffer, (char*)pgm_read_word(&(one_char[1])));
@@ -157,9 +156,9 @@ void resetEeprom_screen()
       u8g2.print(char_buffer);
       
       // Print "UP"
-      strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[4])));
+      strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
       u8g2.setCursor(115, 40);
-      u8g2.print(word_buffer);
+      u8g2.print(msg_buffer);
       
     } while (u8g2.nextPage());
     
@@ -179,14 +178,16 @@ void resetEeprom_screen()
         // Recall "Reset to default" macro
         resetEeprom();
         
-        u8g2.firstPage(); do {
+        /*u8g2.firstPage(); do {
           
           // Print "ERASE DATA"
-          strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
+          strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
           u8g2.setCursor(25, 20);
           u8g2.print(msg_buffer);
           
         } while (u8g2.nextPage());
+        
+        delay(2000);*/
         
         break;
       }

@@ -36,9 +36,9 @@ void main_screen()
   read_pots(); // Macro again for stable pots value
   
   // Print "TX"
-  strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[10])));
+  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[2])));
   u8g2.setCursor(0, 9);
-  u8g2.print(msg_buffer);
+  u8g2.print(word_buffer);
   
   if (tx_low_batt)
   {
@@ -61,9 +61,9 @@ void main_screen()
   
   
   // Print "RX"
-  strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[9])));
+  strcpy_P(word_buffer, (char*)pgm_read_word(&(word_name[3])));
   u8g2.setCursor(72, 9);
-  u8g2.print(msg_buffer);
+  u8g2.print(word_buffer);
   
   if (rf_state)
   {
@@ -89,7 +89,7 @@ void main_screen()
   else
   {
     // Print "off!"
-    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[1])));
+    strcpy_P(msg_buffer, (char*)pgm_read_word(&(message[5])));
     u8g2.setCursor(90, 9);
     u8g2.print(msg_buffer);
   }
