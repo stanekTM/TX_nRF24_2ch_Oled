@@ -30,7 +30,7 @@ D5 - button Exit
 
 A7 - input TX battery
 
-LCD I2C:
+OLED I2C:
 A4 - SDA
 A5 - SCL
 
